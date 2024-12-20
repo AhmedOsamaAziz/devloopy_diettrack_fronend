@@ -1,0 +1,4 @@
+enum BlogType {
+  article,
+  video
+}
