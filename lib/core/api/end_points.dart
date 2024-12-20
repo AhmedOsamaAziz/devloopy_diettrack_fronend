@@ -2,7 +2,7 @@ class EndPoints {
   static const String _baseUrl = "https://localhost:7191/";
 
   static const String login = "${_baseUrl}login";
-  static const String testimonil = "${_baseUrl}api/testimonil";
+  static const String testimonil = "${_baseUrl}api/testimonial";
   static const String comment = "${_baseUrl}api/comment";
   static const String register = "${_baseUrl}register";
   static const String blog = "${_baseUrl}api/blog";

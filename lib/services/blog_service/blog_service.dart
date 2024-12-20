@@ -78,13 +78,15 @@ class BlogService {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.blog,
+        EndPoints.blogRecent,
       );
 
-      List<BlogList> blogCreate = response.obj;
+      List<BlogList> blogs = (response.obj['items'] as List)
+          .map((blogJson) => BlogList.fromJson(blogJson))
+          .toList();
 
       return GenericResponse(
-          status: ResponseStatus.success, obj: blogCreate, code: 200);
+          status: ResponseStatus.success, obj: blogs, code: 200);
     } on Exception catch (e) {
       return GenericResponse(
         status: ResponseStatus.fail,

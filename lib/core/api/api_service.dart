@@ -29,7 +29,7 @@ class ApiService {
         ),
       );
 
-      log(response.statusCode.toString());
+      log('API Call' + response.statusCode.toString());
 
       return GenericResponse(
           obj: response.data,

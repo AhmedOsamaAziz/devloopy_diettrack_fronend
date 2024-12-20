@@ -11,23 +11,17 @@ class TestmonialsListCustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TestimonilsCubit()..detailsTestimonial(),
+      create: (context) => TestimonilsCubit()..getAllTestimonial(),
       child: BlocBuilder<TestimonilsCubit, TestimonilsState>(
         builder: (context, state) {
           if (state is TestimonilsLoading) {
             // Show a loading indicator while the testimonials are being fetched
             return const Center(child: CircularProgressIndicator());
           } else if (state is TestimonilsSuccess) {
-            final List<OurTestimonalsModel> list = state.testimonials
-                .map((testimonial) => OurTestimonalsModel.fromTestimonialBase(
-                    testimonial as Map<String, dynamic>))
-                .toList();
-
-            // Adjust for large or medium screens
             return ScreenSize.isLarge || ScreenSize.isMedium
                 ? Expanded(
                     child: GridView.builder(
-                      itemCount: list.length,
+                      itemCount: state.testimonials.length,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -36,19 +30,19 @@ class TestmonialsListCustomCard extends StatelessWidget {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return TestmonialsCustomCard(
-                          ourTestimonalsModel: list[index],
+                          testimonial: state.testimonials[index],
                         );
                       },
                     ),
                   )
                 : Expanded(
                     child: ListView.builder(
-                      itemCount: list.length,
+                      itemCount: state.testimonials.length,
                       physics: const NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
                         return TestmonialsCustomCard(
-                          ourTestimonalsModel: list[index],
+                          testimonial: state.testimonials[index],
                         );
                       },
                     ),
