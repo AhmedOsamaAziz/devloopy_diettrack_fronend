@@ -27,14 +27,10 @@ class CustomListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BlogCubit, BlogState>(builder: (context, state) {
       if (state is BlogLoading) {
-        log('=======================HomeBlogLoading========================');
-
         return const Center(
           child: CircularProgressIndicator(),
         );
       } else if (state is BlogSuccess) {
-        log('=======================HomeBlogSuccess========================');
-
         return ListView.builder(
             itemCount: state.blogs.length,
             physics: const NeverScrollableScrollPhysics(),
@@ -46,7 +42,6 @@ class CustomListView extends StatelessWidget {
               );
             });
       } else if (state is BlogFailure) {
-        log('=======================HomeBlogFailure========================');
         return Center(child: Text(state.errMessage));
       } else {
         state as BlogNoData;
@@ -66,14 +61,12 @@ class CustomGridView extends StatelessWidget {
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
         if (state is BlogLoading) {
-          log('=======================HomeBlogLoadingGridView========================');
-
+ 
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is BlogSuccess) {
-          log('=======================HomeBlogSuccessGridView========================');
-
+ 
           return GridView.builder(
               itemCount: state.blogs.length,
               physics: const NeverScrollableScrollPhysics(),
@@ -90,8 +83,7 @@ class CustomGridView extends StatelessWidget {
                 );
               });
         } else if (state is BlogFailure) {
-          log('=======================HomeBlogFailureGridView========================');
-          return Center(child: Text(state.errMessage));
+           return Center(child: Text(state.errMessage));
         }
         return const Center(child: Text('No Blogs Available'));
       },
