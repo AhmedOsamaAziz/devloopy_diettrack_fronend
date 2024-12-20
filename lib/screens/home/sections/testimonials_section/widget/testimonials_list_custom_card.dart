@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/model/general/our_testmonials.dart';
-import 'testimonials_custom_card.dart'; // Import TestmonialsCustomCard
+import 'testimonials_custom_card.dart';
 
 class TestmonialsListCustomCard extends StatelessWidget {
   const TestmonialsListCustomCard({super.key});
@@ -15,7 +16,6 @@ class TestmonialsListCustomCard extends StatelessWidget {
       child: BlocBuilder<TestimonilsCubit, TestimonilsState>(
         builder: (context, state) {
           if (state is TestimonilsLoading) {
-            // Show a loading indicator while the testimonials are being fetched
             return const Center(child: CircularProgressIndicator());
           } else if (state is TestimonilsSuccess) {
             return ScreenSize.isLarge || ScreenSize.isMedium
@@ -48,12 +48,10 @@ class TestmonialsListCustomCard extends StatelessWidget {
                     ),
                   );
           } else if (state is TestimonilFailur) {
-            // Display an error message if the testimonials failed to load
             return Center(
               child: Text('Failed to load testimonials: ${state.errMessage}'),
             );
           } else {
-            // Handle any other states, including the initial state
             return const Center(child: Text('No testimonials available.'));
           }
         },

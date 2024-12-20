@@ -1,5 +1,4 @@
 import 'package:ui/core/enums.dart';
-import 'package:ui/model/author/author.dart';
 import 'package:ui/model/blog/blog_base.dart';
 import 'package:ui/model/blog_group/blog_group.dart';
 

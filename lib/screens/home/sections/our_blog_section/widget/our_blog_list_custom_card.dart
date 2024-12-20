@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
@@ -33,7 +31,7 @@ class CustomListView extends StatelessWidget {
       } else if (state is BlogSuccess) {
         return ListView.builder(
             itemCount: state.blogs.length,
-            physics: const NeverScrollableScrollPhysics(),
+            // physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
               final blog = state.blogs[index];
@@ -61,20 +59,18 @@ class CustomGridView extends StatelessWidget {
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
         if (state is BlogLoading) {
- 
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is BlogSuccess) {
- 
           return GridView.builder(
               itemCount: state.blogs.length,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 5,
-                mainAxisExtent: 720,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio: 1.0,
               ),
               itemBuilder: (BuildContext context, int index) {
                 final blog = state.blogs[index];
@@ -83,7 +79,7 @@ class CustomGridView extends StatelessWidget {
                 );
               });
         } else if (state is BlogFailure) {
-           return Center(child: Text(state.errMessage));
+          return Center(child: Text(state.errMessage));
         }
         return const Center(child: Text('No Blogs Available'));
       },

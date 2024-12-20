@@ -18,7 +18,6 @@ class ApiService {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      log("Status API Call Started");
       var response = await _dio.request(
         endpoint,
         data: data,
@@ -29,8 +28,6 @@ class ApiService {
         ),
       );
 
-      log('API Call' + response.statusCode.toString());
-
       return GenericResponse(
           obj: response.data,
           code: response.statusCode!,
@@ -39,35 +36,8 @@ class ApiService {
               : ResponseStatus.fail,
           message: response.statusMessage);
     } catch (e) {
-      throw 'Network errror: $e';
+      log('Network error: $e');
+      throw 'Network error: $e';
     }
   }
-
-//   final Dio dio;
-
-//   ApiServices(this.dio);
-
-//   Future<dynamic> post({
-//     required String endPoint,
-//     required  Map data,
-//     // required headers,
-//   }) async {
-//     var response = await dio.post(
-//       "$baseUrl$endPoint",
-//       data: data,
-//     );
-
-//     return response;
-//   }
-
-//   Future<Map<String, dynamic>> postBlog(
-//       {required endPoint, required data, required headers}) async {
-//     var response = await dio.post(
-//       "$baseUrl$endPoint",
-//       data: data,
-//       // options: Options(headers: {}),
-//     );
-
-//     return response.data;
-//   }
 }

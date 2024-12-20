@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/cubits/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/model/general/our_testmonials.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
-import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class TestmonialsCustomCard extends StatelessWidget {
@@ -23,9 +22,6 @@ class TestmonialsCustomCard extends StatelessWidget {
         ..getAllTestimonial(), // Fetch testimonials on widget load
       child: BlocBuilder<TestimonilsCubit, TestimonilsState>(
         builder: (context, state) {
-          final cubit = context.read<TestimonilsCubit>();
-          cubit.detailsTestimonial();
-
           if (state is TestimonilsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TestimonilsSuccess) {
@@ -45,11 +41,11 @@ class TestmonialsCustomCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image.asset(
-                  //   testimonial.iconImage,
-                  //   height: 40,
-                  //   width: 40,
-                  // ),
+                  Image.asset(
+                    Assets.imagesIconComment,
+                    height: 40,
+                    width: 40,
+                  ),
                   const SizedBox(height: 20),
                   CustomText(
                     text: testimonial.title,
@@ -67,14 +63,14 @@ class TestmonialsCustomCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(2)),
                     child: Row(
                       children: [
-                        // Card(
-                        //   color: ColorsApp.AppBarColor,
-                        //   child: Image.asset(
-                        //     testimonial.smallImage,
-                        //     height: 40,
-                        //     width: 40,
-                        //   ),
-                        // ),
+                        Card(
+                          color: ColorsApp.AppBarColor,
+                          child: Image.asset(
+                            "assets/images/cardsmail2.png",
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
                         const SizedBox(width: 10),
                         CustomText(
                           text: testimonial.description,

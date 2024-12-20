@@ -285,9 +285,9 @@ class UnderUppBar extends StatelessWidget {
       text: buttonText,
       fontSize: 12,
       fontWeight: FontWeight.w500,
-      color: activeIndex == index
-          ? ColorsApp.SecondaryColor // Active button color
-          : ColorsApp.MAINCOLOR, // Default button color
+      color: onTabChanged == index
+          ? ColorsApp.MAINCOLOR // Active button color
+          : ColorsApp.SecondaryColor, // Default button color
     );
   }
 }
