@@ -43,12 +43,13 @@ class BlogCubit extends Cubit<BlogState> {
       var blogService = BlogService();
       var response = await blogService.getRecentBlogs();
       if (response.status == ResponseStatus.success) {
-        final List<BlogList> blogRecent = response.obj;
 
-        if (blogRecent.isEmpty) {
+        final List<BlogList> blogs = response.obj;
+
+        if (blogs.isEmpty) {
           emit(BlogNoData());
         } else {
-          emit(BlogSuccess(blogRecent));
+          emit(BlogSuccess(blogs));
         }
       } else {
         emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));

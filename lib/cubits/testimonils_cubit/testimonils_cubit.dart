@@ -4,8 +4,9 @@ import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/model/testimonials/testimonial_create.dart';
 import 'package:ui/model/testimonials/testimonial_detail.dart';
+import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/model/testimonials/testimonial_update.dart';
-import 'package:ui/services/testimonial_service/testimonial_service_implementation.dart';
+import 'package:ui/services/testimonial_service/testimonial_service.dart';
 
 part 'testimonils_state.dart';
 
@@ -15,22 +16,23 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
   Future<void> getAllTestimonial() async {
     emit(TestimonilsLoading());
     try {
-      var testimonilsService = TestimonialServiceImplementation();
-      var response = await testimonilsService.getAllTestimonial();
+      TestimonialService testimonialsService = TestimonialService();
+      var response = await testimonialsService.getAllTestimonial();
 
       if (response.status == ResponseStatus.success) {
-        final List<TestimonialBase> testimonialBase = response.obj;
-        emit(TestimonilsSuccess(testimonials: testimonialBase));
+        final List<TestimonialList> testimonials = response.obj;
+        emit(TestimonilsSuccess(testimonials: testimonials));
       }
     } catch (e) {
-      emit(const TestimonilFailur(errMessage: 'Sorry No Testimonils Now ,,'));
+
+      emit(TestimonilFailur(errMessage: e.toString()));
     }
   }
 
   Future<void> createTestimonial() async {
     emit(TestimonilsLoading());
     try {
-      var testimonilsService = TestimonialServiceImplementation();
+      var testimonilsService = TestimonialService();
       var response = await testimonilsService.createTestimonial();
 
       if (response.status == ResponseStatus.success) {
@@ -46,7 +48,7 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
   Future<void> detailsTestimonial() async {
     emit(TestimonilsLoading());
     try {
-      var testimonilsService = TestimonialServiceImplementation();
+      var testimonilsService = TestimonialService();
       var response = await testimonilsService.detailsTestimonial();
 
       if (response.status == ResponseStatus.success) {
@@ -61,7 +63,7 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
   Future<void> updateTestimonial() async {
     emit(TestimonilsLoading());
     try {
-      var testimonilsService = TestimonialServiceImplementation();
+      var testimonilsService = TestimonialService();
       var response = await testimonilsService.updateTestimonial();
 
       if (response.status == ResponseStatus.success) {

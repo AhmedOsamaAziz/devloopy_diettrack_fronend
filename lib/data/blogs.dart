@@ -14,6 +14,7 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image1.jpg',
     videoUrl: 'https://example.com/video1.mp4',
     group: BlogGroup(id: 1, groupName: 'Tech'),
+    author: ''
   ),
   BlogList(
     id: 2,
@@ -26,6 +27,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image2.jpg',
     videoUrl: 'https://example.com/video2.mp4',
     group: BlogGroup(id: 2, groupName: 'Health'),
+      author: ''
+
   ),
   BlogList(
     id: 3,
@@ -38,6 +41,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image3.jpg',
     videoUrl: 'https://example.com/video3.mp4',
     group: BlogGroup(id: 3, groupName: 'Lifestyle'),
+      author: ''
+
   ),
   BlogList(
     id: 4,
@@ -50,6 +55,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image4.jpg',
     videoUrl: 'https://example.com/video4.mp4',
     group: BlogGroup(id: 4, groupName: 'Finance'),
+      author: ''
+
   ),
   BlogList(
     id: 5,
@@ -62,6 +69,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image5.jpg',
     videoUrl: 'https://example.com/video5.mp4',
     group: BlogGroup(id: 5, groupName: 'Education'),
+      author: ''
+
   ),
   BlogList(
     id: 6,
@@ -74,6 +83,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image6.jpg',
     videoUrl: 'https://example.com/video6.mp4',
     group: BlogGroup(id: 6, groupName: 'Travel'),
+      author: ''
+
   ),
   BlogList(
     id: 7,
@@ -86,6 +97,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image7.jpg',
     videoUrl: 'https://example.com/video7.mp4',
     group: BlogGroup(id: 7, groupName: 'Food'),
+      author: ''
+
   ),
   BlogList(
     id: 8,
@@ -98,6 +111,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image8.jpg',
     videoUrl: 'https://example.com/video8.mp4',
     group: BlogGroup(id: 8, groupName: 'Fashion'),
+      author: ''
+
   ),
   BlogList(
     id: 9,
@@ -110,6 +125,8 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image9.jpg',
     videoUrl: 'https://example.com/video9.mp4',
     group: BlogGroup(id: 9, groupName: 'Sports'),
+      author: ''
+
   ),
   BlogList(
     id: 10,
@@ -122,5 +139,7 @@ List<BlogList> blogData = [
     imageUrl: 'https://example.com/image10.jpg',
     videoUrl: 'https://example.com/video10.mp4',
     group: BlogGroup(id: 10, groupName: 'Entertainment'),
+      author: ''
+
   ),
 ];

@@ -4,15 +4,17 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/our_testmonials.dart';
+import 'package:ui/model/testimonials/testimonial_base.dart';
+import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class TestmonialsCustomCard extends StatelessWidget {
   const TestmonialsCustomCard({
     super.key,
-    required this.ourTestimonalsModel,
+    required this.testimonial,
   });
 
-  final OurTestimonalsModel ourTestimonalsModel;
+  final TestimonialBase testimonial;
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +45,14 @@ class TestmonialsCustomCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    ourTestimonalsModel.iconImage,
-                    height: 40,
-                    width: 40,
-                  ),
+                  // Image.asset(
+                  //   testimonial.iconImage,
+                  //   height: 40,
+                  //   width: 40,
+                  // ),
                   const SizedBox(height: 20),
                   CustomText(
-                    text: ourTestimonalsModel.pargraph,
+                    text: testimonial.title,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: ColorsApp.TextColor,
@@ -65,17 +67,17 @@ class TestmonialsCustomCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(2)),
                     child: Row(
                       children: [
-                        Card(
-                          color: ColorsApp.AppBarColor,
-                          child: Image.asset(
-                            ourTestimonalsModel.smallImage,
-                            height: 40,
-                            width: 40,
-                          ),
-                        ),
+                        // Card(
+                        //   color: ColorsApp.AppBarColor,
+                        //   child: Image.asset(
+                        //     testimonial.smallImage,
+                        //     height: 40,
+                        //     width: 40,
+                        //   ),
+                        // ),
                         const SizedBox(width: 10),
                         CustomText(
-                          text: ourTestimonalsModel.nameCustomer,
+                          text: testimonial.description,
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: ColorsApp.MAINCOLOR,
