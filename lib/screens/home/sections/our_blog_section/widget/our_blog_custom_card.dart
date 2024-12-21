@@ -5,17 +5,14 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/core/assets.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/blog/blog_list.dart';
-import 'package:ui/model/general/card.our_blog.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class OurBlogCustomCard extends StatelessWidget {
   const OurBlogCustomCard({
     super.key,
     required this.blogList,
-    this.cardOurBlogModel,
   });
   final BlogList blogList;
-  final CardOurBlogModel? cardOurBlogModel;
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -33,9 +30,9 @@ class OurBlogCustomCard extends StatelessWidget {
                   ? 359
                   : 310,
           height: ScreenSize.isLarge
-              ? 650
+              ? 1200
               : ScreenSize.isMedium
-                  ? 550
+                  ? 700
                   : 500,
           child: Column(children: [
             Container(
@@ -53,8 +50,7 @@ class OurBlogCustomCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            Expanded(
-                child: Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
@@ -74,7 +70,7 @@ class OurBlogCustomCard extends StatelessWidget {
                   fontSize: ScreenSize.isLarge ? 18 : 14,
                   color: ColorsApp.TextColor,
                 ),
-                const Spacer(),
+                const SizedBox(height: 10),
                 Container(
                   color: const Color(0xffFAFDF2),
                   padding: EdgeInsets.only(
@@ -94,13 +90,14 @@ class OurBlogCustomCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
+                              // This is the title of the blog
                               text: blogList.title,
                               fontSize: ScreenSize.isLarge ? 20 : 14,
                               color: ColorsApp.TextColor,
                               fontWeight: FontWeight.bold,
                             ),
 
-                            //
+                            // This is the Date of the blog
                             Text(
                               formattedDate,
                               style: TextStyle(
@@ -138,7 +135,7 @@ class OurBlogCustomCard extends StatelessWidget {
                   ),
                 ),
               ],
-            )),
+            ),
             // )
           ])),
     );

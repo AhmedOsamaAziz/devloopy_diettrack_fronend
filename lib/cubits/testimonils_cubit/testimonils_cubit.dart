@@ -4,7 +4,6 @@ import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/model/testimonials/testimonial_create.dart';
 import 'package:ui/model/testimonials/testimonial_detail.dart';
-import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/model/testimonials/testimonial_update.dart';
 import 'package:ui/services/testimonial_service/testimonial_service.dart';
 

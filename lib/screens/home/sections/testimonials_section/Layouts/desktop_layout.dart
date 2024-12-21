@@ -11,8 +11,7 @@ class DesktopTestimonialsOurComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
-      width: 1596,
+      constraints: const BoxConstraints(),
       padding: EdgeInsets.symmetric(
           horizontal: ScreenSize.isLarge
               ? 100
@@ -24,10 +23,10 @@ class DesktopTestimonialsOurComment extends StatelessWidget {
           TestmonialsTitle(),
           TestmonialsDescription(),
           SizedBox(height: 30),
-          TestmonialsListCustomCard(),
+          SizedBox(height: 300, child: TestimonialsListCustomCard()),
           SizedBox(height: 25),
           TestmonialsCustomButton(),
-          SizedBox(height: 50),
+          SizedBox(height: 25),
         ],
       ),
     );

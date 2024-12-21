@@ -10,7 +10,6 @@ class OurBlogListCustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<BlogCubit>().fetchRecentBlogs();
-    // final List cardOurBlog = CardOurBlogModel.cardFeature;
 
     return ScreenSize.isLarge ? const CustomGridView() : const CustomListView();
   }
@@ -31,7 +30,6 @@ class CustomListView extends StatelessWidget {
       } else if (state is BlogSuccess) {
         return ListView.builder(
             itemCount: state.blogs.length,
-            // physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
               final blog = state.blogs[index];

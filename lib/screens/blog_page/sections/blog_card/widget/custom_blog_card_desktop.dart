@@ -1,8 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -19,12 +19,10 @@ class CustomBlogCardDesktop extends StatelessWidget {
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
         if (state is BlogLoading) {
-          log('=======================Loading========================');
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is BlogSuccess) {
-          log('=======================Success=============');
           final blog = state.blogs.isNotEmpty ? state.blogs[0] : null;
 
           if (blog == null) {
@@ -72,14 +70,18 @@ class CustomBlogCardDesktop extends StatelessWidget {
                         ? null
                         : Image.network(
                             blogList.imageUrl!,
-                            height: 185,
+                            // height: 185,
                             errorBuilder: (context, error, stackTrace) {
-                              return const Text('No Image');
+                              return AspectRatio(
+                                  aspectRatio: 1.5,
+                                  child:
+                                      Image.asset(Assets.imagesFitness2,
+                                          fit: BoxFit.cover,),);
                             },
                           ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
@@ -93,13 +95,9 @@ class CustomBlogCardDesktop extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            const SizedBox(height: 10),
                             CustomText(
-                              text: blogList.description,
-                              fontSize: 12,
-                            ),
+                                text: blogList.description, fontSize: 12),
                           ],
                         ),
                       ),
@@ -112,7 +110,6 @@ class CustomBlogCardDesktop extends StatelessWidget {
             ),
           );
         } else if (state is BlogFailure) {
-          log('=======================Error========================');
           return Center(
             child: Text(state.errMessage),
           );
