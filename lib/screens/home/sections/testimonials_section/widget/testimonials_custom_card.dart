@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ui/core/assets.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
@@ -17,6 +18,9 @@ class TestimonialsCustomCard extends StatefulWidget {
 class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
   late VideoPlayerController _controller;
   String? _errorMessage;
+  double _volume = 1.0;
+  bool _showControls = true;
+  Timer? _hideControlsTimer;
 
   @override
   void initState() {
@@ -36,6 +40,8 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
         print('Video load error: $error');
       });
 
+    _controller.setLooping(false); // Disable looping
+
     _controller.addListener(() {
       if (_controller.value.hasError) {
         setState(() {
@@ -43,13 +49,48 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
         });
         print('Video player error: ${_controller.value.errorDescription}');
       }
+
+      // Check if the video has finished playing
+      if (_controller.value.position == _controller.value.duration) {
+        setState(() {
+          _showControls = true;
+        });
+      }
     });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _hideControlsTimer?.cancel();
     super.dispose();
+  }
+
+  void _toggleControls() {
+    setState(() {
+      _showControls = true;
+      _startHideControlsTimer();
+    });
+  }
+
+  void _startHideControlsTimer() {
+    _hideControlsTimer?.cancel();
+    _hideControlsTimer = Timer(const Duration(seconds: 5), () {
+      setState(() {
+        _showControls = false;
+      });
+    });
+  }
+
+  void _togglePlayPause() {
+    setState(() {
+      if (_controller.value.isPlaying) {
+        _controller.pause();
+      } else {
+        _controller.play();
+        _startHideControlsTimer();
+      }
+    });
   }
 
   @override
@@ -77,38 +118,60 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
           color: ColorsApp.TextColor,
         ),
         const SizedBox(height: 20),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                child: _controller.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller),
-                      )
-                    : _errorMessage != null
-                        ? Center(child: Text(_errorMessage!))
-                        : Image.asset(Assets.imagesMap, fit: BoxFit.cover),
-              ),
-              if (!_controller.value.isPlaying && _errorMessage == null)
-                Center(
-                  child: Icon(
-                    _controller.value.isPlaying
-                        ? Icons.pause_circle
-                        : Icons.play_circle_fill,
-                    color: ColorsApp.MAINCOLOR,
-                    size: 50,
-                  ),
+        Expanded(
+          child: GestureDetector(
+            onTap: () {
+              _togglePlayPause();
+              _toggleControls();
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  child: _controller.value.isInitialized
+                      ? AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        )
+                      : _errorMessage != null
+                          ? Center(child: Text(_errorMessage!))
+                          : Image.asset(Assets.imagesMap, fit: BoxFit.cover),
                 ),
-            ],
+                if (_showControls)
+                  Center(
+                    child: IconButton(
+                      icon: Icon(
+                        _controller.value.isPlaying
+                            ? Icons.pause_circle_filled
+                            : Icons.play_circle_filled,
+                        color: ColorsApp.AppBarColor,
+                        size: 35,
+                      ),
+                      onPressed: _togglePlayPause,
+                    ),
+                  ),
+                if (_showControls)
+                  Positioned(
+                    bottom: 20,
+                    left: 10,
+                    right: 10,
+                    child: Slider(
+                      activeColor: ColorsApp.AppBarColor,
+                      value: _volume,
+                      min: 0.0,
+                      max: 1.0,
+                      divisions: 10,
+                      label: 'Volume: ${(_volume * 100).toInt()}%',
+                      onChanged: (value) {
+                        setState(() {
+                          _volume = value;
+                          _controller.setVolume(_volume);
+                        });
+                      },
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ],

@@ -26,8 +26,7 @@ class OurBlogTablet extends StatelessWidget {
                   ],
                 )),
             const SizedBox(height: 30),
-            const SizedBox(
-              height: 1400,
+            const Flexible(
               child: OurBlogListCustomCard(),
             )
           ],
@@ -36,25 +35,3 @@ class OurBlogTablet extends StatelessWidget {
     );
   }
 }
-
-// class CustomGridViewCardBlog extends StatelessWidget {
-//   CustomGridViewCardBlog({super.key});
-//   final List cardOurBlog = CardOurBlogModel.cardFeature;
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.builder(
-//         itemCount: cardOurBlog.length,
-//         physics: const NeverScrollableScrollPhysics(),
-//         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//           crossAxisCount: 2,
-//           crossAxisSpacing: 2,
-//           mainAxisSpacing: 5,
-//           mainAxisExtent: 630,
-//         ),
-//         itemBuilder: (BuildContext context, int index) {
-//           return OurBlogCustomCard(
-//             cardOurBlogModel: cardOurBlog[index],
-//           );
-//         });
-//   }
-// }
