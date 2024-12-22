@@ -19,7 +19,7 @@ class MoblieTestimonialsOurComment extends StatelessWidget {
           TestmonialsTitle(),
           TestmonialsDescription(),
           SizedBox(height: 20),
-          TestmonialsListCustomCard(),
+          TestimonialsListCustomCard(),
           SizedBox(height: 20),
           TestmonialsCustomButton(),
         ],

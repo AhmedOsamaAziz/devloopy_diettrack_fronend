@@ -20,7 +20,7 @@ class DesktopBlogCard extends StatelessWidget {
         } else if (state is BlogSuccess) {
           log('=======================BlogSuccess========================');
           return SizedBox(
-            height: 2700,
+            height: MediaQuery.sizeOf(context).height - 70,
             child: GridView.builder(
               itemCount: state.blogs.length,
               physics: const NeverScrollableScrollPhysics(),

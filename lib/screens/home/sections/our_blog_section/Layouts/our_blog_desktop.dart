@@ -14,7 +14,8 @@ class OurBlogDesktop extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: ScreenSize.isLarge ? 22 : 10),
       width: 1596,
-      height: 500,
+      height: MediaQuery.of(context).size.height - 70,
+
       // color: Colors.red,
       child: Column(
         children: [
@@ -34,7 +35,6 @@ class OurBlogDesktop extends StatelessWidget {
           const SizedBox(height: 50),
           const Flexible(
             child: SizedBox(
-              //height: 1450,
               child: OurBlogListCustomCard(),
             ),
           ),
