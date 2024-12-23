@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/screens/home/sections/intorduction_section/widget/introduction_getstart_button.dart';
 import 'package:ui/screens/home/sections/intorduction_section/widget/introduction_avatars.dart';
@@ -16,7 +17,7 @@ class DeskTopLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsApp.OUTLINECOLOR,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      // padding: const EdgeInsets.symmetric(horizontal: 10),
       height: 700, // MediaQuery.sizeOf(context).height * 0.9,
       width: 1500, //MediaQuery.of(context).size.width * 1.5,
       child: Row(
@@ -26,20 +27,20 @@ class DeskTopLayout extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.only(
                   top: 60, bottom: 20, left: 20, right: 60),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IntroductionTitle(),
-                  SizedBox(height: 18),
-                  IntroductionDescription(),
-                  SizedBox(height: 30),
-                  IntroductionGetstartButton(),
-                  SizedBox(height: 20),
+                  const IntroductionTitle(),
+                  const SizedBox(height: 18),
+                  const IntroductionDescription(),
+                  const SizedBox(height: 30),
+                  const IntroductionGetstartButton(),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
-                      IntroductionAvatars(),
-                      SizedBox(width: 10),
-                      IntroductionHappyCustomers()
+                      const IntroductionAvatars(),
+                      SizedBox(width: 20.w),
+                      const IntroductionHappyCustomers()
                     ],
                   ),
                 ],

@@ -14,14 +14,14 @@ class IntroductionHappyCustomers extends StatelessWidget {
       children: [
         CustomText(
           text: '430 +',
-          fontSize: getResponsiveFontSize(context, fontSize: 16),
+          fontSize: getResponsiveFontSize(context, fontSize: 14),
           fontWeight: FontWeight.bold,
           color: ColorsApp.NumberColor,
         ),
         const SizedBox(width: 5),
         CustomText(
           text: 'Happy Customers',
-          fontSize: getResponsiveFontSize(context, fontSize: 16),
+          fontSize: getResponsiveFontSize(context, fontSize: 14),
           fontWeight: FontWeight.bold,
           color: ColorsApp.TextColor,
         ),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
@@ -197,8 +198,8 @@ class UnderUppBar extends StatelessWidget {
                 height: 40,
                 width: 140,
                 decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/logo.png'))),
+                    image:
+                        DecorationImage(image: AssetImage(Assets.imagesLogo))),
               ),
               const Spacer(),
               Expanded(
@@ -214,7 +215,7 @@ class UnderUppBar extends StatelessWidget {
                       _buildNavButton(context, 'Process', 3),
                       _buildNavButton(context, 'Pricing', 4),
                       _buildNavButton(context, 'Blog', 5),
-                      _buildNavButton(context, 'ContactUs', 6),
+                      _buildNavButton(context, 'Contact', 6),
                       MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius:
@@ -276,7 +277,7 @@ class UnderUppBar extends StatelessWidget {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const BlogPage()));
             break;
-          case 'ContactUs':
+          case 'Contact':
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const ContactUsPage()));
             break;
