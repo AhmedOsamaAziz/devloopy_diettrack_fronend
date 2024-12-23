@@ -30,7 +30,7 @@ class OurBlogCustomCard extends StatelessWidget {
                   ? 359
                   : 310,
           height: ScreenSize.isLarge
-              ? 1200
+              ? 650
               : ScreenSize.isMedium
                   ? 700
                   : 500,

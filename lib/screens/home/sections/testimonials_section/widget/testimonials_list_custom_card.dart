@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui/cubits/testimonils_cubit/testimonils_cubit.dart';
+import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'testimonials_custom_card.dart';
 
@@ -23,7 +23,7 @@ class TestimonialsListCustomCard extends StatelessWidget {
             return isLarge || isMedium
                 ? GridView.builder(
                     padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                        EdgeInsets.symmetric(horizontal: screenWidth * 0.19),
                     itemCount: state.testimonials.length,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -36,8 +36,7 @@ class TestimonialsListCustomCard extends StatelessWidget {
                     },
                   )
                 : ListView.builder(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth),
                     itemCount: state.testimonials.length,
                     physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,

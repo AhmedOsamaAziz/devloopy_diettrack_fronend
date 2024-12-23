@@ -19,7 +19,6 @@ class IntroductionGetstartButton extends StatelessWidget {
                   : 120,
           height: 50,
           child: MaterialButton(
-              height: 52,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
@@ -45,7 +44,6 @@ class IntroductionGetstartButton extends StatelessWidget {
                   : 120,
           height: 50,
           child: MaterialButton(
-              height: 52,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),
               color: ColorsApp.OUTLINECOLOR,

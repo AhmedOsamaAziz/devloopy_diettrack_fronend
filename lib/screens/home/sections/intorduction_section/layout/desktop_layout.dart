@@ -21,9 +21,7 @@ class DeskTopLayout extends StatelessWidget {
       width: 1500, //MediaQuery.of(context).size.width * 1.5,
       child: Row(
         children: [
-          const Expanded(
-            child: IntroductionImage(),
-          ),
+          const Expanded(child: IntroductionImage()),
           Expanded(
             child: Container(
               padding: const EdgeInsets.only(
@@ -36,7 +34,7 @@ class DeskTopLayout extends StatelessWidget {
                   IntroductionDescription(),
                   SizedBox(height: 30),
                   IntroductionGetstartButton(),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Row(
                     children: [
                       IntroductionAvatars(),

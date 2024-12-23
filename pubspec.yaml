@@ -54,6 +54,7 @@ dependencies:
   intl:
   url_launcher:
   go_router: ^14.2.7
+  video_player: ^2.2.19
 
 dev_dependencies:
   flutter_test:
