@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return const MaterialApp(
+            
+            
             //   locale: DevicePreview.locale(context),
             //   builder: DevicePreview.appBuilder,
             home: HomePage(),

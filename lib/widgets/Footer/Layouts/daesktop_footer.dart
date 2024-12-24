@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
@@ -32,15 +33,17 @@ class _DesktopFooterState extends State<DesktopFooter> {
             Expanded(
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Row(
+                      spacing: 10.0,
                       children: [
-                        Icon(
-                          Icons.settings,
-                          size: 35.0,
-                          color: ColorsApp.TitleColorFeatures,
+                        Image.asset(
+                          Assets.imagesIconFlower,
+                          color: ColorsApp.SecondaryColor,
+                          height: 40.0,
+                          width: 40.0,
                         ),
-                        Text(
+                        const Text(
                           "DietTrack",
                           style: TextStyle(
                             color: Color(0xFFFFFFFF),

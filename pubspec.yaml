@@ -55,6 +55,7 @@ dependencies:
   url_launcher:
   go_router: ^14.2.7
   video_player: ^2.2.19
+  youtube_player_iframe: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -84,6 +84,7 @@ class OurBlogCustomCard extends StatelessWidget {
                       SizedBox(
                         height: ScreenSize.isLarge ? 60 : 50,
                         width: ScreenSize.isLarge ? 60 : 50,
+                        child: Image.asset(Assets.imagesCircleAvatar1),
                       ),
                       const SizedBox(width: 15),
                       Column(
