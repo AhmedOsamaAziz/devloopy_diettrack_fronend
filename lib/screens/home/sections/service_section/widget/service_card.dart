@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/cubits/service_cubit/service_cubit.dart';
-import 'package:ui/cubits/service_cubit/service_state.dart';
+import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
+import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
 import 'package:ui/model/service/service_list.dart';
 import 'package:ui/screens/home/sections/service_section/widget/choose_button.dart';
 import 'package:ui/widgets/custom_text.dart';

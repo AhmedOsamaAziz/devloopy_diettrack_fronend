@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/data/ask_question.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/model/general/ask_question.dart';
-
+ 
 class CustomQuestion extends StatelessWidget {
   const CustomQuestion({super.key, required this.askQuestion});
   final AskQuestion askQuestion;
