@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/core/assets.dart';
 import 'package:ui/model/general/drawer_model.dart';
+import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/login_page/login_page.dart';
@@ -37,17 +38,7 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Admin Dashboard button placeholder
-                      SizedBox(height: 10),
-                    ],
-                  ),
-                ),
+                
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -230,6 +221,26 @@ class UnderUppBar extends StatelessWidget {
                         },
                         child: const Text(
                           'Login',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                       MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(5.0), // Adjust as needed
+                        ),
+                        color: ColorsApp.SecondaryColor,
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) =>   const EntryPoint()),
+                          );
+                        },
+                        child: const Text(
+                          'Dashboard',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,

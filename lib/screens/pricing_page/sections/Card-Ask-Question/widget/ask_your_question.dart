@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -22,12 +23,12 @@ class AskYourQuestion extends StatelessWidget {
             color: ColorsApp.OUTLINECOLOR,
             child: Column(
               children: [
-                SizedBox(
-                  width: 100,
-                  child: SvgPicture.asset(
-                    'assets/images/Logo.svg',
-                  ),
-                ),
+                Container(
+                    padding: const EdgeInsets.only(top: 30),
+                    width: 100,
+                    child: SvgPicture.asset(
+                      'assets/images/Logo.svg',
+                    )),
                 const SizedBox(height: 50),
                 CustomText(
                   text: 'Ask your question',

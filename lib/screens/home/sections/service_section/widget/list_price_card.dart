@@ -58,12 +58,10 @@ class ListPriceCard extends StatelessWidget {
                   ),
                 );
         } else if (state is ServiceFailure) {
-          print('fffffffffffffffffffffffff');
-
+ 
           return Center(child: Text(state.noDataMessage as String));
         } else {
-          print('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
-
+ 
           return const Center(child: Text('No services available.try again'));
         }
       },

@@ -14,7 +14,7 @@ class ServicePalnImplmention implements ServicePaln {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
 
       List<ServiceCreate> serviceCreate = (response.obj);
@@ -37,7 +37,7 @@ class ServicePalnImplmention implements ServicePaln {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
 
       List<ServiceBase> serviceBase = (response.obj);
@@ -60,7 +60,7 @@ class ServicePalnImplmention implements ServicePaln {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
 
       List<ServiceList> serviceList = (response.obj);
@@ -83,7 +83,7 @@ class ServicePalnImplmention implements ServicePaln {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
 
       List<ServiceDetail> serviceDetail = (response.obj);

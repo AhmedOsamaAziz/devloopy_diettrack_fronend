@@ -7,14 +7,12 @@ class IntroductionDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: CustomText(
-        text:
-            "Welcome to Nutritionist, your partner in achieving optimal health through personalized nutrition coaching. Our certified nutritionists are here to guide you on your weight loss journey, providing customized plans and ongoing support. Start your transformation today and experience tpower of personalized nutrition coaching.",
-        color: Colors.black,
-        fontWeight: FontWeight.w500,
-        fontSize: getResponsiveFontSize(context, fontSize: 13),
-      ),
+    return CustomText(
+      text:
+          "Welcome to Nutritionist, your partner in achieving optimal health through personalized nutrition coaching. Our certified nutritionists are here to guide you on your weight loss journey, providing customized plans and ongoing support. Start your transformation today and experience tpower of personalized nutrition coaching.",
+      color: Colors.black,
+      fontWeight: FontWeight.w500,
+      fontSize: getResponsiveFontSize(context, fontSize: 13),
     );
   }
 }
