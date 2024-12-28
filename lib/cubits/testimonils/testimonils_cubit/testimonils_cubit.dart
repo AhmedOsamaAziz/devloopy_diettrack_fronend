@@ -12,19 +12,52 @@ part 'testimonils_state.dart';
 class TestimonilsCubit extends Cubit<TestimonilsState> {
   TestimonilsCubit() : super(TestimonilsInitial());
 
+  List<TestimonialBase> allTestimonials = [];
+  int currentPage = 0;
+  final int itemsPerPage = 10;
+
   Future<void> getAllTestimonial() async {
     emit(TestimonilsLoading());
     try {
       TestimonialService testimonialsService = TestimonialService();
-      var response = await testimonialsService.getAllTestimonial();
+      var response = await testimonialsService.getAllTestimonial(
+          page: currentPage, limit: itemsPerPage);
 
       if (response.status == ResponseStatus.success) {
-        final List<TestimonialBase> testimonials = response.obj;
-        emit(TestimonilsSuccess(testimonials: testimonials));
+        allTestimonials = response.obj;
+        emit(TestimonilsSuccess(
+          testimonials: _getCurrentPageItems(),
+        ));
       }
     } catch (e) {
       emit(TestimonilFailur(errMessage: e.toString()));
     }
+  }
+
+  void showNextPage() {
+    if ((currentPage + 1) * itemsPerPage < allTestimonials.length) {
+      currentPage++;
+      emit(TestimonilsSuccess(
+        testimonials: _getCurrentPageItems(),
+      ));
+    }
+  }
+
+  void showPreviousPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      emit(TestimonilsSuccess(
+        testimonials: _getCurrentPageItems(),
+      ));
+    }
+  }
+
+  List<TestimonialBase> _getCurrentPageItems() {
+    final startIndex = currentPage * itemsPerPage;
+    final endIndex = (startIndex + itemsPerPage) > allTestimonials.length
+        ? allTestimonials.length
+        : startIndex + itemsPerPage;
+    return allTestimonials.sublist(startIndex, endIndex);
   }
 
   Future<void> createTestimonial() async {

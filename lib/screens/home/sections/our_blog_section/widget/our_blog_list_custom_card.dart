@@ -33,7 +33,7 @@ class CustomListView extends StatelessWidget {
       } else if (state is BlogSuccess) {
         return SizedBox(
           child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
+            //  physics: const NeverScrollableScrollPhysics(),
             itemCount: state.blogs.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {

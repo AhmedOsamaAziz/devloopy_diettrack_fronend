@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0XFFFAFDF2),
       body: const SingleChildScrollView(
         child: Column(
+          spacing: 10,
           children: [
             MainNavigationBar(),
             IntroductionSection(),

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/core/assets.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -19,31 +20,31 @@ class OurBlogCustomCard extends StatelessWidget {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     return Card(
+
       color: const Color(0xffF6FBE9),
       child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: ScreenSize.isLarge ? 20 : 15,
-            vertical: ScreenSize.isLarge ? 20 : 15
-          ),
+              horizontal: ScreenSize.isLarge ? 20 : 15,
+              vertical: ScreenSize.isLarge ? 20 : 15),
           width: ScreenSize.isLarge
               ? 600
               : ScreenSize.isMedium
                   ? 359
                   : 310,
-          height: ScreenSize.isLarge
-              ? 600
-              : ScreenSize.isMedium
-                  ? 700
-                  : 500,
           child: Column(children: [
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
               ),
-              child:   CachedNetworkImage(
-                imageUrl: blogList.imageUrl ?? Image.asset(Assets.imagesAbout1).toString(),
-                placeholder: (context, url) => const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              child: CachedNetworkImage(
+                imageUrl: blogList.imageUrl ??
+                    Image.asset(Assets.imagesAbout1).toString(),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Image.asset(
+                  Assets.imagesAbout1,
+                  fit: BoxFit.cover
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -53,19 +54,19 @@ class OurBlogCustomCard extends StatelessWidget {
               children: [
                 CustomText(
                   text: blogList.title,
-                  fontSize: ScreenSize.isLarge ? 18 : 14,
+                  fontSize:getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.TextColor,
                 ),
                 CustomText(
                   text: blogList.description,
-                  fontSize: ScreenSize.isLarge ? 26 : 18,
+                  fontSize:getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.MAINCOLOR,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 10),
                 CustomText(
                   text: blogList.titleAr,
-                  fontSize: ScreenSize.isLarge ? 18 : 14,
+                  fontSize:getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.TextColor,
                 ),
                 const SizedBox(height: 10),
@@ -91,7 +92,7 @@ class OurBlogCustomCard extends StatelessWidget {
                             CustomText(
                               // This is the title of the blog
                               text: blogList.title,
-                              fontSize: ScreenSize.isLarge ? 20 : 14,
+                  fontSize:getResponsiveFontSize(context, fontSize: 14),
                               color: ColorsApp.TextColor,
                               fontWeight: FontWeight.bold,
                             ),

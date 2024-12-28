@@ -9,10 +9,10 @@ class TestmonilasSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenSize.getScreenSize(context) == Screen.large
+    return ScreenSize.isLarge
         ? const DesktopTestimonialsOurComment()
-        : (ScreenSize.getScreenSize(context) == Screen.medium
+        : ScreenSize.isMedium
             ? const TabletTestimonialsOurComment()
-            : const MoblieTestimonialsOurComment());
+            : const MoblieTestimonialsOurComment();
   }
 }
