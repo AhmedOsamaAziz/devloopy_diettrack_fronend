@@ -56,30 +56,29 @@ class TestimonialService {
     }
   }
 
-  @override
-  Future<GenericResponse> getAllTestimonial() async {
-    try {
-      var apiService = ApiService();
-      final response = await apiService.makeRequest(
-        ApiMethod.get,
-        EndPoints.testimonil,
-      );
+  Future<GenericResponse> getAllTestimonial({required int page, required int limit}) async {
+  try {
+    var apiService = ApiService();
+    final response = await apiService.makeRequest(
+      ApiMethod.get,
+      '${EndPoints.testimonil}?page=$page&limit=$limit',
+    );
 
-      List<TestimonialList> testimonialList = (response.obj as List)
-          .map((json) =>
-              TestimonialList.fromJson(json))
-          .toList();
+    List<TestimonialList> testimonialList = (response.obj as List)
+        .map((json) => TestimonialList.fromJson(json))
+        .toList();
 
-      return GenericResponse(
-          code: 200, obj: testimonialList, status: ResponseStatus.success);
-    } on Exception catch (e) {
-      return GenericResponse(
-        code: 500,
-        status: ResponseStatus.fail,
-        message: e.toString(),
-      );
-    }
+    return GenericResponse(
+        code: 200, obj: testimonialList, status: ResponseStatus.success);
+  } on Exception catch (e) {
+    return GenericResponse(
+      code: 500,
+      status: ResponseStatus.fail,
+      message: e.toString(),
+    );
   }
+}
+
 
   @override
   Future<GenericResponse> updateTestimonial() async {

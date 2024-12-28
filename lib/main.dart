@@ -1,5 +1,4 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,6 @@ import 'package:ui/core/api/api_service.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
 import 'package:ui/cubits/dashboard/team_cubit/team_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
-import 'package:ui/cubits/service_cubit/button_cubit/button_color_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
@@ -19,7 +17,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      // enabled: !kReleaseMode,
       builder: (context) => const MyApp(), // Wrap your app
     ),
   );
@@ -42,7 +40,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TestimonilsCubit()),
         BlocProvider(create: (context) => BlogCubit()),
         BlocProvider(create: (context) => TeamCubit()),
-        // BlocProvider(create: (context) => ButtonColorCubit()),
       ],
       child: ScreenUtilInit(
         //designSize: const Size(1596, 1500),

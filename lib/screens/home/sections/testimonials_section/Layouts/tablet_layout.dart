@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonals_title.dart';
-import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_custom_button.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_list_custom_card.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_description.dart';
 
@@ -19,7 +18,7 @@ class TabletTestimonialsOurComment extends StatelessWidget {
           TestmonialsDescription(),
           SizedBox(height: 30),
           SizedBox(height: 300, child: TestimonialsListCustomCard()),
-          TestmonialsCustomButton(),
+          SizedBox(height: 20),
         ],
       ),
     );

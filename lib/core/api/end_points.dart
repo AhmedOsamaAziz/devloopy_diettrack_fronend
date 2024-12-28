@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String _baseUrl = "http://devloopy-001-site1.ptempurl.com/";
+  static const String _baseUrl = "https://devloopy-001-site1.ptempurl.com/";
 
   static const String login = "${_baseUrl}login";
   static const String testimonil = "${_baseUrl}api/testimonial";

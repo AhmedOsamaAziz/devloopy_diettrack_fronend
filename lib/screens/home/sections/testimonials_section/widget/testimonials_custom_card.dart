@@ -50,40 +50,44 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset(
-          Assets.imagesIconComment,
-          height: 40,
-          width: 40,
-        ),
-        CustomText(
-          text: widget.testimonial.title,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: ColorsApp.TextColor,
-        ),
-        CustomText(
-          text: widget.testimonial.description,
-          fontSize: 12,
-          fontWeight: FontWeight.w400,
-          color: ColorsApp.TextColor,
-        ),
-        AspectRatio(
-          aspectRatio: 15 / 8,
-          child: YoutubePlayerIFrame(
-            controller: _youtubeController,
-            aspectRatio: 16 / 9,
-            gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-              Factory<VerticalDragGestureRecognizer>(
-                () => VerticalDragGestureRecognizer(),
-              ),
-            },
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Column(
+        spacing: 10,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            Assets.imagesIconComment,
+            height: 40,
+            width: 40,
           ),
-        ),
-      ],
+          CustomText(
+            text: widget.testimonial.title,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: ColorsApp.TextColor,
+          ),
+          CustomText(
+            text: widget.testimonial.description,
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: ColorsApp.TextColor,
+          ),
+          SizedBox(
+            height: 300,
+            width: 300,
+            child: YoutubePlayerIFrame(
+              controller: _youtubeController,
+              aspectRatio: 16 / 9,
+              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                Factory<VerticalDragGestureRecognizer>(
+                  () => VerticalDragGestureRecognizer(),
+                ),
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
