@@ -18,10 +18,7 @@ class TabletTestimonialsOurComment extends StatelessWidget {
           TestmonialsTitle(),
           TestmonialsDescription(),
           SizedBox(height: 30),
-          SizedBox(
-            height: 300,
-            child: TestimonialsListCustomCard(),
-          ),
+          SizedBox(height: 300, child: TestimonialsListCustomCard()),
           TestmonialsCustomButton(),
         ],
       ),

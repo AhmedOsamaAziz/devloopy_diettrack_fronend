@@ -13,7 +13,7 @@ class ServicePlanItemImplmentation implements ServicePlanItem {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
       List<ServiceItemBase> serviceItemBase = (response.obj);
       // .map((serviceItemBaseJson) => ServiceItemBase.fromJson(serviceItemBaseJson))
@@ -36,7 +36,7 @@ class ServicePlanItemImplmentation implements ServicePlanItem {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
       List<ServiceItemDetails> serviceItemDetails = (response.obj);
       // .map((serviceItemDetailsJson) => ServiceItemDetails.fromJson(serviceItemDetailsJson))
@@ -59,7 +59,7 @@ class ServicePlanItemImplmentation implements ServicePlanItem {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
       List<ServiceItemBase> serviceItemBase = (response.obj);
       // .map((serviceItemBaseJson) => ServiceItemBase.fromJson(serviceItemBaseJson))
@@ -82,7 +82,7 @@ class ServicePlanItemImplmentation implements ServicePlanItem {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
       List<ServiceItemUpdate> serviceItemUpdate = (response.obj);
       // .map((serviceItemUpdateJson) => ServiceItemUpdate.fromJson(serviceItemUpdateJson))

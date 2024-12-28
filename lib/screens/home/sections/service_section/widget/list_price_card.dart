@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui/cubits/service_cubit/service_cubit.dart';
-import 'package:ui/cubits/service_cubit/service_state.dart';
+import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
+import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/home/sections/service_section/widget/service_card.dart';
 
@@ -58,12 +58,10 @@ class ListPriceCard extends StatelessWidget {
                   ),
                 );
         } else if (state is ServiceFailure) {
-          print('fffffffffffffffffffffffff');
-
+ 
           return Center(child: Text(state.noDataMessage as String));
         } else {
-          print('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
-
+ 
           return const Center(child: Text('No services available.try again'));
         }
       },

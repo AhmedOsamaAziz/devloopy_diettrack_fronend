@@ -12,14 +12,16 @@ class OurBlogListCustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<BlogCubit>().fetchRecentBlogs();
 
-    return ScreenSize.isLarge ? const CustomGridView() : const CustomListView();
+    if (ScreenSize.isLarge) {
+      return const CustomGridView();
+    } else {
+      return const CustomListView();
+    }
   }
 }
 
 class CustomListView extends StatelessWidget {
-  const CustomListView({
-    super.key,
-  });
+  const CustomListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +31,25 @@ class CustomListView extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       } else if (state is BlogSuccess) {
-        return ListView.builder(
+        return SizedBox(
+          child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.blogs.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
               final blog = state.blogs[index];
-              return OurBlogCustomCard(
-                blogList: blog,
-              );
-            });
+              return OurBlogCustomCard(blogList: blog);
+            },
+          ),
+        );
       } else if (state is BlogFailure) {
-        return Center(child: Text(state.errMessage));
+        return Center(
+          child: Text('Error: ${state.errMessage}'),
+        );
       } else {
-        state as BlogNoData;
-        return state.noDataMessage;
+        return const Center(
+          child: Text('Unknown state'),
+        );
       }
     });
   }

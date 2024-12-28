@@ -14,10 +14,11 @@ class ServiceCubit extends Cubit<ServiceState> {
       emit(ServiceLoading());
       final response = await _apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.services,
+        EndPoints.service,
       );
 
       if (response.status == ResponseStatus.success) {
+        print(response.obj);
         final List<ServiceList> service = (response.obj as List)
             .map((serviceJson) => ServiceList.fromJson(serviceJson))
             .toList();
@@ -31,7 +32,7 @@ class ServiceCubit extends Cubit<ServiceState> {
         emit(ServiceFailure());
       }
     } catch (e) {
-      emit(ServiceFailure());
+      print(e.toString());
     }
   }
 }

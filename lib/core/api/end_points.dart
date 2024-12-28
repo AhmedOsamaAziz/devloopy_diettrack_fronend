@@ -7,7 +7,7 @@ class EndPoints {
   static const String register = "${_baseUrl}register";
   static const String blog = "${_baseUrl}api/blog";
   static const String blogRecent = "${_baseUrl}api/blog/recent";
-  static const String services = "${_baseUrl}api/service";
+  static const String service = "${_baseUrl}api/service";
   static const String dashboard = "${_baseUrl}api/dashboard";
   static const String team = "${_baseUrl}api/team";
   static const String about = "${_baseUrl}api/about";

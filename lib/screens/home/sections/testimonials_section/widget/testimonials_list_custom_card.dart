@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:redacted/redacted.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'testimonials_custom_card.dart';
@@ -32,7 +33,15 @@ class TestimonialsListCustomCard extends StatelessWidget {
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       final testimonial = state.testimonials[index];
-                      return TestimonialsCustomCard(testimonial: testimonial);
+                      return TestimonialsCustomCard(testimonial: testimonial)
+                          .redacted(
+                        context: context,
+                        redact: true,
+                        configuration: RedactedConfiguration(
+                          animationDuration:
+                              const Duration(milliseconds: 800), //default
+                        ),
+                      );
                     },
                   )
                 : ListView.builder(
@@ -42,7 +51,15 @@ class TestimonialsListCustomCard extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       final testimonial = state.testimonials[index];
-                      return TestimonialsCustomCard(testimonial: testimonial);
+                      return TestimonialsCustomCard(testimonial: testimonial)
+                          .redacted(
+                        context: context,
+                        redact: true,
+                        configuration: RedactedConfiguration(
+                          animationDuration:
+                              const Duration(milliseconds: 800), //default
+                        ),
+                      );
                     },
                   );
           } else if (state is TestimonilFailur) {

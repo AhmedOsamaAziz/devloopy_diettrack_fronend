@@ -21,40 +21,36 @@ class TabletLayout extends StatelessWidget {
       width: 800,
       child: Column(
         children: [
-          const Expanded(
-            child: SizedBox(width: 800, child: IntroductionImage()),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.only(
-                  top: 60, bottom: 20, left: 20, right: 60),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IntroductionTitle(),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Expanded(child: IntroductionDescription()),
-                  ),
-                  SizedBox(height: 30),
-                  Column(
-                    children: [IntroductionGetstartButton()],
-                  ),
-                  SizedBox(height: 30),
-                  Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [IntroductionAvatars()],
-                      ),
-                      SizedBox(height: 10),
-                      IntroductionHappyCustomers()
-                    ],
-                  ),
-                ],
-              ),
+          const SizedBox(width: 800, child: IntroductionImage()),
+          Container(
+            padding:
+                const EdgeInsets.only(top: 60, bottom: 20, left: 20, right: 60),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IntroductionTitle(),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Expanded(child: IntroductionDescription()),
+                ),
+                SizedBox(height: 30),
+                Column(
+                  children: [IntroductionGetstartButton()],
+                ),
+                SizedBox(height: 30),
+                Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [IntroductionAvatars()],
+                    ),
+                    SizedBox(height: 10),
+                    IntroductionHappyCustomers()
+                  ],
+                ),
+              ],
             ),
           ),
         ],
