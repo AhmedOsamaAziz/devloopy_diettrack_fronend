@@ -17,7 +17,6 @@ class BlogPage extends StatelessWidget {
       backgroundColor: Color(0XFFFAFDF2),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MainNavigationBar(),
             SizedBox(height: 50),
@@ -25,9 +24,9 @@ class BlogPage extends StatelessWidget {
             SizedBox(height: 50),
             ButtonBolgSections(),
             SizedBox(height: 50),
-            BLogCard(),
-            SizedBox(height: 50),
-            MainFooter(),
+            // BLogCard(),
+            // SizedBox(height: 50),
+            // MainFooter(),
           ],
         ),
       ),

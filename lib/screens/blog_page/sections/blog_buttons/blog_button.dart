@@ -10,10 +10,12 @@ class ButtonBolgSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenSize.isLarge
-        ? const DesktopButtonBlogPage()
-        : ScreenSize.isMedium
-            ? const TabletButtonBlogPage()
-            : const MobileButtonBlogPage();
+    return const DesktopButtonBlogPage();
+
+    // ScreenSize.isLarge
+    //     ? const DesktopButtonBlogPage()
+    //     : ScreenSize.isMedium
+    //         ? const TabletButtonBlogPage()
+    //         : const MobileButtonBlogPage();
   }
 }
