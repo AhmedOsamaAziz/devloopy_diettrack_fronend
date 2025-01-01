@@ -42,10 +42,7 @@ class ServerFailure extends Failure {
 
         return ServerFailure('Unexpected error with API server');
 
-      default:
-        return ServerFailure(
-            'Oppppppppps something   wrong. Please try again!');
-    }
+      }
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {

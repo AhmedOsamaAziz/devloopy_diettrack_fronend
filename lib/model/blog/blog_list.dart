@@ -8,19 +8,18 @@ class BlogList extends BlogBase {
   BlogGroup group;
   String? author;
 
-  BlogList({
-    required this.id,
-    required this.publishDate,
-    required super.title,
-    required super.titleAr,
-    required super.description,
-    required super.descriptionAr,
-    required super.blogType,
-    super.imageUrl,
-    super.videoUrl,
-    required this.group,
-    this.author
-  });
+  BlogList(
+      {required this.id,
+      required this.publishDate,
+      required super.title,
+      required super.titleAr,
+      required super.description,
+      required super.descriptionAr,
+      required super.blogType,
+      super.imageUrl,
+      super.videoUrl,
+      required this.group,
+      this.author});
 
   factory BlogList.fromJson(Map<String, dynamic> json) {
     return BlogList(
@@ -34,21 +33,20 @@ class BlogList extends BlogBase {
         imageUrl: json['imageUrl'],
         videoUrl: json['videoUrl'],
         group: BlogGroup.fromJson(json['group']),
-        author: json['author']
-    );
+        author: json['author']);
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'publishDate': publishDate.toIso8601String(),
-    'title': title,
-    'titleAr': titleAr,
-    'description': description,
-    'descriptionAr': descriptionAr,
-    'blogType': blogType,
-    'imageUrl': imageUrl,
-    'videoUrl': videoUrl,
-    'group': group.toJson(),
-    'author': author
-  };
+        'id': id,
+        'publishDate': publishDate.toIso8601String(),
+        'title': title,
+        'titleAr': titleAr,
+        'description': description,
+        'descriptionAr': descriptionAr,
+        'blogType': blogType,
+        'imageUrl': imageUrl,
+        'videoUrl': videoUrl,
+        'group': group.toJson(),
+        'author': author
+      };
 }

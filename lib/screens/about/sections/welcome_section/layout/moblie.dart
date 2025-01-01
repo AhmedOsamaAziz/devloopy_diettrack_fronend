@@ -9,8 +9,6 @@ class MoblieWelcomeSection extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20),
       child: FittedBox(
         child: SizedBox(
-          height: 800,
-          width: 358,
           child: Column(
             children: [
               Padding(
@@ -29,28 +27,3 @@ class MoblieWelcomeSection extends StatelessWidget {
     );
   }
 }
-
-// class MobilelcomeSection extends StatelessWidget {
-//   const MobilelcomeSection({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Flexible(
-//       child: Container(
-//           margin: const EdgeInsets.only(right: 20, left: 20),
-//           padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
-//           width: 358,
-//           height: 790,
-//           decoration: BoxDecoration(
-//               color: ColorsApp.OUTLINECOLOR,
-//               borderRadius: BorderRadius.circular(12)),
-//           child: const Column(
-//             children: [
-//               WelcomeTitle(),
-//               SizedBox(height: 10),
-//               Expanded(child: WelcomDescription())
-//             ],
-//           )),
-//     );
-//   }
-// }

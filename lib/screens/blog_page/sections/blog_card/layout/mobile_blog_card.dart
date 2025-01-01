@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/blog_card.dart';
- import 'package:ui/screens/blog_page/sections/blog_card/widget/custom_blog_card_mobile.dart';
+import 'package:ui/screens/blog_page/sections/blog_card/widget/custom_blog_card_mobile.dart';
 
 class MobileBlogCard extends StatelessWidget {
   const MobileBlogCard({super.key});
@@ -17,7 +17,6 @@ class MobileBlogCard extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: blogCardList.length,
-              
               (BuildContext context, int index) {
                 return CustomBlogCardMobile(
                   blogCard: blogCardList[index],

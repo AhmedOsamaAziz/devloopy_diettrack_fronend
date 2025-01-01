@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/model/general/blog_card.dart';
- import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/widgets/custom_text.dart';
 
 class CustomBlogCardMobile extends StatelessWidget {
   const CustomBlogCardMobile({

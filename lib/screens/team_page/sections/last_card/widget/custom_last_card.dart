@@ -3,7 +3,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/last_card_model.dart';
- import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/widgets/custom_text.dart';
 
 class CustomLastCard extends StatelessWidget {
   const CustomLastCard({super.key, required this.lastCardModel});

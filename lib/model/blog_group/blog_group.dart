@@ -2,10 +2,7 @@ class BlogGroup {
   String groupName;
   int id;
 
-  BlogGroup({
-    required this.groupName,
-    required this.id
-  });
+  BlogGroup({required this.groupName, required this.id});
 
   factory BlogGroup.fromJson(Map<String, dynamic> json) => BlogGroup(
         groupName: json['groupName'],
@@ -15,7 +12,7 @@ class BlogGroup {
 
   Map<String, dynamic> toJson() => {
         'groupName': groupName,
-    'id': id
+        'id': id
         // 'id': id,
       };
 }

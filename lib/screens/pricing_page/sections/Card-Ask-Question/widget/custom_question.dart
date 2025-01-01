@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/data/ask_question.dart';
 import 'package:ui/helper/font_size_responsive.dart';
- 
+
 class CustomQuestion extends StatelessWidget {
   const CustomQuestion({super.key, required this.askQuestion});
   final AskQuestion askQuestion;
@@ -28,7 +28,7 @@ class CustomQuestion extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: getResponsiveFontSize(context, fontSize: 13)),
         ),
-        trailing: SvgPicture.asset(askQuestion.image, height: 24, width: 24),
+        leading: SvgPicture.asset(askQuestion.image, height: 24, width: 24),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

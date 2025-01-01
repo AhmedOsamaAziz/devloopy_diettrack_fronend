@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/card_process.dart';
- import 'package:ui/screens/process_page/sections/card_numbers/widget/desktop_custom_card_process.dart';
+import 'package:ui/screens/process_page/sections/card_numbers/widget/desktop_custom_card_process.dart';
 
 class DeskTopCardNumberProcess extends StatelessWidget {
   const DeskTopCardNumberProcess({

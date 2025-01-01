@@ -20,7 +20,6 @@ class OurBlogCustomCard extends StatelessWidget {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     return Card(
-
       color: const Color(0xffF6FBE9),
       child: Container(
           padding: EdgeInsets.symmetric(
@@ -41,10 +40,8 @@ class OurBlogCustomCard extends StatelessWidget {
                     Image.asset(Assets.imagesAbout1).toString(),
                 placeholder: (context, url) =>
                     const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Image.asset(
-                  Assets.imagesAbout1,
-                  fit: BoxFit.cover
-                ),
+                errorWidget: (context, url, error) =>
+                    Image.asset(Assets.imagesAbout1, fit: BoxFit.cover),
               ),
             ),
             const SizedBox(height: 10),
@@ -54,19 +51,19 @@ class OurBlogCustomCard extends StatelessWidget {
               children: [
                 CustomText(
                   text: blogList.title,
-                  fontSize:getResponsiveFontSize(context, fontSize: 14),
+                  fontSize: getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.TextColor,
                 ),
                 CustomText(
                   text: blogList.description,
-                  fontSize:getResponsiveFontSize(context, fontSize: 14),
+                  fontSize: getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.MAINCOLOR,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 10),
                 CustomText(
                   text: blogList.titleAr,
-                  fontSize:getResponsiveFontSize(context, fontSize: 14),
+                  fontSize: getResponsiveFontSize(context, fontSize: 14),
                   color: ColorsApp.TextColor,
                 ),
                 const SizedBox(height: 10),
@@ -92,7 +89,8 @@ class OurBlogCustomCard extends StatelessWidget {
                             CustomText(
                               // This is the title of the blog
                               text: blogList.title,
-                  fontSize:getResponsiveFontSize(context, fontSize: 14),
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 14),
                               color: ColorsApp.TextColor,
                               fontWeight: FontWeight.bold,
                             ),

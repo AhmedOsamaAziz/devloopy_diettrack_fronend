@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for images222
   /// assets/images/222.jpg
   static const String images222 = "assets/images/222.jpg";
@@ -32,7 +32,8 @@ class Assets {
 
   /// Assets for imagesAbstractDesign2
   /// assets/images/AbstractDesign2.png
-  static const String imagesAbstractDesign2 = "assets/images/AbstractDesign2.png";
+  static const String imagesAbstractDesign2 =
+      "assets/images/AbstractDesign2.png";
 
   /// Assets for imagesArrow
   /// assets/images/arrow.png
@@ -184,7 +185,8 @@ class Assets {
 
   /// Assets for imagesImageTestmonilas1
   /// assets/images/image-testmonilas1.png
-  static const String imagesImageTestmonilas1 = "assets/images/image-testmonilas1.png";
+  static const String imagesImageTestmonilas1 =
+      "assets/images/image-testmonilas1.png";
 
   /// Assets for imagesIntorduction
   /// assets/images/intorduction.png
@@ -208,11 +210,13 @@ class Assets {
 
   /// Assets for imagesMindsetandMotivation1
   /// assets/images/MindsetandMotivation1.png
-  static const String imagesMindsetandMotivation1 = "assets/images/MindsetandMotivation1.png";
+  static const String imagesMindsetandMotivation1 =
+      "assets/images/MindsetandMotivation1.png";
 
   /// Assets for imagesMindsetandMotivation2
   /// assets/images/MindsetandMotivation2.png
-  static const String imagesMindsetandMotivation2 = "assets/images/MindsetandMotivation2.png";
+  static const String imagesMindsetandMotivation2 =
+      "assets/images/MindsetandMotivation2.png";
 
   /// Assets for imagesNumber1
   /// assets/images/Number1.png
@@ -264,11 +268,13 @@ class Assets {
 
   /// Assets for imagesRecipesandMealPlanning1
   /// assets/images/RecipesandMealPlanning1.png
-  static const String imagesRecipesandMealPlanning1 = "assets/images/RecipesandMealPlanning1.png";
+  static const String imagesRecipesandMealPlanning1 =
+      "assets/images/RecipesandMealPlanning1.png";
 
   /// Assets for imagesRecipesandMealPlanning2
   /// assets/images/RecipesandMealPlanning2.png
-  static const String imagesRecipesandMealPlanning2 = "assets/images/RecipesandMealPlanning2.png";
+  static const String imagesRecipesandMealPlanning2 =
+      "assets/images/RecipesandMealPlanning2.png";
 
   /// Assets for imagesTeam1
   /// assets/images/team1.png
@@ -284,7 +290,8 @@ class Assets {
 
   /// Assets for imagesUnderstandingMacronutrients
   /// assets/images/UnderstandingMacronutrients.png
-  static const String imagesUnderstandingMacronutrients = "assets/images/UnderstandingMacronutrients.png";
+  static const String imagesUnderstandingMacronutrients =
+      "assets/images/UnderstandingMacronutrients.png";
 
   /// Assets for imagesWeightLoss
   /// assets/images/WeightLoss.png
@@ -296,26 +303,31 @@ class Assets {
 
   /// Assets for imagesWeightLossTips1
   /// assets/images/WeightLossTips1.png
-  static const String imagesWeightLossTips1 = "assets/images/WeightLossTips1.png";
+  static const String imagesWeightLossTips1 =
+      "assets/images/WeightLossTips1.png";
 
   /// Assets for imagesWeightLossTips2
   /// assets/images/WeightLossTips2.png
-  static const String imagesWeightLossTips2 = "assets/images/WeightLossTips2.png";
+  static const String imagesWeightLossTips2 =
+      "assets/images/WeightLossTips2.png";
 
   /// Assets for imagesWeightLossTips3
   /// assets/images/WeightLossTips3.svg
-  static const String imagesWeightLossTips3 = "assets/images/WeightLossTips3.svg";
+  static const String imagesWeightLossTips3 =
+      "assets/images/WeightLossTips3.svg";
 
   /// Assets for imagesWeightLossTips4
   /// assets/images/WeightLossTips4.png
-  static const String imagesWeightLossTips4 = "assets/images/WeightLossTips4.png";
+  static const String imagesWeightLossTips4 =
+      "assets/images/WeightLossTips4.png";
 
   /// Assets for imagesWeightLossTips5
   /// assets/images/WeightLossTips5.png
-  static const String imagesWeightLossTips5 = "assets/images/WeightLossTips5.png";
+  static const String imagesWeightLossTips5 =
+      "assets/images/WeightLossTips5.png";
 
   /// Assets for imagesWeightLossTips6
   /// assets/images/WeightLossTips6.png
-  static const String imagesWeightLossTips6 = "assets/images/WeightLossTips6.png";
+  static const String imagesWeightLossTips6 =
+      "assets/images/WeightLossTips6.png";
 }
-

@@ -11,29 +11,18 @@ class ServiceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: ScreenSize.isLarge
-      //     ? 1596
-      //     : ScreenSize.isMedium
-      //         ? 1280
-      //         : 358,
-      // height: ScreenSize.isLarge
-      //     ? 1011
-      //     : ScreenSize.isMedium
-      //         ? 550
-      //         : 1250,
       padding: EdgeInsets.symmetric(
         horizontal: ScreenSize.isLarge ? 150 : 0,
       ),
       child: const Column(
         children: [
-          Column(
-            children: [
-              TitleService(),
-              DescriptionService(),
-              SizedBox(height: 30),
-              DiscountButton(),
-            ],
-          ),
+          SizedBox(height: 30),
+          Column(spacing: 30, children: [
+            TitleService(),
+            DescriptionService(),
+            DiscountButton(),
+            SizedBox(height: 15)
+          ]),
           ListPriceCard(),
         ],
       ),

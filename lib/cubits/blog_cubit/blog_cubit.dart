@@ -43,7 +43,6 @@ class BlogCubit extends Cubit<BlogState> {
       var blogService = BlogService();
       var response = await blogService.getRecentBlogs();
       if (response.status == ResponseStatus.success) {
-
         final List<BlogList> blogs = response.obj;
 
         if (blogs.isEmpty) {

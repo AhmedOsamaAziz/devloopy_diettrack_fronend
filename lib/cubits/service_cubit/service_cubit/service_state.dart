@@ -26,8 +26,8 @@ class ServiceSuccess extends ServiceState {
 }
 
 class ServiceFailure extends ServiceState {
-  Widget noDataMessage = const Text(
+  final Widget noDataMessage = const Text(
     'Not Available Details right now.',
     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-  ); 
+  );
 }

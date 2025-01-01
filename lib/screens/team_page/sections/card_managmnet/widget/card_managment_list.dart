@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/card_managment_team.dart';
- import 'package:ui/screens/team_page/sections/card_managmnet/widget/custom_card_management.dart';
+import 'package:ui/screens/team_page/sections/card_managmnet/widget/custom_card_management.dart';
 
 class CardManagmentList extends StatelessWidget {
   const CardManagmentList({super.key});

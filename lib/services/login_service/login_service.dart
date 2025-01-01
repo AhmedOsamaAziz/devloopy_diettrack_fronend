@@ -1,4 +1,3 @@
- 
 import 'package:ui/model/general/login_model.dart';
 
 abstract class LoginService {

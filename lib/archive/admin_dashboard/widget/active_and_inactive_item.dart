@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/model/general/drawer_admin_model.dart';
- 
+
 class InActiveDrawerItem extends StatelessWidget {
   const InActiveDrawerItem({
     super.key,

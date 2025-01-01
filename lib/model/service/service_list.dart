@@ -12,22 +12,20 @@ class ServiceList extends ServiceBase {
     required super.description,
     required super.descriptionAr,
     required super.isBestValue,
-    super.discount,
+    required super.discount,
   });
 
-  factory ServiceList.fromJson(Map<String, dynamic> json) {
-    return ServiceList(
-      id: json['id'],
-      name: json['name'],
-      nameAr: json['nameAr'],
-      price: json['price'],
-      validFor: json['validFor'],
-      description: json['description'],
-      descriptionAr: json['descriptionAr'],
-      isBestValue: json['isBestValue'],
-      discount: json['discount'],
-    );
-  }
+  factory ServiceList.fromJson(Map<String, dynamic> json) => ServiceList(
+        id: json['id'] as int? ?? 6,
+        name: json['name'] as String? ?? 'ffffff',
+        nameAr: json['nameAr'] as String? ?? 'ggggg',
+        price: (json['price'] as num?)?.toDouble() ?? 0.0,
+        validFor: json['validFor'] as String? ?? 'hjjjjjjjjj',
+        description: json['description'] as String? ?? 'description error',
+        descriptionAr: json['descriptionAr'] as String? ?? 'trrrrrrr',
+        isBestValue: json['isBestValue'] as bool? ?? false,
+        discount: (json['discount'] as num?)?.toInt(),
+      );
 
   Map<String, dynamic> toJson() => {
         'id': id,

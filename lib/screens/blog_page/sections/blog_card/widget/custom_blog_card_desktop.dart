@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
@@ -20,7 +19,7 @@ class CustomBlogCardDesktop extends StatelessWidget {
       builder: (context, state) {
         if (state is BlogLoading) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator()
           );
         } else if (state is BlogSuccess) {
           final blog = state.blogs.isNotEmpty ? state.blogs[0] : null;
@@ -33,13 +32,9 @@ class CustomBlogCardDesktop extends StatelessWidget {
           }
 
           return Container(
-            padding:
-                const EdgeInsets.only(left: 50, right: 50, bottom: 30, top: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             decoration: BoxDecoration(
-              border: Border.all(
-                width: 0.2,
-                color: ColorsApp.SecondaryColor,
-              ),
+              border: Border.all(width: 0.2, color: ColorsApp.SecondaryColor),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -73,10 +68,12 @@ class CustomBlogCardDesktop extends StatelessWidget {
                             // height: 185,
                             errorBuilder: (context, error, stackTrace) {
                               return AspectRatio(
-                                  aspectRatio: 1.5,
-                                  child:
-                                      Image.asset(Assets.imagesFitness2,
-                                          fit: BoxFit.cover,),);
+                                aspectRatio: 1.5,
+                                child: Image.asset(
+                                  Assets.imagesFitness2,
+                                  fit: BoxFit.cover,
+                                ),
+                              );
                             },
                           ),
                   ),
@@ -88,6 +85,7 @@ class CustomBlogCardDesktop extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
@@ -97,7 +95,9 @@ class CustomBlogCardDesktop extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             CustomText(
-                                text: blogList.description, fontSize: 12),
+                              text: blogList.description,
+                              fontSize: 12,
+                            ),
                           ],
                         ),
                       ),

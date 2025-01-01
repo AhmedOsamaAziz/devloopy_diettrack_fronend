@@ -35,7 +35,7 @@ class PricingPage extends StatelessWidget {
             SizedBox(height: 20),
             CradAskQuestionSections(),
             SizedBox(height: 20),
-             MainFooter(),
+            MainFooter(),
           ],
         ),
       ),

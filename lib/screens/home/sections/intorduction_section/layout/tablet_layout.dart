@@ -32,7 +32,7 @@ class TabletLayout extends StatelessWidget {
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Expanded(child: IntroductionDescription()),
+                  child: IntroductionDescription(),
                 ),
                 SizedBox(height: 30),
                 Column(

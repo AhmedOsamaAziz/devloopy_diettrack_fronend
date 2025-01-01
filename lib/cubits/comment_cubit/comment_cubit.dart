@@ -6,7 +6,6 @@ import 'package:ui/model/comments/comment_create.dart';
 import 'package:ui/model/comments/comment_read.dart';
 import 'package:ui/services/comment_service/comment_service_implmentation.dart';
 
- 
 part 'comment_state.dart';
 
 class CommentCubit extends Cubit<CommentState> {

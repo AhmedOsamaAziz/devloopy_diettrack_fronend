@@ -24,7 +24,7 @@ class OurBlogDesktop extends StatelessWidget {
                           : 10),
               child: const Column(children: [
                 OurBlogTitle(),
-                    OurBlogDescription(),
+                OurBlogDescription(),
               ])),
           const SizedBox(height: 50),
           const Flexible(

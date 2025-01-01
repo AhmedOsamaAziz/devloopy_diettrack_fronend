@@ -16,7 +16,6 @@ class CustomGridView extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return GridView.builder(
-             
               itemCount: state.blogs.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

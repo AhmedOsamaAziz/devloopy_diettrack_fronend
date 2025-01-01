@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/card_process.dart';
- import 'package:ui/screens/process_page/sections/card_numbers/widget/tablet_card_process.dart';
+import 'package:ui/screens/process_page/sections/card_numbers/widget/tablet_card_process.dart';
 
 class TabletCardNumberProcess extends StatelessWidget {
   const TabletCardNumberProcess({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/last_card_model.dart';
- import 'package:ui/screens/about/sections/last_card/widget/custom_last_card.dart';
+import 'package:ui/screens/about/sections/last_card/widget/custom_last_card.dart';
 
 class DeskTopLastCard extends StatelessWidget {
   const DeskTopLastCard({super.key});

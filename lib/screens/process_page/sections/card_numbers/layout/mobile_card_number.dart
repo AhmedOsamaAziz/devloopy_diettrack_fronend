@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/card_process.dart';
- import 'package:ui/screens/process_page/sections/card_numbers/widget/mobile_card_process.dart';
+import 'package:ui/screens/process_page/sections/card_numbers/widget/mobile_card_process.dart';
 
 class MobileCardNumberProcess extends StatelessWidget {
   const MobileCardNumberProcess({super.key});
