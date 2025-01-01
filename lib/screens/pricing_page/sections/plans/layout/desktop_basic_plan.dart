@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
-import 'package:ui/model/general/basic_plan.dart';
-import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
+ import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
 
 class DesktopListPricing extends StatelessWidget {
   const DesktopListPricing({

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/pricing_page/sections/card-ask-question/widget/ask_your_question.dart';
 import 'package:ui/screens/pricing_page/sections/card-ask-question/widget/question_card_list.dart';
-import 'package:ui/widgets/custom_text.dart';
 
 class MobileCustomCardFAQPrincing extends StatelessWidget {
   const MobileCustomCardFAQPrincing({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: IntrinsicHeight(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

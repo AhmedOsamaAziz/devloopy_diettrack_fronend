@@ -18,32 +18,33 @@ class DesktopBlogCard extends StatelessWidget {
         if (state is BlogLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
-          log('=======================BlogSuccess========================');
           return SizedBox(
-            height: MediaQuery.sizeOf(context).height - 70,
-            child: GridView.builder(
-              itemCount: state.blogs.length,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0,
-                crossAxisSpacing: 2,
-                mainAxisExtent: 440,
+            height: MediaQuery.sizeOf(context).height,
+            child: SizedBox(
+              height: 600,
+              child: GridView.builder(
+                itemCount: state.blogs.length,
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 2,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final blog = state.blogs[index];
+                  return CustomBlogCardDesktop(
+                    blogList: blog,
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return ReadMeView(blogList: blog);
+                        }),
+                      );
+                    },
+                  );
+                },
               ),
-              itemBuilder: (BuildContext context, int index) {
-                final blog = state.blogs[index];
-                return CustomBlogCardDesktop(
-                  blogList: blog,
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) {
-                        return const ReadMeView();
-                      }),
-                    );
-                  },
-                );
-              },
             ),
           );
         } else if (state is BlogFailure) {
