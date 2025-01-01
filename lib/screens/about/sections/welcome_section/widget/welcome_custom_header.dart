@@ -26,7 +26,7 @@ class WelcomeCustomHeader extends StatelessWidget {
         height: ScreenSize.isLarge
             ? 500
             : ScreenSize.isLarge
-                ? 700
+                ? 650
                 : 790,
         decoration: BoxDecoration(
             color: ColorsApp.OUTLINECOLOR,

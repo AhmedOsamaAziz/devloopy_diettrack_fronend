@@ -26,6 +26,7 @@ class TabletListPricing extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context, int index) {
           return PricingCustomCard(
+            isSelected: index == 1,
             basicPlan: basicPlan[index],
           );
         },

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/general/basic_plan.dart';
 import 'package:ui/widgets/custom_text.dart';
 
@@ -9,11 +10,11 @@ class PricingCustomCard extends StatelessWidget {
   const PricingCustomCard({
     super.key,
     required this.basicPlan,
-    this.checkColor,
+    required this.isSelected,
   });
 
   final BasicPlan basicPlan;
-  final bool? checkColor;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,8 +22,9 @@ class PricingCustomCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: checkColor! ? ColorsApp.MAINCOLOR : ColorsApp.MAINCOLOR),
+          borderRadius: BorderRadius.circular(5),
+          color: isSelected ? ColorsApp.MAINCOLOR : ColorsApp.OUTLINECOLOR,
+        ),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -30,46 +32,65 @@ class PricingCustomCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CustomText(
-                  text: basicPlan.title,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: ColorsApp.TextColor),
+                text: basicPlan.title,
+                fontWeight: FontWeight.bold,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 15),
               CustomText(
-                  text: basicPlan.subTitle,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.subTitle,
+                fontWeight: FontWeight.bold,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 15),
               CustomText(
-                  text: basicPlan.paragrph,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.paragrph,
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 15),
               CustomText(
-                  text: basicPlan.paragrph1,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.paragrph1,
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 10),
               CustomText(
-                  text: basicPlan.paragrph2,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.paragrph2,
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 10),
               CustomText(
-                  text: basicPlan.paragrph3.toString(),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.paragrph3.toString(),
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 10),
               CustomText(
-                  text: basicPlan.paragrph4 ?? '',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: ColorsApp.TextColorFeatures),
+                text: basicPlan.paragrph4 ?? '',
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 13),
+                color: isSelected
+                    ? ColorsApp.ColorCardFeature
+                    : ColorsApp.TextColorFeatures,
+              ),
               const SizedBox(height: 15),
               Container(
                 decoration: BoxDecoration(
@@ -79,25 +100,34 @@ class PricingCustomCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomText(
-                      text: basicPlan.paragrph5 ?? '',
-                      fontSize: 15,
-                      color: ColorsApp.OUTLINECOLOR),
+                    text: basicPlan.paragrph5 ?? '',
+                    fontSize: getResponsiveFontSize(context, fontSize: 13),
+                    color: isSelected
+                        ? ColorsApp.TitleColorFeatures
+                        : ColorsApp.ColorCardFeature,
+                  ),
                 ),
               ),
-              const SizedBox(height: 15),
-              // const Spacer(),
+              // const SizedBox(height: 15),
+              const Spacer(),
               Row(
                 children: [
                   CustomText(
-                      text: basicPlan.amount,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: ColorsApp.TextColor),
+                    text: basicPlan.amount,
+                    fontWeight: FontWeight.bold,
+                    fontSize: getResponsiveFontSize(context, fontSize: 30),
+                    color: isSelected
+                        ? ColorsApp.ColorCardFeature
+                        : ColorsApp.TextColorFeatures,
+                  ),
                   CustomText(
-                      text: " /month",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18,
-                      color: ColorsApp.TextColor),
+                    text: " /month",
+                    fontWeight: FontWeight.w400,
+                    fontSize: getResponsiveFontSize(context, fontSize: 13),
+                    color: isSelected
+                        ? ColorsApp.ColorCardFeature
+                        : ColorsApp.TextColorFeatures,
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -111,12 +141,14 @@ class PricingCustomCard extends StatelessWidget {
                     ),
                     color: ColorsApp.SecondaryColor,
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       'Choose Plan',
                       style: TextStyle(
-                        color: Colors.black,
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                        fontSize: getResponsiveFontSize(context, fontSize: 13),
+                        color: isSelected
+                            ? ColorsApp.MAINCOLOR
+                            : ColorsApp.TextColorFeatures,
                       ),
                     )),
               ),

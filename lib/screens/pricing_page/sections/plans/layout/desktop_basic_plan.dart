@@ -11,8 +11,7 @@ class DesktopListPricing extends StatelessWidget {
   Widget build(BuildContext context) {
     final List basicPlan = BasicPlan.basicPlans;
     return SizedBox(
-      height: 700,
-      width: 1596,
+      height: MediaQuery.of(context).size.height,
       child: GridView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         physics: const NeverScrollableScrollPhysics(),
@@ -26,7 +25,7 @@ class DesktopListPricing extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context, int index) {
           return PricingCustomCard(
-            checkColor: true,
+            isSelected: index == 1,
             basicPlan: basicPlan[index],
           );
         },

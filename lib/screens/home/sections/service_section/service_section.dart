@@ -16,6 +16,7 @@ class ServiceSection extends StatelessWidget {
       ),
       child: const Column(
         children: [
+          SizedBox(height: 30),
           Column(spacing: 30, children: [
             TitleService(),
             DescriptionService(),

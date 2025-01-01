@@ -22,11 +22,11 @@ class PricingPage extends StatelessWidget {
         child: Column(
           children: [
             MainNavigationBar(),
-            SizedBox(height: 10),
-            PricingSection(),
-            SizedBox(height: 30),
-            PricingButton(),
-            SizedBox(height: 50),
+            // SizedBox(height: 10),
+            // PricingSection(),
+            // SizedBox(height: 30),
+            // PricingButton(),
+            // SizedBox(height: 50),
             PricingPalnSection(),
             SizedBox(height: 50),
             FeaturesPlan(),
