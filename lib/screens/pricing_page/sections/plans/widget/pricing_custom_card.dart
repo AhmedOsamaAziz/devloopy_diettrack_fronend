@@ -1,19 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/general/basic_plan.dart';
+import 'package:ui/model/service/service_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class PricingCustomCard extends StatelessWidget {
   const PricingCustomCard({
     super.key,
-    required this.basicPlan,
+    required this.service,
+    // required this.basicPlan,
     required this.isSelected,
   });
+  final ServiceList service;
 
-  final BasicPlan basicPlan;
+  // final BasicPlan basicPlan;
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class PricingCustomCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CustomText(
-                text: basicPlan.title,
+                text: service.name,
                 fontWeight: FontWeight.bold,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -41,7 +43,7 @@ class PricingCustomCard extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               CustomText(
-                text: basicPlan.subTitle,
+                text: service.description,
                 fontWeight: FontWeight.bold,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -50,7 +52,7 @@ class PricingCustomCard extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               CustomText(
-                text: basicPlan.paragrph,
+                text: service.description,
                 fontWeight: FontWeight.w500,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -59,7 +61,7 @@ class PricingCustomCard extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               CustomText(
-                text: basicPlan.paragrph1,
+                text: service.description,
                 fontWeight: FontWeight.w500,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -68,7 +70,7 @@ class PricingCustomCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               CustomText(
-                text: basicPlan.paragrph2,
+                text: service.description,
                 fontWeight: FontWeight.w500,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -77,14 +79,14 @@ class PricingCustomCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               CustomText(
-                text: basicPlan.paragrph3.toString(),
+                text: service.description.toString(),
                 fontWeight: FontWeight.w500,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
               ),
               const SizedBox(height: 10),
               CustomText(
-                text: basicPlan.paragrph4 ?? '',
+                text: service.description,
                 fontWeight: FontWeight.w500,
                 fontSize: getResponsiveFontSize(context, fontSize: 13),
                 color: isSelected
@@ -95,12 +97,11 @@ class PricingCustomCard extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: basicPlan.color,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomText(
-                    text: basicPlan.paragrph5 ?? '',
+                    text: service.description,
                     fontSize: getResponsiveFontSize(context, fontSize: 13),
                     color: isSelected
                         ? ColorsApp.TitleColorFeatures
@@ -113,7 +114,7 @@ class PricingCustomCard extends StatelessWidget {
               Row(
                 children: [
                   CustomText(
-                    text: basicPlan.amount,
+                    text: "\$${service.price}",
                     fontWeight: FontWeight.bold,
                     fontSize: getResponsiveFontSize(context, fontSize: 30),
                     color: isSelected

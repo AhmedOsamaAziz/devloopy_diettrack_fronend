@@ -28,7 +28,7 @@ class CustomQuestion extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: getResponsiveFontSize(context, fontSize: 13)),
         ),
-        trailing: SvgPicture.asset(askQuestion.image, height: 24, width: 24),
+        leading: SvgPicture.asset(askQuestion.image, height: 24, width: 24),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
