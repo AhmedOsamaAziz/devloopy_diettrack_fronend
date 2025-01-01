@@ -30,7 +30,7 @@ class ReadMeView extends StatelessWidget {
               child: BlogDescription(),
             ),
             Container(
-               height: ScreenSize.isLarge ? height : height * 0.2,
+              height: ScreenSize.isLarge ? height : height * 0.2,
               width: width * 0.5,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
@@ -94,10 +94,12 @@ class ReadMeView extends StatelessWidget {
                               getResponsiveFontSize(context, fontSize: 14),
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomText(
-                          text: 'Date: ${blogList.group}',
-                          fontSize:
-                              getResponsiveFontSize(context, fontSize: 12),
+                        Expanded(
+                          child: CustomText(
+                            text: 'Date: ${blogList.group}',
+                            fontSize:
+                                getResponsiveFontSize(context, fontSize: 12),
+                          ),
                         ),
                       ],
                     ),

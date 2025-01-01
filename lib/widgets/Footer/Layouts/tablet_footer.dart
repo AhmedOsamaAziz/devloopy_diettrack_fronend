@@ -137,15 +137,15 @@ class TabletFooter extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text(
-                        "Got To Top",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ),
-                      ),
+                      // const Text(
+                      //   "Go To Top",
+                      //   style: TextStyle(
+                      //     color: Color(0xFFFFFFFF),
+                      //     fontSize: 15.0,
+                      //     fontWeight: FontWeight.w500,
+                      //     fontFamily: FontsApp.fontFamilyUrbanist,
+                      //   ),
+                      // ),
                       const Card(),
                       IconButton(
                           iconSize: 15.0,
