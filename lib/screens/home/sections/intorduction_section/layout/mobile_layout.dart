@@ -14,13 +14,11 @@ class MobileLayout extends StatelessWidget {
     return Container(
       color: ColorsApp.OUTLINECOLOR,
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: MediaQuery.of(context).size.height * 1.2,
-      width: MediaQuery.of(context).size.width * 1.2,
+      // height: MediaQuery.of(context).size.height * 1.2,
+      // width: MediaQuery.of(context).size.width * 1.2,
       child: Column(
         children: [
           const SizedBox(
-            // width: 390,
-            // height: 320,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -47,8 +45,8 @@ class MobileLayout extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Container(
-            padding: const EdgeInsets.only(
-                top: 60, bottom: 20, left: 20, right: 20),
+            padding:
+                const EdgeInsets.only(top: 60, bottom: 20, left: 20, right: 20),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

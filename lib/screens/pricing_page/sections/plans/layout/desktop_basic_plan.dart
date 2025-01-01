@@ -26,11 +26,11 @@ class DesktopListPricing extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context, int index) {
           return PricingCustomCard(
+            checkColor: true,
             basicPlan: basicPlan[index],
           );
         },
       ),
     );
-    
   }
 }

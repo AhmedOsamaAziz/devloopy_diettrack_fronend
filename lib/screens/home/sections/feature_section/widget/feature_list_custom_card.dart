@@ -15,9 +15,12 @@ class _FeatureListCustomCardState extends State<FeatureListCustomCard> {
   @override
   Widget build(BuildContext context) {
     final List listCard = CardFeatures.cardFeature;
+
     return ScreenSize.isLarge || ScreenSize.isMedium
         ? Expanded(
-            child: GridView.builder(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: GridView.builder(
                 itemCount: listCard.length,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -30,20 +33,22 @@ class _FeatureListCustomCardState extends State<FeatureListCustomCard> {
                   return FeatureCustomCard(
                     card: listCard[index],
                   );
-                }),
+                },
+              ),
+            ),
           )
         : SizedBox(
-            height: 1050,
+            height: 1050, // Ensure this height fits your layout
             width: 360,
             child: ListView.builder(
-                itemCount: listCard.length,
-                //physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  return FeatureCustomCard(
-                    card: listCard[index],
-                  );
-                }),
+              itemCount: listCard.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return FeatureCustomCard(
+                  card: listCard[index],
+                );
+              },
+            ),
           );
   }
 }

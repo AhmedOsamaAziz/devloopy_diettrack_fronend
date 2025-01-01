@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/home/sections/our_blog_section/blog_section.dart';
 import 'package:ui/screens/home/sections/service_section/service_section.dart';
-import 'package:ui/screens/home/sections/testimonials_section/testimonials_section.dart';
 import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
 
 import '../../widgets/Footer/main_footer.dart';
@@ -30,7 +29,7 @@ class HomePage extends StatelessWidget {
             IntroductionSection(),
             FeatureSection(),
             OurBlogsSection(),
-            TestmonilasSection(),
+            //TestmonilasSection(),
             ServiceSection(),
             MainFooter(),
           ],

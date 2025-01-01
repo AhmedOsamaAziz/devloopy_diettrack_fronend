@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:ui/constants/constants.dart';
 import 'package:ui/model/general/basic_plan.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -7,9 +9,11 @@ class PricingCustomCard extends StatelessWidget {
   const PricingCustomCard({
     super.key,
     required this.basicPlan,
+    this.checkColor,
   });
 
   final BasicPlan basicPlan;
+  final bool? checkColor;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,7 +22,7 @@ class PricingCustomCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: ColorsApp.OUTLINECOLOR),
+            color: checkColor! ? ColorsApp.MAINCOLOR : ColorsApp.MAINCOLOR),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(

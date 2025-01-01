@@ -25,11 +25,8 @@ class TeamPage extends StatelessWidget {
             SizedBox(height: 50),
             ButtomTeamPage(),
             SizedBox(height: 50),
-
             TeamPageCardMangament(),
-
             SizedBox(height: 50),
-
             LastCardSections(),
             MainFooter(),
           ],

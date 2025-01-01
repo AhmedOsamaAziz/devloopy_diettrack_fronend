@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ui/data/services.dart';
- import 'package:ui/model/service/service_list.dart';
+import 'package:ui/model/service/service_list.dart';
 
 class ServiceDashBoard extends StatefulWidget {
   const ServiceDashBoard({super.key});
@@ -27,7 +26,7 @@ class DashBoardBady extends StatefulWidget {
 }
 
 class _DashBoardBadyState extends State<DashBoardBady> {
-  final List<ServiceList> _rows = services;
+  final List<ServiceList> _rows = [];
 
   @override
   void initState() {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/helper/screen_size.dart';
+import 'package:ui/cubits/service_cubit/button_cubit/button_color_cubit.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class DiscountButton extends StatelessWidget {
@@ -8,62 +10,79 @@ class DiscountButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-    width: ScreenSize.isLarge
-        ? 1596
-        : ScreenSize.isMedium
-            ? 1000
-            : 313,
-    height: ScreenSize.isLarge
-        ? 820
-        : ScreenSize.isMedium
-            ? 400
-            : 130,
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(3.0), // Adjust as needed
-                ),
-                color: ColorsApp.MAINCOLOR,
-                onPressed: () {},
-                child: const Text(
-                  'Monthly',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                )),
-            const SizedBox(width: 10),
-            MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3.0) // Ajust as needed
+    return BlocProvider(
+      create: (_) => PricingButtonCubit(), // Provide the cubit
+      child: BlocBuilder<PricingButtonCubit, ButtonType>(
+        builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(3.0),
+                      ),
+                      color: state == ButtonType.monthly
+                          ? ColorsApp.MAINCOLOR
+                          : ColorsApp.OUTLINECOLOR,
+                      onPressed: () {
+                        context
+                            .read<PricingButtonCubit>()
+                            .selectMonthly(); // Change state to "Monthly"
+                      },
+                      child: Text(
+                        'Monthly',
+                        style: TextStyle(
+                          color: state == ButtonType.monthly
+                              ? Colors.white
+                              : Colors.black, // White text for active
+                          fontSize:
+                              getResponsiveFontSize(context, fontSize: 12),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ),
-                color: ColorsApp.OUTLINECOLOR,
-                onPressed: () {},
-                child: CustomText(
-                  text: 'Yearly',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black,
-                )),
-            const SizedBox(height: 20),
-          ],
-        ),
-        const SizedBox(height: 10),
-        CustomText(
-          text: 'Save 50% on Yearly',
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: Colors.black,
-        ),
-      ],
-    ),
-  );
-}
-
+                  ),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(3.0),
+                      ),
+                      color: state == ButtonType.yearly
+                          ? ColorsApp.MAINCOLOR
+                          : ColorsApp.OUTLINECOLOR,
+                      onPressed: () {
+                        context
+                            .read<PricingButtonCubit>()
+                            .selectYearly(); // Change state to "Yearly"
+                      },
+                      child: CustomText(
+                        text: 'Yearly',
+                        fontSize: getResponsiveFontSize(context, fontSize: 12),
+                        fontWeight: FontWeight.w400,
+                        color: state == ButtonType.yearly
+                            ? Colors.white
+                            : Colors.black, // White text for active
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              CustomText(
+                text: 'Save 50% on Yearly',
+                fontSize: getResponsiveFontSize(context, fontSize: 12),
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
- 
+}

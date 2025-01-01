@@ -38,7 +38,6 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -227,7 +226,7 @@ class UnderUppBar extends StatelessWidget {
                           ),
                         ),
                       ),
-                       MaterialButton(
+                      MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(5.0), // Adjust as needed
@@ -236,7 +235,7 @@ class UnderUppBar extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                                builder: (context) =>   const EntryPoint()),
+                                builder: (context) => const EntryPoint()),
                           );
                         },
                         child: const Text(

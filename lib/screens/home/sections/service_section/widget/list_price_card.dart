@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
-import 'package:ui/helper/screen_size.dart';
+import 'package:ui/helper/screen_size.dart'; // Import ScreenSize
 import 'package:ui/screens/home/sections/service_section/widget/service_card.dart';
 
 class ListPriceCard extends StatelessWidget {
@@ -11,58 +11,67 @@ class ListPriceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<ServiceCubit>().loadServices();
+
     return BlocBuilder<ServiceCubit, ServiceState>(
       builder: (context, state) {
         if (state is ServiceLoading) {
-          print('loading');
           return const Center(child: CircularProgressIndicator());
         } else if (state is ServiceSuccess) {
-          print('success');
+          if (state.service.isEmpty) {
+            return const Center(
+                child: Text('No services available at the moment.'));
+          }
 
-          return ScreenSize.isLarge || ScreenSize.isMedium
-              ? Expanded(
-                  child: GridView.builder(
-                    itemCount: state.service.length,
-                    physics: const NeverScrollableScrollPhysics(),
+          final services = state.service;
+
+          return SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: ScreenSize.isLarge || ScreenSize.isMedium
+                ? GridView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    itemCount: services.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 50,
-                      mainAxisExtent: 500,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 0.8,
                     ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return ServiceCard(
-                        service: state.service[index],
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: ServiceCard(
+                            service: services[index], isSelected: index == 1),
+                      );
+                    },
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: services.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 0.8,
+                    ),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: ServiceCard(
+                            service: services[index], isSelected: index == 1),
                       );
                     },
                   ),
-                )
-              : Expanded(
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverPadding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
-                          sliver: SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (context, index) {
-                                return ServiceCard(
-                                  service: state.service[index],
-                                );
-                              },
-                              childCount: state.service.length,
-                            ),
-                          ))
-                    ],
-                  ),
-                );
+          );
         } else if (state is ServiceFailure) {
- 
-          return Center(child: Text(state.noDataMessage as String));
+          return const Center(
+              child: Text('Failed to load services. Please try again.'));
+        } else if (state is ServiceNoData) {
+          return const Center(child: Text('No services available.'));
         } else {
- 
-          return const Center(child: Text('No services available.try again'));
+          return const Center(child: Text('Unknown state'));
         }
       },
     );

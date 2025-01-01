@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
@@ -73,10 +72,12 @@ class CustomBlogCardDesktop extends StatelessWidget {
                             // height: 185,
                             errorBuilder: (context, error, stackTrace) {
                               return AspectRatio(
-                                  aspectRatio: 1.5,
-                                  child:
-                                      Image.asset(Assets.imagesFitness2,
-                                          fit: BoxFit.cover,),);
+                                aspectRatio: 1.5,
+                                child: Image.asset(
+                                  Assets.imagesFitness2,
+                                  fit: BoxFit.cover,
+                                ),
+                              );
                             },
                           ),
                   ),

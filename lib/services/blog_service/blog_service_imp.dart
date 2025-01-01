@@ -7,7 +7,7 @@
 // import 'package:ui/services/blog_service/blog_service.dart';
 
 // class BlogServiceImp implements BlogService {
- //   Future<GenericResponse> getAllBlogs() async {
+//   Future<GenericResponse> getAllBlogs() async {
 //     try {
 //       var _apiService = ApiService();
 //       final response = await _apiService.makeRequest(
@@ -27,4 +27,3 @@
 //       );
 //     }
 //   }
-

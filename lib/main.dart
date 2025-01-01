@@ -46,10 +46,10 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
-            home: const HomePage(),
+          return const MaterialApp(
+            // locale: DevicePreview.locale(context),
+            // builder: DevicePreview.appBuilder,
+            home: HomePage(),
           );
         },
       ),

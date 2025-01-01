@@ -16,10 +16,9 @@ class DeskTopLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-         width: 1500,  
+      width: 1500,
       color: ColorsApp.OUTLINECOLOR,
       padding: const EdgeInsets.symmetric(vertical: 10),
-      
       child: Row(
         children: [
           const Expanded(child: IntroductionImage()),

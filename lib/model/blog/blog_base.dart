@@ -1,7 +1,6 @@
 import 'package:ui/core/enums.dart';
 
 abstract class BlogBase {
-  
   String title;
   String titleAr;
   String description;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/model/general/blog_card.dart';
- import 'package:ui/screens/blog_page/sections/blog_card/widget/custom_blog_card.tablet.dart';
+import 'package:ui/screens/blog_page/sections/blog_card/widget/custom_blog_card.tablet.dart';
 
 class TabletBlogCard extends StatelessWidget {
   const TabletBlogCard({super.key});

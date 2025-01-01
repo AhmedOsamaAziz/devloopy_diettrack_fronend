@@ -27,7 +27,7 @@ class BlogPage extends StatelessWidget {
             SizedBox(height: 50),
             BLogCard(),
             SizedBox(height: 50),
-           MainFooter(),
+            MainFooter(),
           ],
         ),
       ),

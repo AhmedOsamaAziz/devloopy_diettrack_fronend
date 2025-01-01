@@ -8,6 +8,7 @@ class ChooseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       minWidth: ScreenSize.isLarge
           ? 412
           : ScreenSize.isMedium

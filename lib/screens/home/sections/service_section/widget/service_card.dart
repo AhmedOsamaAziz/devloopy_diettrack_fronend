@@ -1,76 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
-import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/service/service_list.dart';
 import 'package:ui/screens/home/sections/service_section/widget/choose_button.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class ServiceCard extends StatelessWidget {
   final ServiceList service;
+  final bool isSelected; // To track whether the card is selected
 
-  const ServiceCard({super.key, required this.service});
+  const ServiceCard({
+    super.key,
+    required this.service,
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ServiceCubit, ServiceState>(
-      builder: (context, state) {
-        if (state is ServiceLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is ServiceLoading) {
-          return Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: CustomText(
-                  text: service.discount.toString(),
-                  fontSize: 18,
-                  color: ColorsApp.TextColorFeatures,
-                ),
-              ),
-              const SizedBox(height: 30),
-              CustomText(
-                text: service.description,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                color: ColorsApp.TextColorFeatures,
-              ),
-              const Spacer(),
-              SizedBox(
-                width: 412,
-                height: 135,
-                child: Column(
-                  children: [
-                    Row(
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: isSelected ? ColorsApp.MAINCOLOR : ColorsApp.OUTLINECOLOR,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: isSelected
+          ? Banner(
+              color: ColorsApp.NumberColor,
+              location: BannerLocation.topEnd,
+              message: 'The Best',
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                      text: service.name,
+                      fontSize: getResponsiveFontSize(context, fontSize: 13),
+                      color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  CustomText(
+                    text: service.description,
+                    fontWeight: FontWeight.w600,
+                    fontSize: getResponsiveFontSize(context, fontSize: 13),
+                    color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                  ),
+                  SizedBox(
+                    child: Column(
                       children: [
-                        CustomText(
-                          text: service.price.toString(),
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: ColorsApp.TextColor,
-                        ),
-                        CustomText(
-                          text: " / ${service.validFor}",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18,
-                          color: ColorsApp.TextColor,
+                        Row(
+                          children: [
+                            CustomText(
+                              text: service.price.toString(),
+                              fontSize: getResponsiveFontSize(context, fontSize: 30),
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? ColorsApp.NumberColor : ColorsApp.TextColor,
+                            ),
+                            CustomText(
+                              text: " / ${service.validFor}",
+                              fontWeight: FontWeight.w400,
+                              fontSize: getResponsiveFontSize(context, fontSize: 16),
+                              color: isSelected ? Colors.white : ColorsApp.TextColor,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    const Spacer(),
-                    const ChooseButton(),
-                  ],
-                ),
+                  ),
+                  const Spacer(),
+                  const ChooseButton(),
+                ],
               ),
-            ],
-          );
-        } else if (state is ServiceFailure) {
-          return Text('Error: ${state.noDataMessage}');
-        } else {
-          return const Text('Unknown state');
-        }
-      },
+            )
+          : Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: CustomText(
+                    text: service.name,
+                    fontSize: getResponsiveFontSize(context, fontSize: 13),
+                    color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                CustomText(
+                  text: service.description,
+                  fontWeight: FontWeight.w600,
+                  fontSize: getResponsiveFontSize(context, fontSize: 13),
+                  color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                ),
+                SizedBox(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          CustomText(
+                            text: service.price.toString(),
+                            fontSize: getResponsiveFontSize(context, fontSize: 30),
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? ColorsApp.NumberColor : ColorsApp.TextColor,
+                          ),
+                          CustomText(
+                            text: " / ${service.validFor}",
+                            fontWeight: FontWeight.w400,
+                            fontSize: getResponsiveFontSize(context, fontSize: 16),
+                            color: isSelected ? Colors.white : ColorsApp.TextColor,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                const ChooseButton(),
+              ],
+            ),
     );
   }
 }

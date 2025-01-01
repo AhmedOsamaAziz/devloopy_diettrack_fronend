@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/general/blog_card.dart';
- import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/widgets/custom_text.dart';
 
 class CustomBlogCardTablet extends StatelessWidget {
   const CustomBlogCardTablet({
@@ -98,8 +98,7 @@ class CustomButtonReadMe extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         height: 30,
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(3.0), // Adjust as needed
+          borderRadius: BorderRadius.circular(3.0), // Adjust as needed
         ),
         color: ColorsApp.SecondaryColor,
         onPressed: onPressed,
