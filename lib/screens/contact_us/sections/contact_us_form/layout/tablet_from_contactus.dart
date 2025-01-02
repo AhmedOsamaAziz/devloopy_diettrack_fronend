@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/core/url_launcher.dart';
 
 import 'package:ui/widgets/custom_text.dart';
 import '../widget/custom_button_contact_us.dart';
@@ -91,11 +92,16 @@ class TabletFormContactUs extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 6,
-                      child: Image.asset(
-                        "assets/images/Map.png",
-                        fit: BoxFit.cover,
-                        height: 200,
-                        // width: double.infinity,
+                      child: GestureDetector(
+                        onTap: () => handleButtonClick(
+                            context: context,
+                            url: 'https://www.google.com/maps'),
+                        child: Image.asset(
+                          "assets/images/Map.png",
+                          fit: BoxFit.cover,
+                          height: 200,
+                          // width: double.infinity,
+                        ),
                       ),
                     ),
                     Expanded(
@@ -105,15 +111,21 @@ class TabletFormContactUs extends StatelessWidget {
                           children: [
                             const SizedBox(width: 10),
                             CustomIconContactUs(
-                                onPressed: () {},
+                                onPressed: () => handleButtonClick(
+                                    context: context,
+                                    url: 'https://www.facebook.com/'),
                                 icon: FontAwesomeIcons.facebook),
                             const SizedBox(width: 10),
                             CustomIconContactUs(
-                                onPressed: () {},
+                                onPressed: () => handleButtonClick(
+                                    context: context,
+                                    url: 'https://www.twitter.com/'),
                                 icon: FontAwesomeIcons.twitter),
                             const SizedBox(width: 10),
                             CustomIconContactUs(
-                              onPressed: () {},
+                              onPressed: () => handleButtonClick(
+                                  context: context,
+                                  url: 'https://www.linkedin.com/'),
                               icon: FontAwesomeIcons.linkedin,
                             )
                           ],

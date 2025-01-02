@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 Future<void> handleButtonClick({
   required BuildContext context,
   required String url,
-  required String buttonText,
+  String? buttonText,
 }) async {
   final Uri uri = Uri.parse(url);
 

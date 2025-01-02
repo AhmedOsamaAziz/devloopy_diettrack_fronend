@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- import 'package:ui/model/general/contact_us_button.dart';
+import 'package:ui/model/general/contact_us_button.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_buttons/Widget/custom_button_item.dart';
 
 class MobileButtonSupporting extends StatelessWidget {
@@ -9,7 +9,7 @@ class MobileButtonSupporting extends StatelessWidget {
   Widget build(BuildContext context) {
     final contactBtn = ContactUsButton.contactUs;
     return SizedBox(
-      height: 600,
+      height: MediaQuery.of(context).size.height * 0.5,
       width: 360,
       child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),

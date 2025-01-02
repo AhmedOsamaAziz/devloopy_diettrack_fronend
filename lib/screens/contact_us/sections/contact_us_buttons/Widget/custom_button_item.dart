@@ -24,7 +24,7 @@ class CustomButtonItem extends StatelessWidget {
       ),
       child: Column(
         spacing: 10,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
@@ -32,11 +32,9 @@ class CustomButtonItem extends StatelessWidget {
                   context: context,
                   url: contactUsButton.url,
                   buttonText: contactUsButton.text),
-              icon: Icon(
-                contactUsButton.icon,
-                color: ColorsApp.TitleColorFeatures,
-                size: getResponsiveFontSize(context, fontSize: 20)
-              )),
+              icon: Icon(contactUsButton.icon,
+                  color: ColorsApp.TitleColorFeatures,
+                  size: getResponsiveFontSize(context, fontSize: 20))),
           Text(
             contactUsButton.text,
             style: TextStyle(

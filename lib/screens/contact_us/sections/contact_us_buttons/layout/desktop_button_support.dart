@@ -12,8 +12,11 @@ class DesktopButtonSupporting extends StatelessWidget {
   Widget build(BuildContext context) {
     final contactBtn = ContactUsButton.contactUs;
     return Container(
-      color: ColorsApp.MAINCOLOR,
-      height: ScreenSize.isLarge ? 141 : 100,
+      decoration: BoxDecoration(
+        color: ColorsApp.MAINCOLOR,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      height: ScreenSize.isLarge ? 140 : 100,
       width: MediaQuery.of(context).size.width - 100,
       child: Center(
         child: ListView.builder(
@@ -23,9 +26,9 @@ class DesktopButtonSupporting extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: ScreenSize.isLarge ? 30.0 : 10),
+                  horizontal: ScreenSize.isLarge ? 30.0 : 10,
+                  vertical: ScreenSize.isLarge ? 20 : 10),
               child: CustomButtonItem(
-               
                 contactUsButton: contactBtn[index],
               ),
             );
