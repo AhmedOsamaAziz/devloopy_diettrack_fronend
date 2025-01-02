@@ -35,7 +35,9 @@ class ServiceCard extends StatelessWidget {
                     child: CustomText(
                       text: service.name,
                       fontSize: getResponsiveFontSize(context, fontSize: 13),
-                      color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                      color: isSelected
+                          ? Colors.white
+                          : ColorsApp.TextColorFeatures,
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -43,7 +45,8 @@ class ServiceCard extends StatelessWidget {
                     text: service.description,
                     fontWeight: FontWeight.w600,
                     fontSize: getResponsiveFontSize(context, fontSize: 13),
-                    color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                    color:
+                        isSelected ? Colors.white : ColorsApp.TextColorFeatures,
                   ),
                   SizedBox(
                     child: Column(
@@ -51,16 +54,22 @@ class ServiceCard extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: service.price.toString(),
-                              fontSize: getResponsiveFontSize(context, fontSize: 30),
+                              text: "\$${service.price}",
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 30),
                               fontWeight: FontWeight.bold,
-                              color: isSelected ? ColorsApp.NumberColor : ColorsApp.TextColor,
+                              color: isSelected
+                                  ? ColorsApp.NumberColor
+                                  : ColorsApp.TextColor,
                             ),
                             CustomText(
                               text: " / ${service.validFor}",
                               fontWeight: FontWeight.w400,
-                              fontSize: getResponsiveFontSize(context, fontSize: 16),
-                              color: isSelected ? Colors.white : ColorsApp.TextColor,
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 16),
+                              color: isSelected
+                                  ? Colors.white
+                                  : ColorsApp.TextColor,
                             ),
                           ],
                         ),
@@ -79,7 +88,8 @@ class ServiceCard extends StatelessWidget {
                   child: CustomText(
                     text: service.name,
                     fontSize: getResponsiveFontSize(context, fontSize: 13),
-                    color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                    color:
+                        isSelected ? Colors.white : ColorsApp.TextColorFeatures,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -87,7 +97,8 @@ class ServiceCard extends StatelessWidget {
                   text: service.description,
                   fontWeight: FontWeight.w600,
                   fontSize: getResponsiveFontSize(context, fontSize: 13),
-                  color: isSelected ? Colors.white : ColorsApp.TextColorFeatures,
+                  color:
+                      isSelected ? Colors.white : ColorsApp.TextColorFeatures,
                 ),
                 SizedBox(
                   child: Column(
@@ -95,16 +106,21 @@ class ServiceCard extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: service.price.toString(),
-                            fontSize: getResponsiveFontSize(context, fontSize: 30),
+                            text: "\$${service.price}",
+                            fontSize:
+                                getResponsiveFontSize(context, fontSize: 30),
                             fontWeight: FontWeight.bold,
-                            color: isSelected ? ColorsApp.NumberColor : ColorsApp.TextColor,
+                            color: isSelected
+                                ? ColorsApp.NumberColor
+                                : ColorsApp.TextColor,
                           ),
                           CustomText(
                             text: " / ${service.validFor}",
                             fontWeight: FontWeight.w400,
-                            fontSize: getResponsiveFontSize(context, fontSize: 16),
-                            color: isSelected ? Colors.white : ColorsApp.TextColor,
+                            fontSize:
+                                getResponsiveFontSize(context, fontSize: 16),
+                            color:
+                                isSelected ? Colors.white : ColorsApp.TextColor,
                           ),
                         ],
                       ),

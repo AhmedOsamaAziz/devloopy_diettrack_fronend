@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/model/general/basic_plan.dart';
 import 'package:ui/model/service/service_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 

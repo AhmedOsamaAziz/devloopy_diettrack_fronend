@@ -9,7 +9,6 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
-import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
           return const MaterialApp(
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
-            home: BlogPage(),
+            home: HomePage(),
           );
         },
       ),
