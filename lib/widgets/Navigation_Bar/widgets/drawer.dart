@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/widgets/custom_text.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
@@ -97,8 +98,8 @@ class _CustomDrowerState extends State<CustomDrower> {
             const SizedBox(height: 20),
             CustomText(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const BlogPage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ContactUsPage()));
               },
               text: 'Contact Us',
               fontSize: 24,
