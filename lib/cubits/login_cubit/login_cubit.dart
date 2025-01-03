@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/constants/constants.dart';
 import 'package:ui/core/api/generic_response.dart';
+import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +20,12 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       final response = await loginService.login(
           emailController.text, passwordController.text);
+
       if (response.status == ResponseStatus.success) {
+        // Save login status
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isLoggedIn', true);
+
         emit(LoginSuccess());
       } else {
         emit(LoginError(response.message!));
@@ -27,5 +35,58 @@ class LoginCubit extends Cubit<LoginState> {
     } catch (e) {
       emit(LoginError("An unexpected error occurred"));
     }
+  }
+
+  // Method to log out and reset login status
+  Future<void> logout(BuildContext context) async {
+    final shouldLogout = await _showLogoutConfirmationDialog(context);
+    if (!shouldLogout) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
+
+    emit(LoginInitial());
+  }
+
+  Future<bool> _showLogoutConfirmationDialog(BuildContext context) async {
+    return await showDialog<bool>(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: ColorsApp.OUTLINECOLOR,
+              title: const Text('Confirm Logout'),
+              content: const Text('Are you sure you want to log out?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false); // User cancels logout
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStateProperty.all(ColorsApp.SecondaryColor)),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Logout',
+                      style: TextStyle(color: ColorsApp.MAINCOLOR)),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false; // Default to false if the dialog is dismissed
+  }
+
+  // Check if the user is logged in
+  Future<bool> isLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false;
   }
 }
