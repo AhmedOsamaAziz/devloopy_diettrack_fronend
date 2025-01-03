@@ -7,7 +7,6 @@ import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class LoginCubit extends Cubit<LoginState> {
   final LoginService loginService;
   final TextEditingController emailController = TextEditingController();
@@ -22,10 +21,16 @@ class LoginCubit extends Cubit<LoginState> {
           emailController.text, passwordController.text);
 
       if (response.status == ResponseStatus.success) {
-        // Save login status
         final prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLoggedIn', true);
 
+        // Add first login check
+        bool firstLogin = prefs.getBool('firstLogin') ?? true;
+        if (firstLogin) {
+          await prefs.setBool('firstLogin', false); // Set firstLogin to false after first login
+        }
+
+        clearFields();
         emit(LoginSuccess());
       } else {
         emit(LoginError(response.message!));
@@ -44,6 +49,8 @@ class LoginCubit extends Cubit<LoginState> {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', false);
+
+    clearFields();
 
     emit(LoginInitial());
   }
@@ -81,7 +88,7 @@ class LoginCubit extends Cubit<LoginState> {
             );
           },
         ) ??
-        false; // Default to false if the dialog is dismissed
+        false;
   }
 
   // Check if the user is logged in
@@ -89,4 +96,16 @@ class LoginCubit extends Cubit<LoginState> {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('isLoggedIn') ?? false;
   }
+
+  // Check if it's the first login
+  Future<bool> isFirstLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('firstLogin') ?? true;
+  }
+
+  void clearFields() {
+    emailController.clear();
+    passwordController.clear();
+  }
 }
+

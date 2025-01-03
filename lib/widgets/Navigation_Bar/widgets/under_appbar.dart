@@ -6,7 +6,6 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
@@ -77,10 +76,11 @@ class _UnderUppBarState extends State<UnderUppBar> {
                       child: Row(
                         spacing: 20,
                         children: [
-                          // Always show Home button
-                          _buildNavButton(context, 'Home', 0),
+                          // Show Home button only if logged in
+                          // if (!isLoggedIn) _buildNavButton(context, 'Home', 7),
                           // Show other screens only if logged in
                           if (isLoggedIn) ...[
+                            _buildNavButton(context, 'Home', 1),
                             _buildNavButton(context, 'About', 1),
                             _buildNavButton(context, 'Team', 2),
                             _buildNavButton(context, 'Prosses', 3),
@@ -126,27 +126,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
                                 ),
                               ),
                             ),
-
-                          // MaterialButton(
-                          //   shape: RoundedRectangleBorder(
-                          //     borderRadius: BorderRadius.circular(5.0),
-                          //   ),
-                          //   color: ColorsApp.SecondaryColor,
-                          //   onPressed: () {
-                          //     Navigator.of(context).pushReplacement(
-                          //       MaterialPageRoute(
-                          //         builder: (context) => const EntryPoint(),
-                          //       ),
-                          //     );
-                          //   },
-                          //   child: const Text(
-                          //     'Dashboard',
-                          //     style: TextStyle(
-                          //       color: Colors.black,
-                          //       fontSize: 12,
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
@@ -179,9 +158,11 @@ class _UnderUppBarState extends State<UnderUppBar> {
         widget.onTabChanged(index);
         switch (buttonText) {
           case 'Home':
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+            if (isLoggedIn) {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            }
             break;
           case 'About':
             if (isLoggedIn) {

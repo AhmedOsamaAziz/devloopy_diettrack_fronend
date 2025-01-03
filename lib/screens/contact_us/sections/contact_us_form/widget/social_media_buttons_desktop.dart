@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ui/core/url_launcher.dart';
+import 'package:ui/helper/url_launcher.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_form/widget/custom_icon.dart';
 
 class SocialMediaButtonsDesktop extends StatelessWidget {
