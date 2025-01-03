@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 
 class CustomInputField extends StatefulWidget {
   final String labelText;
@@ -41,8 +43,14 @@ class _CustomInputFieldState extends State<CustomInputField> {
           TextFormField(
             obscureText: (widget.obscureText && _obscureText),
             decoration: InputDecoration(
+              fillColor: ColorsApp.OUTLINECOLOR,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
               isDense: (widget.isDense != null) ? widget.isDense : false,
               hintText: widget.hintText,
+              hintStyle: TextStyle(
+                  fontSize: getResponsiveFontSize(context, fontSize: 12)),
               suffixIcon: widget.suffixIcon
                   ? IconButton(
                       icon: Icon(

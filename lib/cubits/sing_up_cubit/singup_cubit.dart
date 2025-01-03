@@ -29,10 +29,10 @@ class SingupCubit extends Cubit<SingupState> {
       if (response.status == ResponseStatus.success) {
         emit(SingupSuccess());
       } else {
-        emit(SingupFailure(message: '${response.message}'));
+        emit(SingupFailure(message: response.message ?? 'Sign-up failed'));
       }
     } on DioException catch (e) {
-      emit(SingupFailure(message: e.message ?? "An error occurred"));
+      emit(SingupFailure(message: e.message ?? "Network error occurred"));
     } catch (e) {
       emit(const SingupFailure(message: "An unexpected error occurred"));
     }
