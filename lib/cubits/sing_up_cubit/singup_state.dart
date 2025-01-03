@@ -17,4 +17,7 @@ final class SingupFailure extends SingupState {
   final String message;
 
   const SingupFailure({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }
