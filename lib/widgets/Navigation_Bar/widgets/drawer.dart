@@ -63,8 +63,7 @@ class _CustomDrowerState extends State<CustomDrower> {
                   } else if (newValue == 'Dashboard') {
                     // Navigate to Dashboard
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            const EntryPoint())); // Replace with your Dashboard page
+                        builder: (context) => const EntryPoint()));
                   }
                 },
                 items: <String>['Options', 'Login', 'Logout', 'Dashboard']
@@ -78,86 +77,33 @@ class _CustomDrowerState extends State<CustomDrower> {
               const SizedBox(height: 40),
 
               // Navigation Options
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
-                },
-                text: 'Home',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AboutPage()));
-                },
-                text: 'About',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const TeamPage()));
-                },
-                text: 'Team',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ProcessPage()));
-                },
-                text: 'Process',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PricingPage()));
-                },
-                text: 'Pricing',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const BlogPage()));
-                },
-                text: 'Blog',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
-              const SizedBox(height: 20),
-              CustomText(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ContactUsPage()));
-                },
-                text: 'Contact Us',
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.MAINCOLOR,
-              ),
+              _buildNavButton(context, 'Home', 0, const HomePage()),
+              _buildNavButton(context, 'About', 1, const AboutPage()),
+              _buildNavButton(context, 'Team', 2, const TeamPage()),
+              _buildNavButton(context, 'Prosses', 3, const ProcessPage()),
+              _buildNavButton(context, 'Pricing', 4, const PricingPage()),
+              _buildNavButton(context, 'Blog', 5, const BlogPage()),
+              _buildNavButton(context, 'Contact', 6, const ContactUsPage()),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget _buildNavButton(
+    BuildContext context, String text, int index, Widget page) {
+  return GestureDetector(
+    onTap: () {},
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10), // Add spacing
+      child: CustomText(
+        text: text,
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: ColorsApp.SecondaryColor, // Inactive button color
+      ),
+    ),
+  );
 }

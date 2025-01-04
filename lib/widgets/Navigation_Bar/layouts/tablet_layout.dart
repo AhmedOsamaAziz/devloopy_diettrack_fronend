@@ -177,7 +177,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
                     _buildNavButton(context, 'Pricing', 4, const PricingPage()),
                     _buildNavButton(context, 'Blog', 5, const BlogPage()),
                     _buildNavButton(
-                        context, 'Contact', 5, const ContactUsPage()),
+                        context, 'Contact', 6, const ContactUsPage()),
                     const SizedBox(width: 10),
                     _buildAuthDropdown(context, isLoggedIn),
                   ],

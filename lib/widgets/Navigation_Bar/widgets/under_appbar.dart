@@ -11,6 +11,7 @@ import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -77,9 +78,11 @@ class _UnderUppBarState extends State<UnderUppBar> {
                           _buildNavButton(context, 'Team', 2, const TeamPage()),
                           _buildNavButton(
                               context, 'Process', 3, const ProcessPage()),
-                          _buildNavButton(context, 'Blog', 4, const BlogPage()),
                           _buildNavButton(
-                              context, 'Contact', 5, const ContactUsPage()),
+                              context, 'Pricing', 4, const PricingPage()),
+                          _buildNavButton(context, 'Blog', 5, const BlogPage()),
+                          _buildNavButton(
+                              context, 'Contact', 6, const ContactUsPage()),
                           const SizedBox(
                               width: 10), // Add space between buttons
                           _buildAuthDropdown(context, isLoggedIn),
