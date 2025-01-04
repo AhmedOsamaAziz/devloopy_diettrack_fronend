@@ -6,6 +6,7 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
+import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
@@ -31,11 +32,7 @@ class UnderUppBar extends StatefulWidget {
 }
 
 class _UnderUppBarState extends State<UnderUppBar> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<LoginCubit>().isLoggedIn(); // Check login status on init
-  }
+  int _selectedIndex = 0; // Track the selected button index
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +42,24 @@ class _UnderUppBarState extends State<UnderUppBar> {
 
         return Container(
           padding: const EdgeInsets.all(2),
-          width: MediaQuery.sizeOf(context).width * 0.5,
+          width: MediaQuery.of(context).size.width * 0.5,
           child: Wrap(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () {
-                      widget.onTabChanged(0);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                      );
+                      _navigateToPage(context, const HomePage(), 0);
                     },
                     child: Container(
                       height: 40,
                       width: 140,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(Assets.imagesLogo)),
+                          image: AssetImage(Assets.imagesLogo),
+                        ),
                       ),
                     ),
                   ),
@@ -72,60 +67,22 @@ class _UnderUppBarState extends State<UnderUppBar> {
                   Expanded(
                     child: SizedBox(
                       height: 27,
-                      width: MediaQuery.sizeOf(context).width * 0.9,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       child: Row(
-                        spacing: 20,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          // Show Home button only if logged in
-                          // if (!isLoggedIn) _buildNavButton(context, 'Home', 7),
-                          // Show other screens only if logged in
-                          if (isLoggedIn) ...[
-                            _buildNavButton(context, 'Home', 1),
-                            _buildNavButton(context, 'About', 1),
-                            _buildNavButton(context, 'Team', 2),
-                            _buildNavButton(context, 'Prosses', 3),
-                            _buildNavButton(context, 'Blog', 4),
-                            _buildNavButton(context, 'Contact', 5),
-                          ],
-                          // Show Login or Logout button dynamically
-                          if (!isLoggedIn)
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              color: ColorsApp.SecondaryColor,
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginPage(),
-                                  ),
-                                );
-                              },
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          else
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              color: ColorsApp.SecondaryColor,
-                              onPressed: () {
-                                context.read<LoginCubit>().logout(context);
-                              },
-                              child: const Text(
-                                'Logout',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
+                          _buildNavButton(context, 'Home', 0, const HomePage()),
+                          _buildNavButton(
+                              context, 'About', 1, const AboutPage()),
+                          _buildNavButton(context, 'Team', 2, const TeamPage()),
+                          _buildNavButton(
+                              context, 'Process', 3, const ProcessPage()),
+                          _buildNavButton(context, 'Blog', 4, const BlogPage()),
+                          _buildNavButton(
+                              context, 'Contact', 5, const ContactUsPage()),
+                          const SizedBox(
+                              width: 10), // Add space between buttons
+                          _buildAuthDropdown(context, isLoggedIn),
                         ],
                       ),
                     ),
@@ -139,74 +96,101 @@ class _UnderUppBarState extends State<UnderUppBar> {
     );
   }
 
-  Widget _buildNavButton(BuildContext context, String buttonText, int index) {
-    return CustomText(
+  Widget _buildNavButton(
+      BuildContext context, String text, int index, Widget page) {
+    return GestureDetector(
       onTap: () {
-        final isLoggedIn = context.read<LoginCubit>().state is LoginSuccess;
+        setState(() {
+          _selectedIndex = index; // Update selected index
+        });
+        _navigateToPage(context, page, index);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index
+              ? ColorsApp.MAINCOLOR // Active button color
+              : ColorsApp.MAINCOLOR, // Inactive button background
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: CustomText(
+          text: text,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: _selectedIndex == index
+              ? Colors.white // Text color for active button
+              : ColorsApp.SecondaryColor, // Text color for inactive buttons
+        ),
+      ),
+    );
+  }
 
-        if (!isLoggedIn && buttonText != 'Home') {
-          // Prevent navigation to non-Home pages if not logged in
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Please log in to access this page'),
-              backgroundColor: Colors.red,
+  Widget _buildAuthDropdown(BuildContext context, bool isLoggedIn) {
+    return DropdownButton<String>(
+      alignment: Alignment.center,
+      borderRadius: BorderRadius.circular(10),
+      enableFeedback: true,
+      dropdownColor: ColorsApp.OUTLINECOLOR,
+      icon: const Icon(Icons.menu, color: ColorsApp.SecondaryColor),
+      underline: const SizedBox(),
+      items: [
+        if (!isLoggedIn) ...[
+          const DropdownMenuItem(
+            value: 'login',
+            child: Text(
+              'Login',
+              style: TextStyle(color: ColorsApp.NumberColor),
             ),
-          );
-          return;
-        }
-
-        widget.onTabChanged(index);
-        switch (buttonText) {
-          case 'Home':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            }
+          ),
+          const DropdownMenuItem(
+            value: 'logout',
+            child: Text(
+              'Logout',
+              style: TextStyle(color: ColorsApp.NumberColor),
+            ),
+          ),
+        ],
+        // if (isLoggedIn) ...[
+        const DropdownMenuItem(
+          value: 'dashboard',
+          child: Text(
+            'Dashboard',
+            style: TextStyle(color: ColorsApp.NumberColor),
+          ),
+        ),
+      ],
+      // ],
+      onChanged: (value) {
+        switch (value) {
+          case 'login':
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
             break;
-          case 'About':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AboutPage()),
-              );
-            }
+          case 'logout':
+            context.read<LoginCubit>().logout(context);
             break;
-          case 'Team':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const TeamPage()),
-              );
-            }
-            break;
-          case 'Prosses':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const ProcessPage()),
-              );
-            }
-            break;
-          case 'Blog':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const BlogPage()),
-              );
-            }
-            break;
-          case 'Contact':
-            if (isLoggedIn) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const ContactUsPage()),
-              );
-            }
+          case 'dashboard':
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const EntryPoint()),
+            );
             break;
         }
       },
-      text: buttonText,
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      color: widget.activeIndex == index
-          ? ColorsApp.MAINCOLOR
-          : ColorsApp.SecondaryColor,
+    );
+  }
+
+  void _navigateToPage(BuildContext context, Widget page, int index) {
+    widget.onTabChanged(index);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
+  }
+
+  void _showSnackbar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+      ),
     );
   }
 }

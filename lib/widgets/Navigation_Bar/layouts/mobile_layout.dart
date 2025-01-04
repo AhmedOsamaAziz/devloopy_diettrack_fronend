@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/widgets/Navigation_Bar/widgets/drawer.dart';
 import 'package:ui/widgets/custom_text.dart';
-import '../widgets/drawer.dart';
 
 class MobileNavigationBar extends StatelessWidget {
   const MobileNavigationBar({super.key});
@@ -106,24 +106,16 @@ class UpparAppBar extends StatelessWidget {
                 ),
               ),
             ],
-          )
-
-        
-          ),
+          )),
     );
   }
 }
 
-class UnderUppBar extends StatefulWidget {
+class UnderUppBar extends StatelessWidget {
   const UnderUppBar({
     super.key,
   });
 
-  @override
-  State<UnderUppBar> createState() => _UnderUppBarState();
-}
-
-class _UnderUppBarState extends State<UnderUppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
