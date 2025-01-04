@@ -5,7 +5,7 @@ import 'package:ui/screens/auth/signup_page/sing_up.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
-import 'package:ui/widgets/custom_button.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 import 'custom_input_field.dart';

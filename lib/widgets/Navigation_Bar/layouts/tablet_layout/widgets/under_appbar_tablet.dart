@@ -4,126 +4,19 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/model/general/drawer_model.dart';
+import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
+import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
-import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/widgets/custom_text.dart';
 
-class TabletNavigationBar extends StatefulWidget {
-  const TabletNavigationBar({super.key});
-
-  @override
-  _TabletNavigationBarState createState() => _TabletNavigationBarState();
-}
-
-class _TabletNavigationBarState extends State<TabletNavigationBar> {
-  final List _listDrawer = DrawerModel.drawer;
-
-  int _activeIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      decoration: const BoxDecoration(color: ColorsApp.MAINCOLOR),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100),
-        child: Column(
-          children: [
-            const Expanded(child: UpparAppBar()),
-            const SizedBox(height: 10),
-            UnderUppBar(
-              drawerModel: _listDrawer[_activeIndex], // Pass data
-              activeIndex: _activeIndex, // Pass activeIndex
-              onTabChanged: (index) {
-                setState(() {
-                  _activeIndex = index; // Update activeIndex
-                });
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UpparAppBar extends StatelessWidget {
-  const UpparAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 1000,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: ColorsApp.AppBarColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(
-            height: 30,
-            width: 140,
-            child: Image.asset(
-              'assets/images/Abstracdesign.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(width: 20),
-          Row(
-            children: [
-              SizedBox(
-                height: 20,
-                width: 15,
-                child: Image.asset(
-                  'assets/images/icon.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(width: 10),
-              CustomText(
-                text: 'Join Our Personalized Nutrition Demo For Free',
-                fontWeight: FontWeight.normal,
-                fontFamily: FontsApp.fontFamilyUrbanist,
-                fontSize: 11,
-                color: Colors.white,
-              ),
-              const SizedBox(width: 20),
-              SizedBox(
-                height: 10,
-                width: 13,
-                child: Image.asset(
-                  'assets/images/arrow.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30,
-            width: 140,
-            child: Image.asset(
-              'assets/images/path.png',
-              fit: BoxFit.cover,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class UnderUppBar extends StatefulWidget {
-  const UnderUppBar(
+class UnderUppBarTablet extends StatefulWidget {
+  const UnderUppBarTablet(
       {super.key,
       required this.drawerModel,
       required this.onTabChanged,
@@ -133,10 +26,10 @@ class UnderUppBar extends StatefulWidget {
 
   final ValueChanged<int> onTabChanged;
   @override
-  _UnderUppBarState createState() => _UnderUppBarState();
+  _UnderUppBarTabletState createState() => _UnderUppBarTabletState();
 }
 
-class _UnderUppBarState extends State<UnderUppBar> {
+class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
   int _activeIndex = 0;
 
   @override
@@ -152,10 +45,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const HomePage();
-                    }));
+                    _buildNavButton(context, 'Home', 0, const HomePage());
                   },
                   child: Container(
                     height: 40,

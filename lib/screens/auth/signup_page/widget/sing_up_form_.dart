@@ -6,7 +6,7 @@ import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/auth/signup_page/widget/custom_form_feild.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
-import 'package:ui/widgets/custom_button.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class SignUpForm extends StatelessWidget {

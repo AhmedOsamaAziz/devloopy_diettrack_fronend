@@ -7,150 +7,87 @@ import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/widgets/Footer/widget/build_navButton_footer.dart';
 
 class MobileFooter extends StatelessWidget {
   const MobileFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // return FutureBuilder<bool>(
+    //     future: BlocProvider.of<LoginCubit>(context).isFirstLogin(),
+    //     builder: (context, snapshot) {
+    //       final isFirstLogin = snapshot.data ?? false;
+
+    //       // Don't show footer for first login
+    //       if (isFirstLogin) {
+    //         return Container(); // Return an empty container if it's the first login
+    //       }
+    //       return FutureBuilder<bool>(
+    //         future: BlocProvider.of<LoginCubit>(context).isLoggedIn(),
+    //         builder: (context, snapshot) {
+    //           // final isLoggedIn = snapshot.data ?? false;
     return Container(
       width: 420,
       height: 400,
       decoration: const BoxDecoration(
-        color: ColorsApp.TextColor,
+        color: ColorsApp.MAINCOLOR,
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(children: [
-          Expanded(
+          const Expanded(
             child: Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.settings,
                   size: 35.0,
                   color: ColorsApp.TitleColorFeatures,
                 ),
-                const Text(
+                Text(
                   "DietTrack",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
                   ),
                 ),
-                const Spacer(),
-                const Text(
-                  "Got To Top",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: FontsApp.fontFamilyUrbanist,
-                  ),
-                ),
-                IconButton(
-                    iconSize: 15.0,
-                    style: const ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll<Color>(
-                      ColorsApp.AppBarColor,
-                    )),
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_upward,
-                      color: Color(0xFFFFFFFF),
-                    ))
+                //   const Spacer(),
+                //   const Text(
+                //     "Go To Top",
+                //     style: TextStyle(
+                //       color: Color(0xFFFFFFFF),
+                //       fontSize: 15.0,
+                //       fontWeight: FontWeight.w500,
+                //       fontFamily: FontsApp.fontFamilyUrbanist,
+                //     ),
+                //   ),
+                //   IconButton(
+                //       iconSize: 15.0,
+                //       style: const ButtonStyle(
+                //           backgroundColor: WidgetStatePropertyAll<Color>(
+                //         ColorsApp.AppBarColor,
+                //       )),
+                //       onPressed: () {},
+                //       icon: const Icon(
+                //         Icons.arrow_upward,
+                //         color: Color(0xFFFFFFFF),
+                //       ))
               ],
             ),
           ),
-          FittedBox(
+          const FittedBox(
             child: Row(
               children: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HomePage()));
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: FontsApp.fontFamilyUrbanist,
-                      ),
-                    )),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AboutPage()));
-                    },
-                    child: const Text(
-                      "About",
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: FontsApp.fontFamilyUrbanist,
-                      ),
-                    )),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const TeamPage()));
-                    },
-                    child: const Text("Team",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ))),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ProcessPage()));
-                    },
-                    child: const Text("Process",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ))),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const PricingPage()));
-                    },
-                    child: const Text("Pricing",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ))),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const BlogPage()));
-                    },
-                    child: const Text("Blog",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ))),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ContactUsPage()));
-                    },
-                    child: const Text("Contact",
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: FontsApp.fontFamilyUrbanist,
-                        ))),
+                BuildNavbuttonFooter(text: 'Home', index: 0, page: HomePage()),
+                BuildNavbuttonFooter(
+                    text: 'About', index: 1, page: AboutPage()),
+                BuildNavbuttonFooter(text: 'Team', index: 2, page: TeamPage()),
+                BuildNavbuttonFooter(
+                    text: 'Process', index: 3, page: ProcessPage()),
+                BuildNavbuttonFooter(
+                    text: 'Pricing', index: 4, page: PricingPage()),
+                BuildNavbuttonFooter(text: 'Blog', index: 5, page: BlogPage()),
+                BuildNavbuttonFooter(
+                    text: 'Contact', index: 6, page: ContactUsPage()),
               ],
             ),
           ),
@@ -162,20 +99,20 @@ class MobileFooter extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomContantFooter(
+                  CustomContactFooter(
                       icon: Icons.mail,
                       color: ColorsApp.TitleColorFeatures,
                       text: "Ahmed.Madkour@gmail.com"),
-                  CustomContantFooter(
+                  CustomContactFooter(
                       icon: Icons.phone,
                       color: ColorsApp.TitleColorFeatures,
                       text: "+002000020200"),
-                  CustomContantFooter(
+                  CustomContactFooter(
                     icon: Icons.location_on,
                     color: ColorsApp.TitleColorFeatures,
                     text: "SomeWhere in the World",
                   ),
-                  CustomContantFooter(
+                  CustomContactFooter(
                     icon: Icons.copyright,
                     size: 14,
                     color: Color(0xFFFFFFFF),
@@ -186,11 +123,14 @@ class MobileFooter extends StatelessWidget {
         ]),
       ),
     );
+    //     },
+    //   );
+    // });
   }
 }
 
-class CustomContantFooter extends StatelessWidget {
-  const CustomContantFooter({
+class CustomContactFooter extends StatelessWidget {
+  const CustomContactFooter({
     super.key,
     this.icon,
     this.color,

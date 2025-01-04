@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/widgets/custom_button.dart';
+import 'package:ui/constants/custom_button.dart';
 
 class TabletButtonBlogPage extends StatelessWidget {
   const TabletButtonBlogPage({
