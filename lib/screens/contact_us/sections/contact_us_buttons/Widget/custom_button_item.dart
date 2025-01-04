@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/core/url_launcher.dart';
+import 'package:ui/helper/url_launcher.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/general/contact_us_button.dart';
 

@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
 import 'package:ui/cubits/dashboard/team_cubit/team_cubit.dart';
@@ -50,10 +51,48 @@ class MyApp extends StatelessWidget {
           return const MaterialApp(
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
-            home: LoginPage(),
+            home: InitialScreen(),
           );
         },
       ),
     );
+  }
+}
+
+
+class InitialScreen extends StatefulWidget {
+  const InitialScreen({super.key});
+
+  @override
+  State<InitialScreen> createState() => _InitialScreenState();
+}
+
+class _InitialScreenState extends State<InitialScreen> {
+  Widget? _startScreen;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    setState(() {
+      _startScreen = isLoggedIn ? const HomePage() : const LoginPage();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_startScreen == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return _startScreen!;
   }
 }

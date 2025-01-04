@@ -20,7 +20,9 @@ class SignUpForm extends StatelessWidget {
         listener: (context, state) {
           if (state is SingupSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Sign-up success')),
+              const SnackBar(
+                  backgroundColor: ColorsApp.MAINCOLOR,
+                  content: Text('Sign-up success')),
             );
 
             Navigator.pushReplacement(
