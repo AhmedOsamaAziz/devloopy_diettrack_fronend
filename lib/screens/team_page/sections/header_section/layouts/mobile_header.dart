@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/screens/team_page/sections/header_section/widget/team_page_description.dart';
 import 'package:ui/screens/team_page/sections/header_section/widget/team_page_title.dart';
 
@@ -20,7 +21,7 @@ class MobileHeaderTeamSection extends StatelessWidget {
               height: 200,
               decoration: const BoxDecoration(color: Color(0xffF6FBE9)),
               child: Image.asset(
-                'assets/images/backgroundcard.png',
+                Assets.imagesBackgroundcard,
                 width: 450,
                 height: 200,
               ),
@@ -32,7 +33,7 @@ class MobileHeaderTeamSection extends StatelessWidget {
                 height: 60,
                 decoration: const BoxDecoration(),
                 child: Image.asset(
-                  'assets/images/hedaer.png',
+                  Assets.imagesHedaer,
                   width: 60,
                   height: 60,
                 ),

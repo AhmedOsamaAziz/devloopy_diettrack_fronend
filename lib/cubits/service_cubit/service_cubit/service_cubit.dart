@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
@@ -15,32 +13,41 @@ class ServiceCubit extends Cubit<ServiceState> {
     try {
       emit(ServiceLoading());
 
+      // Fetch data from API
       final response = await _apiService.makeRequest(
         ApiMethod.get,
         EndPoints.service,
       );
 
       if (response.status == ResponseStatus.success) {
-        log(response.obj.toString());
+         if (response.obj is List) {
+          try {
+            final List<dynamic> rawList = response.obj as List<dynamic>;
 
-        if (response.obj is List) {
-          final List<ServiceList> service = (response.obj as List)
-              .map((serviceJson) => ServiceList.fromJson(serviceJson))
-              .toList();
+            final List<ServiceList> service = rawList
+                .map((serviceJson) =>
+                    ServiceList.fromJson(serviceJson as Map<String, dynamic>))
+                .toList();
 
-          if (service.isEmpty) {
-            emit(ServiceNoData());
-          } else {
-            emit(ServiceSuccess(service));
+            // Check if service list is empty
+            if (service.isEmpty) {
+              emit(ServiceNoData());
+            } else {
+              emit(ServiceSuccess(service));
+            }
+          } catch (e) {
+            print('Error parsing services: $e');
+            emit(ServiceFailure());
           }
         } else {
+          print('Unexpected response format: ${response.obj}');
           emit(ServiceFailure());
         }
       } else {
         emit(ServiceFailure());
       }
     } catch (e) {
-      print(e.toString());
+      print('Exception occurred: $e');
       emit(ServiceFailure());
     }
   }

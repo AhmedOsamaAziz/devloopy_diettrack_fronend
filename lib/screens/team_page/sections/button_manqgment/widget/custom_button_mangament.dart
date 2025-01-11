@@ -21,12 +21,7 @@ class CustomButtonMangament extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               color: ColorsApp.MAINCOLOR,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(2),
-                bottomRight: Radius.circular(2),
-                topLeft: Radius.circular(2),
-                topRight: Radius.circular(2),
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
             child: MaterialButton(
               height: 70,

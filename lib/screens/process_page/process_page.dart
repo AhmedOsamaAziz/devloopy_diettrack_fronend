@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/process_page/sections/LastCard/process_last_card.dart';
+import 'package:ui/screens/about/sections/last_card/main_last_card.dart';
 import 'package:ui/widgets/Footer/main_footer.dart';
 import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
 import 'sections/card_numbers/main_card_number.dart';
@@ -18,16 +18,14 @@ class ProcessPage extends StatelessWidget {
       backgroundColor: Color(0XFFFAFDF2),
       body: SingleChildScrollView(
         child: Column(
+          spacing: 30,
           children: [
             MainNavigationBar(),
-            SizedBox(height: 50),
             HeaderProcessSections(),
-            SizedBox(height: 50),
             HeaderHowItWorkProcessSections(),
-            SizedBox(height: 50),
             CardNumberProcessSections(),
-            ProcessLastCard(),
-            MainFooter(),
+            LastCardSections(),
+            //   MainFooter(),
           ],
         ),
       ),
