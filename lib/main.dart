@@ -13,6 +13,9 @@ import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/screens/home/initial_screen.dart';
+import 'package:ui/screens/process_page/process_page.dart';
+import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
 
@@ -53,47 +56,10 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
-            home: const HomePage(),
+            home: const ProcessPage(),
           );
         },
       ),
     );
-  }
-}
-
-class InitialScreen extends StatefulWidget {
-  const InitialScreen({super.key});
-
-  @override
-  State<InitialScreen> createState() => _InitialScreenState();
-}
-
-class _InitialScreenState extends State<InitialScreen> {
-  Widget? _startScreen;
-
-  @override
-  void initState() {
-    super.initState();
-    _checkLoginStatus();
-  }
-
-  Future<void> _checkLoginStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
-    setState(() {
-      _startScreen = isLoggedIn ? const HomePage() : const LoginPage();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_startScreen == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    return _startScreen!;
   }
 }

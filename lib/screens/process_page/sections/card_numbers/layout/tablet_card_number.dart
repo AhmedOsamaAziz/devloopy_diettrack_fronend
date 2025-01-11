@@ -15,21 +15,19 @@ class TabletCardNumberProcess extends StatelessWidget {
         height: 1300,
         width: 900,
         padding: const EdgeInsets.only(top: 20),
-        child: Expanded(
-          child: GridView.builder(
-            padding: const EdgeInsets.all(20),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: cardProcess.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: 250,
-            ),
-            itemBuilder: (context, index) {
-              return TabletCustomCardProcess(
-                cardProcess: cardProcess[index],
-              );
-            },
+        child: GridView.builder(
+          padding: const EdgeInsets.all(20),
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: cardProcess.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 250,
           ),
+          itemBuilder: (context, index) {
+            return TabletCustomCardProcess(
+              cardProcess: cardProcess[index],
+            );
+          },
         ));
   }
 }

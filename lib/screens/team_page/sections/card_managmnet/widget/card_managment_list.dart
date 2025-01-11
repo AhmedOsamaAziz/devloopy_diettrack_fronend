@@ -24,16 +24,15 @@ class CardManagmentList extends StatelessWidget {
             ),
           )
         : SizedBox(
-            height: 1250,
             child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              itemCount: cardManagmentTeam.length,
-              itemBuilder: (context, index) {
-                return CustomCardManagment(
-                  cardManagmentTeam: cardManagmentTeam[index],
-                );
-              },
-            ));
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemCount: cardManagmentTeam.length,
+            itemBuilder: (context, index) {
+              return CustomCardManagment(
+                cardManagmentTeam: cardManagmentTeam[index],
+              );
+            },
+          ));
   }
 }
