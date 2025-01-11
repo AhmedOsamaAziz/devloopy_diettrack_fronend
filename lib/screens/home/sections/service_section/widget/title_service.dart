@@ -8,10 +8,11 @@ class TitleService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+      textAlign: TextAlign.center,
       'Our Pricing',
       style: TextStyle(
-        fontSize: getResponsiveFontSize(context, fontSize: 22),
-        fontWeight: FontWeight.w500,
+        fontSize: getResponsiveFontSize(context, fontSize: 24),
+        fontWeight: FontWeight.bold,
         color: ColorsApp.MAINCOLOR,
       ),
     );

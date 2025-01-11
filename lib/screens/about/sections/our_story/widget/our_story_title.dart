@@ -1,13 +1,17 @@
 import 'package:flutter/widgets.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 
 class OurStoryTitle extends StatelessWidget {
   const OurStoryTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
+    return Text(
+      textAlign: TextAlign.center,
       'Our Story ',
-      style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+      style: TextStyle(
+          fontSize: getResponsiveFontSize(context, fontSize: 24),
+          fontWeight: FontWeight.w600),
     );
   }
 }

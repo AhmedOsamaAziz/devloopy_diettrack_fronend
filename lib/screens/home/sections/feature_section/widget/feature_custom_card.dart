@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/data/card_features.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/model/general/card_features.dart';
-import 'package:ui/widgets/custom_text.dart';
+ import 'package:ui/widgets/custom_text.dart';
 
 class FeatureCustomCard extends StatelessWidget {
   const FeatureCustomCard({super.key, required this.card});

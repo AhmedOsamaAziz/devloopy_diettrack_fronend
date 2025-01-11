@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/widgets/Navigation_Bar/layouts/tablet_layout.dart';
+import 'package:ui/widgets/Navigation_Bar/layouts/tablet_layout/tablet_layout.dart';
 
-import 'layouts/desktop_layouts.dart';
-import 'layouts/mobile_layout.dart';
+import 'layouts/desktop_layouts/desktop_layouts.dart';
+import 'layouts/mobile_layout/mobile_layout.dart';
 
 class MainNavigationBar extends StatelessWidget {
   const MainNavigationBar({super.key});

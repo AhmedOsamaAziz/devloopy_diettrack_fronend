@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/model/general/drawer_model.dart';
-import 'package:ui/widgets/Navigation_Bar/widgets/under_appbar.dart';
-import 'package:ui/widgets/Navigation_Bar/widgets/upper_appbar.dart';
+import 'package:ui/widgets/Navigation_Bar/layouts/desktop_layouts/widget/under_appbar.dart';
+import 'package:ui/widgets/Navigation_Bar/layouts/desktop_layouts/widget/upper_appbar.dart';
 
 class DesktopNavigationBar extends StatefulWidget {
   const DesktopNavigationBar({super.key});

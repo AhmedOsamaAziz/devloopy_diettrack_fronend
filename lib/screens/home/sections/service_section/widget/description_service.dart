@@ -11,7 +11,7 @@ class DescriptionService extends StatelessWidget {
       textAlign: TextAlign.center,
       "We outline our flexible and affordable options to support you on your journey to optimal health and nutrition. We believe that everyone deserves access to personalized nutrition guidance and resources",
       style: TextStyle(
-        fontSize: getResponsiveFontSize(context, fontSize: 12),
+        fontSize: getResponsiveFontSize(context, fontSize: 14),
         fontWeight: FontWeight.w500,
         color: ColorsApp.MAINCOLOR,
       ),

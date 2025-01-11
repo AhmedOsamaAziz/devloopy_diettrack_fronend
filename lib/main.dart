@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
+import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
@@ -19,8 +21,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
-      // enabled: !kReleaseMode,
-      builder: (context) => const MyApp(), // Wrap your app
+      enabled: !kReleaseMode,
+      builder: (context) => const MyApp(),
     ),
   );
 }
@@ -47,18 +49,18 @@ class MyApp extends StatelessWidget {
         //designSize: const Size(1596, 1500),
         minTextAdapt: true,
         splitScreenMode: true,
+
         builder: (context, child) {
-          return const MaterialApp(
-            // locale: DevicePreview.locale(context),
-            // builder: DevicePreview.appBuilder,
-            home: InitialScreen(),
+          return MaterialApp(
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+            home: const HomePage(),
           );
         },
       ),
     );
   }
 }
-
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});

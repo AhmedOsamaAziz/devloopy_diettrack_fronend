@@ -60,6 +60,7 @@ dependencies:
   redacted: ^1.0.13
   youtube_player_flutter: ^8.1.2
   cached_network_image: ^3.4.1
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:

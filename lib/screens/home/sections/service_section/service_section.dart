@@ -19,11 +19,14 @@ class ServiceSection extends StatelessWidget {
           SizedBox(height: 30),
           Column(spacing: 30, children: [
             TitleService(),
-            DescriptionService(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: DescriptionService(),
+            ),
             DiscountButton(),
             SizedBox(height: 15)
           ]),
-          ListPriceCard(),
+          SizedBox(height: 400, child: ListPriceCard()),
         ],
       ),
     );

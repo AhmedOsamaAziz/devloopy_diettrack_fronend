@@ -11,7 +11,7 @@ class TabletCardSection extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 60),
-        width: MediaQuery.sizeOf(context).width * 2,
+        width: 850,
         child: Column(
           children: [
             const AboutTitle(),

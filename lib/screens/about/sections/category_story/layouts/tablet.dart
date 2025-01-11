@@ -9,7 +9,7 @@ class TabletCardStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 20, left: 20),
-      padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+      padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
       width: 1280,
       decoration: BoxDecoration(
           color: ColorsApp.OUTLINECOLOR,

@@ -15,17 +15,23 @@ class ServiceList extends ServiceBase {
     required super.discount,
   });
 
-  factory ServiceList.fromJson(Map<String, dynamic> json) => ServiceList(
-        id: json['id'] as int? ?? 6,
-        name: json['name'] as String? ?? 'ffffff',
-        nameAr: json['nameAr'] as String? ?? 'ggggg',
-        price: (json['price'] as num?)?.toDouble() ?? 0.0,
-        validFor: json['validFor'] as String? ?? 'hjjjjjjjjj',
-        description: json['description'] as String? ?? 'description error',
-        descriptionAr: json['descriptionAr'] as String? ?? 'trrrrrrr',
-        isBestValue: json['isBestValue'] as bool? ?? false,
-        discount: (json['discount'] as num?)?.toInt(),
-      );
+  factory ServiceList.fromJson(Map<String, dynamic> json) {
+    return ServiceList(
+      id: json['id'] as int? ?? 6,
+      name: json['name'] as String? ?? 'ffffff',
+      nameAr: json['nameAr'] as String? ?? 'ggggg',
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      validFor: json['validFor'] as String? ?? 'hjjjjjjjjj',
+      description: json['items'] != null
+          ? (json['items'] as List<dynamic>)
+              .map((item) => item['description'] as String? ?? '')
+              .join(';')
+          : '',
+      descriptionAr: json['descriptionAr'] as String? ?? 'trrrrrrr',
+      isBestValue: json['isBestValue'] as bool? ?? false,
+      discount: (json['discount'] as num?)?.toInt(),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,

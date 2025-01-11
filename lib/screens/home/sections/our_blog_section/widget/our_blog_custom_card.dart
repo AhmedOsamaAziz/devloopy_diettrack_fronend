@@ -14,128 +14,132 @@ class OurBlogCustomCard extends StatelessWidget {
     super.key,
     required this.blogList,
   });
+
   final BlogList blogList;
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
     return Card(
       color: const Color(0xffF6FBE9),
       child: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: ScreenSize.isLarge ? 20 : 15,
-              vertical: ScreenSize.isLarge ? 20 : 15),
-          width: ScreenSize.isLarge
-              ? 600
-              : ScreenSize.isMedium
-                  ? 359
-                  : 310,
-          child: Column(children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+        padding: EdgeInsets.symmetric(
+            horizontal: ScreenSize.isLarge ? 14 : 15, vertical: 4),
+        width: ScreenSize.isLarge
+            ? 630
+            : ScreenSize.isMedium
+                ? 359
+                : 310,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: blogList.imageUrl ??
+                      Image.asset(Assets.imagesAbout1).toString(),
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) =>
+                      Image.asset(Assets.imagesAbout1, fit: BoxFit.cover),
+                ),
               ),
-              child: CachedNetworkImage(
-                imageUrl: blogList.imageUrl ??
-                    Image.asset(Assets.imagesAbout1).toString(),
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) =>
-                    Image.asset(Assets.imagesAbout1, fit: BoxFit.cover),
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  text: blogList.title,
-                  fontSize: getResponsiveFontSize(context, fontSize: 14),
-                  color: ColorsApp.TextColor,
-                ),
-                CustomText(
-                  text: blogList.description,
-                  fontSize: getResponsiveFontSize(context, fontSize: 14),
-                  color: ColorsApp.MAINCOLOR,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 10),
-                CustomText(
-                  text: blogList.titleAr,
-                  fontSize: getResponsiveFontSize(context, fontSize: 14),
-                  color: ColorsApp.TextColor,
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  color: const Color(0xffFAFDF2),
-                  padding: EdgeInsets.only(
+              const SizedBox(height: 6),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: blogList.title,
+                    fontSize: getResponsiveFontSize(context, fontSize: 14),
+                    color: ColorsApp.TextColor,
+                  ),
+                  CustomText(
+                    text: blogList.description,
+                    fontSize: getResponsiveFontSize(context, fontSize: 14),
+                    color: ColorsApp.MAINCOLOR,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 6),
+                  CustomText(
+                    text: blogList.titleAr,
+                    fontSize: getResponsiveFontSize(context, fontSize: 14),
+                    color: ColorsApp.TextColor,
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    color: const Color(0xffFAFDF2),
+                    padding: EdgeInsets.only(
                       left: ScreenSize.isLarge ? 20 : 10,
                       top: ScreenSize.isLarge ? 20 : 10,
                       right: ScreenSize.isLarge ? 16 : 10,
-                      bottom: ScreenSize.isLarge ? 20 : 0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: ScreenSize.isLarge ? 60 : 50,
-                        width: ScreenSize.isLarge ? 60 : 50,
-                        child: Image.asset(Assets.imagesCircleAvatar1),
-                      ),
-                      const SizedBox(width: 15),
-                      Column(
+                      bottom: ScreenSize.isLarge ? 20 : 0,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: ScreenSize.isLarge ? 60 : 50,
+                          width: ScreenSize.isLarge ? 60 : 50,
+                          child: Image.asset(Assets.imagesCircleAvatar1),
+                        ),
+                        const SizedBox(width: 15),
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
-                              // This is the title of the blog
                               text: blogList.title,
                               fontSize:
                                   getResponsiveFontSize(context, fontSize: 14),
                               color: ColorsApp.TextColor,
                               fontWeight: FontWeight.bold,
                             ),
-
-                            // This is the Date of the blog
                             Text(
                               formattedDate,
                               style: TextStyle(
                                 fontSize: ScreenSize.isLarge ? 15 : 12,
                               ),
                             ),
-                          ]),
-                      const Spacer(),
-                      Container(
-                        width: ScreenSize.isLarge ? 60 : 32,
-                        height: ScreenSize.isLarge ? 60 : 35,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffEEF8D3),
-                          borderRadius: BorderRadius.circular(8),
+                          ],
                         ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(FontAwesomeIcons.heart),
+                        const Spacer(),
+                        Container(
+                          width: ScreenSize.isLarge ? 60 : 32,
+                          height: ScreenSize.isLarge ? 60 : 35,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEEF8D3),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(FontAwesomeIcons.heart),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Container(
-                        width: ScreenSize.isLarge ? 60 : 32,
-                        height: ScreenSize.isLarge ? 60 : 35,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffEEF8D3),
-                          borderRadius: BorderRadius.circular(8),
+                        const SizedBox(width: 10),
+                        Container(
+                          width: ScreenSize.isLarge ? 60 : 32,
+                          height: ScreenSize.isLarge ? 60 : 35,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEEF8D3),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(FontAwesomeIcons.bookmark),
+                          ),
                         ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(FontAwesomeIcons.bookmark),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            // )
-          ])),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

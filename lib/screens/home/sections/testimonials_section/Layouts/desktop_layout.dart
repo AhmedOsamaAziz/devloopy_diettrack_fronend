@@ -21,7 +21,7 @@ class DesktopTestimonialsOurComment extends StatelessWidget {
           TestmonialsTitle(),
           TestmonialsDescription(),
           SizedBox(height: 30),
-          TestimonialsListCustomCard(),
+          SizedBox(height: 600, child: TestimonialsListCustomCard()),
           SizedBox(height: 20),
         ],
       ),

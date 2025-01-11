@@ -9,7 +9,6 @@ class FeatureSectionTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 700,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       width: MediaQuery.sizeOf(context).width,
       child: const Column(
@@ -18,7 +17,7 @@ class FeatureSectionTablet extends StatelessWidget {
           FeatureDescription(),
           SizedBox(height: 20),
           SizedBox(
-            height: 550,
+            height: 500,
             child: FeatureListCustomCard(),
           ),
 

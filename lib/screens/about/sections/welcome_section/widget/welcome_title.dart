@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui/helper/screen_size.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 
 class WelcomeTitle extends StatelessWidget {
   const WelcomeTitle({super.key});
@@ -9,12 +10,9 @@ class WelcomeTitle extends StatelessWidget {
     return Text(
       'Welcome to Nutritions ',
       style: TextStyle(
-          fontSize: ScreenSize.isLarge
-              ? 48
-              : ScreenSize.isMedium
-                  ? 24
-                  : 18,
-          fontWeight: FontWeight.w600),
+          fontSize: getResponsiveFontSize(context, fontSize: 24),
+          fontWeight: FontWeight.w600,
+          color: ColorsApp.MAINCOLOR),
     );
   }
 }

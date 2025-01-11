@@ -12,7 +12,7 @@ class DesktopCardSection extends StatelessWidget {
     return Center(
       child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: 700,
+          height: 680,
           width: 1596,
           decoration: const BoxDecoration(color: ColorsApp.OUTLINECOLOR),
           child: Column(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/widgets/custom_header_title.dart';
+import 'package:ui/constants/custom_header_title.dart';
 
 class CustomHowItWorkHeader extends StatelessWidget {
   const CustomHowItWorkHeader({

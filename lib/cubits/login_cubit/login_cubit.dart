@@ -7,6 +7,7 @@ import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class LoginCubit extends Cubit<LoginState> {
   final LoginService loginService;
   final TextEditingController emailController = TextEditingController();
@@ -27,7 +28,8 @@ class LoginCubit extends Cubit<LoginState> {
         // Add first login check
         bool firstLogin = prefs.getBool('firstLogin') ?? true;
         if (firstLogin) {
-          await prefs.setBool('firstLogin', false); // Set firstLogin to false after first login
+          await prefs.setBool(
+              'firstLogin', false); // Set firstLogin to false after first login
         }
 
         clearFields();
@@ -108,4 +110,3 @@ class LoginCubit extends Cubit<LoginState> {
     passwordController.clear();
   }
 }
-

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
-import 'package:ui/helper/screen_size.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 
 class FeatureTitle extends StatelessWidget {
   const FeatureTitle({super.key});
@@ -10,7 +10,7 @@ class FeatureTitle extends StatelessWidget {
     return Text(
       'Features',
       style: TextStyle(
-        fontSize: ScreenSize.isLarge ? 48 : 40,
+        fontSize: getResponsiveFontSize(context, fontSize: 24),
         fontWeight: FontWeight.bold,
         color: ColorsApp.MAINCOLOR,
       ),

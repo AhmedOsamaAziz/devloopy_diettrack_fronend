@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:ui/model/testimonials/testimonial_base.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'package:ui/widgets/custom_text.dart';
-import 'package:ui/Constants/constants.dart';
+import 'package:ui/constants/constants.dart';
 import 'package:ui/core/assets.dart';
+import 'package:ui/model/testimonials/testimonial_base.dart';
+import 'package:ui/widgets/custom_text.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class TestimonialsCustomCard extends StatefulWidget {
   final TestimonialBase testimonial;
@@ -23,7 +21,6 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
   void initState() {
     super.initState();
 
-    // Extract video ID from the YouTube URL
     final videoId =
         YoutubePlayerController.convertUrlToId(widget.testimonial.videoUrl);
 
@@ -50,8 +47,9 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
+    return Container(
+      padding: const EdgeInsets.only(right: 14),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
       child: Column(
         spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,17 +71,14 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
             fontWeight: FontWeight.w400,
             color: ColorsApp.TextColor,
           ),
-          SizedBox(
+          const SizedBox(height: 10),
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
             height: 300,
             width: 300,
             child: YoutubePlayerIFrame(
               controller: _youtubeController,
               aspectRatio: 16 / 9,
-              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                Factory<VerticalDragGestureRecognizer>(
-                  () => VerticalDragGestureRecognizer(),
-                ),
-              },
             ),
           ),
         ],

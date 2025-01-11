@@ -17,7 +17,6 @@ class TabletLayout extends StatelessWidget {
     return Container(
       color: ColorsApp.OUTLINECOLOR,
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: 1000,
       width: 800,
       child: Column(
         children: [
@@ -40,6 +39,8 @@ class TabletLayout extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

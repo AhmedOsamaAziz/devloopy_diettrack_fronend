@@ -9,7 +9,6 @@ class TabletTestimonialsOurComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(),
       child: const Column(
@@ -17,7 +16,7 @@ class TabletTestimonialsOurComment extends StatelessWidget {
           TestmonialsTitle(),
           TestmonialsDescription(),
           SizedBox(height: 30),
-          SizedBox(height: 300, child: TestimonialsListCustomCard()),
+          SizedBox(height: 530, child: TestimonialsListCustomCard()),
           SizedBox(height: 20),
         ],
       ),

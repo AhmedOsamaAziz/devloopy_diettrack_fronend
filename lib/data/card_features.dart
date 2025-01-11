@@ -34,5 +34,17 @@ class CardFeatures {
       subTitle:
           "Nutritionist has established partnerships with respected nutritionists, dietitians, and health experts to ensure that our clients receive the highest quality guidance and support.",
     ),
+    CardFeatures(
+      image: 'assets/images/IconContainer3.png',
+      title: 'Collaborate With Top Health.',
+      subTitle:
+          "Nutritionist has established partnerships with respected nutritionists, dietitians, and health experts to ensure that our clients receive the highest quality guidance and support.",
+    ),
+    CardFeatures(
+      image: 'assets/images/IconContainer3.png',
+      title: 'Collaborate With Top Health.',
+      subTitle:
+          "Nutritionist has established partnerships with respected nutritionists, dietitians, and health experts to ensure that our clients receive the highest quality guidance and support.",
+    ),
   ];
 }

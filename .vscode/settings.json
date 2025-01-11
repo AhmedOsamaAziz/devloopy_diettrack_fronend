@@ -23,5 +23,6 @@
   "peacock.color": "#215732",
   "github-enterprise.uri": "https://dev.azure.com/",
   "cmake.sourceDirectory": "D:/Project Flutter/DietTrack.Flutter/windows/flutter",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay"
 }
