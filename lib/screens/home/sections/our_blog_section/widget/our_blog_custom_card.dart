@@ -41,7 +41,7 @@ class OurBlogCustomCard extends StatelessWidget {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: blogList.imageUrl ??
-                      Image.asset(Assets.imagesAbout1).toString(),
+                      Image.asset(Assets.imagesAbout2).toString(),
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) =>

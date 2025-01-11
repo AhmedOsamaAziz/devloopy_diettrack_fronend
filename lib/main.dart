@@ -14,7 +14,6 @@ import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/home/initial_screen.dart';
-import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
@@ -56,7 +55,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
-            home: const ProcessPage(),
+            home: const HomePage(),
           );
         },
       ),
