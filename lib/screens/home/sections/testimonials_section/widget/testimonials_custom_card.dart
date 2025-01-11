@@ -4,13 +4,11 @@ import 'package:ui/core/assets.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/widgets/custom_text.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'dart:ui_web' as ui_web;
 
 class TestimonialsCustomCard extends StatefulWidget {
   final TestimonialBase testimonial;
 
-  const TestimonialsCustomCard({Key? key, required this.testimonial})
-      : super(key: key);
+  const TestimonialsCustomCard({super.key, required this.testimonial});
 
   @override
   _TestimonialsCustomCardState createState() => _TestimonialsCustomCardState();

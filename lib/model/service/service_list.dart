@@ -24,7 +24,7 @@ class ServiceList extends ServiceBase {
         description: (json['items'] as List<dynamic>)
             .map((item) => item['description'] as String? ?? '')
             .join(';')
-           , // Assuming descriptions are semi-colon separated
+           , 
         descriptionAr: json['descriptionAr'] as String? ?? 'trrrrrrr',
         isBestValue: json['isBestValue'] as bool? ?? false,
         discount: (json['discount'] as num?)?.toInt(),

@@ -14,7 +14,7 @@ class TabletOurStorySection extends StatelessWidget {
         height: 170,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         child: const Column(
-          children: [
+           children: [
             OurStoryTitle(),
             Expanded(child: OurStoryDescription()),
           ],

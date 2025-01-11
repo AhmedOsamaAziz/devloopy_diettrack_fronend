@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/about/sections/last_card/main_last_card.dart';
 import 'package:ui/screens/about/sections/category_story/our_story.dart';
-import 'package:ui/screens/about/sections/card_company_achievement/main_card_company.dart';
 import 'package:ui/widgets/Footer/main_footer.dart';
 import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
 
@@ -19,17 +17,16 @@ class AboutPage extends StatelessWidget {
       backgroundColor: Color(0XFFFAFDF2),
       body: SingleChildScrollView(
         child: Column(
+          spacing: 20,
           children: [
             MainNavigationBar(),
             WelcomeSections(),
-            SizedBox(height: 50),
             OurStorySections(),
-            SizedBox(height: 20),
             OurStory(),
-            SizedBox(height: 20),
-            CardCompanySections(),
-            LastCardSections(),
-            SizedBox(height: 20),
+            // SizedBox(height: 20),
+            // CardCompanySections(),
+            // LastCardSections(),
+            // SizedBox(height: 20),
             MainFooter(),
           ],
         ),

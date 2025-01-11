@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/screens/about/sections/welcome_section/widget/welcome_custom_header.dart';
 
 class TabletWelcomeSection extends StatelessWidget {
@@ -8,19 +9,19 @@ class TabletWelcomeSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: SizedBox(
-        height: 800,
+        height: MediaQuery.sizeOf(context).height * 0.5,
         width: 1280,
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(
-                child: Image.asset('assets/images/about-main.png',
-                    width: 1596.5, height: 300, fit: BoxFit.cover),
+                child: Image.asset(Assets.imagesAboutMain,
+                    width: 1596.5, height: 150, fit: BoxFit.cover),
               ),
             ),
             const SizedBox(height: 30),
-            const WelcomeCustomHeader()
+            const Expanded(child: WelcomeCustomHeader())
           ],
         ),
       ),

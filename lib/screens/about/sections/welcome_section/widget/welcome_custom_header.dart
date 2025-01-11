@@ -11,9 +11,6 @@ class WelcomeCustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(
-            right: ScreenSize.isLarge ? 40 : 20,
-            left: ScreenSize.isLarge ? 40 : 20),
         padding: EdgeInsets.only(
             top: ScreenSize.isLarge ? 50 : 30,
             right: ScreenSize.isLarge ? 50 : 20,
@@ -24,10 +21,10 @@ class WelcomeCustomHeader extends StatelessWidget {
                 ? 1280
                 : 358,
         height: ScreenSize.isLarge
-            ? 500
-            : ScreenSize.isLarge
+            ? 400
+            : ScreenSize.isMedium
                 ? 650
-                : 790,
+                : 650,
         decoration: BoxDecoration(
             color: ColorsApp.OUTLINECOLOR,
             borderRadius: BorderRadius.circular(12)),
