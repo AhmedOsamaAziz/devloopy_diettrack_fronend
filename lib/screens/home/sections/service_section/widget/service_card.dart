@@ -21,7 +21,6 @@ class ServiceCard extends StatelessWidget {
     return Card(
       elevation: 10,
       child: Container(
- 
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: isSelected ? ColorsApp.MAINCOLOR : ColorsApp.OUTLINECOLOR,
@@ -61,8 +60,7 @@ class ServiceCard extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text:
-                                  '\n${service.description.split(';').last}', // النص الثاني
+                              text: '\n${service.description.split(';').last}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: getResponsiveFontSize(context,

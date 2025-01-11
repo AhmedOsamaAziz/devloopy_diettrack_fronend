@@ -45,26 +45,26 @@ class _TestimonialsListCustomCardState
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        padding: const EdgeInsets.all(16),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: currentItems.length,
-                        itemBuilder: (context, index) {
-                          final testimonial = currentItems[index];
-                          return TestimonialsCustomCard(
-                              testimonial: testimonial);
-                        },
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 1500,
+                    height: 500,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 100),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: currentItems.length,
+                      itemBuilder: (context, index) {
+                        final testimonial = currentItems[index];
+                        return TestimonialsCustomCard(testimonial: testimonial);
+                      },
                     ),
-                    _customCountPagination(totalPages),
-                  ],
-                ),
+                  ),
+                  _customCountPagination(totalPages),
+                ],
               ),
             );
           } else if (state is TestimonilFailur) {

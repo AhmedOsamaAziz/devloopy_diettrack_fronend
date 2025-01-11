@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/home/sections/testimonials_section/widget/testimonals_title.dart';
+ import 'package:ui/screens/home/sections/testimonials_section/widget/testimonals_title.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_list_custom_card.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_description.dart';
 
@@ -10,18 +9,14 @@ class DesktopTestimonialsOurComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: ScreenSize.isLarge
-              ? 100
-              : ScreenSize.isMedium
-                  ? 50
-                  : 10),
+      padding: const EdgeInsets.symmetric(),
       child: const Column(
         children: [
           TestmonialsTitle(),
+          SizedBox(height: 20),
           TestmonialsDescription(),
           SizedBox(height: 30),
-          SizedBox(height: 600, child: TestimonialsListCustomCard()),
+          TestimonialsListCustomCard(),
           SizedBox(height: 20),
         ],
       ),

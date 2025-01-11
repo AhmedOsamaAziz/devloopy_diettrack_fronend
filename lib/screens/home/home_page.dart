@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
             OurBlogsSection(),
             TestmonilasSection(),
             ServiceSection(),
+            SizedBox(height: 10),
             MainFooter(),
           ],
         ),

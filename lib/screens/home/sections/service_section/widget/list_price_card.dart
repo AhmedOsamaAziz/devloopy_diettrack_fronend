@@ -28,25 +28,28 @@ class ListPriceCard extends StatelessWidget {
           return SizedBox(
             height: MediaQuery.of(context).size.height,
             child: ScreenSize.isLarge || ScreenSize.isMedium
-                ? GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.all(8.0),
-                    itemCount: services.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 0.8,
-                      mainAxisExtent: 400,
+                ? SizedBox(
+                    width: 1500,
+                    child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(8.0),
+                      itemCount: services.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                        childAspectRatio: 0.8,
+                        mainAxisExtent: 400,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.all(8.0),
+                          child: ServiceCard(
+                              service: services[index], isSelected: index == 1),
+                        );
+                      },
                     ),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.all(8.0),
-                        child: ServiceCard(
-                            service: services[index], isSelected: index == 1),
-                      );
-                    },
                   )
                 : SingleChildScrollView(
                     child: Center(

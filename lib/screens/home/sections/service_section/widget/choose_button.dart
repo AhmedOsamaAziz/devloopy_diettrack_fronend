@@ -16,7 +16,7 @@ class ChooseButton extends StatelessWidget {
               : 298,
       height: 40,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(3.0), // Adjust as needed
+        borderRadius: BorderRadius.circular(10), // Adjust as needed
       ),
       color: ColorsApp.SecondaryColor,
       onPressed: () {},

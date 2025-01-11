@@ -11,7 +11,6 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
-import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
