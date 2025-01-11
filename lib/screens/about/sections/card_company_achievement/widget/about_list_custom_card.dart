@@ -9,30 +9,47 @@ class AboutListCustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenSize.isLarge
-        ? Expanded(
-            child: GridView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemCount: cardCompany.length,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: 220,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return AboutCustomCard(
-                    cardCompanyAbout: cardCompany[index],
-                  );
-                }),
-          )
-        : ListView.builder(
-            itemCount: cardCompany.length,
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return AboutCustomCard(
-                cardCompanyAbout: cardCompany[index],
-              );
-            });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ScreenSize.isLarge || ScreenSize.isMedium
+                ? GridView.builder(
+                    shrinkWrap: true, // Prevents unbounded height issue
+                    itemCount: cardCompany.length,
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Disable inner scrolling
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisExtent: 220,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return AboutCustomCard(
+                        cardCompanyAbout: cardCompany[index],
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    shrinkWrap: true, // Prevents unbounded height issue
+                    itemCount: cardCompany.length,
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Disable inner scrolling
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: AboutCustomCard(
+                          cardCompanyAbout: cardCompany[index],
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        );
+      },
+    );
   }
 }

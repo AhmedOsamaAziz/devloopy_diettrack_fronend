@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             IntroductionSection(),
             FeatureSection(),
             OurBlogsSection(),
-             TestmonilasSection(),
+            TestmonilasSection(),
             ServiceSection(),
             MainFooter(),
           ],

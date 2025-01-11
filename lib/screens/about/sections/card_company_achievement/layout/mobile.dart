@@ -21,7 +21,7 @@ class MoblieCardSection extends StatelessWidget {
               child: AboutDescription(),
             ),
             const SizedBox(height: 10),
-            SizedBox(height: 880, child: AboutListCustomCard())
+            AboutListCustomCard()
           ],
         ),
       ),

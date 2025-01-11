@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/about/sections/category_story/our_story.dart';
+import 'package:ui/screens/about/sections/category_story/category_story.dart';
+import 'package:ui/screens/about/sections/our_story/our_story_page.dart';
+import 'package:ui/screens/team_page/sections/last_card/main_last_card.dart';
 import 'package:ui/widgets/Footer/main_footer.dart';
 import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
 
-import 'sections/our_story/our_story_page.dart';
+import 'sections/card_company_achievement/main_card_company.dart';
 import 'sections/welcome_section/welcome_section.dart';
 
 class AboutPage extends StatelessWidget {
@@ -22,11 +24,9 @@ class AboutPage extends StatelessWidget {
             MainNavigationBar(),
             WelcomeSections(),
             OurStorySections(),
-            OurStory(),
-            // SizedBox(height: 20),
-            // CardCompanySections(),
-            // LastCardSections(),
-            // SizedBox(height: 20),
+            CategoryStory(),
+            CardCompanySections(),
+            LastCardSections(),
             MainFooter(),
           ],
         ),

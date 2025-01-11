@@ -13,7 +13,7 @@ class CardMobile extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 400,
+          height: 350,
           width: double.infinity,
           decoration: const BoxDecoration(),
           child: Image.asset(
@@ -24,7 +24,7 @@ class CardMobile extends StatelessWidget {
         const Divider(thickness: 3, color: ColorsApp.SecondaryColor),
         const Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
         Container(
-          height: 400,
+          height: 350,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           decoration: const BoxDecoration(
