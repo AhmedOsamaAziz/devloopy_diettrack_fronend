@@ -15,6 +15,8 @@ import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/helper/font_size_responsive.dart';
+
 
 class UnderUppBar extends StatefulWidget {
   const UnderUppBar({
@@ -118,7 +120,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
         ),
         child: CustomText(
           text: text,
-          fontSize: 12,
+          fontSize: getResponsiveFontSize(context, fontSize: 11),
           fontWeight: FontWeight.w500,
           color: _selectedIndex == index
               ? Colors.white // Text color for active button

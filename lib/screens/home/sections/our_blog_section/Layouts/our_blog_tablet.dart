@@ -14,7 +14,6 @@ class OurBlogTablet extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: 1280,
-        height: 1550,
         child: Column(
           children: [
             Container(
@@ -26,9 +25,7 @@ class OurBlogTablet extends StatelessWidget {
                   ],
                 )),
             const SizedBox(height: 30),
-            const Flexible(
-              child: OurBlogListCustomCard(),
-            )
+            const SizedBox(height: 850, child: OurBlogListCustomCard())
           ],
         ),
       ),

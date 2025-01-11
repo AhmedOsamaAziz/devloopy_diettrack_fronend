@@ -61,6 +61,7 @@ class TabletFooter extends StatelessWidget {
                   Row(
                     spacing: 10,
                     children: [
+                         // if (isLoggedIn)
                       BuildNavbuttonFooter(
                           text: 'Home', index: 0, page: HomePage()),
                       BuildNavbuttonFooter(

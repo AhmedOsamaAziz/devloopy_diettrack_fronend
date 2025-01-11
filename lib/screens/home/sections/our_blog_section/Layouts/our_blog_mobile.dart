@@ -8,15 +8,13 @@ class OurBlogMoblie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const OurBlogTitle(),
-        const Padding(
+        OurBlogTitle(),
+        Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: OurBlogDescription()),
-        SizedBox(
-            height: MediaQuery.of(context).size.height * 1.95,
-            child: const OurBlogListCustomCard()),
+        SizedBox(height: 900, child: OurBlogListCustomCard()),
       ],
     );
   }

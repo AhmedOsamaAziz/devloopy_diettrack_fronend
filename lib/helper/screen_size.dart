@@ -18,17 +18,7 @@ class ScreenSize {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-    // if (width <= 1200) {
-    //   //return Screen.small;
-    //   isSmall = true;
-    // } else if (width <= 850) {
-    //   //return Screen.medium;
-    //   isMedium = true;
-    // } else {
-    //   // return Screen.large;
-    //   isLarge = true;
-    // }
-
+  
     if (width >= _largeScreen) {
       isLarge = true;
       isMedium = false;

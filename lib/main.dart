@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         //designSize: const Size(1596, 1500),
         minTextAdapt: true,
         splitScreenMode: true,
+        
         builder: (context, child) {
           return MaterialApp(
             locale: DevicePreview.locale(context),

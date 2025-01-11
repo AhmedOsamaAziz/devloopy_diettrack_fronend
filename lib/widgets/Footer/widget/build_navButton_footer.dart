@@ -30,7 +30,7 @@ class BuildNavbuttonFooter extends StatelessWidget {
         ),
         child: CustomText(
             text: text,
-            fontSize: getResponsiveFontSize(context, fontSize: 18),
+            fontSize: getResponsiveFontSize(context, fontSize: 11),
             fontWeight: FontWeight.w500,
             color: Colors.white),
       ),

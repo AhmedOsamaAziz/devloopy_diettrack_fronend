@@ -12,7 +12,6 @@ class FeatureSdctionDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 100),
-      height: 750,
       width: 1596,
       child: const Column(
         children: [

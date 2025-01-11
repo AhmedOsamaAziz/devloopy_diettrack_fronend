@@ -9,7 +9,7 @@ class MoblieTestimonialsOurComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 14),
       decoration: const BoxDecoration(),
       child: const Column(
         children: [

@@ -76,7 +76,8 @@ class MobileFooter extends StatelessWidget {
           ),
           const FittedBox(
             child: Row(
-              children: [
+              children: [ 
+                  // if (isLoggedIn)
                 BuildNavbuttonFooter(text: 'Home', index: 0, page: HomePage()),
                 BuildNavbuttonFooter(
                     text: 'About', index: 1, page: AboutPage()),
