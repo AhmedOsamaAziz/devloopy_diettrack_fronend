@@ -40,31 +40,37 @@ class _TestimonialsListCustomCardState
             final currentItems = testimonials.sublist(startIndex, endIndex);
 
             final totalPages = (testimonials.length / itemsPerPage).ceil();
-
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 1500,
-                    height: 500,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 100),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: currentItems.length,
-                      itemBuilder: (context, index) {
-                        final testimonial = currentItems[index];
-                        return TestimonialsCustomCard(testimonial: testimonial);
-                      },
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 500, // تحديد ارتفاع العمود
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 1500,
+                      height: 450, // تأكد من أن الحجم يتناسب مع المساحة
+                      child: ListView.builder(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: ScreenSize.isLarge ? 100 : 20,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: currentItems.length,
+                        itemBuilder: (context, index) {
+                          final testimonial = currentItems[index];
+                          return TestimonialsCustomCard(
+                              testimonial: testimonial);
+                        },
+                      ),
                     ),
-                  ),
-                  _customCountPagination(totalPages),
-                ],
+                    _customCountPagination(totalPages),
+                  ],
+                ),
               ),
             );
           } else if (state is TestimonilFailur) {

@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
 import 'package:ui/cubits/dashboard/team_cubit/team_cubit.dart';
@@ -11,10 +10,7 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
-import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/home/home_page.dart';
-import 'package:ui/screens/home/initial_screen.dart';
-import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
 
