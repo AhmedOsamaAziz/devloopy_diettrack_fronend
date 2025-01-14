@@ -15,12 +15,12 @@ class CustomButtonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      width: MediaQuery.sizeOf(context).width * 1 / 3.9,
+      constraints: const BoxConstraints(maxWidth: 350, maxHeight: 100),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      width: MediaQuery.sizeOf(context).width * 1 / 3,
       decoration: BoxDecoration(
         color: ColorsApp.AppBarColor,
-        borderRadius: BorderRadius.circular(2.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
         spacing: 10,
@@ -28,6 +28,7 @@ class CustomButtonItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
+              iconSize: 60,
               onPressed: () => handleButtonClick(
                   context: context,
                   url: contactUsButton.url,
@@ -38,7 +39,7 @@ class CustomButtonItem extends StatelessWidget {
           Text(
             contactUsButton.text,
             style: TextStyle(
-              fontSize: getResponsiveFontSize(context, fontSize: 10),
+              fontSize: getResponsiveFontSize(context, fontSize: 12),
               fontWeight: FontWeight.w500,
               color: const Color(0xFFFFFFFF),
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/data/ask_question.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/pricing_page/sections/Card-Ask-Question/widget/custom_question.dart';
-
+import 'package:ui/screens/pricing_page/sections/card-ask-question/widget/custom_question.dart';
+ 
 class QuestionCardList extends StatelessWidget {
   const QuestionCardList({super.key});
 

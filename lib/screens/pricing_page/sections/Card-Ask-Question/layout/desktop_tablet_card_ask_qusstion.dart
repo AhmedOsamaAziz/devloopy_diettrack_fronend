@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/screens/pricing_page/sections/card-ask-question/widget/ask_your_question.dart';
 import 'package:ui/screens/pricing_page/sections/card-ask-question/widget/question_card_list.dart';
-
+  
 class DesktopCardAskQusstion extends StatelessWidget {
   const DesktopCardAskQusstion({super.key});
 
