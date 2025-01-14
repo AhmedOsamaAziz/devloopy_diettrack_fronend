@@ -10,9 +10,7 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
-import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/home/home_page.dart';
-import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
 

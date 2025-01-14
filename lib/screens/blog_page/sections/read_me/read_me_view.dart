@@ -25,13 +25,14 @@ class ReadMeView extends StatelessWidget {
           children: [
             const MainNavigationBar(),
             const BlogTitle(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
-              child: BlogDescription(),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: ScreenSize.isLarge ? 50.0 : 10.0),
+              child: const BlogDescription(),
             ),
             Container(
-              height: ScreenSize.isLarge ? height : height * 0.2,
-              width: width * 0.5,
+              height: ScreenSize.isLarge ? height : height * 0.53,
+              width: ScreenSize.isLarge ? width * 0.5 : width * 0.8,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
                   border:
@@ -46,7 +47,7 @@ class ReadMeView extends StatelessWidget {
                         child: Column(children: [
                       CustomText(text: blogList.title),
                       const Divider(color: ColorsApp.SecondaryColor),
-                      const SizedBox(height: 20)
+                      const SizedBox(height: 20),
                     ])),
                   ),
                   Align(
@@ -94,12 +95,10 @@ class ReadMeView extends StatelessWidget {
                               getResponsiveFontSize(context, fontSize: 14),
                           fontWeight: FontWeight.bold,
                         ),
-                        Expanded(
-                          child: CustomText(
-                            text: 'Date: ${blogList.group}',
-                            fontSize:
-                                getResponsiveFontSize(context, fontSize: 12),
-                          ),
+                        CustomText(
+                          text: 'Date: ${blogList.group}',
+                          fontSize:
+                              getResponsiveFontSize(context, fontSize: 12),
                         ),
                       ],
                     ),
