@@ -45,7 +45,7 @@ class _TestimonialsListCustomCardState
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ConstrainedBox(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxHeight: 500, // تحديد ارتفاع العمود
                 ),
                 child: Column(

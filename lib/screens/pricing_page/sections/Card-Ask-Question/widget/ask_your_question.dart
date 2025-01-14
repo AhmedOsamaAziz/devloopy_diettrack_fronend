@@ -17,8 +17,12 @@ class AskYourQuestion extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 1 / 2,
-            height: ScreenSize.isLarge ? 500 : 850,
+            width: MediaQuery.of(context).size.width * 06,
+            height: ScreenSize.isLarge
+                ? 550
+                : ScreenSize.isMedium
+                    ? 620
+                    : 500,
             color: ColorsApp.OUTLINECOLOR,
             child: Column(
               children: [

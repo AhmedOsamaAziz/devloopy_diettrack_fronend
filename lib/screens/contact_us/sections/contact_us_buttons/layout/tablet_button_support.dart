@@ -11,15 +11,14 @@ class TabletButtonSupporting extends StatelessWidget {
     final contactBtn = ContactUsButton.contactUs;
     return SizedBox(
         height: 100,
-        width: MediaQuery.of(context).size.width - 100,
+        width: MediaQuery.of(context).size.width,
         child: Center(
           child: ListView.builder(
               itemCount: contactBtn.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ScreenSize.isMedium ? 20.0 : 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CustomButtonItem(
                     contactUsButton: contactBtn[index],
                   ),

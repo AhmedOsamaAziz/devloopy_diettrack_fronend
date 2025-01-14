@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
- import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
+import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
 
 class DesktopListPricing extends StatelessWidget {
   const DesktopListPricing({
@@ -11,6 +11,8 @@ class DesktopListPricing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ServiceCubit>().loadServices();
+
     // final List basicPlan = BasicPlan.basicPlans;
     return BlocBuilder<ServiceCubit, ServiceState>(
       builder: (context, state) {
@@ -24,9 +26,10 @@ class DesktopListPricing extends StatelessWidget {
 
           final services = state.service;
           return SizedBox(
-            height: MediaQuery.of(context).size.height,
+            width: 1590,
+            height: 600,
             child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
               physics: const NeverScrollableScrollPhysics(),
               itemCount: services.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
