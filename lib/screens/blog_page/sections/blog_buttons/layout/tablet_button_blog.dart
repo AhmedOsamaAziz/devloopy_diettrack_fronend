@@ -9,20 +9,15 @@ class TabletButtonBlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       height: 115,
-      width: 1200,
+      width: 890,
       child: ListView(scrollDirection: Axis.horizontal, children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          margin: const EdgeInsets.symmetric(horizontal: 20),
           decoration: const BoxDecoration(
-            color: ColorsApp.MAINCOLOR,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(4),
-              bottomRight: Radius.circular(4),
-            ),
-          ),
+              color: ColorsApp.MAINCOLOR,
+              borderRadius: BorderRadius.all(Radius.circular(8))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,

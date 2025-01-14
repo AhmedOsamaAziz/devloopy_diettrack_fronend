@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/core/assets.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/model/general/blog_card.dart';
+import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 
 class CustomBlogCardTablet extends StatelessWidget {
   const CustomBlogCardTablet({
     super.key,
-    required this.blogCard,
     this.onPressed,
+    required this.blogList,
   });
 
-  final BlogCard blogCard;
+  // final BlogCard blogCard;
+
+  final BlogList blogList;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class CustomBlogCardTablet extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10.0),
             child: Column(
               children: [
-                CustomText(text: blogCard.title),
+                CustomText(text: blogList.title),
                 const SizedBox(
                   width: 170,
                   child: Divider(
@@ -45,9 +48,21 @@ class CustomBlogCardTablet extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 2),
-              child: Image.asset(
-                blogCard.image,
-              ),
+              child: blogList.imageUrl == null
+                  ? null
+                  : Image.network(
+                      blogList.imageUrl!,
+                      // height: 185,
+                      errorBuilder: (context, error, stackTrace) {
+                        return AspectRatio(
+                          aspectRatio: 1.5,
+                          child: Image.asset(
+                            Assets.imagesFitness2,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
+                    ),
             ),
           ),
           const SizedBox(height: 20),
@@ -60,15 +75,15 @@ class CustomBlogCardTablet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: blogCard.titleHeader,
+                        text: blogList.description,
                         fontSize: getResponsiveFontSize(context, fontSize: 14),
                         fontWeight: FontWeight.bold,
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 10
                       ),
                       CustomText(
-                        text: blogCard.subTitle,
+                        text: blogList.description,
                         fontSize: getResponsiveFontSize(context, fontSize: 10),
                       ),
                     ],

@@ -1,18 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:ui/constants/constants.dart';
+import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
-import 'package:ui/screens/contact_us/contact_us.dart';
-import 'package:ui/screens/pricing_page/pricing_page.dart';
-import 'package:ui/widgets/custom_text.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
+import 'package:ui/screens/contact_us/contact_us.dart';
+import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/widgets/custom_text.dart';
 
 class CustomDrower extends StatefulWidget {
-  const CustomDrower({super.key});
+  const CustomDrower({
+    Key? key,
+    required this.onTabChanged,
+  }) : super(key: key);
+  final ValueChanged<int> onTabChanged;
 
   @override
   State<CustomDrower> createState() => _CustomDrowerState();
@@ -21,7 +27,7 @@ class CustomDrower extends StatefulWidget {
 class _CustomDrowerState extends State<CustomDrower> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String _selectedOption = 'Options'; // Default dropdown value
-
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,20 +96,30 @@ class _CustomDrowerState extends State<CustomDrower> {
       ),
     );
   }
-}
 
-Widget _buildNavButton(
-    BuildContext context, String text, int index, Widget page) {
-  return GestureDetector(
-    onTap: () {},
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10), // Add spacing
-      child: CustomText(
-        text: text,
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-        color: ColorsApp.SecondaryColor, // Inactive button color
+  Widget _buildNavButton(
+      BuildContext context, String text, int index, Widget page) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = index; // Update selected index
+        });
+        _navigateToPage(context, page, index);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10), // Add spacing
+        child: CustomText(
+          text: text,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          color: ColorsApp.TextColor, // Inactive button color
+        ),
       ),
-    ),
-  );
+    );
+  }
+
+  void _navigateToPage(BuildContext context, Widget page, int index) {
+    widget.onTabChanged(index);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
+  }
 }

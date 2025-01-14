@@ -9,21 +9,19 @@ class MobileButtonBlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       height: 90,
       child: ListView(scrollDirection: Axis.horizontal, children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          margin: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: const BoxDecoration(
             color: ColorsApp.MAINCOLOR,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(8),
-              bottomRight: Radius.circular(8),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            spacing: 4,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
@@ -67,12 +65,12 @@ class MobileButtonBlogPage extends StatelessWidget {
                 colortxt: const Color(0xFFE6E6E6),
                 fontSize: 14,
               ),
-              //CustomButton(
-              //   onPressed: () {},
-              //   text: "Recipes and Meal Planning",
-              //   colortxt: const Color(0xFFE6E6E6),
-              //   fontSize: 14,
-              // ),
+              CustomButton(
+                onPressed: () {},
+                text: "Recipes and Meal Planning",
+                colortxt: const Color(0xFFE6E6E6),
+                fontSize: 14,
+              ),
             ],
           ),
         ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
+import 'package:ui/screens/blog_page/sections/read_me/read_me_view.dart';
 import 'package:ui/screens/home/sections/our_blog_section/widget/our_blog_custom_card.dart';
+import 'package:ui/screens/home/sections/our_blog_section/widget/read_our_blog.dart';
 
 class CustomGridView extends StatelessWidget {
   const CustomGridView({
@@ -10,6 +12,8 @@ class CustomGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // context.read<BlogCubit>().fetchRecentBlogs();
+    context.read<BlogCubit>().allBlogs();
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
         if (state is BlogLoading) {
@@ -24,7 +28,15 @@ class CustomGridView extends StatelessWidget {
               ),
               itemBuilder: (BuildContext context, int index) {
                 final blog = state.blogs[index];
-                return OurBlogCustomCard(blogList: blog);
+                return OurBlogCustomCard(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return ReadMeView(blogList: blog);
+                        }),
+                      );
+                    },
+                    blogList: blog);
               });
         } else if (state is BlogFailure) {
           return Center(child: Text(state.errMessage));

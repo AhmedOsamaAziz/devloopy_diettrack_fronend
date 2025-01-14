@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/mobile_layout/widget/drawer.dart';
 
-class UnderUppBarMobile extends StatelessWidget {
+class UnderUppBarMobile extends StatefulWidget {
   const UnderUppBarMobile({
     super.key,
   });
 
+  @override
+  State<UnderUppBarMobile> createState() => _UnderUppBarMobileState();
+}
+
+class _UnderUppBarMobileState extends State<UnderUppBarMobile> {
+  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +33,13 @@ class UnderUppBarMobile extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const CustomDrower();
+                return CustomDrower(
+                  onTabChanged: (value) => {
+                    setState(() {
+                      activeIndex = value;
+                    })
+                  },
+                );
               }));
             },
             child: Image.asset(
