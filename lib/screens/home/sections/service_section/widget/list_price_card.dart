@@ -53,31 +53,30 @@ class ListPriceCard extends StatelessWidget {
                   )
                 : SingleChildScrollView(
                     child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height,
-                            child: GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              padding: const EdgeInsets.all(8.0),
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3, //
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                                childAspectRatio: 0.73,
-                              ),
-                              itemCount: services.length,
-                              itemBuilder: (context, index) {
-                                return ServiceCardMobile(
-                                  service: services[index],
-                                  isSelected: index == 1,
-                                );
-                              },
-                            ),
+                      child: SizedBox(
+                        height: 890,
+                        child: GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                            childAspectRatio: 0.75,
                           ),
-                        ],
+                          itemCount: services.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: ServiceCardMobile(
+                                service: services[index],
+                                isSelected: index == 1,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
