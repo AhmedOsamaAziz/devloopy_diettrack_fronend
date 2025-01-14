@@ -133,11 +133,11 @@ class PricingCustomCard extends StatelessWidget {
               const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
-                height: 58,
+                height: 50,
                 child: MaterialButton(
                     shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(3.0), // Adjust as needed
+                          BorderRadius.circular(8.0), // Adjust as needed
                     ),
                     color: ColorsApp.SecondaryColor,
                     onPressed: () {},

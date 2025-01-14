@@ -13,7 +13,7 @@ class ServiceCubit extends Cubit<ServiceState> {
     try {
       emit(ServiceLoading());
 
-      // Fetch data from API
+      
       final response = await _apiService.makeRequest(
         ApiMethod.get,
         EndPoints.service,

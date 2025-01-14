@@ -78,16 +78,14 @@ class CustomFormLogin extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          width: double.infinity,
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 400),
                           height: 40,
                           child: state is LoginLoading
-                              ? const Center(
-                                  child: CircularProgressIndicator())
+                              ? const Center(child: CircularProgressIndicator())
                               : CustomButton(
                                   onPressed: () {
-                                    if (loginFormKey.currentState!
-                                        .validate()) {
+                                    if (loginFormKey.currentState!.validate()) {
                                       BlocProvider.of<LoginCubit>(context)
                                           .login();
                                     }
@@ -110,8 +108,7 @@ class CustomFormLogin extends StatelessWidget {
                             CustomText(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SingUpPage()));
+                                    builder: (context) => const SingUpPage()));
                               },
                               text: 'Sign Up',
                               fontSize: 12,

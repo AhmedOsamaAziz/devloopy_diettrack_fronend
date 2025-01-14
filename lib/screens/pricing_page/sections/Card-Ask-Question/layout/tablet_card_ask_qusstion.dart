@@ -8,16 +8,19 @@ class TabletCustomCardFAQPrincing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: QuestionCardList()),
-            VerticalDivider(thickness: 3, color: ColorsApp.SecondaryColor),
-            Expanded(child: AskYourQuestion()),
-          ],
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 850, maxHeight: 650),
+      child: const Center(
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: QuestionCardList()),
+              VerticalDivider(thickness: 3, color: ColorsApp.SecondaryColor),
+              Expanded(child: AskYourQuestion()),
+            ],
+          ),
         ),
       ),
     );

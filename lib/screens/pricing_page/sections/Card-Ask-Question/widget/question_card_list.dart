@@ -9,22 +9,23 @@ class QuestionCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List ask = AskQuestion.askQuestions;
-    return SizedBox(
-      width: 700,
-      child: Center(
-        child: SizedBox(
-          height: ScreenSize.isLarge ? 500 : 850,
-          width: MediaQuery.of(context).size.width * 1 / 2,
-          child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: ask.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1),
-                child: CustomQuestion(askQuestion: ask[index]),
-              );
-            },
-          ),
+    return Center(
+      child: SizedBox(
+        height: ScreenSize.isLarge
+            ? 550
+            : ScreenSize.isMedium
+                ? 620
+                : 500,
+        width: MediaQuery.of(context).size.width * 06,
+        child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: ask.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1),
+              child: CustomQuestion(askQuestion: ask[index]),
+            );
+          },
         ),
       ),
     );

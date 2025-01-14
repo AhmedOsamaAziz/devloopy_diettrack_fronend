@@ -81,7 +81,7 @@ class Assets {
 
   /// Assets for imagesCheckbox2
   /// assets/images/checkbox2.png
-  static const String imagesCheckbox2 = "assets/images/checkbox2.png";
+  static const String imagesCheckboxWorng = "assets/images/checkbox2.png";
 
   /// Assets for imagesCheckboxright
   /// assets/images/checkboxright.png

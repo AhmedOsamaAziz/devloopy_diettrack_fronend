@@ -42,8 +42,8 @@ dependencies:
   svg_flutter: ^0.0.1
   responsive_framework: ^1.4.0
   shared_preferences: ^2.3.2
-  bloc: ^8.1.4
-  flutter_bloc: ^8.1.5
+  bloc: ^9.0.0
+  flutter_bloc: ^9.0.0
   dio: ^5.5.0+1
   jwt_decoder: ^2.0.1
   image_picker: ^1.1.2
@@ -87,7 +87,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    
+
   #   - images/a_dot_ham.jpeg
 flutter_assets:
   assets_path: assets/images/
