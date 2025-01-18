@@ -13,7 +13,7 @@ class MenuTile extends StatelessWidget {
     this.isActive = false,
     this.isSubmenu = false,
     this.count,
-    this.countBg = AppColors.secondaryMintGreen,
+    this.countBg,
   });
 
   final String title;
@@ -21,7 +21,7 @@ class MenuTile extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isActive, isSubmenu;
   final int? count;
-  final Color countBg;
+  final Color? countBg;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class MenuTile extends StatelessWidget {
             title,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: isActive ? AppColors.titleLight : AppColors.textLight,
+              color: isActive ? AppColors.titleLight : AppColors.success,
             ),
           ),
           trailing: count != null

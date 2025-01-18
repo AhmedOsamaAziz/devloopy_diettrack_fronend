@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/admin/constants/app_colors.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/ghaps.dart';
@@ -18,10 +19,10 @@ class CustomerInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding * 0.75),
       decoration: BoxDecoration(
-        color: AppColors.bgLight,
-        borderRadius: BorderRadius.circular(
-          AppDefaults.borderRadius * 1.5,
-        ),
+        color: ColorsApp.AppBarColor,
+        // borderRadius: BorderRadius.circular(
+        // AppDefaults.borderRadius * 1.5,
+        // ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),

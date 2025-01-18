@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/data/testmimonials.dart';
 import 'package:ui/model/testimonials/testimonial_list.dart';
 
@@ -170,55 +172,57 @@ class _DashBoardBadyState extends State<DashBoardBady> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => openForm(),
-              child: const Text("Add Testimonial"),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: DataTable(
-                  columns: const [
-                    DataColumn(label: Text("Title")),
-                    DataColumn(label: Text("Description")),
-                    DataColumn(label: Text("Video URL")),
-                    DataColumn(label: Text("Actions")),
-                  ],
-                  rows: _rows.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final row = entry.value;
+    return Container(
+      color: ColorsApp.MainColorbackgraund,
+      padding: const EdgeInsets.all(25),
+      child: Column(
+        children: [
+          CustomButton(
+              colortxt: ColorsApp.MainColorbackgraund,
+              text: "Add Testimonial",
+              onPressed: () => openForm()),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                columns: const [
+                  DataColumn(label: Text("Title")),
+                  DataColumn(label: Text("Description")),
+                  DataColumn(label: Text("Video URL")),
+                  DataColumn(label: Text("Actions")),
+                ],
+                rows: _rows.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final row = entry.value;
 
-                    return DataRow(cells: [
-                      DataCell(Text(row.title)),
-                      DataCell(Text(row.description)),
-                      DataCell(Text(row.videoUrl)),
-                      DataCell(
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () => openForm(index: index),
-                              child: const Text('Edit'),
-                            ),
-                            const SizedBox(width: 8),
-                            ElevatedButton(
-                              onPressed: () => _deleteRow(index),
-                              child: const Text('Delete'),
-                            ),
-                          ],
-                        ),
+                  return DataRow(cells: [
+                    DataCell(Text(row.title)),
+                    DataCell(Text(row.description)),
+                    DataCell(Text(row.videoUrl)),
+                    DataCell(
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomButton(
+                            onPressed: () => openForm(index: index),
+                            text: 'Edit',
+                            colortxt: ColorsApp.MainColorbackgraund,
+                          ),
+                          const SizedBox(width: 8),
+                          CustomButton(
+                            onPressed: () => _deleteRow(index),
+                            text: 'Delete',
+                            colortxt: ColorsApp.MainColorbackgraund,
+                          ),
+                        ],
                       ),
-                    ]);
-                  }).toList(),
-                ),
+                    ),
+                  ]);
+                }).toList(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

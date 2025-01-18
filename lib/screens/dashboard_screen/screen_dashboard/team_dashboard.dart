@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/model/team/team_list.dart';
 
 class TeamDashBoard extends StatefulWidget {
@@ -228,13 +230,17 @@ class _DashBoardBadyState extends State<DashBoardBady> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(50.0),
-      child: SizedBox(
+      child: Container(
+            color: ColorsApp.OUTLINECOLOR,
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () => openForm(),
-              child: const Text("Add Team"),
+            CustomButton(
+               onPressed: () => openForm(),
+              text: 'Add Team',
+              colortxt: ColorsApp.MainColorbackgraund,
             ),
+
+          
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

@@ -15,9 +15,9 @@ import 'package:ui/widgets/custom_text.dart';
 
 class CustomDrower extends StatefulWidget {
   const CustomDrower({
-    Key? key,
+    super.key,
     required this.onTabChanged,
-  }) : super(key: key);
+  });
   final ValueChanged<int> onTabChanged;
 
   @override
