@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
 import 'package:ui/screens/blog_page/sections/read_me/read_me_view.dart';
 import 'package:ui/screens/home/sections/our_blog_section/widget/our_blog_custom_card.dart';
-import 'package:ui/screens/home/sections/our_blog_section/widget/read_our_blog.dart';
 
 class CustomGridView extends StatelessWidget {
   const CustomGridView({

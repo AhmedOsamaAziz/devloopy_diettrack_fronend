@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/data/about.dart';
 import 'package:ui/model/about/about_list.dart';
 
@@ -110,6 +112,7 @@ class _AboutDashBoardBodyState extends State<AboutDashBoardBody> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: ColorsApp.MainColorbackgraund,
           title: Text(index == null ? 'Add New About' : 'Edit Team'),
           content: SingleChildScrollView(
             child: SizedBox(
@@ -242,67 +245,70 @@ class _AboutDashBoardBodyState extends State<AboutDashBoardBody> {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(50.0),
-        child: SizedBox(
+        child: Container(
+            color: ColorsApp.MainColorbackgraund,
             child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => openForm(),
-              child: const Text("Add Team"),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DataTable(
-                  columnSpacing: 20,
-                  columns: const [
-                    DataColumn(label: Text("ID"), numeric: true),
-                    DataColumn(label: Text("Title")),
-                    DataColumn(label: Text("Description")),
-                    DataColumn(label: Text("Image")),
-                    DataColumn(label: Text("Date")),
-                    DataColumn(label: Text("Actions")),
-                  ],
-                  rows: _rows.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final row = entry.value;
-
-                    return DataRow(cells: [
-                      DataCell(Text(row.id.toString())), // Safe handling
-                      DataCell(Text(row.title)),
-                      DataCell(Text(row.description)),
-                      DataCell(
-                        _imageCache[index] != null
-                            ? Image.memory(
-                                _imageCache[index]!,
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                              )
-                            : const Text("No Image"),
-                      ),
-                      DataCell(Text(row.date.toString())),
-                      DataCell(
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.edit),
-                              onPressed: () => openForm(index: index),
-                            ),
-                            const SizedBox(width: 8),
-                            IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () => _deleteRow(index),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ]);
-                  }).toList(),
+              children: [
+                CustomButton(
+                  onPressed: () => openForm(),
+                  text: 'Add Team',
+                  colortxt: ColorsApp.MainColorbackgraund,
                 ),
-              ),
-            ),
-          ],
-        )));
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      columnSpacing: 20,
+                      columns: const [
+                        DataColumn(label: Text("ID"), numeric: true),
+                        DataColumn(label: Text("Title")),
+                        DataColumn(label: Text("Description")),
+                        DataColumn(label: Text("Image")),
+                        DataColumn(label: Text("Date")),
+                        DataColumn(label: Text("Actions")),
+                      ],
+                      rows: _rows.asMap().entries.map((entry) {
+                        final index = entry.key;
+                        final row = entry.value;
+
+                        return DataRow(cells: [
+                          DataCell(Text(row.id.toString())), // Safe handling
+                          DataCell(Text(row.title)),
+                          DataCell(Text(row.description)),
+                          DataCell(
+                            _imageCache[index] != null
+                                ? Image.memory(
+                                    _imageCache[index]!,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                  )
+                                : const Text("No Image"),
+                          ),
+                          DataCell(Text(row.date.toString())),
+                          DataCell(
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () => openForm(index: index),
+                                ),
+                                const SizedBox(width: 8),
+                                IconButton(
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () => _deleteRow(index),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]);
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ],
+            )));
   }
 }

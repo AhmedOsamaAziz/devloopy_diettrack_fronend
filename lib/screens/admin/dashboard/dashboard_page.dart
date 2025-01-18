@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui/screens/admin/dashboard/widget/blog_list_dashboard.dart';
-
+import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
+ 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 

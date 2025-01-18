@@ -1,15 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/admin/constants/config.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
 
 import 'icon_tile.dart';
 import 'theme_icon_tile.dart';
 
 class TabSidebar extends StatelessWidget {
-  const TabSidebar({super.key});
+  final Function(Widget) onPageSelected;
+  const TabSidebar({super.key, required this.onPageSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -35,42 +43,36 @@ class TabSidebar extends StatelessWidget {
                     isActive: true,
                     activeIconSrc: "assets/icons/home_filled.svg",
                     inactiveIconSrc: "assets/icons/home_light.svg",
-                    onPressed: () {},
+                    onPressed: () => onPageSelected(const BlogListDashBoard()),
                   ),
                   gapH4,
                   IconTile(
                     isActive: false,
                     activeIconSrc: "assets/icons/diamond_filled.svg",
                     inactiveIconSrc: "assets/icons/diamond_light.svg",
-                    onPressed: () {},
+                    onPressed: () =>
+                        onPageSelected(const TestimonialsDashBoard()),
                   ),
                   gapH4,
                   IconTile(
                     isActive: false,
                     activeIconSrc: "assets/icons/profile_circled_filled.svg",
                     inactiveIconSrc: "assets/icons/profile_circled_light.svg",
-                    onPressed: () {},
+                    onPressed: () => onPageSelected(const ServiceDashBoard()),
                   ),
                   gapH4,
                   IconTile(
                     isActive: false,
                     activeIconSrc: "assets/icons/store_light.svg",
                     inactiveIconSrc: "assets/icons/store_filled.svg",
-                    onPressed: () {},
+                    onPressed: () => onPageSelected(const AboutDashBoard()),
                   ),
                   gapH4,
                   IconTile(
                     isActive: false,
                     activeIconSrc: "assets/icons/pie_chart_filled.svg",
                     inactiveIconSrc: "assets/icons/pie_chart_light.svg",
-                    onPressed: () {},
-                  ),
-                  gapH4,
-                  IconTile(
-                    isActive: false,
-                    activeIconSrc: "assets/icons/promotion_filled.svg",
-                    inactiveIconSrc: "assets/icons/promotion_light.svg",
-                    onPressed: () {},
+                    onPressed: () => onPageSelected(const TeamDashBoard()),
                   ),
                 ],
               ),

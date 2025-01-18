@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/model/service/service_list.dart';
 
 class ServiceDashBoard extends StatefulWidget {
@@ -214,65 +216,68 @@ class _DashBoardBadyState extends State<DashBoardBady> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => openForm(),
-              child: const Text("Add Service"),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: DataTable(
-                  columns: const [
-                    DataColumn(label: Text("Name")),
-                    DataColumn(label: Text("Name Ar")),
-                    DataColumn(label: Text("Price")),
-                    DataColumn(label: Text("Valid For")),
-                    DataColumn(label: Text("Is Best Value")),
-                    DataColumn(label: Text("Discount")),
-                    DataColumn(label: Text("Description")),
-                    DataColumn(label: Text("Description Ar")),
-                    DataColumn(label: Text("Actions")),
-                  ],
-                  rows: _rows.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final row = entry.value;
+    return Container(
+      padding: const EdgeInsets.all(25),
+      color: ColorsApp.OUTLINECOLOR,
+      child: Column(
+        children: [
+          CustomButton(
+            onPressed: () => openForm(),
+            text: 'Add Service',
+            colortxt: ColorsApp.MainColorbackgraund,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                columns: const [
+                  DataColumn(label: Text("Name")),
+                  DataColumn(label: Text("Name Ar")),
+                  DataColumn(label: Text("Price")),
+                  DataColumn(label: Text("Valid For")),
+                  DataColumn(label: Text("Is Best Value")),
+                  DataColumn(label: Text("Discount")),
+                  DataColumn(label: Text("Description")),
+                  DataColumn(label: Text("Description Ar")),
+                  DataColumn(label: Text("Actions")),
+                ],
+                rows: _rows.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final row = entry.value;
 
-                    return DataRow(cells: [
-                      DataCell(Text(row.name)),
-                      DataCell(Text(row.nameAr)),
-                      DataCell(Text(row.price.toString())),
-                      DataCell(Text(row.validFor)),
-                      DataCell(Text(row.isBestValue.toString())),
-                      DataCell(Text(row.discount.toString())),
-                      DataCell(Text(row.description.toString())),
-                      DataCell(Text(row.descriptionAr.toString())),
-                      DataCell(
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () => openForm(index: index),
-                              child: const Text('Edit'),
-                            ),
-                            const SizedBox(width: 8),
-                            ElevatedButton(
-                              onPressed: () => _deleteRow(index),
-                              child: const Text('Delete'),
-                            ),
-                          ],
-                        ),
+                  return DataRow(cells: [
+                    DataCell(Text(row.name)),
+                    DataCell(Text(row.nameAr)),
+                    DataCell(Text(row.price.toString())),
+                    DataCell(Text(row.validFor)),
+                    DataCell(Text(row.isBestValue.toString())),
+                    DataCell(Text(row.discount.toString())),
+                    DataCell(Text(row.description.toString())),
+                    DataCell(Text(row.descriptionAr.toString())),
+                    DataCell(
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomButton(
+                            onPressed: () => openForm(index: index),
+                            text: 'Edit',
+                            colortxt: ColorsApp.MainColorbackgraund,
+                          ),
+                          const SizedBox(width: 8),
+                          CustomButton(
+                            onPressed: () => _deleteRow(index),
+                            text: 'Delete',
+                            colortxt: ColorsApp.MainColorbackgraund,
+                          ),
+                        ],
                       ),
-                    ]);
-                  }).toList(),
-                ),
+                    ),
+                  ]);
+                }).toList(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

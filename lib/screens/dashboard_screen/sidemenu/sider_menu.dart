@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
@@ -9,16 +12,19 @@ import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.d
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
 
+import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
 import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
+import 'package:ui/widgets/custom_text.dart';
 
-import '../../dashboard_screen/sidemenu/menu_tile.dart';
-
-class Sidebar extends StatelessWidget {
-  const Sidebar({super.key});
+class SiderMenu extends StatelessWidget {
+  final Function(Widget) onPageSelected;
+  const SiderMenu({super.key, required this.onPageSelected});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      
+      backgroundColor: ColorsApp.AppBarColor,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,9 +34,7 @@ class Sidebar extends StatelessWidget {
               children: [
                 if (Responsive.isMobile(context))
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDefaults.padding,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -43,14 +47,26 @@ class Sidebar extends StatelessWidget {
                     horizontal: AppDefaults.padding,
                     vertical: AppDefaults.padding * 1.5,
                   ),
-                  child: SvgPicture.asset(
-                    'assets/images/Logo.svg',
-                    height: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/Logo.svg',
+                        height: 40,
+                      ),
+                      gapW20,
+                      CustomText(
+                        text: 'Dashboard',
+                        color: ColorsApp.TitleColorFeatures,
+                        fontSize: getResponsiveFontSize(context, fontSize: 16),
+                        fontWeight: FontWeight.bold,
+                      )
+                    ],
                   ),
                 ),
               ],
             ),
-            const Divider(),
+            const Divider(color: ColorsApp.MAINCOLOR),
             gapH16,
             Expanded(
               child: Padding(
@@ -59,66 +75,35 @@ class Sidebar extends StatelessWidget {
                 ),
                 child: ListView(
                   children: [
-                    MenuTile(
-                      isActive: true,
-                      title: "Dashboard",
-                      activeIconSrc: "assets/icons/home_filled.svg",
-                      inactiveIconSrc: "assets/icons/home_light.svg",
-                      onPressed: () {},
-                    ),
                     ExpansionTile(
                       leading:
                           SvgPicture.asset("assets/icons/diamond_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "Homepage",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
-                        // MenuTile(
-                        //   isSubmenu: true,
-                        //   title: "Introduction",
-                        //   onPressed: () {
-                        //     Navigator.of(context).push(MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             const IntroductionDashboard()));
-                        //   },
-                        // ),
-                        // MenuTile(
-                        //   isSubmenu: true,
-                        //   title: "Features",
-                        //   count: 16,
-                        //   onPressed: () {},
-                        // ),
+                        //! Home
                         MenuTile(
                           isSubmenu: true,
                           title: "Our Blogs",
-                          count: 16,
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const BlogListDashBoard()));
-                          },
+                          onPressed: () =>
+                              onPageSelected(const BlogListDashBoard()),
                         ),
                         MenuTile(
                           isSubmenu: true,
                           title: "Our Testimonials",
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const TestimonialsDashBoard()));
-                          },
+                          onPressed: () =>
+                              onPageSelected(const TestimonialsDashBoard()),
                         ),
                         MenuTile(
                           isSubmenu: true,
                           title: " Our Pricing",
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const ServiceDashBoard()));
-                          },
+                          onPressed: () =>
+                              onPageSelected(const ServiceDashBoard()),
                         ),
                       ],
                     ),
@@ -127,21 +112,19 @@ class Sidebar extends StatelessWidget {
                     ExpansionTile(
                       leading: SvgPicture.asset(
                           "assets/icons/profile_circled_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "About",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
                         MenuTile(
                           isSubmenu: true,
                           title: "Our Story",
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const AboutDashBoard()));
-                          },
+                          onPressed: () =>
+                              onPageSelected(const AboutDashBoard()),
                         ),
                       ],
                     ),
@@ -151,21 +134,19 @@ class Sidebar extends StatelessWidget {
                     ExpansionTile(
                       leading: SvgPicture.asset(
                           "assets/icons/profile_circled_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "Team",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
                         MenuTile(
                           isSubmenu: true,
                           title: "Management Team",
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const TeamDashBoard()));
-                          },
+                          onPressed: () =>
+                              onPageSelected(const TeamDashBoard()),
                         ),
                       ],
                     ),
@@ -174,11 +155,11 @@ class Sidebar extends StatelessWidget {
                     ExpansionTile(
                       leading: SvgPicture.asset(
                           "assets/icons/profile_circled_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "Proocess",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
@@ -195,11 +176,11 @@ class Sidebar extends StatelessWidget {
                     ExpansionTile(
                       leading: SvgPicture.asset(
                           "assets/icons/profile_circled_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "Pricing",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
@@ -216,11 +197,11 @@ class Sidebar extends StatelessWidget {
                     ExpansionTile(
                       leading: SvgPicture.asset(
                           "assets/icons/profile_circled_light.svg"),
-                      title: Text(
+                      title: const Text(
                         "Blogs",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: ColorsApp.OUTLINECOLOR,
                         ),
                       ),
                       children: [
