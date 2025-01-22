@@ -87,23 +87,22 @@ class TestimonialService {
   }
 
   Future<GenericResponse> updateTestimonial(
-      [TestimonialCreate? testimonialCreate]) async {
+      TestimonialUpdate testimonial) async {
     try {
-      var apiService = ApiService();
-      final response = await apiService.makeRequest(
-        ApiMethod.get,
+      var _apiService = ApiService();
+      final response = await _apiService.makeRequest(
+        ApiMethod.put,
         EndPoints.testimonil,
+        data: testimonial.toJson(),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       );
 
-      List<TestimonialUpdate> testimonialUpdated = (response.obj);
-      // .map((testimonialUpdatedtJson) =>
-      //     TestimonialList.fromJson(testimonialUpdatedtJson))
-      // .toList();
-
       return GenericResponse(
-        code: 200,
-        obj: testimonialUpdated,
-        status: ResponseStatus.success,
+        code: response.code,
+        status: ResponseStatus.fail,
+        message: response.message,
       );
     } on Exception catch (e) {
       return GenericResponse(

@@ -7,6 +7,7 @@ import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/testimonials/testimonial_create.dart';
 import 'package:ui/model/testimonials/testimonial_list.dart';
+import 'package:ui/model/testimonials/testimonial_update.dart';
 import 'package:ui/services/testimonial_service/testimonial_service.dart';
 
 class TestimonialsDashBoard extends StatefulWidget {
@@ -41,19 +42,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     _loadTestimonials();
   }
 
-  // Future<void> _loadTestimonialsFromSharedPref() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final String? testimonialJson = prefs.getString('testimonials');
-  //   if (testimonialJson != null) {
-  //     final List<dynamic> testimonialList = jsonDecode(testimonialJson);
-  //     setState(() {
-  //       _rows.clear();
-  //       for (var testimonialMap in testimonialList) {
-  //         _rows.add(TestimonialList.fromJson(testimonialMap));
-  //       }
-  //     });
-  //   }
-  // }
   Future<void> _loadTestimonials() async {
     setState(() {
       _isLoading = true;
@@ -100,89 +88,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         _rows.map((testimonial) => testimonial.toJson()).toList();
     prefs.setString('testimonials', jsonEncode(testimonialList));
   }
-
-  // void openForm({int? index}) async {
-  //   final titleController = TextEditingController();
-  //   final descriptionController = TextEditingController();
-  //   final videoUrlController = TextEditingController();
-
-  //   if (index != null) {
-  //     final row = _rows[index];
-  //     titleController.text = row.title;
-  //     descriptionController.text = row.description;
-  //     videoUrlController.text = row.videoUrl;
-  //   }
-
-  //   final result = await showDialog<Map<String, String>>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title:
-  //             Text(index == null ? 'Add New Testimonial' : 'Edit Testimonial'),
-  //         content: SingleChildScrollView(
-  //           child: SizedBox(
-  //             width: 450,
-  //             child: Column(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 TextField(
-  //                   controller: titleController,
-  //                   decoration: const InputDecoration(labelText: 'Title'),
-  //                 ),
-  //                 TextField(
-  //                   controller: descriptionController,
-  //                   decoration: const InputDecoration(labelText: 'Description'),
-  //                 ),
-  //                 TextField(
-  //                   controller: videoUrlController,
-  //                   decoration: const InputDecoration(labelText: 'Video URL'),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(null),
-  //             child: const Text('Cancel'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () {
-  //               Navigator.of(context).pop({
-  //                 'title': titleController.text,
-  //                 'description': descriptionController.text,
-  //                 'videoUrl': videoUrlController.text,
-  //               });
-  //             },
-  //             child: const Text('Save'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-
-  //   if (result != null) {
-  //     setState(() {
-  //       try {
-  //         if (index == null) {
-  //           _rows.add(TestimonialList(
-  //             title: result['title']!,
-  //             description: result['description']!,
-  //             videoUrl: result['videoUrl']!,
-  //           ));
-  //         } else {
-  //           _rows[index]
-  //             ..title = result['title']!
-  //             ..description = result['description']!
-  //             ..videoUrl = result['videoUrl']!;
-  //         }
-  //         _saveTestimonialsToSharedPref();
-  //       } catch (e) {
-  //         log("Error: $e");
-  //       }
-  //     });
-  //   }
-  // }
 
   void openForm({int? index}) async {
     final titleController = TextEditingController();
@@ -250,7 +155,10 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       });
 
       try {
-        final testimonial = TestimonialList(
+        final testimonialUpdate = TestimonialUpdate(
+          id: index != null
+              ? _rows[index].id
+              : null, // Use the existing ID for updates
           title: result['title']!,
           description: result['description']!,
           videoUrl: result['videoUrl']!,
@@ -260,32 +168,35 @@ class _DashBoardBadyState extends State<DashBoardBady> {
           // Add new testimonial
           final response = await _testimonialService.createTestimonial(
             TestimonialCreate(
-                title: testimonial.title,
-                description: testimonial.description,
-                videoUrl: testimonial.videoUrl),
-          );
-
-          if (response.status == ResponseStatus.success) {
-            _rows.add(testimonial);
-            _saveTestimonialsToSharedPref(); // Save to SharedPreferences
-          } else {
-            log('Failed to add testimonial: ${response.message}');
-          }
-        } else {
-          // Edit existing testimonial
-          final response = await _testimonialService.updateTestimonial(
-            TestimonialCreate(
-              title: testimonial.title,
-              description: testimonial.description,
-              videoUrl: testimonial.videoUrl,
+              id: DateTime.now()
+                  .toString(), // Generate a new ID for new testimonials
+              title: testimonialUpdate.title,
+              description: testimonialUpdate.description,
+              videoUrl: testimonialUpdate.videoUrl,
             ),
           );
 
           if (response.status == ResponseStatus.success) {
-            _rows[index] = testimonial;
+            _rows.add(testimonialUpdate as TestimonialList);
             _saveTestimonialsToSharedPref(); // Save to SharedPreferences
           } else {
-            log('Failed to update testimonial: ${response.message}');
+            log('Failed to add testimonial create: ${response.message}');
+          }
+        } else {
+          // Edit existing testimonial
+          final response =
+              await _testimonialService.updateTestimonial(TestimonialUpdate(
+            id: testimonialUpdate.id,
+            title: testimonialUpdate.title,
+            description: testimonialUpdate.description,
+            videoUrl: testimonialUpdate.videoUrl,
+          ));
+
+          if (response.status == ResponseStatus.success) {
+            _rows.add(testimonialUpdate as TestimonialList);
+            _saveTestimonialsToSharedPref(); // Save to SharedPreferences
+          } else {
+            log('Failed to update testimonial update: ${response.message}');
           }
         }
       } catch (e) {
@@ -328,6 +239,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final testimonial = _rows[index];
         final response = await _testimonialService.deleteTestimonial(
           TestimonialCreate(
+            id: testimonial.id.toString(),
             title: testimonial.title,
             description: testimonial.description,
             videoUrl: testimonial.videoUrl,
@@ -349,35 +261,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       }
     }
   }
-
-  // void _deleteRow(int index) async {
-  //   final confirm = await showDialog<bool>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('Confirm Deletion'),
-  //         content: const Text('Are you sure you want to delete this row?'),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(true), // Confirm
-  //             child: const Text('Delete'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(false), // Cancel
-  //             child: const Text('Cancel'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-
-  //   if (confirm == true) {
-  //     setState(() {
-  //       _rows.removeAt(index);
-  //       _saveTestimonialsToSharedPref();
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

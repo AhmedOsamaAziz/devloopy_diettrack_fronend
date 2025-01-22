@@ -1,4 +1,5 @@
 import 'package:ui/model/testimonials/testimonial_base.dart';
+import 'package:ui/model/testimonials/testimonial_update.dart';
 
 class TestimonialList extends TestimonialBase {
   int? id;
@@ -27,4 +28,6 @@ class TestimonialList extends TestimonialBase {
       'videoUrl': videoUrl,
     };
   }
+
+
 }
