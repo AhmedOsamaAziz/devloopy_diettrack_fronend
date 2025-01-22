@@ -94,6 +94,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     final descriptionController = TextEditingController();
     final videoUrlController = TextEditingController();
 
+    // Populate the form if editing
     if (index != null) {
       final row = _rows[index];
       titleController.text = row.title;
@@ -101,6 +102,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       videoUrlController.text = row.videoUrl;
     }
 
+    // Show dialog to get user input
     final result = await showDialog<Map<String, String>>(
       context: context,
       builder: (BuildContext context) {
@@ -149,6 +151,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       },
     );
 
+    // Handle the result from the dialog
     if (result != null) {
       setState(() {
         _isLoading = true;
@@ -158,46 +161,28 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final testimonialUpdate = TestimonialUpdate(
           id: index != null
               ? _rows[index].id
-              : null, // Use the existing ID for updates
+              : null, // Use existing ID if editing
           title: result['title']!,
           description: result['description']!,
           videoUrl: result['videoUrl']!,
         );
 
-        if (index == null) {
-          // Add new testimonial
-          final response = await _testimonialService.createTestimonial(
-            TestimonialCreate(
-              id: DateTime.now()
-                  .toString(), // Generate a new ID for new testimonials
-              title: testimonialUpdate.title,
-              description: testimonialUpdate.description,
-              videoUrl: testimonialUpdate.videoUrl,
-            ),
-          );
-
-          if (response.status == ResponseStatus.success) {
-            _rows.add(testimonialUpdate as TestimonialList);
-            _saveTestimonialsToSharedPref(); // Save to SharedPreferences
-          } else {
-            log('Failed to add testimonial create: ${response.message}');
-          }
+        final response =
+            await _testimonialService.updateTestimonial(testimonialUpdate);
+        if (response.status == ResponseStatus.success) {
+          setState(() {
+            if (index != null) {
+              // Update the existing row
+              _rows[index] =
+                  TestimonialList.fromJson(testimonialUpdate.toJson());
+            } else {
+              // Add a new testimonial (not specified in your example, so optional)
+              _rows.add(TestimonialList.fromJson(testimonialUpdate.toJson()));
+            }
+          });
+          _saveTestimonialsToSharedPref();
         } else {
-          // Edit existing testimonial
-          final response =
-              await _testimonialService.updateTestimonial(TestimonialUpdate(
-            id: testimonialUpdate.id,
-            title: testimonialUpdate.title,
-            description: testimonialUpdate.description,
-            videoUrl: testimonialUpdate.videoUrl,
-          ));
-
-          if (response.status == ResponseStatus.success) {
-            _rows.add(testimonialUpdate as TestimonialList);
-            _saveTestimonialsToSharedPref(); // Save to SharedPreferences
-          } else {
-            log('Failed to update testimonial update: ${response.message}');
-          }
+          log('Failed to update testimonial: ${response.message}');
         }
       } catch (e) {
         log('Error: $e');

@@ -89,8 +89,8 @@ class TestimonialService {
   Future<GenericResponse> updateTestimonial(
       TestimonialUpdate testimonial) async {
     try {
-      var _apiService = ApiService();
-      final response = await _apiService.makeRequest(
+      var apiService = ApiService();
+      final response = await apiService.makeRequest(
         ApiMethod.put,
         EndPoints.testimonil,
         data: testimonial.toJson(),
@@ -101,7 +101,7 @@ class TestimonialService {
 
       return GenericResponse(
         code: response.code,
-        status: ResponseStatus.fail,
+        status: ResponseStatus.success,
         message: response.message,
       );
     } on Exception catch (e) {
