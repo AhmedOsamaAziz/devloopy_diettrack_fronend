@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ui/constants/constants.dart';
-import 'package:ui/screens/admin/sidemenu/customer_info.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/sidemenu/sider_menu.dart';
 

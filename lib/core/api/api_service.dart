@@ -35,9 +35,12 @@ class ApiService {
               ? ResponseStatus.success
               : ResponseStatus.fail,
           message: response.statusMessage);
+    } on DioException catch (e) {
+      log('Network error: ${e.message}');
+      throw 'Network error: ${e.message}';
     } catch (e) {
-      log('Network error: $e');
-      throw 'Network error: $e';
+      log('Unexpected error: $e');
+      throw 'Unexpected error: $e';
     }
   }
 }

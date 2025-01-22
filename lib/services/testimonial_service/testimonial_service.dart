@@ -1,35 +1,41 @@
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
 import 'package:ui/core/api/generic_response.dart';
+import 'package:ui/model/testimonials/testimonial_create.dart';
 import 'package:ui/model/testimonials/testimonial_detail.dart';
 import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/model/testimonials/testimonial_update.dart';
 
 class TestimonialService {
-  @override
-  Future<GenericResponse> createTestimonial() async {
+  Future<GenericResponse> createTestimonial(
+      TestimonialCreate testimonial) async {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.post,
         EndPoints.testimonil,
+        data: testimonial.toJson(),
+        headers: {'Content-Type': 'application/json'},
       );
-      List<TestimonialList> testimonialList = (response.obj)
-          .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
-          .toList();
+      // List<TestimonialList> testimonialList = (response.obj)
+      //     .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
+      //     .toList();
 
       return GenericResponse(
-        code: 200,
-        obj: testimonialList,
+        code: response.code,
+        obj: response.obj,
         status: ResponseStatus.success,
+        message: response.message,
       );
     } on Exception catch (e) {
       return GenericResponse(
-          code: 500, status: ResponseStatus.fail, message: e.toString());
+        code: 500,
+        status: ResponseStatus.fail,
+        message: e.toString(),
+      );
     }
   }
 
-  @override
   Future<GenericResponse> detailsTestimonial() async {
     try {
       var apiService = ApiService();
@@ -80,8 +86,8 @@ class TestimonialService {
     }
   }
 
-  @override
-  Future<GenericResponse> updateTestimonial() async {
+  Future<GenericResponse> updateTestimonial(
+      [TestimonialCreate? testimonialCreate]) async {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
@@ -97,6 +103,29 @@ class TestimonialService {
       return GenericResponse(
         code: 200,
         obj: testimonialUpdated,
+        status: ResponseStatus.success,
+      );
+    } on Exception catch (e) {
+      return GenericResponse(
+        code: 500,
+        status: ResponseStatus.fail,
+        message: e.toString(),
+      );
+    }
+  }
+
+  Future<GenericResponse> deleteTestimonial(
+      [TestimonialCreate? testimonialCreate]) async {
+    try {
+      var apiService = ApiService();
+      final response = await apiService.makeRequest(
+        ApiMethod.get,
+        EndPoints.testimonil,
+      );
+
+      return GenericResponse(
+        code: 200,
+        obj: response.obj,
         status: ResponseStatus.success,
       );
     } on Exception catch (e) {
