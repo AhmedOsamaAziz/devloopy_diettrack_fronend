@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -89,38 +90,22 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     prefs.setString('testimonials', jsonEncode(testimonialList));
   }
 
-  void openForm({int? index}) async {
-    final idController = TextEditingController();
+  void addTestimonial() async {
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
     final videoUrlController = TextEditingController();
 
-    // Populate the form if editing
-    if (index != null) {
-      final row = _rows[index];
-      idController.text = row.id.toString();
-      titleController.text = row.title;
-      descriptionController.text = row.description;
-      videoUrlController.text = row.videoUrl;
-    }
-
-    // Show dialog to get user input
     final result = await showDialog<Map<String, String>>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:
-              Text(index == null ? 'Add New Testimonial' : 'Edit Testimonial'),
+          title: const Text('Add New Testimonial'),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 450,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(
-                    controller: idController,
-                    decoration: const InputDecoration(labelText: 'ID'),
-                  ),
                   TextField(
                     controller: titleController,
                     decoration: const InputDecoration(labelText: 'Title'),
@@ -145,7 +130,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop({
-                  'id': idController.text,
                   'title': titleController.text,
                   'description': descriptionController.text,
                   'videoUrl': videoUrlController.text,
@@ -158,7 +142,97 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       },
     );
 
-    // Handle the result from the dialog
+    if (result != null) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        final testimonialCreate = TestimonialCreate(
+          title: result['title']!,
+          description: result['description']!,
+          videoUrl: result['videoUrl']!,
+        );
+
+        print('Sending payload: ${testimonialCreate.toJson()}');
+
+        // استدعاء الخدمة للحصول على الرد
+        final response =
+            await _testimonialService.createTestimonial(testimonialCreate);
+
+        if (response.status == ResponseStatus.success) {
+          setState(() {
+            // إضافة العنصر الجديد إلى القائمة
+            _rows.add(response.obj);
+          });
+          _saveTestimonialsToSharedPref();
+        } else {
+          log('Failed to add testimonial: ${response.message}');
+        }
+      } catch (e) {
+        if (e is DioException) {
+          log('Dio Error: ${e.message}');
+        } else {
+          log('Error: $e');
+        }
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  void editTestimonial(int index) async {
+    final row = _rows[index];
+    final titleController = TextEditingController(text: row.title);
+    final descriptionController = TextEditingController(text: row.description);
+    final videoUrlController = TextEditingController(text: row.videoUrl);
+
+    final result = await showDialog<Map<String, String>>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Edit Testimonial'),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              width: 450,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(labelText: 'Title')),
+                  TextField(
+                      controller: descriptionController,
+                      decoration:
+                          const InputDecoration(labelText: 'Description')),
+                  TextField(
+                      controller: videoUrlController,
+                      decoration:
+                          const InputDecoration(labelText: 'Video URL')),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(null),
+                child: const Text('Cancel')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop({
+                    'title': titleController.text,
+                    'description': descriptionController.text,
+                    'videoUrl': videoUrlController.text,
+                  });
+                },
+                child: const Text('Save')),
+          ],
+        );
+      },
+    );
+
     if (result != null) {
       setState(() {
         _isLoading = true;
@@ -166,9 +240,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
 
       try {
         final testimonialUpdate = TestimonialUpdate(
-          id: index != null
-              ? _rows[index].id
-              : null, // Use existing ID if editing
+          id: row.id.toString(),
           title: result['title']!,
           description: result['description']!,
           videoUrl: result['videoUrl']!,
@@ -177,26 +249,18 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final response =
             await _testimonialService.updateTestimonial(testimonialUpdate);
         if (response.status == ResponseStatus.success) {
+          // Ensure response.obj is a Testimonial and update the state
           setState(() {
-            if (index != null) {
-              // Update the existing row
-              _rows[index] =
-                  TestimonialList.fromJson(testimonialUpdate.toJson());
-            } else {
-              // Add a new testimonial (not specified in your example, so optional)
-              _rows.add(TestimonialList.fromJson(testimonialUpdate.toJson()));
-            }
+            _rows[index] = response.obj as TestimonialList; // Explicit cast
           });
           _saveTestimonialsToSharedPref();
         } else {
-          log('Failed to update testimonial: ${response.message}');
+          log('Update failed: ${response.message}');
         }
       } catch (e) {
         log('Error: $e');
       } finally {
-        setState(() {
-          _isLoading = false;
-        });
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -231,7 +295,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final testimonial = _rows[index];
         final response = await _testimonialService.deleteTestimonial(
           TestimonialCreate(
-            id: testimonial.id,
             title: testimonial.title,
             description: testimonial.description,
             videoUrl: testimonial.videoUrl,
@@ -264,7 +327,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
           CustomButton(
               colortxt: ColorsApp.MainColorbackgraund,
               text: "Add Testimonial",
-              onPressed: () => openForm()),
+              onPressed: () => addTestimonial()),
           const SizedBox(height: 20),
           Expanded(
             child: _isLoading
@@ -296,7 +359,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 CustomButton(
-                                  onPressed: () => openForm(index: index),
+                                  onPressed: () => editTestimonial(index),
                                   text: 'Edit',
                                   colortxt: ColorsApp.MainColorbackgraund,
                                 ),

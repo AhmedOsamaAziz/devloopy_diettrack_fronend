@@ -2,7 +2,7 @@ class EndPoints {
   static const String _baseUrl = "https://devloopy-001-site1.ptempurl.com/";
 
   static const String login = "${_baseUrl}login";
-  static const String testimonil = "${_baseUrl}api/testimonial";
+  static const String testimonial = "${_baseUrl}api/testimonial";
   static const String comment = "${_baseUrl}api/comment";
   static const String register = "${_baseUrl}register";
   static const String blog = "${_baseUrl}api/blog";

@@ -1,24 +1,32 @@
-import 'package:ui/model/testimonials/testimonial_base.dart';
-
-class TestimonialList extends TestimonialBase {
-  int? id;
+class TestimonialList {
+  final int id;
+  final String title;
+  final String description;
+  final String videoUrl;
 
   TestimonialList({
-    this.id,
-    required super.title,
-    required super.description,
-    required super.videoUrl,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.videoUrl,
   });
 
+  // factory TestimonialList.fromJson(Map<String, dynamic> json) {
+  //   return TestimonialList(
+  //     id: json['id'] ?? 0,
+  //     title: json['title'] ?? '',
+  //     description: json['description'] ?? '',
+  //     videoUrl: json['videoUrl'] ?? '',
+  //   );
+  // }
   factory TestimonialList.fromJson(Map<String, dynamic> json) {
     return TestimonialList(
-      id: json["id"],
-      title: json["title"],
-      description: json["description"],
-      videoUrl: json["videoUrl"],
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      videoUrl: json['videoUrl'],
     );
   }
-
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -27,6 +35,4 @@ class TestimonialList extends TestimonialBase {
       'videoUrl': videoUrl,
     };
   }
-
-
 }
