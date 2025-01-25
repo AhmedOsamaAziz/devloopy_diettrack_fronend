@@ -23,7 +23,6 @@ class SiderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      
       backgroundColor: ColorsApp.AppBarColor,
       child: SafeArea(
         child: Column(
@@ -79,7 +78,7 @@ class SiderMenu extends StatelessWidget {
                       leading:
                           SvgPicture.asset("assets/icons/diamond_light.svg"),
                       title: const Text(
-                        "Homepage",
+                        "Home page",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: ColorsApp.OUTLINECOLOR,

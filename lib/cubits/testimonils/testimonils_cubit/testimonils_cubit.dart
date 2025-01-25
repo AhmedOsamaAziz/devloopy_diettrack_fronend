@@ -14,7 +14,7 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
 
   List<TestimonialBase> allTestimonials = [];
   int currentPage = 0;
-  final int itemsPerPage = 10;
+  final int itemsPerPage = 25;
 
   Future<void> getAllTestimonial() async {
     emit(TestimonilsLoading());
@@ -60,11 +60,11 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
     return allTestimonials.sublist(startIndex, endIndex);
   }
 
-  Future<void> createTestimonial() async {
+  Future<void> createTestimonial(TestimonialCreate testimonial) async {
     emit(TestimonilsLoading());
     try {
       TestimonialService testimonialsService = TestimonialService();
-      var response = await testimonialsService.createTestimonial();
+      var response = await testimonialsService.createTestimonial(testimonial);
 
       if (response.status == ResponseStatus.success) {
         final List<TestimonialCreate> testimonialCreate = response.obj;
@@ -91,16 +91,19 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
     }
   }
 
-  Future<void> updateTestimonial() async {
-    emit(TestimonilsLoading());
+  Future<void> updateTestimonial(TestimonialUpdate testimonial) async {
+    emit(TestimonilsLoading()); // Emit loading state
     try {
       TestimonialService testimonialsService = TestimonialService();
 
-      var response = await testimonialsService.updateTestimonial();
+   
+      var response = await testimonialsService.updateTestimonial(testimonial);
 
       if (response.status == ResponseStatus.success) {
-        final List<TestimonialUpdate> testimonialUpdate = response.obj;
-        emit(TestimonilsSuccess(testimonials: testimonialUpdate));
+        emit(TestimonilsSuccess(testimonials: allTestimonials));
+      } else {
+        emit(TestimonilFailur(
+            errMessage: response.message ?? 'Failed to update testimonial'));
       }
     } catch (e) {
       emit(TestimonilFailur(errMessage: e.toString()));
