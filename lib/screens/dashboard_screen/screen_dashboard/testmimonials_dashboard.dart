@@ -90,6 +90,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
   }
 
   void openForm({int? index}) async {
+    final idController = TextEditingController();
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
     final videoUrlController = TextEditingController();
@@ -97,6 +98,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     // Populate the form if editing
     if (index != null) {
       final row = _rows[index];
+      idController.text = row.id.toString();
       titleController.text = row.title;
       descriptionController.text = row.description;
       videoUrlController.text = row.videoUrl;
@@ -115,6 +117,10 @@ class _DashBoardBadyState extends State<DashBoardBady> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  TextField(
+                    controller: idController,
+                    decoration: const InputDecoration(labelText: 'ID'),
+                  ),
                   TextField(
                     controller: titleController,
                     decoration: const InputDecoration(labelText: 'Title'),
@@ -139,6 +145,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop({
+                  'id': idController.text,
                   'title': titleController.text,
                   'description': descriptionController.text,
                   'videoUrl': videoUrlController.text,
@@ -224,7 +231,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final testimonial = _rows[index];
         final response = await _testimonialService.deleteTestimonial(
           TestimonialCreate(
-            id: testimonial.id.toString(),
+            id: testimonial.id,
             title: testimonial.title,
             description: testimonial.description,
             videoUrl: testimonial.videoUrl,
@@ -266,6 +273,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                     scrollDirection: Axis.vertical,
                     child: DataTable(
                       columns: const [
+                        DataColumn(label: Text("Id")),
                         DataColumn(label: Text("Title")),
                         DataColumn(label: Text("Description")),
                         DataColumn(label: Text("Video URL")),
@@ -276,6 +284,8 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                         final row = entry.value;
 
                         return DataRow(cells: [
+                          DataCell(SizedBox(
+                              width: 40, child: Text(row.id.toString()))),
                           DataCell(SizedBox(width: 70, child: Text(row.title))),
                           DataCell(SizedBox(
                               width: 150, child: Text(row.description))),

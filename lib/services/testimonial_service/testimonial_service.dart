@@ -17,13 +17,13 @@ class TestimonialService {
         data: testimonial.toJson(),
         headers: {'Content-Type': 'application/json'},
       );
-      // List<TestimonialList> testimonialList = (response.obj)
-      //     .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
-      //     .toList();
+      List<TestimonialList> testimonialList = (response.obj)
+          .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
+          .toList();
 
       return GenericResponse(
         code: response.code,
-        obj: response.obj,
+        obj: testimonialList,
         status: ResponseStatus.success,
         message: response.message,
       );
@@ -118,14 +118,23 @@ class TestimonialService {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.get,
+        ApiMethod.get, // Use DELETE for deletions
         EndPoints.testimonil,
+        data: testimonialCreate?.toJson(),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        queryParameters: testimonialCreate?.toJson(),
       );
+      List<dynamic> testimonialList = (response.obj)
+          .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
+          .toList();
 
       return GenericResponse(
         code: 200,
-        obj: response.obj,
+        obj: testimonialList,
         status: ResponseStatus.success,
+        message: response.message,
       );
     } on Exception catch (e) {
       return GenericResponse(

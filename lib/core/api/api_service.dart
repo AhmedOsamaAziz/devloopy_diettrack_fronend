@@ -36,7 +36,7 @@ class ApiService {
               : ResponseStatus.fail,
           message: response.statusMessage);
     } on DioException catch (e) {
-      log('Network error: ${e.message}');
+      log('Dio exception: ${e.message}');
       throw 'Network error: ${e.message}';
     } catch (e) {
       log('Unexpected error: $e');
