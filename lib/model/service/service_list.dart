@@ -17,11 +17,11 @@ class ServiceList extends ServiceBase {
 
   factory ServiceList.fromJson(Map<String, dynamic> json) {
     return ServiceList(
-      id: json['id'] as int? ?? 6,
-      name: json['name'] as String? ?? 'Default Name',
-      nameAr: json['nameAr'] as String? ?? 'Default Name Arabic',
+      id: json['id'],
+      name: json['name'] ,
+      nameAr: json['nameAr'] ,
       price: (json['price'] as num?)?.toDouble() ?? 0.0,
-      validFor: json['validFor'] as String? ?? 'N/A',
+      validFor: json['validFor']  ,
       description: json.containsKey('items') && json['items'] is List
           ? (json['items'] as List<dynamic>)
               .map((item) => item['description'] as String? ?? '')

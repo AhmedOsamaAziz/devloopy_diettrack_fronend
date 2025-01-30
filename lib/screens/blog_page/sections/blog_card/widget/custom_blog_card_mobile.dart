@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 

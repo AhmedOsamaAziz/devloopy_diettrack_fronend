@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';

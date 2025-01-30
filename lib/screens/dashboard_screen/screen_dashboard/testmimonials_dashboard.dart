@@ -62,8 +62,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         });
       }
 
-      // Fetch testimonials from the API (you need to implement this in your service)
-      final response = await _testimonialService.getAllTestimonial(
+       final response = await _testimonialService.getAllTestimonial(
           limit: const int.fromEnvironment('limit'), page: 1);
       if (response.status == ResponseStatus.success) {
         setState(() {
@@ -249,9 +248,9 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final response =
             await _testimonialService.updateTestimonial(testimonialUpdate);
         if (response.status == ResponseStatus.success) {
-          // Ensure response.obj is a Testimonial and update the state
+
           setState(() {
-            _rows[index] = response.obj as TestimonialList; // Explicit cast
+            _rows[index] = response.obj as TestimonialList;
           });
           _saveTestimonialsToSharedPref();
         } else {
@@ -382,3 +381,126 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:ui/constants/custom_button.dart';
+// import 'package:ui/cubits/testimonils/dashboard_cubit/dashborad_tesmimonial_cubit.dart';
+// import 'package:ui/cubits/testimonils/dashboard_cubit/dashborad_tesmimonial_state.dart';
+// import 'package:ui/model/testimonials/testimonial_create.dart';
+// import 'package:ui/model/testimonials/testimonial_list.dart';
+// import 'package:ui/services/testimonial_service/testimonial_service.dart';
+
+// class TestimonialsDashBoard extends StatefulWidget {
+//   const TestimonialsDashBoard({super.key});
+
+//   @override
+//   _TestimonialsDashBoardState createState() => _TestimonialsDashBoardState();
+// }
+
+// class _TestimonialsDashBoardState extends State<TestimonialsDashBoard> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Call loadTestimonials when the widget is initialized
+//     context.read<DashboardTestimonialCubit>().loadTestimonials();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Testimonials Dashboard"),
+//       ),
+//       body: BlocBuilder<DashboardTestimonialCubit, TestimonialDashboardState>(
+//         builder: (context, state) {
+//           if (state is TestimonialLoading) {
+//             return const Center(child: CircularProgressIndicator());
+//           } else if (state is TestimonialLoaded) {
+//             if (state.testimonials.isEmpty) {
+//               return const Center(child: Text("No testimonials available"));
+//             }
+//             return DashBoardBady(testimonials: state.testimonials);
+//           } else if (state is TestimonialError) {
+//             return Center(child: Text(state.message));
+//           } else {
+//             return const Center(child: Text("No data"));
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// class DashBoardBady extends StatelessWidget {
+//   final List<TestimonialList> testimonials;
+
+//   const DashBoardBady({super.key, required this.testimonials});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.all(25),
+//       child: Column(
+//         children: [
+//           CustomButton(
+//             text: "Add Testimonial",
+//             onPressed: () async {
+//               await context
+//                   .read<DashboardTestimonialCubit>()
+//                   .addTestimonial(testimonials as TestimonialList);
+//             },
+//           ),
+//           const SizedBox(height: 20),
+//           Expanded(
+//             child: SingleChildScrollView(
+//               scrollDirection: Axis.vertical,
+//               child: DataTable(
+//                 columns: const [
+//                   DataColumn(label: Text("Id")),
+//                   DataColumn(label: Text("Title")),
+//                   DataColumn(label: Text("Description")),
+//                   DataColumn(label: Text("Video URL")),
+//                   DataColumn(label: Text("Actions")),
+//                 ],
+//                 rows: testimonials.map((testimonial) {
+//                   return DataRow(cells: [
+//                     DataCell(Text(testimonial.id.toString())),
+//                     DataCell(Text(testimonial.title)),
+//                     DataCell(SizedBox(
+//                         width: 70, child: Text(testimonial.description))),
+//                     DataCell(SizedBox(
+//                         width: 350, child: Text(testimonial.videoUrl))),
+//                     DataCell(
+//                       Row(
+//                         children: [
+//                           CustomButton(
+//                             text: 'Edit',
+//                             onPressed: () {
+//                               context
+//                                   .read<DashboardTestimonialCubit>()
+//                                   .updateTestimonial(testimonial);
+//                             },
+//                           ),
+//                           const SizedBox(width: 8),
+//                           CustomButton(
+//                             text: 'Delete',
+//                             onPressed: () {
+//                               context
+//                                   .read<DashboardTestimonialCubit>()
+//                                   .deleteTestimonial(testimonial.id.toString());
+//                             },
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ]);
+//                 }).toList(),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/widgets/custom_text.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';

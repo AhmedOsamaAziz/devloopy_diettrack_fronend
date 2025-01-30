@@ -1,10 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
+import 'package:ui/core/api/api_service.dart';
+import 'package:ui/core/api/generic_response.dart';
+import 'package:ui/helper/font_size_responsive.dart';
+import 'package:ui/model/service/service_create.dart';
 import 'package:ui/model/service/service_list.dart';
+import 'package:ui/model/service_item/service_item_create.dart';
+
+import '../../../services/service_plan_item/service_plan_item._implmentation.dart';
 
 class ServiceDashBoard extends StatefulWidget {
   const ServiceDashBoard({super.key});
@@ -29,24 +37,29 @@ class DashBoardBady extends StatefulWidget {
 
 class _DashBoardBadyState extends State<DashBoardBady> {
   final List<ServiceList> _rows = [];
+  ServicePlanItemImplmentation servicePlanItemImplmentation =
+      ServicePlanItemImplmentation();
 
   @override
   void initState() {
     super.initState();
-    _loadServicesFromSharedPref();
+    _loadServicesFromApi();
   }
 
-  Future<void> _loadServicesFromSharedPref() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? serviceJson = prefs.getString('services');
-    if (serviceJson != null) {
-      final List<dynamic> serviceList = jsonDecode(serviceJson);
-      setState(() {
-        _rows.clear();
-        for (var serviceMap in serviceList) {
-          _rows.add(ServiceList.fromJson(serviceMap));
-        }
-      });
+  Future<void> _loadServicesFromApi() async {
+    try {
+      final response = await servicePlanItemImplmentation.getBaseServiceItem();
+
+      if (response.status == ResponseStatus.success) {
+        setState(() {
+          _rows.clear();
+          _rows.addAll(response.obj);
+        });
+      } else {
+        log("Failed to fetch services: ${response.message}");
+      }
+    } catch (e) {
+      log("Error fetching services: $e");
     }
   }
 
@@ -67,7 +80,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     final descriptionController = TextEditingController();
     final descriptionArController = TextEditingController();
 
-    // If editing, populate controllers with current values
     if (index != null) {
       final row = _rows[index];
       nameController.text = row.name;
@@ -87,7 +99,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
           title: Text(index == null ? 'Add New Service' : 'Edit Service'),
           content: SingleChildScrollView(
             child: SizedBox(
-              width: 450,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -153,17 +164,39 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       setState(() {
         try {
           if (index == null) {
-            // Adding new service
-            _rows.add(ServiceList(
+            // Create a new ServiceCreate object
+            ServiceCreate newService = ServiceCreate(
               name: result['name']!,
               nameAr: result['nameAr']!,
               price: double.tryParse(result['price']!) ?? 0.0,
               validFor: result['validFor']!,
-              isBestValue: result['isBestValue']!.toLowerCase() == 'true',
-              discount: int.tryParse(result['discount']!) ?? 0,
               description: result['description']!,
               descriptionAr: result['descriptionAr']!,
-            ));
+              isBestValue: result['isBestValue']!.toLowerCase() == 'true',
+              items: [], // Add items if needed
+            );
+
+            // Call the createServiceItem method
+            servicePlanItemImplmentation
+                .createServiceItem(newService)
+                .then((response) {
+              if (response.status == ResponseStatus.success) {
+                // Add the new service to the list
+                _rows.add(ServiceList(
+                  name: newService.name,
+                  nameAr: newService.nameAr,
+                  price: newService.price,
+                  validFor: newService.validFor,
+                  isBestValue: newService.isBestValue,
+                  discount: int.tryParse(result['discount']!) ?? 0,
+                  description: newService.description,
+                  descriptionAr: newService.descriptionAr,
+                ));
+                _saveServicesToSharedPref(); // Save to shared preferences
+              } else {
+                log("Failed to create service: ${response.message}");
+              }
+            });
           } else {
             // Editing existing service
             _rows[index]
@@ -175,8 +208,8 @@ class _DashBoardBadyState extends State<DashBoardBady> {
               ..discount = int.tryParse(result['discount']!) ?? 0
               ..description = result['description']!
               ..descriptionAr = result['descriptionAr']!;
+            _saveServicesToSharedPref(); // Save to shared preferences
           }
-          _saveServicesToSharedPref(); // Save to shared preferences
         } catch (e) {
           // Handle any parsing errors
           log("Error: $e");
@@ -226,54 +259,79 @@ class _DashBoardBadyState extends State<DashBoardBady> {
             text: 'Add Service',
             colortxt: ColorsApp.MainColorbackgraund,
           ),
+          const SizedBox(height: 20),
           Expanded(
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: DataTable(
-                columns: const [
-                  DataColumn(label: Text("Name")),
-                  DataColumn(label: Text("Name Ar")),
-                  DataColumn(label: Text("Price")),
-                  DataColumn(label: Text("Valid For")),
-                  DataColumn(label: Text("Is Best Value")),
-                  DataColumn(label: Text("Discount")),
-                  DataColumn(label: Text("Description")),
-                  DataColumn(label: Text("Description Ar")),
-                  DataColumn(label: Text("Actions")),
-                ],
-                rows: _rows.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final row = entry.value;
+              scrollDirection: Axis.horizontal, // Add horizontal scrolling
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: DataTable(
+                  headingTextStyle: TextStyle(color: Colors.white),
+                  headingRowColor: WidgetStateProperty.all(ColorsApp.TextColor),
+                  columns: const [
+                    DataColumn(label: Text("Name")),
+                    DataColumn(label: Text("Name Ar")),
+                    DataColumn(label: Text("Price")),
+                    DataColumn(label: Text("Valid For")),
+                    DataColumn(label: Text("Is Best Value")),
+                    DataColumn(label: Text("Description")),
+                    DataColumn(label: Text("Description Ar")),
+                    DataColumn(label: Text("Actions")),
+                  ],
+                  rows: _rows.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final row = entry.value;
 
-                  return DataRow(cells: [
-                    DataCell(Text(row.name)),
-                    DataCell(Text(row.nameAr)),
-                    DataCell(Text(row.price.toString())),
-                    DataCell(Text(row.validFor)),
-                    DataCell(Text(row.isBestValue.toString())),
-                    DataCell(Text(row.discount.toString())),
-                    DataCell(Text(row.description.toString())),
-                    DataCell(Text(row.descriptionAr.toString())),
-                    DataCell(
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CustomButton(
-                            onPressed: () => openForm(index: index),
-                            text: 'Edit',
-                            colortxt: ColorsApp.MainColorbackgraund,
+                    return DataRow(cells: [
+                      DataCell(SizedBox(width: 70, child: Text(row.name))),
+                      DataCell(SizedBox(width: 70, child: Text(row.nameAr))),
+                      DataCell(SizedBox(
+                          width: 30, child: Text(row.price.toString()))),
+                      DataCell(SizedBox(width: 70, child: Text(row.validFor))),
+                      DataCell(SizedBox(
+                          width: 30, child: Text(row.isBestValue.toString()))),
+                      DataCell(SizedBox(
+                        width: 100,
+                        child: Text(
+                          row.description.toString(),
+                          style: TextStyle(
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 9)),
+                        ),
+                      )),
+                      DataCell(SizedBox(
+                        width: 100,
+                        child: Text(
+                          row.descriptionAr.toString(),
+                          style: TextStyle(
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 9)),
+                        ),
+                      )),
+                      DataCell(
+                        SizedBox(
+                          width: 200,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomButton(
+                                onPressed: () => openForm(index: index),
+                                text: 'Edit',
+                                colortxt: ColorsApp.MainColorbackgraund,
+                              ),
+                              const SizedBox(width: 8),
+                              CustomButton(
+                                onPressed: () => _deleteRow(index),
+                                text: 'Delete',
+                                colortxt: ColorsApp.MainColorbackgraund,
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          CustomButton(
-                            onPressed: () => _deleteRow(index),
-                            text: 'Delete',
-                            colortxt: ColorsApp.MainColorbackgraund,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ]);
-                }).toList(),
+                    ]);
+                  }).toList(),
+                ),
               ),
             ),
           ),

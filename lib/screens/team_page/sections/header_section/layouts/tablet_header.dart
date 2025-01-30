@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/screens/team_page/sections/header_section/widget/team_page_description.dart';
 import 'package:ui/screens/team_page/sections/header_section/widget/team_page_title.dart';
 

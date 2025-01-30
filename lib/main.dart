@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TestimonialService testimonialService = TestimonialService();
     ApiService apiService = ApiService();
     LoginService loginService = LoginService(apiService);
     SingUpServiceImp singUpService = SingUpServiceImp(apiService);
@@ -41,9 +42,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TestimonilsCubit()),
         BlocProvider(create: (context) => BlogCubit()),
         BlocProvider(create: (context) => TeamCubit()),
+        // BlocProvider(
+        //     create: (_) => DashboardTestimonialCubit(TestimonialService())),
       ],
       child: ScreenUtilInit(
-        //designSize: const Size(1596, 1500),
+        //designSize: const Size(1596, 1500),a
         minTextAdapt: true,
         splitScreenMode: true,
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/last_card_model.dart';
 import 'package:ui/screens/about/sections/last_card/widget/custom_card_desktop.dart';

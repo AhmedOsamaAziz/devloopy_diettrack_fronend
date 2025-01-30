@@ -1,36 +1,57 @@
+import 'dart:convert';
+
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
 import 'package:ui/core/api/generic_response.dart';
+import 'package:ui/model/service/service_create.dart';
+import 'package:ui/model/service/service_list.dart';
 import 'package:ui/model/service_item/service_item_base.dart';
 import 'package:ui/model/service_item/service_item_details.dart';
 import 'package:ui/model/service_item/service_item_update.dart';
-import 'package:ui/services/service_plan_item/service_plan_item.dart';
 
-class ServicePlanItemImplmentation implements ServicePlanItem {
-  @override
-  Future<GenericResponse> createServiceItem() async {
+class ServicePlanItemImplmentation {
+  Future<GenericResponse> createServiceItem(ServiceCreate serviceCreate) async {
     try {
       var apiService = ApiService();
-      final response = await apiService.makeRequest(
-        ApiMethod.get,
-        EndPoints.service,
-      );
-      List<ServiceItemBase> serviceItemBase = (response.obj);
-      // .map((serviceItemBaseJson) => ServiceItemBase.fromJson(serviceItemBaseJson))
-      // .toList();
 
-      return GenericResponse(
-        code: 200,
-        obj: serviceItemBase,
-        status: ResponseStatus.success,
+      final requestBody = jsonEncode(serviceCreate.toJson());
+
+      // Make the POST request
+      final response = await apiService.makeRequest(
+        ApiMethod.post, // Use POST method
+        EndPoints.service, // Replace with your actual endpoint
+        data: requestBody, // Pass the request body
       );
+
+      // Handle the response
+      if (response.status == ResponseStatus.success) {
+        // Parse the response if needed
+        List<ServiceItemBase> serviceItemBase = (response.obj)
+            .map((serviceItemBaseJson) =>
+                ServiceItemBase.fromJson(serviceItemBaseJson))
+            .toList();
+
+        return GenericResponse(
+          code: 200,
+          obj: serviceItemBase,
+          status: ResponseStatus.success,
+        );
+      } else {
+        return GenericResponse(
+          code: response.code,
+          status: ResponseStatus.fail,
+          message: response.message,
+        );
+      }
     } on Exception catch (e) {
       return GenericResponse(
-          code: 500, status: ResponseStatus.fail, message: e.toString());
+        code: 500,
+        status: ResponseStatus.fail,
+        message: e.toString(),
+      );
     }
   }
 
-  @override
   Future<GenericResponse> detailsServiceItem() async {
     try {
       var apiService = ApiService();
@@ -53,30 +74,41 @@ class ServicePlanItemImplmentation implements ServicePlanItem {
     }
   }
 
-  @override
   Future<GenericResponse> getBaseServiceItem() async {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.get,
-        EndPoints.service,
+        ApiMethod.get, // Ensure this matches the type of request (GET)
+        EndPoints.service, // Your API endpoint for services
       );
-      List<ServiceItemBase> serviceItemBase = (response.obj);
-      // .map((serviceItemBaseJson) => ServiceItemBase.fromJson(serviceItemBaseJson))
-      // .toList();
 
+      if (response.status == ResponseStatus.success) {
+        // Convert the response to your model
+        List<ServiceList> services = (response.obj as List)
+            .map((serviceJson) => ServiceList.fromJson(serviceJson))
+            .toList();
+
+        return GenericResponse(
+          code: 200,
+          obj: services,
+          status: ResponseStatus.success,
+        );
+      } else {
+        return GenericResponse(
+          code: response.code,
+          status: ResponseStatus.fail,
+          message: response.message,
+        );
+      }
+    } catch (e) {
       return GenericResponse(
-        code: 200,
-        obj: serviceItemBase,
-        status: ResponseStatus.success,
+        code: 500,
+        status: ResponseStatus.fail,
+        message: e.toString(),
       );
-    } on Exception catch (e) {
-      return GenericResponse(
-          code: 500, status: ResponseStatus.fail, message: e.toString());
     }
   }
 
-  @override
   Future<GenericResponse> updateServiceItem() async {
     try {
       var apiService = ApiService();
