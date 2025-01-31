@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/screens/about/sections/welcome_section/widget/welcome_custom_header.dart';
 
 class MoblieWelcomeSection extends StatelessWidget {

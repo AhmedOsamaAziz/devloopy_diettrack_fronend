@@ -1,64 +1,66 @@
-// import 'dart:convert';
-// import 'dart:developer';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:bloc/bloc.dart';
 // import 'package:ui/core/api/generic_response.dart';
 // import 'package:ui/model/testimonials/testimonial_create.dart';
 // import 'package:ui/model/testimonials/testimonial_list.dart';
 // import 'package:ui/model/testimonials/testimonial_update.dart';
 // import 'package:ui/services/testimonial_service/testimonial_service.dart';
 
-// class TestimonialCubit extends Cubit<TestimonialState> {
-//   final TestimonialService _testimonialService = TestimonialService();
+// import 'dashborad_tesmimonial_state.dart';
 
-//   TestimonialCubit() : super(TestimonialInitial());
+// class DashboardTestimonialCubit extends Cubit<TestimonialDashboardState> {
+//   final TestimonialService _testimonialService;
+
+//   DashboardTestimonialCubit(this._testimonialService)
+//       : super(TestimonialInitial());
 
 //   Future<void> loadTestimonials() async {
 //     emit(TestimonialLoading());
 //     try {
-//       // Load from SharedPreferences
-//       final prefs = await SharedPreferences.getInstance();
-//       final String? testimonialJson = prefs.getString('testimonials');
-//       List<TestimonialList> testimonials = [];
-//       if (testimonialJson != null) {
-//         final List<dynamic> testimonialList = jsonDecode(testimonialJson);
-//         testimonials = testimonialList
-//             .map((testimonial) => TestimonialList.fromJson(testimonial))
-//             .toList();
-//       }
+//       print("Loading testimonials...");
+//       final response =
+//           await _testimonialService.getAllTestimonial(limit: 10, page: 1);
 
-//       // Fetch from API
-//       final response = await _testimonialService.getAllTestimonial(
-//           limit: const int.fromEnvironment('limit'), page: 1);
+//       print("Response status: ${response.status}");
+//       print(
+//           "Response object: ${response.obj.map((e) => e.toString()).join(', ')}");
+
 //       if (response.status == ResponseStatus.success) {
-//         testimonials = response.obj;
-//         _saveTestimonialsToSharedPref(testimonials);
-//       } else {
-//         // Fallback to SharedPreferences data if API call fails
-//         if (testimonials.isNotEmpty) {
-//           emit(TestimonialLoaded(testimonials));
-//           return;
+//         if (response.obj != null && response.obj.isNotEmpty) {
+//           print("Testimonials loaded: ${response.obj}");
+//           emit(TestimonialLoaded(response.obj));
+//         } else {
+//           print("No testimonials found.");
+//           emit(TestimonialError("No testimonials available"));
 //         }
+//       } else {
+//         print("Error: ${response.message}");
 //         emit(TestimonialError(
-//             'Failed to load testimonials: ${response.message}',
-//             testimonials: testimonials));
-//         return;
+//             response.message ?? "Failed to load testimonials"));
 //       }
-
-//       emit(TestimonialLoaded(testimonials));
 //     } catch (e) {
-//       emit(TestimonialError(
-//           'Network error: Please check your internet connection.',
-//           testimonials: state.testimonials));
+//       print("Error loading testimonials: $e");
+//       emit(TestimonialError("Error loading testimonials"));
 //     }
 //   }
 
-//   Future<void> addOrUpdateTestimonial(TestimonialList testimonial,
-//       {int? index}) async {
-//     emit(TestimonialLoading());
+//   Future<void> addTestimonial(TestimonialList testimonial) async {
 //     try {
-//       final testimonialUpdate = TestimonialUpdate(
-//         id: testimonial.id,
+//       final response = await _testimonialService
+//           .createTestimonial(testimonial as TestimonialCreate);
+//       if (response.status == ResponseStatus.success) {
+//         emit(TestimonialAdded(response.obj));
+//       } else {
+//         emit(TestimonialError("Failed to add testimonial"));
+//       }
+//     } catch (e) {
+//       emit(TestimonialError("Error adding testimonial"));
+//     }
+//   }
+
+//   Future<void> updateTestimonial(TestimonialList testimonial) async {
+//     try {
+//       TestimonialUpdate testimonialUpdate = TestimonialUpdate(
+//         id: testimonial.id.toString(),
 //         title: testimonial.title,
 //         description: testimonial.description,
 //         videoUrl: testimonial.videoUrl,
@@ -66,91 +68,28 @@
 
 //       final response =
 //           await _testimonialService.updateTestimonial(testimonialUpdate);
-//       if (response.status == ResponseStatus.success) {
-//         final List<TestimonialList> updatedTestimonials =
-//             List.from(state.testimonials);
-//         if (index != null) {
-//           updatedTestimonials[index] = testimonial;
-//         } else {
-//           updatedTestimonials.add(testimonial);
-//         }
-//         _saveTestimonialsToSharedPref(updatedTestimonials);
-//         emit(TestimonialLoaded(updatedTestimonials));
-//       } else {
-//         emit(TestimonialError(
-//             'Failed to update testimonial: ${response.message}',
-//             testimonials: state.testimonials));
-//       }
-//     } catch (e) {
-//       emit(TestimonialError(
-//           'Network error: Please check your internet connection.',
-//           testimonials: state.testimonials));
-//     }
-//   }
-
-//   Future<void> deleteTestimonial(int index) async {
-//     emit(TestimonialLoading());
-//     try {
-//       final testimonial = state.testimonials[index];
-//       final response = await _testimonialService.deleteTestimonial(
-//         TestimonialCreate(
-//           id: testimonial.id,
-//           title: testimonial.title,
-//           description: testimonial.description,
-//           videoUrl: testimonial.videoUrl,
-//         ),
-//       );
 
 //       if (response.status == ResponseStatus.success) {
-//         final List<TestimonialList> updatedTestimonials =
-//             List.from(state.testimonials);
-//         updatedTestimonials.removeAt(index);
-//         _saveTestimonialsToSharedPref(updatedTestimonials);
-//         emit(TestimonialLoaded(updatedTestimonials));
+//         emit(TestimonialUpdated(response.obj));
 //       } else {
-//         emit(TestimonialError(
-//             'Failed to delete testimonial: ${response.message}',
-//             testimonials: state.testimonials));
+//         emit(TestimonialError("Failed to update testimonial"));
 //       }
 //     } catch (e) {
-//       emit(TestimonialError(
-//           'Network error: Please check your internet connection.',
-//           testimonials: state.testimonials));
+//       emit(TestimonialError("Error updating testimonial"));
 //     }
 //   }
 
-//   Future<void> _saveTestimonialsToSharedPref(
-//       List<TestimonialList> testimonials) async {
+//   Future<void> deleteTestimonial(String testimonialId) async {
 //     try {
-//       final prefs = await SharedPreferences.getInstance();
-//       final List<Map<String, dynamic>> testimonialList =
-//           testimonials.map((testimonial) => testimonial.toJson()).toList();
-//       await prefs.setString('testimonials', jsonEncode(testimonialList));
+//       final response = await _testimonialService
+//           .deleteTestimonial(testimonialId as TestimonialCreate?);
+//       if (response.status == ResponseStatus.success) {
+//         emit(TestimonialDeleted(testimonialId));
+//       } else {
+//         emit(TestimonialError("Failed to delete testimonial"));
+//       }
 //     } catch (e) {
-//       log('Failed to save testimonials to SharedPreferences: $e');
+//       emit(TestimonialError("Error deleting testimonial"));
 //     }
 //   }
-// }
-
-// abstract class TestimonialState {
-//   List<TestimonialList> get testimonials => [];
-// }
-
-// class TestimonialInitial extends TestimonialState {}
-
-// class TestimonialLoading extends TestimonialState {}
-
-// class TestimonialLoaded extends TestimonialState {
-//   @override
-//   final List<TestimonialList> testimonials;
-
-//   TestimonialLoaded(this.testimonials);
-// }
-
-// class TestimonialError extends TestimonialState {
-//   final String message;
-//   @override
-//   final List<TestimonialList> testimonials;
-
-//   TestimonialError(this.message, {this.testimonials = const []});
 // }

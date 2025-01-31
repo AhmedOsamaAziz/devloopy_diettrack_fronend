@@ -14,7 +14,7 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
 
   List<TestimonialBase> allTestimonials = [];
   int currentPage = 0;
-  final int itemsPerPage = 25;
+  final int itemsPerPage=100 ;
 
   Future<void> getAllTestimonial() async {
     emit(TestimonilsLoading());
@@ -91,13 +91,13 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
     }
   }
 
-  Future<void> updateTestimonial(TestimonialUpdate testimonial) async {
+  Future<void> updateTestimonial(TestimonialUpdate testimonialUpdate) async {
     emit(TestimonilsLoading()); // Emit loading state
     try {
       TestimonialService testimonialsService = TestimonialService();
 
-   
-      var response = await testimonialsService.updateTestimonial(testimonial);
+      var response =
+          await testimonialsService.updateTestimonial(testimonialUpdate);
 
       if (response.status == ResponseStatus.success) {
         emit(TestimonilsSuccess(testimonials: allTestimonials));

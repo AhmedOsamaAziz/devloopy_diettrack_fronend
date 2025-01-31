@@ -1,4 +1,4 @@
-import 'package:ui/core/enums.dart';
+import 'package:ui/constants/enums.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/model/blog_group/blog_group.dart';
 

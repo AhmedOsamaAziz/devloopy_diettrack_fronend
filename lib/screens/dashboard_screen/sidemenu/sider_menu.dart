@@ -8,6 +8,7 @@ import 'package:ui/screens/admin/constants/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/pricing_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
@@ -186,7 +187,8 @@ class SiderMenu extends StatelessWidget {
                         MenuTile(
                           isSubmenu: true,
                           title: "Plan & Pricing",
-                          onPressed: () {},
+                          onPressed: () =>
+                              onPageSelected(const PricingDashboard()),
                         ),
                       ],
                     ),

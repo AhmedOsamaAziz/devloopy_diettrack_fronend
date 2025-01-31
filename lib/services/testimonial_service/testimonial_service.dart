@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -7,23 +8,31 @@ import 'package:ui/model/testimonials/testimonial_list.dart';
 import 'package:ui/model/testimonials/testimonial_update.dart';
 
 class TestimonialService {
+  
+
   Future<GenericResponse> createTestimonial(
       TestimonialCreate testimonial) async {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.post,
-        EndPoints.testimonil,
+        EndPoints.testimonial,
         data: testimonial.toJson(),
         headers: {'Content-Type': 'application/json'},
       );
-      List<TestimonialList> testimonialList = (response.obj)
-          .map((testimonialtJson) => TestimonialList.fromJson(testimonialtJson))
-          .toList();
+
+      // تحقق من نوع الاستجابة
+      TestimonialList testimonialList;
+      if (response.obj is Map<String, dynamic>) {
+        testimonialList = TestimonialList.fromJson(response.obj);
+      } else {
+        throw Exception(
+            "Unexpected response.obj type: ${response.obj.runtimeType}");
+      }
 
       return GenericResponse(
         code: response.code,
-        obj: testimonialList,
+        obj: testimonialList, //   أن obj أصبح عنصرًا فرديًا
         status: ResponseStatus.success,
         message: response.message,
       );
@@ -41,7 +50,7 @@ class TestimonialService {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        EndPoints.testimonil,
+        EndPoints.testimonial,
       );
 
       List<TestimonialDetail> testimonialsDetail = (response.obj)
@@ -68,7 +77,7 @@ class TestimonialService {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.get,
-        '${EndPoints.testimonil}?page=$page&limit=$limit',
+        '${EndPoints.testimonial}?page=$page&limit=$limit',
       );
 
       List<TestimonialList> testimonialList = (response.obj as List)
@@ -87,24 +96,38 @@ class TestimonialService {
   }
 
   Future<GenericResponse> updateTestimonial(
-      TestimonialUpdate testimonial) async {
+      TestimonialUpdate testimonialUpdate) async {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.put,
-        EndPoints.testimonil,
-        data: testimonial.toJson(),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        ApiMethod.put,  
+        EndPoints.testimonial,
+        data: testimonialUpdate.toJson(),
+        headers: {'Content-Type': 'application/json'},
       );
+      TestimonialList updatedTestimonial =
+          TestimonialList.fromJson(response.obj);
 
+      if (response.code == 200) {
+        return GenericResponse(
+          code: response.code,
+          obj: updatedTestimonial,
+          
+          status: ResponseStatus.success,
+          message: response.message,
+        );
+      } else {
+        throw Exception("Failed with status code: ${response.code}");
+      }
+    } on DioException catch (e) {
+      // Handle Dio errors
       return GenericResponse(
-        code: response.code,
-        status: ResponseStatus.success,
-        message: response.message,
+        code: e.response?.statusCode ?? 500,
+        status: ResponseStatus.fail,
+        message: e.message ?? 'Unknown Dio error',
       );
-    } on Exception catch (e) {
+    } catch (e) {
+      // Handle other errors
       return GenericResponse(
         code: 500,
         status: ResponseStatus.fail,
@@ -118,8 +141,8 @@ class TestimonialService {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.get, // Use DELETE for deletions
-        EndPoints.testimonil,
+        ApiMethod.delete,
+        EndPoints.testimonial,
         data: testimonialCreate?.toJson(),
         headers: {
           'Content-Type': 'application/json',

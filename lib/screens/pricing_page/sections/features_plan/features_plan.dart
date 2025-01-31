@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/core/assets.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/pricing_page/sections/features_plan/widget/custom_free_plan.dart';
 import 'package:ui/screens/pricing_page/sections/features_plan/widget/pricing_feature.dart';

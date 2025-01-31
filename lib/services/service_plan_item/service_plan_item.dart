@@ -1,8 +1,8 @@
 import 'package:ui/core/api/generic_response.dart';
 
-abstract class ServicePlanItem {
-  Future<GenericResponse> getBaseServiceItem();
-  Future<GenericResponse> createServiceItem();
-  Future<GenericResponse> detailsServiceItem();
-  Future<GenericResponse> updateServiceItem();
+abstract class ServicePalnItem {
+  // Future<GenericResponse> getAllService();
+  Future<GenericResponse> createService();
+  Future<GenericResponse> getListService();
+  Future<GenericResponse> getdetailService();
 }

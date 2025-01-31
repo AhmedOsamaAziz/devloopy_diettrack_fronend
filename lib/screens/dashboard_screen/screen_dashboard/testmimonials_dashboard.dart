@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -61,8 +62,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         });
       }
 
-      // Fetch testimonials from the API (you need to implement this in your service)
-      final response = await _testimonialService.getAllTestimonial(
+       final response = await _testimonialService.getAllTestimonial(
           limit: const int.fromEnvironment('limit'), page: 1);
       if (response.status == ResponseStatus.success) {
         setState(() {
@@ -89,38 +89,22 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     prefs.setString('testimonials', jsonEncode(testimonialList));
   }
 
-  void openForm({int? index}) async {
-    final idController = TextEditingController();
+  void addTestimonial() async {
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
     final videoUrlController = TextEditingController();
 
-    // Populate the form if editing
-    if (index != null) {
-      final row = _rows[index];
-      idController.text = row.id.toString();
-      titleController.text = row.title;
-      descriptionController.text = row.description;
-      videoUrlController.text = row.videoUrl;
-    }
-
-    // Show dialog to get user input
     final result = await showDialog<Map<String, String>>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:
-              Text(index == null ? 'Add New Testimonial' : 'Edit Testimonial'),
+          title: const Text('Add New Testimonial'),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 450,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(
-                    controller: idController,
-                    decoration: const InputDecoration(labelText: 'ID'),
-                  ),
                   TextField(
                     controller: titleController,
                     decoration: const InputDecoration(labelText: 'Title'),
@@ -145,7 +129,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop({
-                  'id': idController.text,
                   'title': titleController.text,
                   'description': descriptionController.text,
                   'videoUrl': videoUrlController.text,
@@ -158,7 +141,95 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       },
     );
 
-    // Handle the result from the dialog
+    if (result != null) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        final testimonialCreate = TestimonialCreate(
+          title: result['title']!,
+          description: result['description']!,
+          videoUrl: result['videoUrl']!,
+        );
+
+        print('Sending payload: ${testimonialCreate.toJson()}');
+
+         final response =
+            await _testimonialService.createTestimonial(testimonialCreate);
+
+        if (response.status == ResponseStatus.success) {
+          setState(() {
+             _rows.add(response.obj);
+          });
+          _saveTestimonialsToSharedPref();
+        } else {
+          log('Failed to add testimonial: ${response.message}');
+        }
+      } catch (e) {
+        if (e is DioException) {
+          log('Dio Error: ${e.message}');
+        } else {
+          log('Error: $e');
+        }
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  void editTestimonial(int index) async {
+    final row = _rows[index];
+    final titleController = TextEditingController(text: row.title);
+    final descriptionController = TextEditingController(text: row.description);
+    final videoUrlController = TextEditingController(text: row.videoUrl);
+
+    final result = await showDialog<Map<String, String>>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Edit Testimonial'),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              width: 450,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(labelText: 'Title')),
+                  TextField(
+                      controller: descriptionController,
+                      decoration:
+                          const InputDecoration(labelText: 'Description')),
+                  TextField(
+                      controller: videoUrlController,
+                      decoration:
+                          const InputDecoration(labelText: 'Video URL')),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(null),
+                child: const Text('Cancel')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop({
+                    'title': titleController.text,
+                    'description': descriptionController.text,
+                    'videoUrl': videoUrlController.text,
+                  });
+                },
+                child: const Text('Save')),
+          ],
+        );
+      },
+    );
+
     if (result != null) {
       setState(() {
         _isLoading = true;
@@ -166,9 +237,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
 
       try {
         final testimonialUpdate = TestimonialUpdate(
-          id: index != null
-              ? _rows[index].id
-              : null, // Use existing ID if editing
+          id: row.id.toString(),
           title: result['title']!,
           description: result['description']!,
           videoUrl: result['videoUrl']!,
@@ -177,26 +246,18 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final response =
             await _testimonialService.updateTestimonial(testimonialUpdate);
         if (response.status == ResponseStatus.success) {
+
           setState(() {
-            if (index != null) {
-              // Update the existing row
-              _rows[index] =
-                  TestimonialList.fromJson(testimonialUpdate.toJson());
-            } else {
-              // Add a new testimonial (not specified in your example, so optional)
-              _rows.add(TestimonialList.fromJson(testimonialUpdate.toJson()));
-            }
+            _rows[index] = response.obj as TestimonialList;
           });
           _saveTestimonialsToSharedPref();
         } else {
-          log('Failed to update testimonial: ${response.message}');
+          log('Update failed: ${response.message}');
         }
       } catch (e) {
         log('Error: $e');
       } finally {
-        setState(() {
-          _isLoading = false;
-        });
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -231,7 +292,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final testimonial = _rows[index];
         final response = await _testimonialService.deleteTestimonial(
           TestimonialCreate(
-            id: testimonial.id,
             title: testimonial.title,
             description: testimonial.description,
             videoUrl: testimonial.videoUrl,
@@ -264,7 +324,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
           CustomButton(
               colortxt: ColorsApp.MainColorbackgraund,
               text: "Add Testimonial",
-              onPressed: () => openForm()),
+              onPressed: () => addTestimonial()),
           const SizedBox(height: 20),
           Expanded(
             child: _isLoading
@@ -296,7 +356,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 CustomButton(
-                                  onPressed: () => openForm(index: index),
+                                  onPressed: () => editTestimonial(index),
                                   text: 'Edit',
                                   colortxt: ColorsApp.MainColorbackgraund,
                                 ),
@@ -319,3 +379,126 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:ui/constants/custom_button.dart';
+// import 'package:ui/cubits/testimonils/dashboard_cubit/dashborad_tesmimonial_cubit.dart';
+// import 'package:ui/cubits/testimonils/dashboard_cubit/dashborad_tesmimonial_state.dart';
+// import 'package:ui/model/testimonials/testimonial_create.dart';
+// import 'package:ui/model/testimonials/testimonial_list.dart';
+// import 'package:ui/services/testimonial_service/testimonial_service.dart';
+
+// class TestimonialsDashBoard extends StatefulWidget {
+//   const TestimonialsDashBoard({super.key});
+
+//   @override
+//   _TestimonialsDashBoardState createState() => _TestimonialsDashBoardState();
+// }
+
+// class _TestimonialsDashBoardState extends State<TestimonialsDashBoard> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Call loadTestimonials when the widget is initialized
+//     context.read<DashboardTestimonialCubit>().loadTestimonials();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Testimonials Dashboard"),
+//       ),
+//       body: BlocBuilder<DashboardTestimonialCubit, TestimonialDashboardState>(
+//         builder: (context, state) {
+//           if (state is TestimonialLoading) {
+//             return const Center(child: CircularProgressIndicator());
+//           } else if (state is TestimonialLoaded) {
+//             if (state.testimonials.isEmpty) {
+//               return const Center(child: Text("No testimonials available"));
+//             }
+//             return DashBoardBady(testimonials: state.testimonials);
+//           } else if (state is TestimonialError) {
+//             return Center(child: Text(state.message));
+//           } else {
+//             return const Center(child: Text("No data"));
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// class DashBoardBady extends StatelessWidget {
+//   final List<TestimonialList> testimonials;
+
+//   const DashBoardBady({super.key, required this.testimonials});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.all(25),
+//       child: Column(
+//         children: [
+//           CustomButton(
+//             text: "Add Testimonial",
+//             onPressed: () async {
+//               await context
+//                   .read<DashboardTestimonialCubit>()
+//                   .addTestimonial(testimonials as TestimonialList);
+//             },
+//           ),
+//           const SizedBox(height: 20),
+//           Expanded(
+//             child: SingleChildScrollView(
+//               scrollDirection: Axis.vertical,
+//               child: DataTable(
+//                 columns: const [
+//                   DataColumn(label: Text("Id")),
+//                   DataColumn(label: Text("Title")),
+//                   DataColumn(label: Text("Description")),
+//                   DataColumn(label: Text("Video URL")),
+//                   DataColumn(label: Text("Actions")),
+//                 ],
+//                 rows: testimonials.map((testimonial) {
+//                   return DataRow(cells: [
+//                     DataCell(Text(testimonial.id.toString())),
+//                     DataCell(Text(testimonial.title)),
+//                     DataCell(SizedBox(
+//                         width: 70, child: Text(testimonial.description))),
+//                     DataCell(SizedBox(
+//                         width: 350, child: Text(testimonial.videoUrl))),
+//                     DataCell(
+//                       Row(
+//                         children: [
+//                           CustomButton(
+//                             text: 'Edit',
+//                             onPressed: () {
+//                               context
+//                                   .read<DashboardTestimonialCubit>()
+//                                   .updateTestimonial(testimonial);
+//                             },
+//                           ),
+//                           const SizedBox(width: 8),
+//                           CustomButton(
+//                             text: 'Delete',
+//                             onPressed: () {
+//                               context
+//                                   .read<DashboardTestimonialCubit>()
+//                                   .deleteTestimonial(testimonial.id.toString());
+//                             },
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ]);
+//                 }).toList(),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

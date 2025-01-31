@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
+import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_custom_card.dart';
 import 'package:ui/widgets/custom_text.dart';
 
@@ -28,52 +29,77 @@ class _TestimonialsListCustomCardState
           if (state is TestimonilsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TestimonilsSuccess) {
-            final testimonials = state.testimonials;
+            final List<TestimonialBase> testimonials = state.testimonials;
 
             if (testimonials.isEmpty) {
               return const Center(child: Text('No testimonials available.'));
             }
 
+            final totalPages = (testimonials.length / itemsPerPage).ceil();
             final startIndex = currentPage * itemsPerPage;
             final endIndex =
                 (startIndex + itemsPerPage).clamp(0, testimonials.length);
-            final currentItems = testimonials.sublist(startIndex, endIndex);
 
-            final totalPages = (testimonials.length / itemsPerPage).ceil();
+             final List<TestimonialBase> currentItems =
+                (startIndex < testimonials.length)
+                    ? testimonials.sublist(startIndex, endIndex)
+                    : [];
+
+            debugPrint("Total Testimonials: ${testimonials.length}");
+            debugPrint("Current Items Length: ${currentItems.length}");
+            debugPrint("Start Index: $startIndex, End Index: $endIndex");
+
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
-                  maxHeight: 500, // تحديد ارتفاع العمود
+                  maxHeight: 500,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 1500,
-                      height: 450, // تأكد من أن الحجم يتناسب مع المساحة
-                      child: ListView.builder(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: ScreenSize.isLarge ? 100 : 20,
+                    if (currentItems.isNotEmpty)
+                      SizedBox(
+                        width: 1500,
+                        height: 450,
+                        child: ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: ScreenSize.isLarge ? 100 : 20,
+                          ),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: currentItems.length,
+                          itemBuilder: (context, index) {
+                            if (index >= currentItems.length) {
+                              debugPrint(
+                                  "Error: index $index is out of bounds");
+                              return const SizedBox.shrink();
+                            }
+
+                            try {
+                              return TestimonialsCustomCard(
+                                testimonial: currentItems[index],
+                              );
+                            } catch (e) {
+                              debugPrint(
+                                  "Error rendering testimonial at index $index: $e");
+                              return const Center(
+                                  child: Text("Error loading testimonial"));
+                            }
+                          },
                         ),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: currentItems.length,
-                        itemBuilder: (context, index) {
-                          final testimonial = currentItems[index];
-                          return TestimonialsCustomCard(
-                              testimonial: testimonial);
-                        },
-                      ),
-                    ),
+                      )
+                    else
+                      const Center(child: Text('No testimonials available.')),
                     _customCountPagination(totalPages),
                   ],
                 ),
               ),
             );
           } else if (state is TestimonilFailur) {
+            debugPrint(state.errMessage);
             return Center(
               child: Text('Failed to load testimonials: ${state.errMessage}'),
             );
@@ -87,15 +113,16 @@ class _TestimonialsListCustomCardState
 
   Row _customCountPagination(int totalPages) {
     return Row(
-      spacing: 16,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: currentPage > 0
               ? () {
-                  setState(() {
-                    currentPage--;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      currentPage--;
+                    });
+                  }
                 }
               : null,
           child: Card(
@@ -118,9 +145,11 @@ class _TestimonialsListCustomCardState
         GestureDetector(
           onTap: currentPage < totalPages - 1
               ? () {
-                  setState(() {
-                    currentPage++;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      currentPage++;
+                    });
+                  }
                 }
               : null,
           child: Card(

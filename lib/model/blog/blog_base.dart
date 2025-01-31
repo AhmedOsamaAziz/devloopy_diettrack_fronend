@@ -1,4 +1,4 @@
-import 'package:ui/core/enums.dart';
+import 'package:ui/constants/enums.dart';
 
 abstract class BlogBase {
   String title;

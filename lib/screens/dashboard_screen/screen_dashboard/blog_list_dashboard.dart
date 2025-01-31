@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
-import 'package:ui/core/enums.dart';
+import 'package:ui/constants/enums.dart';
 import 'package:ui/model/blog/blog_create.dart';
 import 'package:ui/screens/admin/dashboard/function/function_helper.dart';
 
