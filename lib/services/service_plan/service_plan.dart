@@ -1,8 +1,9 @@
 import 'package:ui/core/api/generic_response.dart';
+import 'package:ui/model/service/service_create.dart';
 
-abstract class ServicePaln {
-  Future<GenericResponse> getAllService();
-  Future<GenericResponse> createService();
-  Future<GenericResponse> getListService();
-  Future<GenericResponse> getdetailService();
+abstract class ServicePlan {
+  Future<GenericResponse> getBaseServiceItem();
+  Future<GenericResponse> createServiceItem(ServiceCreate serviceCreate);
+  Future<GenericResponse> detailsServiceItem();
+  Future<GenericResponse> updateServiceItem();
 }

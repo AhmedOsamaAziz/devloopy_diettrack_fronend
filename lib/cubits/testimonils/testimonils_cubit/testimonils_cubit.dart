@@ -14,7 +14,7 @@ class TestimonilsCubit extends Cubit<TestimonilsState> {
 
   List<TestimonialBase> allTestimonials = [];
   int currentPage = 0;
-  final int itemsPerPage = 25;
+  final int itemsPerPage=100 ;
 
   Future<void> getAllTestimonial() async {
     emit(TestimonilsLoading());

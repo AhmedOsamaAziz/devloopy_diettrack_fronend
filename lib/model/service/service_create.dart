@@ -18,8 +18,7 @@ class ServiceCreate extends ServiceBase {
     super.discount,
   });
 
-  // Convert the object to JSON
-  Map<String, dynamic> toJson() {
+   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,

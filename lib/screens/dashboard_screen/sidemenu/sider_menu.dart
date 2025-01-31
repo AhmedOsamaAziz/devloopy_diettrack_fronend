@@ -7,8 +7,11 @@ import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/pricing_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
 
 import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
 import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
@@ -84,18 +87,18 @@ class SiderMenu extends StatelessWidget {
                       ),
                       children: [
                         //! Home
-                        // MenuTile(
-                        //   isSubmenu: true,
-                        //   title: "Our Blogs",
-                        //   onPressed: () =>
-                        //       onPageSelected(const BlogListDashBoard()),
-                        // ),
-                        // MenuTile(
-                        //   isSubmenu: true,
-                        //   title: "Our Testimonials",
-                        //   onPressed: () =>
-                        //       onPageSelected(const TestimonialsDashBoard()),
-                        // ),
+                        MenuTile(
+                          isSubmenu: true,
+                          title: "Our Blogs",
+                          onPressed: () =>
+                              onPageSelected(const BlogListDashBoard()),
+                        ),
+                        MenuTile(
+                          isSubmenu: true,
+                          title: "Our Testimonials",
+                          onPressed: () =>
+                              onPageSelected(const TestimonialsDashBoard()),
+                        ),
                         MenuTile(
                           isSubmenu: true,
                           title: " Our Pricing",
@@ -184,7 +187,8 @@ class SiderMenu extends StatelessWidget {
                         MenuTile(
                           isSubmenu: true,
                           title: "Plan & Pricing",
-                          onPressed: () {},
+                          onPressed: () =>
+                              onPageSelected(const PricingDashboard()),
                         ),
                       ],
                     ),

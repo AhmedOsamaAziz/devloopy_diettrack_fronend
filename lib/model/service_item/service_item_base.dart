@@ -13,7 +13,6 @@ class ServiceItemBase {
       descriptionAr: json['descriptionAr'],
     );
   }
-  // Add toJson method
   Map<String, dynamic> toJson() {
     return {
       'description': description,
