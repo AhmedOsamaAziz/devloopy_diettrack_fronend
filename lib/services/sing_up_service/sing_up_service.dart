@@ -1,4 +1,4 @@
-import 'package:ui/model/sing_up_model/sing_up.dart';
+import 'package:ui/model/auth/sing_up_model/sing_up.dart';
 
 abstract class SingUpService {
   Future<SingUpModel>? singUp({

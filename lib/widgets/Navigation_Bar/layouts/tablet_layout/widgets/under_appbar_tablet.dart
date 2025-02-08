@@ -9,6 +9,7 @@ import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
+import 'package:ui/screens/dashboard_screen/main_dashboard.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
@@ -151,7 +152,7 @@ class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
             break;
           case 'dashboard':
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const EntryPoint()),
+              MaterialPageRoute(builder: (context) => MainDashboard()),
             );
             break;
         }
