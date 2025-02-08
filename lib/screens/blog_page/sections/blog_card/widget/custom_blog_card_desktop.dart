@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
-import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
+import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/widgets/custom_text.dart';
 

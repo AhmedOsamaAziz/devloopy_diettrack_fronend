@@ -1,1 +1,1 @@
-enum BlogType { article, video }
+enum BlogType { article, video, blog }

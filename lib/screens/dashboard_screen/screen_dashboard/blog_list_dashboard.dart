@@ -48,7 +48,7 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
-            descriptionAr: result['description']!,
+            descriptionAr: result['descriptionAr']!,
             blogType: BlogType.values.firstWhere(
               (e) => e.toString() == result['blogType'],
               orElse: () => BlogType.article,
@@ -62,7 +62,7 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
-            descriptionAr: result['description']!,
+            descriptionAr: result['descriptionAr']!,
             blogType: BlogType.values.firstWhere(
               (e) => e.toString() == result['blogType'],
               orElse: () => BlogType.article,
