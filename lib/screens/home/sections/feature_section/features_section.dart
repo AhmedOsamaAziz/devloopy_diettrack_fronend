@@ -10,6 +10,8 @@ class FeatureSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
+
     return ScreenSize.isLarge
         ? const FeatureSdctionDesktop()
         : ScreenSize.isMedium

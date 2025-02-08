@@ -10,6 +10,8 @@ class OurBlogTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,7 +27,7 @@ class OurBlogTablet extends StatelessWidget {
                   ],
                 )),
             const SizedBox(height: 30),
-            const SizedBox(height: 850, child: OurBlogListCustomCard())
+            SizedBox(height: height * 1.1, child: const OurBlogListCustomCard())
           ],
         ),
       ),

@@ -15,10 +15,11 @@ class _FeatureListCustomCardState extends State<FeatureListCustomCard> {
   @override
   Widget build(BuildContext context) {
     final List listCard = CardFeatures.cardFeature;
+    double height = MediaQuery.of(context).size.height;
 
     return ScreenSize.isLarge || ScreenSize.isMedium
         ? SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: height,
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               itemCount: listCard.length,
@@ -37,9 +38,10 @@ class _FeatureListCustomCardState extends State<FeatureListCustomCard> {
             ),
           )
         : SizedBox(
-            height: 1050,
+            height: height * 1.7,
             width: 360,
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 8),
               itemCount: listCard.length,
               scrollDirection: Axis.vertical,

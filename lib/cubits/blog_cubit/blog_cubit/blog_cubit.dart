@@ -56,15 +56,6 @@ class BlogCubit extends Cubit<BlogState> {
     } catch (e) {
       emit(BlogFailure(errMessage: "An Error Occurred While loading data. $e"));
     }
-
-    // final response = await _apiService.makeRequest(
-    //   ApiMethod.get,
-    //   EndPoints.blog_recent,
-    // );
-
-    // final List<BlogList> blogs = (response.obj['items'] as List)
-    //     .map((blogJson) => BlogList.fromJson(blogJson))
-    //     .toList();
   }
 
   Future<void> createBlogs() async {
@@ -118,7 +109,7 @@ class BlogCubit extends Cubit<BlogState> {
 
     try {
       var blogService = BlogService();
-      var response = blogService.deleteBlogs(blogList, blogId);
+      var response = await blogService.deleteBlogs(blogList, blogId);
 
       if (response.status == ResponseStatus.success) {
         final List<BlogList> blogDelete = response.obj;

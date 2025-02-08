@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -21,7 +22,10 @@ class BlogService {
           .toList();
 
       return GenericResponse(
-          status: ResponseStatus.success, obj: blogs, code: 200);
+        code: 200,
+        obj: blogs,
+        status: ResponseStatus.success,
+      );
     } on Exception catch (e) {
       return GenericResponse(
         status: ResponseStatus.fail,
@@ -35,7 +39,7 @@ class BlogService {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.get,
+        ApiMethod.post,
         EndPoints.blog,
       );
 
@@ -56,7 +60,7 @@ class BlogService {
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
-        ApiMethod.get,
+        ApiMethod.put,
         EndPoints.blog,
       );
 
@@ -96,34 +100,44 @@ class BlogService {
     }
   }
 
-  GenericResponse deleteBlogs(List<BlogList> blogList, int blogId) {
+  Future<GenericResponse> deleteBlogs(
+      List<BlogList> blogList, int blogId) async {
     try {
-      blogList.removeWhere((blog) => blog.id == blogId);
-
-      return GenericResponse(
-        status: ResponseStatus.success,
-        message: "Blog deleted successfully",
-        obj: blogList,
-        code: 200,
+      var apiService = ApiService();
+      final response = await apiService.makeRequest(
+        ApiMethod.delete,
+        '${EndPoints.blog}/$blogId', // إرسال طلب حذف باستخدام blogId
       );
-    } catch (e) {
-      // Returning failure response
+
+      if (response.status == ResponseStatus.success) {
+        // حذف المدونة من القائمة المحلية
+        blogList.removeWhere((blog) => blog.id == blogId);
+
+        return GenericResponse(
+          status: ResponseStatus.success,
+          obj: blogList, //     المحدثة
+          code: 200,
+        );
+      } else {
+        return GenericResponse(
+          status: ResponseStatus.fail,
+          message: response.message ?? 'Failed to delete blog',
+          code: response.code,
+        );
+      }
+    } on DioException catch (e) {
       return GenericResponse(
         status: ResponseStatus.fail,
-        message: "Failed to delete blog: $e",
-        obj: null,
+        message: 'Network error: ${e.message}',
+        code: 500,
+      );
+    } on Exception catch (e) {
+      // معالجة أخطاء عامة
+      return GenericResponse(
+        status: ResponseStatus.fail,
+        message: 'An error occurred: $e',
         code: 500,
       );
     }
   }
 }
-
-// import 'package:ui/core/api/generic_response.dart';
-// import 'package:ui/model/blog/blog_list.dart';
-// abstract class BlogService {
-//   Future<GenericResponse> getBlogList();
-//   Future<GenericResponse> getRecentBlogs();
-//   Future<GenericResponse> createNewBlogs();
-//   Future<GenericResponse> updatBlogs();
-//   Future<GenericResponse> deleteBlogs(List<BlogList> blogList, int blogId);
-// }

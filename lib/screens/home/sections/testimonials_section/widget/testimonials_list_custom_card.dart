@@ -40,23 +40,17 @@ class _TestimonialsListCustomCardState
             final endIndex =
                 (startIndex + itemsPerPage).clamp(0, testimonials.length);
 
-             final List<TestimonialBase> currentItems =
+            final List<TestimonialBase> currentItems =
                 (startIndex < testimonials.length)
                     ? testimonials.sublist(startIndex, endIndex)
                     : [];
-
-            debugPrint("Total Testimonials: ${testimonials.length}");
-            debugPrint("Current Items Length: ${currentItems.length}");
-            debugPrint("Start Index: $startIndex, End Index: $endIndex");
 
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 500,
-                ),
+                constraints: const BoxConstraints(maxHeight: 500),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -73,8 +67,6 @@ class _TestimonialsListCustomCardState
                           itemCount: currentItems.length,
                           itemBuilder: (context, index) {
                             if (index >= currentItems.length) {
-                              debugPrint(
-                                  "Error: index $index is out of bounds");
                               return const SizedBox.shrink();
                             }
 
@@ -83,8 +75,6 @@ class _TestimonialsListCustomCardState
                                 testimonial: currentItems[index],
                               );
                             } catch (e) {
-                              debugPrint(
-                                  "Error rendering testimonial at index $index: $e");
                               return const Center(
                                   child: Text("Error loading testimonial"));
                             }
@@ -99,7 +89,6 @@ class _TestimonialsListCustomCardState
               ),
             );
           } else if (state is TestimonilFailur) {
-            debugPrint(state.errMessage);
             return Center(
               child: Text('Failed to load testimonials: ${state.errMessage}'),
             );

@@ -14,7 +14,7 @@ class CustomBlogCardMobile extends StatelessWidget {
   });
 
   // final BlogCard blogCard;
-  final BlogList blogList; // Make nullable
+  final BlogList blogList;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class CustomBlogCardMobile extends StatelessWidget {
             width: 170,
             child: Divider(
               thickness: 2,
-              color: ColorsApp.SecondaryColor,
-            ),
+              color: ColorsApp.SecondaryColor
+            )
           ),
           const SizedBox(height: 20),
           Align(

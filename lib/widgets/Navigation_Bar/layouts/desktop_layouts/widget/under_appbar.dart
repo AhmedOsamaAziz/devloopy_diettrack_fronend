@@ -6,17 +6,16 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
+import 'package:ui/screens/dashboard_screen/main_dashboard.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/widgets/custom_text.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-
 
 class UnderUppBar extends StatefulWidget {
   const UnderUppBar({
@@ -177,7 +176,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
             break;
           case 'dashboard':
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const EntryPoint()),
+              MaterialPageRoute(builder: (context) => const MainDashboard()),
             );
             break;
         }

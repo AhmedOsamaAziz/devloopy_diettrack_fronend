@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui/cubits/blog_cubit/blog_cubit.dart';
+import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
 import 'package:ui/screens/blog_page/sections/read_me/read_me_view.dart';
 import 'package:ui/screens/home/sections/our_blog_section/widget/our_blog_custom_card.dart';
 
@@ -19,6 +19,7 @@ class CustomGridView extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: state.blogs.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
