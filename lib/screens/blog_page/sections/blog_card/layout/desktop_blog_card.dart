@@ -17,11 +17,11 @@ class DesktopBlogCard extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return SizedBox(
-            height: 600,
+            height: MediaQuery.of(context).size.height * 2,
             width: 1590,
             child: GridView.builder(
               itemCount: state.blogs.length,
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 30),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

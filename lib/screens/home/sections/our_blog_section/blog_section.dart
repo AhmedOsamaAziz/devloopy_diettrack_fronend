@@ -9,6 +9,7 @@ class OurBlogsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
     return ScreenSize.isLarge
         ? const OurBlogDesktop()
         : ScreenSize.isMedium

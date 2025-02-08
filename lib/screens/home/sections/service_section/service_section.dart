@@ -10,6 +10,7 @@ class ServiceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: ScreenSize.isLarge ? 150 : 0,
@@ -26,7 +27,7 @@ class ServiceSection extends StatelessWidget {
             DiscountButton(),
             SizedBox(height: 15)
           ]),
-          SizedBox(height: 400, child: ListPriceCard()),
+          SizedBox(height: 1000, child: ListPriceCard()),
         ],
       ),
     );

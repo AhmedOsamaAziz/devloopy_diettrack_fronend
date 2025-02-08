@@ -51,32 +51,24 @@ class ListPriceCard extends StatelessWidget {
                       },
                     ),
                   )
-                : SingleChildScrollView(
-                    child: Center(
-                      child: SizedBox(
-                        height: 890,
-                        child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            childAspectRatio: 0.75,
-                          ),
-                          itemCount: services.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: ServiceCardMobile(
-                                service: services[index],
-                                isSelected: index == 1,
-                              ),
-                            );
-                          },
-                        ),
+                : Center(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 4,
+                      width: 360,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemExtent: 320,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: services.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: ServiceCardMobile(
+                              service: services[index],
+                              isSelected: index == 1,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

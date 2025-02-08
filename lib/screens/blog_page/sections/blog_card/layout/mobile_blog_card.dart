@@ -17,8 +17,9 @@ class MobileBlogCard extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
+            height: MediaQuery.of(context).size.height * 2.95,
             child: CustomScrollView(
+              physics: const NeverScrollableScrollPhysics(),
               slivers: [
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
