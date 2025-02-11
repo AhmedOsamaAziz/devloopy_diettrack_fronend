@@ -58,21 +58,15 @@ class BlogCubit extends Cubit<BlogState> {
     }
   }
 
-  Future<void> createBlogs() async {
+  Future<void> createBlogs(BlogCreate newBlog) async {
     emit(BlogLoading());
 
     try {
       var blogService = BlogService();
-      var response = await blogService.createNewBlogs();
+      var response = await blogService.createNewBlogs(newBlog);
 
       if (response.status == ResponseStatus.success) {
-        final List<BlogCreate> blogCreate = response.obj;
-
-        if (blogCreate.isEmpty) {
-          emit(BlogNoData());
-        } else {
-          emit(BlogSuccess(blogCreate.cast<BlogList>()));
-        }
+         await allBlogs();
       } else {
         emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));
       }
@@ -81,28 +75,44 @@ class BlogCubit extends Cubit<BlogState> {
     }
   }
 
-  Future<void> updateBlogs() async {
+  // Future<void> createBlogs(BlogCreate newBlog) async {
+  //   emit(BlogLoading());
+  //   try {
+  //     var blogService = BlogService();
+  //     var response = await blogService.createNewBlogs(newBlog);
+  //     if (response.status == ResponseStatus.success) {
+  //       final List<BlogCreate> blogCreate = response.obj;
+  //       if (blogCreate.isEmpty) {
+  //         emit(BlogNoData());
+  //       } else {
+  //         emit(BlogSuccess(blogCreate.cast<BlogList>()));
+  //       }
+  //     } else {
+  //       emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));
+  //     }
+  //   } catch (e) {
+  //     emit(BlogFailure(errMessage: "An Error Occurred While loading data. $e"));
+  //   }
+  // }
+Future<void> updateBlogs(BlogUpdate updatedBlog) async {
     emit(BlogLoading());
 
     try {
       var blogService = BlogService();
-      var response = await blogService.updatBlogs();
+      var response = await blogService.updateBlog(updatedBlog);
 
       if (response.status == ResponseStatus.success) {
-        final List<BlogUpdate> blogUpdate = response.obj;
-
-        if (blogUpdate.isEmpty) {
-          emit(BlogNoData());
-        } else {
-          emit(BlogSuccess(blogUpdate.cast<BlogList>()));
-        }
+      await allBlogs();
+         // emit(BlogSuccess(updatedList));
       } else {
         emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));
       }
     } catch (e) {
-      emit(BlogFailure(errMessage: "An Error Occurred While loading data. $e"));
+      emit(
+          BlogFailure(errMessage: "An Error Occurred While updating data. $e"));
     }
   }
+
 
   Future<void> deleteBlogs(List<BlogList> blogList, int blogId) async {
     emit(BlogLoading());

@@ -42,9 +42,8 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
     if (result != null) {
       setState(() {
         if (index == null) {
-          final String id = DateTime.now().millisecondsSinceEpoch.toString();
+          // إضافة سجل جديد
           _rows.add(BlogCreate(
-            id: id,
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
@@ -55,10 +54,13 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
+            groupId: 1, // يمكنك استخدام القيمة الافتراضية المطلوبة
+            authorId:
+                "0d26019d-54c8-4b3d-a67d-84623b466f3c", // أو القيمة المناسبة
           ));
         } else {
+          // تحديث السجل الموجود
           _rows[index] = BlogCreate(
-            id: _rows[index].id,
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
@@ -69,6 +71,8 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
+            groupId: 1, // القيمة الافتراضية
+            authorId: "0d26019d-54c8-4b3d-a67d-84623b466f3c",
           );
         }
         _saveBlogs();
@@ -115,7 +119,8 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
                   final row = entry.value;
 
                   return DataRow(cells: [
-                    DataCell(Text(row.id)),
+                    // نستخدم الفهرس + 1 كمعرف
+                    DataCell(Text("${index + 1}")),
                     DataCell(Text(row.title)),
                     DataCell(Text(row.titleAr)),
                     DataCell(Text(row.description)),

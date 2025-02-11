@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/auth/signup_page/sing_up.dart';
+
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
@@ -18,13 +19,28 @@ class CustomFormLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is LoginSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: ColorsApp.MAINCOLOR,
-              content: Text('Login successful')));
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );
+          // final prefs = await SharedPreferences.getInstance();
+          // final String? accessToken = prefs.getString("access_token");
+
+          // if (accessToken != null && accessToken.isNotEmpty) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     const SnackBar(
+          //       backgroundColor: ColorsApp.MAINCOLOR,
+          //       content: Text('Login successful'),
+          //     ),
+          //   );
+
+          // } else {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     const SnackBar(content: Text('Invalid login response')),
+          //   );
+          // }
         } else if (state is LoginError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),

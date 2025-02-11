@@ -37,10 +37,19 @@ class ApiService {
           message: response.statusMessage);
     } on DioException catch (e) {
       log('Dio exception: ${e.message}');
+      if (e.response != null) {
+        log('Status Code: ${e.response!.statusCode}');
+        log('Response Data: ${e.response!.data}');
+      }
       throw 'Network error: ${e.message}';
-    } catch (e) {
-      log('Unexpected error: $e');
-      throw 'Unexpected error: $e';
     }
+
+    // on DioException catch (e) {
+    //   log('Dio exception: ${e.message}');
+    //   throw 'Network error: ${e.message}';
+    // } catch (e) {
+    //   log('Unexpected error: $e');
+    //   throw 'Unexpected error: $e';
+    // }
   }
 }

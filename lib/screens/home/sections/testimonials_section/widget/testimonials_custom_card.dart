@@ -24,17 +24,19 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
     final videoId =
         YoutubePlayerController.convertUrlToId(widget.testimonial.videoUrl);
 
-    if (videoId != null) {
-      _youtubeController = YoutubePlayerController(
-        initialVideoId: videoId,
-        params: const YoutubePlayerParams(
-          autoPlay: false,
-          mute: false,
-          showControls: true,
-          loop: false,
-        ),
-      );
+    if (videoId == null) {
+      throw Exception('Invalid YouTube URL');
     }
+
+    _youtubeController = YoutubePlayerController(
+      initialVideoId: videoId,
+      params: const YoutubePlayerParams(
+        autoPlay: false,
+        mute: false,
+        showControls: true,
+        loop: false,
+      ),
+    );
   }
 
   @override
@@ -49,31 +51,36 @@ class _TestimonialsCustomCardState extends State<TestimonialsCustomCard> {
       padding: const EdgeInsets.only(right: 14),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
       child: Column(
+        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(Assets.imagesIconComment, height: 40, width: 40),
+          Image.asset(
+            Assets.imagesIconComment,
+            height: 40,
+            width: 40,
+          ),
           CustomText(
-              text: widget.testimonial.title,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: ColorsApp.TextColor),
+            text: widget.testimonial.title,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: ColorsApp.TextColor,
+          ),
           CustomText(
-              text: widget.testimonial.description,
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: ColorsApp.TextColor),
+            text: widget.testimonial.description,
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: ColorsApp.TextColor,
+          ),
           const SizedBox(height: 10),
-          if (_youtubeController.initialVideoId.isNotEmpty)
-            Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(18)),
-              height: 300,
-              width: 300,
-              child: YoutubePlayerIFrame(
-                  controller: _youtubeController, aspectRatio: 16 / 9),
-            )
-          else
-            const Center(child: Text("Invalid YouTube URL")),
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
+            height: 300,
+            width: 300,
+            child: YoutubePlayerIFrame(
+              controller: _youtubeController,
+              aspectRatio: 16 / 9,
+            ),
+          ),
         ],
       ),
     );
