@@ -5,7 +5,6 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/admin/dashboard/entry_point.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
@@ -152,7 +151,7 @@ class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
             break;
           case 'dashboard':
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => MainDashboard()),
+              MaterialPageRoute(builder: (context) => const MainDashboard()),
             );
             break;
         }

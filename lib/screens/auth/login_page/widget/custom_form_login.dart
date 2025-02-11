@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/auth/signup_page/sing_up.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
@@ -22,25 +21,26 @@ class CustomFormLogin extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
-          final prefs = await SharedPreferences.getInstance();
-          final String? accessToken = prefs.getString("access_token");
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );
+          // final prefs = await SharedPreferences.getInstance();
+          // final String? accessToken = prefs.getString("access_token");
 
-          if (accessToken != null && accessToken.isNotEmpty) {
-            ScaffoldMessenger.of(context.mounted as BuildContext).showSnackBar(
-              const SnackBar(
-                backgroundColor: ColorsApp.MAINCOLOR,
-                content: Text('Login successful'),
-              ),
-            );
-            Navigator.pushReplacement(
-              context.mounted as BuildContext,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          } else {
-            ScaffoldMessenger.of(context.mounted as BuildContext).showSnackBar(
-              const SnackBar(content: Text('Invalid login response')),
-            );
-          }
+          // if (accessToken != null && accessToken.isNotEmpty) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     const SnackBar(
+          //       backgroundColor: ColorsApp.MAINCOLOR,
+          //       content: Text('Login successful'),
+          //     ),
+          //   );
+
+          // } else {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     const SnackBar(content: Text('Invalid login response')),
+          //   );
+          // }
         } else if (state is LoginError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),

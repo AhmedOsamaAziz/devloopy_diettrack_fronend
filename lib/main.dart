@@ -44,13 +44,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TestimonilsCubit()),
         BlocProvider(create: (context) => BlogCubit()),
         BlocProvider(create: (context) => TeamCubit()),
-        BlocProvider(create: (context) => BlogDashboardCubit(BlogService())),
+        // BlocProvider(create: (context) => BlogDashboardCubit(BlogService())),
 
         // BlocProvider(
         //     create: (_) => DashboardTestimonialCubit(TestimonialService())),
       ],
       child: ScreenUtilInit(
-        //designSize: const Size(1596, 1500),a
+        //designSize: const Size(1596, 1500),
         minTextAdapt: true,
         splitScreenMode: true,
 

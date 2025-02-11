@@ -31,7 +31,7 @@ class BlogHelper {
     BlogCreate? blog,
   }) async {
     // Initialize controllers
-    final idController = TextEditingController(text: blog?.id);
+
     final titleController = TextEditingController(text: blog?.title);
     final titleArController = TextEditingController(text: blog?.titleAr);
     final descriptionController =
@@ -83,8 +83,6 @@ class BlogHelper {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop({
-                  'id': idController.text,
-                  'title': titleController.text,
                   'titleAr': titleArController.text,
                   'description': descriptionController.text,
                   'blogType': blogTypeController.text,

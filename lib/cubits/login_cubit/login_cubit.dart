@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/core/api/generic_response.dart';
-import 'package:ui/model/auth/login_model/auth_model.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'login_state.dart';
@@ -25,23 +24,14 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       if (response.status == ResponseStatus.success) {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('isLoggedIn', true);
+   
 
-        if (response.obj is Map<String, dynamic>) {
-          final authData = AuthModel.fromJson(response.obj);
-
-          await prefs.setString("access_token", authData.accessToken);
-          await prefs.setString("refresh_token", authData.refreshToken);
-        }
-
-        bool firstLogin = prefs.getBool('firstLogin') ?? true;
-        if (firstLogin) {
-          await prefs.setBool('firstLogin', false);
-        }
-
-        _clearFields();
+ 
         emit(LoginSuccess());
+        
+
+        // _clearFields();
+        // emit(LoginSuccess());
       } else {
         emit(LoginError(response.message ?? "Login failed"));
       }

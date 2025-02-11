@@ -4,7 +4,6 @@ import 'package:ui/constants/assets.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/widgets/custom_text.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'dart:ui_web' as ui_web;
 
 class TestimonialsCustomCard extends StatefulWidget {
   final TestimonialBase testimonial;
