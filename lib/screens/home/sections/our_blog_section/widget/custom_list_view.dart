@@ -9,14 +9,12 @@ class CustomListView extends StatelessWidget {
   const CustomListView({super.key});
   @override
   Widget build(BuildContext context) {
-
     context.read<BlogCubit>().allBlogs();
     return BlocBuilder<BlogCubit, BlogState>(builder: (context, state) {
       if (state is BlogLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is BlogSuccess) {
         return SizedBox(
-        
           child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.blogs.length,

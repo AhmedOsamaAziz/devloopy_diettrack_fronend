@@ -42,6 +42,7 @@ class OurBlogCustomCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: CachedNetworkImage(
+                    fit: BoxFit.cover,
                     imageUrl: blogList.imageUrl ??
                         Image.asset(Assets.imagesAbout2).toString(),
                     placeholder: (context, url) =>

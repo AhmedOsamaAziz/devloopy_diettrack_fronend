@@ -75,12 +75,18 @@ class BlogService {
   }
 
   Future<GenericResponse> updateBlog(BlogUpdate updatedBlog) async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString("access_token");
     try {
       var apiService = ApiService();
       final response = await apiService.makeRequest(
         ApiMethod.put,
         EndPoints.blog,
-        data: updatedBlog.toJson(), // إرسال بيانات التحديث
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        data: updatedBlog.toJson(),
       );
 
       BlogUpdate blogUpdated = BlogUpdate.fromJson(response.obj);

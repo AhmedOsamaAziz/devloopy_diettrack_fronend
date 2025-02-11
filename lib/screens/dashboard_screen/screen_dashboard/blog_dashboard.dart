@@ -431,12 +431,16 @@ class _BlogDashboardState extends State<BlogDashboard> {
                 if (response.status == ResponseStatus.success) {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Blog added successfully!')),
+                    SnackBar(
+                        backgroundColor: Colors.green[700],
+                        content: const Text('Blog added successfully!')),
                   );
                   await _fetchBlogs(); // تحديث القائمة من الخادم.
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error: ${response.message}')),
+                    SnackBar(
+                        backgroundColor: Colors.red[600],
+                        content: Text('Error: ${response.message}')),
                   );
                   log(response.message.toString());
                 }
@@ -448,15 +452,14 @@ class _BlogDashboardState extends State<BlogDashboard> {
     );
   }
 
-  Future<void> _openEditForm( ) async {
-    final IDController = TextEditingController();
-    final titleController = TextEditingController();
-    final titleArController = TextEditingController( );
-    final descriptionController = TextEditingController(  );
+  Future<void> _openEditForm(BlogList blog) async {
+    final titleController = TextEditingController(text: blog.title);
+    final titleArController = TextEditingController(text: blog.titleAr);
+    final descriptionController = TextEditingController(text: blog.description);
     final subDescriptionController =
-        TextEditingController();
-    final imageUrlController = TextEditingController( );
-    final videoUrlController = TextEditingController();
+        TextEditingController(text: blog.descriptionAr);
+    final imageUrlController = TextEditingController(text: blog.imageUrl ?? '');
+    final videoUrlController = TextEditingController(text: blog.videoUrl ?? '');
 
     showDialog(
       context: context,
@@ -467,8 +470,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // تم حذف حقل Author من نموذج التعديل
-                TextField(
+                 TextField(
                   controller: titleController,
                   decoration: const InputDecoration(labelText: 'Title'),
                 ),
@@ -504,33 +506,31 @@ class _BlogDashboardState extends State<BlogDashboard> {
             TextButton(
               child: const Text('Save'),
               onPressed: () async {
-                // إنشاء نسخة جديدة من الكائن مع التعديلات
-                final editedBlog = BlogUpdate(
-                  id: IDController.text as int,
+                  final editedBlog = BlogUpdate(
+                  id: blog.id,
+                  groupId: blog.group.id, 
                   title: titleController.text,
                   titleAr: titleArController.text,
                   description: descriptionController.text,
                   descriptionAr: subDescriptionController.text,
-                  blogType: BlogType.blog,
+                  blogType: blog.blogType,          
                   imageUrl: imageUrlController.text,
                   videoUrl: videoUrlController.text,
                 );
-                final response = await blogService.updateBlog(editedBlog);
+
+                 final response = await blogService.updateBlog(editedBlog);
                 if (response.status == ResponseStatus.success) {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(); 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Blog updated successfully!')),
                   );
-                  await _fetchBlogs(); // تحديث القائمة من الخادم.
+                  await _fetchBlogs();            
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Error: ${response.message}')),
                   );
                   log(response.message.toString());
                 }
-
-                Navigator.of(context).pop();
-                // يمكنك هنا استدعاء خدمة التحديث على الخادم إذا لزم الأمر.
               },
             ),
           ],
@@ -593,7 +593,6 @@ class _BlogDashboardState extends State<BlogDashboard> {
                       sortAscending: true,
                       dividerThickness: 2,
                       showBottomBorder: true,
-                      // حذف الأعمدة غير المراد عرضها (Group ID, Author)
                       columns: const [
                         DataColumn(label: Text("Title")),
                         DataColumn(label: Text("TitleAr")),
@@ -623,7 +622,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
                                   text: 'Edit',
                                   colortxt: ColorsApp.MainColorbackgraund,
                                   onPressed: () =>
-                                      _openEditForm(),
+                                      _openEditForm(blog ),
                                 ),
                                 const SizedBox(width: 8),
                                 CustomButton(

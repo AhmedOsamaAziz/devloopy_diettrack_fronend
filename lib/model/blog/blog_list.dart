@@ -3,8 +3,7 @@ import 'package:ui/model/blog/blog_base.dart';
 import 'package:ui/model/blog_group/blog_group.dart';
 
 class BlogList extends BlogBase {
-
-  
+    int id;
   BlogGroup group;
   String? author;
 
@@ -16,11 +15,13 @@ class BlogList extends BlogBase {
       required super.blogType,
       super.imageUrl,
       super.videoUrl,
+      required this.id,
       required this.group,
       this.author});
 
   factory BlogList.fromJson(Map<String, dynamic> json) {
     return BlogList(
+        id: json['id'] ?? 0,
         title: json['title'] as String,
         titleAr: json['titleAr'] as String,
         description: json['description'] as String,
@@ -32,6 +33,7 @@ class BlogList extends BlogBase {
         author: json['author'] as String?);
   }
   Map<String, dynamic> toJson() => {
+        'id': id,
         'title': title,
         'titleAr': titleAr,
         'description': description,

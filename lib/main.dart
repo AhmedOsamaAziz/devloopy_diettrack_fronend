@@ -5,14 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
-import 'package:ui/cubits/blog_cubit/blog_dashboard_cubit/blog_dashboard.cubit.dart';
 import 'package:ui/cubits/dashboard/team_cubit/team_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/sing_up_cubit/singup_cubit.dart';
 import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/screens/home/home_page.dart';
-import 'package:ui/services/blog_service/blog_service.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
 import 'package:ui/services/sing_up_service/sing_up_service_implmentation.dart';
 
@@ -31,7 +29,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TestimonialService testimonialService = TestimonialService();
     ApiService apiService = ApiService();
     LoginService loginService = LoginService(apiService);
     SingUpServiceImp singUpService = SingUpServiceImp(apiService);
@@ -44,10 +41,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TestimonilsCubit()),
         BlocProvider(create: (context) => BlogCubit()),
         BlocProvider(create: (context) => TeamCubit()),
-        // BlocProvider(create: (context) => BlogDashboardCubit(BlogService())),
-
-        // BlocProvider(
-        //     create: (_) => DashboardTestimonialCubit(TestimonialService())),
       ],
       child: ScreenUtilInit(
         //designSize: const Size(1596, 1500),
