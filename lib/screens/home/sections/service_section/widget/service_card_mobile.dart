@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/service/service_list.dart';
@@ -24,7 +23,6 @@ class ServiceCardMobile extends StatelessWidget {
           elevation: 10,
           child: Container(
             width: double.infinity,
-            height: constraints.maxHeight,
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: isSelected ? ColorsApp.MAINCOLOR : ColorsApp.OUTLINECOLOR,
@@ -37,49 +35,43 @@ class ServiceCardMobile extends StatelessWidget {
                       location: BannerLocation.topEnd,
                       message: 'The Best',
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: CustomText(
-                              text: service.name,
-                              fontSize:
-                                  getResponsiveFontSize(context, fontSize: 16),
-                              color: isSelected
-                                  ? Colors.white
-                                  : ColorsApp.TextColorFeatures,
-                            ),
+                          CustomText(
+                            text: service.name,
+                            fontSize:
+                                getResponsiveFontSize(context, fontSize: 16),
+                            color: isSelected
+                                ? Colors.white
+                                : ColorsApp.TextColorFeatures,
                           ),
                           const SizedBox(height: 10),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: RichText(
-                              
-                              textAlign: TextAlign.left,
-                              text: TextSpan(
-                                text: service.description.split(';').first,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: getResponsiveFontSize(context,
-                                      fontSize: 20),
-                                  color: isSelected
-                                      ? Colors.white
-                                      : ColorsApp.TextColorFeatures,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        '\n${service.description.split(';').last}', // النص الثاني
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getResponsiveFontSize(context,
-                                          fontSize: 20),
-                                      color: isSelected
-                                          ? Colors.white
-                                          : ColorsApp.TextColorFeatures,
-                                    ),
-                                  ),
-                                ],
+                          RichText(
+                            textAlign: TextAlign.left,
+                            text: TextSpan(
+                              text: service.description.split(';').first,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: getResponsiveFontSize(context,
+                                    fontSize: 20),
+                                color: isSelected
+                                    ? Colors.white
+                                    : ColorsApp.TextColorFeatures,
                               ),
+                              children: [
+                                TextSpan(
+                                  text:
+                                      '\n${service.description.split(';').last}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: getResponsiveFontSize(context,
+                                        fontSize: 20),
+                                    color: isSelected
+                                        ? Colors.white
+                                        : ColorsApp.TextColorFeatures,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -105,54 +97,48 @@ class ServiceCardMobile extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 80.h),
                           const ChooseButton(),
                         ],
                       ),
                     )
                   : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: CustomText(
-                            text: service.name,
-                            fontSize:
-                                getResponsiveFontSize(context, fontSize: 16),
-                            color: isSelected
-                                ? Colors.white
-                                : ColorsApp.TextColorFeatures,
-                          ),
+                        CustomText(
+                          text: service.name,
+                          fontSize:
+                              getResponsiveFontSize(context, fontSize: 16),
+                          color: isSelected
+                              ? Colors.white
+                              : ColorsApp.TextColorFeatures,
                         ),
                         const SizedBox(height: 10),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: RichText(
-                            textAlign: TextAlign.left,
-                            text: TextSpan(
-                              text: service.description.split(';').first,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: getResponsiveFontSize(context,
-                                    fontSize: 20),
-                                color: isSelected
-                                    ? Colors.white
-                                    : ColorsApp.TextColorFeatures,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text:
-                                      '\n${service.description.split(';').last}', // النص الثاني
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: getResponsiveFontSize(context,
-                                        fontSize: 20),
-                                    color: isSelected
-                                        ? Colors.white
-                                        : ColorsApp.TextColorFeatures,
-                                  ),
-                                ),
-                              ],
+                        RichText(
+                          textAlign: TextAlign.left,
+                          text: TextSpan(
+                            text: service.description.split(';').first,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 20),
+                              color: isSelected
+                                  ? Colors.white
+                                  : ColorsApp.TextColorFeatures,
                             ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    '\n${service.description.split(';').last}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: getResponsiveFontSize(context,
+                                      fontSize: 20),
+                                  color: isSelected
+                                      ? Colors.white
+                                      : ColorsApp.TextColorFeatures,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -178,7 +164,6 @@ class ServiceCardMobile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 80.h),
                         const ChooseButton(),
                       ],
                     ),
