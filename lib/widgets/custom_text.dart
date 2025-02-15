@@ -6,6 +6,8 @@ class CustomText extends StatelessWidget {
   final String text;
   String? fontFamily;
   final Color? color;
+  int? maxLines;
+  TextOverflow? overflow;
 
   final double? fontSize;
   final FontWeight? fontWeight;
@@ -15,6 +17,8 @@ class CustomText extends StatelessWidget {
     super.key,
     required this.text,
     this.color,
+    this.maxLines,
+    this.overflow,
     this.fontFamily,
     this.fontSize = 20,
     this.fontWeight,
@@ -26,6 +30,8 @@ class CustomText extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Text(text,
+          overflow: overflow,
+          maxLines: maxLines,
           style: TextStyle(
             color: color,
             fontSize: fontSize,

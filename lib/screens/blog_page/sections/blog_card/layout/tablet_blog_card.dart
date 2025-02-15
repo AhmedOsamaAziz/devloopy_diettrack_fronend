@@ -16,16 +16,15 @@ class TabletBlogCard extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.8,
-            width: 850,
+            width: 1200,
             child: GridView.builder(
+              shrinkWrap: true,
               itemCount: state.blogs.length,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 0,
-                crossAxisSpacing: 2,
-                mainAxisExtent: 460,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
               ),
               itemBuilder: (BuildContext context, int index) {
                 final blog = state.blogs[index];

@@ -11,7 +11,7 @@ class BlogCubit extends Cubit<BlogState> {
   Future<void> getDashboard() async {
     emit(BlogLoading());
     try {
-      var blogService = DashbaordServiceImplmentation();
+      var blogService = DashboardServiceImplementation();
       var response = await blogService.getDashboard();
 
       if (response.status == ResponseStatus.success) {
@@ -29,7 +29,7 @@ class BlogCubit extends Cubit<BlogState> {
   Future<void> createDashboard(BlogCreate blog) async {
     emit(BlogLoading());
     try {
-      var blogService = DashbaordServiceImplmentation();
+      var blogService = DashboardServiceImplementation();
       var response = await blogService.createDashboard();
 
       if (response.status == ResponseStatus.success) {
@@ -46,24 +46,24 @@ class BlogCubit extends Cubit<BlogState> {
   Future<void> updateDashboard(String blogId, BlogCreate updatedBlog) async {
     emit(BlogLoading());
     try {
-      var blogService = DashbaordServiceImplmentation();
+      var blogService = DashboardServiceImplementation();
       var response = await blogService.updateDashboard();
 
       if (response.status == ResponseStatus.success) {
         await getDashboard();
       } else {
-        emit(const BlogFailure(errorMessage: 'Failed to update Dashboard(.'));
+        emit(const BlogFailure(errorMessage: 'Failed to update Dashboard.'));
       }
     } catch (e) {
       emit(const BlogFailure(
-          errorMessage: 'Error occurred while updating Dashboard(.'));
+          errorMessage: 'Error occurred while updating Dashboard.'));
     }
   }
 
   Future<void> deleteDashboard(String blogId) async {
     emit(BlogLoading());
     try {
-      var blogService = DashbaordServiceImplmentation();
+      var blogService = DashboardServiceImplementation();
       var response = await blogService.deleteDashboard();
 
       if (response.status == ResponseStatus.success) {

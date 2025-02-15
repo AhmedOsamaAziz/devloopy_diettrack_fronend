@@ -5,7 +5,7 @@ import 'package:ui/model/blog/blog_create.dart';
 import 'package:ui/model/dashboard/dashboard.dart';
 import 'package:ui/services/dashboard_service/dashbaord_service.dart';
 
-class DashbaordServiceImplmentation implements DashboardService {
+class DashboardServiceImplementation implements DashboardService {
   @override
   Future<GenericResponse> createDashboard() async {
     try {

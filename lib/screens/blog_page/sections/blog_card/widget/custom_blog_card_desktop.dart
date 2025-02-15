@@ -10,7 +10,7 @@ class CustomBlogCardDesktop extends StatelessWidget {
   const CustomBlogCardDesktop(
       {super.key, this.onPressed, required this.blogList});
 
-  final BlogList blogList; // Make nullable
+  final BlogList blogList;
   final void Function()? onPressed;
 
   @override
@@ -18,9 +18,7 @@ class CustomBlogCardDesktop extends StatelessWidget {
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
         if (state is BlogLoading) {
-          return const Center(
-            child: CircularProgressIndicator()
-          );
+          return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           final blog = state.blogs.isNotEmpty ? state.blogs[0] : null;
 
@@ -89,13 +87,17 @@ class CustomBlogCardDesktop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                               text: blogList.description,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                             const SizedBox(height: 10),
                             CustomText(
-                              text: blogList.description,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              text: blogList.descriptionAr,
                               fontSize: 12,
                             ),
                           ],

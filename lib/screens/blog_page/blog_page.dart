@@ -17,15 +17,12 @@ class BlogPage extends StatelessWidget {
       backgroundColor: Color(0XFFFAFDF2),
       body: SingleChildScrollView(
         child: Column(
+          spacing: 50,
           children: [
             MainNavigationBar(),
-            SizedBox(height: 50),
             HeaderBolgSections(),
-            SizedBox(height: 50),
             ButtonBolgSections(),
-            SizedBox(height: 50),
             BLogCard(),
-            SizedBox(height: 50),
             MainFooter(),
           ],
         ),
