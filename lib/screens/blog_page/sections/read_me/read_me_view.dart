@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' show DateFormat;
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/helper/font_size_responsive.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/sidemenu/sider_menu.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
+ import 'package:ui/screens/dashboard_screen/sidemenu/sider_menu.dart';
 
 class MainDashboard extends StatefulWidget {
   const MainDashboard({super.key});
@@ -10,7 +10,7 @@ class MainDashboard extends StatefulWidget {
 }
 
 class _MainDashboardState extends State<MainDashboard> {
-  Widget _currentPage = const BlogListDashBoard();
+  Widget _currentPage = const BlogDashboard();
 
   void _changePage(Widget page) {
     setState(() {

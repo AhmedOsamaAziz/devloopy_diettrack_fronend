@@ -17,6 +17,7 @@ class ServiceCreate extends ServiceBase {
     required super.isBestValue,
     super.discount,
   });
+ 
 
    Map<String, dynamic> toJson() {
     return {

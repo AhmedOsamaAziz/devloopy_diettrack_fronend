@@ -8,7 +8,7 @@ import 'package:ui/screens/admin/constants/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/pricing_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/service_item_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
@@ -95,11 +95,11 @@ class SiderMenu extends StatelessWidget {
                         children: [
                           //! Home
                           MenuTile(
-                            isSubmenu: true,
-                            title: "Our Blogs",
-                            onPressed: () {}
-                                // onPageSelected(const BlogListDashBoard()),
-                          ),
+                              isSubmenu: true,
+                              title: "Our Blogs",
+                              onPressed: () {}
+                              // onPageSelected(const BlogListDashBoard()),
+                              ),
                           MenuTile(
                             isSubmenu: true,
                             title: "Our Testimonials",
@@ -184,7 +184,7 @@ class SiderMenu extends StatelessWidget {
                         leading: SvgPicture.asset(
                             "assets/icons/profile_circled_light.svg"),
                         title: const Text(
-                          "Pricing",
+                          "Services ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: ColorsApp.OUTLINECOLOR,
@@ -193,9 +193,9 @@ class SiderMenu extends StatelessWidget {
                         children: [
                           MenuTile(
                             isSubmenu: true,
-                            title: "Plan & Pricing",
+                            title: "Service Item",
                             onPressed: () =>
-                                onPageSelected(const PricingDashboard()),
+                                onPageSelected(const ServiceItemDashboard()),
                           ),
                         ],
                       ),

@@ -48,7 +48,7 @@ class BlogService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $accessToken',
         },
-        data: newBlog.toJson(), // Send the blog data as JSON
+        data: newBlog.toJson(),  
       );
 
       BlogCreate createdBlog = BlogCreate.fromJson(response.obj);

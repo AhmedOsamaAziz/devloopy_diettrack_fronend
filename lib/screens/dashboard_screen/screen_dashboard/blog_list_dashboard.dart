@@ -54,13 +54,12 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
-            groupId: 1, // يمكنك استخدام القيمة الافتراضية المطلوبة
+            groupId: 1,   
             authorId:
-                "0d26019d-54c8-4b3d-a67d-84623b466f3c", // أو القيمة المناسبة
+                "0d26019d-54c8-4b3d-a67d-84623b466f3c",   
           ));
         } else {
-          // تحديث السجل الموجود
-          _rows[index] = BlogCreate(
+           _rows[index] = BlogCreate(
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
@@ -71,7 +70,7 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
-            groupId: 1, // القيمة الافتراضية
+            groupId: 1,    
             authorId: "0d26019d-54c8-4b3d-a67d-84623b466f3c",
           );
         }
