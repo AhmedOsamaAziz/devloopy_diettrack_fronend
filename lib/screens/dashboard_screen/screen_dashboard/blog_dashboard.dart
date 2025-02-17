@@ -361,7 +361,6 @@ class _BlogDashboardState extends State<BlogDashboard> {
     final imageUrlController = TextEditingController();
     final videoUrlController = TextEditingController();
 
-    // قيم افتراضية لـ groupId و authorId حسب المطلوب من الـ API.
     const int defaultGroupId = 1;
     const String defaultAuthorId = "0d26019d-54c8-4b3d-a67d-84623b466f3c";
 
@@ -369,6 +368,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: ColorsApp.OUTLINECOLOR,
           title: const Text('Add Blog'),
           content: SingleChildScrollView(
             child: Column(
@@ -404,14 +404,15 @@ class _BlogDashboardState extends State<BlogDashboard> {
             ),
           ),
           actions: [
-            TextButton(
-              child: const Text('Cancel'),
+            CustomButton(
+              text: 'Cancel',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () => Navigator.of(context).pop(),
             ),
-            TextButton(
-              child: const Text('Save'),
+            CustomButton(
+              text: 'Save',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () async {
-                // إنشاء كائن BlogCreate مع تمرير القيم الافتراضية للمجموعة والمؤلف.
                 final newBlog = BlogCreate(
                   title: titleController.text,
                   titleAr: titleArController.text,
@@ -465,12 +466,13 @@ class _BlogDashboardState extends State<BlogDashboard> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: ColorsApp.OUTLINECOLOR,
           title: const Text('Edit Blog'),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                 TextField(
+                TextField(
                   controller: titleController,
                   decoration: const InputDecoration(labelText: 'Title'),
                 ),
@@ -499,32 +501,34 @@ class _BlogDashboardState extends State<BlogDashboard> {
             ),
           ),
           actions: [
-            TextButton(
-              child: const Text('Cancel'),
+            CustomButton(
+              text: 'Cancel',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () => Navigator.of(context).pop(),
             ),
-            TextButton(
-              child: const Text('Save'),
+            CustomButton(
+              text: 'Save',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () async {
-                  final editedBlog = BlogUpdate(
+                final editedBlog = BlogUpdate(
                   id: blog.id,
-                  groupId: blog.group.id, 
+                  groupId: blog.group.id,
                   title: titleController.text,
                   titleAr: titleArController.text,
                   description: descriptionController.text,
                   descriptionAr: subDescriptionController.text,
-                  blogType: blog.blogType,          
+                  blogType: blog.blogType,
                   imageUrl: imageUrlController.text,
                   videoUrl: videoUrlController.text,
                 );
 
-                 final response = await blogService.updateBlog(editedBlog);
+                final response = await blogService.updateBlog(editedBlog);
                 if (response.status == ResponseStatus.success) {
-                  Navigator.of(context).pop(); 
+                  Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Blog updated successfully!')),
                   );
-                  await _fetchBlogs();            
+                  await _fetchBlogs();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Error: ${response.message}')),
@@ -544,15 +548,18 @@ class _BlogDashboardState extends State<BlogDashboard> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: ColorsApp.OUTLINECOLOR,
           title: const Text('Confirm Delete'),
           content: const Text('Are you sure you want to delete this blog?'),
           actions: [
-            TextButton(
-              child: const Text('Cancel'),
+            CustomButton(
+              text: 'Cancel',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () => Navigator.of(context).pop(false),
             ),
-            TextButton(
-              child: const Text('Delete'),
+            CustomButton(
+              text: 'Delete',
+              colortxt: ColorsApp.ColorCardFeature,
               onPressed: () => Navigator.of(context).pop(true),
             ),
           ],
@@ -566,7 +573,6 @@ class _BlogDashboardState extends State<BlogDashboard> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Blog deleted successfully!')),
       );
-      // يمكنك استدعاء خدمة الحذف على الخادم هنا إذا لزم الأمر.
     }
   }
 
@@ -608,10 +614,12 @@ class _BlogDashboardState extends State<BlogDashboard> {
                               SizedBox(width: 70, child: Text(blog.title))),
                           DataCell(
                               SizedBox(width: 70, child: Text(blog.titleAr))),
-                          DataCell(Text(blog.description)),
-                          DataCell(Text(blog.descriptionAr)),
                           DataCell(SizedBox(
-                              width: 50, child: Text(blog.imageUrl ?? 'N/A'))),
+                              width: 70, child: Text(blog.description))),
+                          DataCell(SizedBox(
+                              width: 100, child: Text(blog.descriptionAr))),
+                          DataCell(SizedBox(
+                              width: 100, child: Text(blog.imageUrl ?? 'N/A'))),
                           DataCell(SizedBox(
                               width: 50, child: Text(blog.videoUrl ?? 'N/A'))),
                           DataCell(
@@ -621,8 +629,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
                                 CustomButton(
                                   text: 'Edit',
                                   colortxt: ColorsApp.MainColorbackgraund,
-                                  onPressed: () =>
-                                      _openEditForm(blog ),
+                                  onPressed: () => _openEditForm(blog),
                                 ),
                                 const SizedBox(width: 8),
                                 CustomButton(

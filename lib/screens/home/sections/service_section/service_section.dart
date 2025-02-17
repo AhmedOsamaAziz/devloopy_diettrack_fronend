@@ -18,7 +18,7 @@ class ServiceSection extends StatelessWidget {
       child: const Column(
         children: [
           SizedBox(height: 30),
-          Column(spacing: 30, children: [
+          Column(children: [
             TitleService(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12),
@@ -27,7 +27,7 @@ class ServiceSection extends StatelessWidget {
             DiscountButton(),
             SizedBox(height: 15)
           ]),
-          SizedBox(height: 1000, child: ListPriceCard()),
+          ListPriceCard(),
         ],
       ),
     );

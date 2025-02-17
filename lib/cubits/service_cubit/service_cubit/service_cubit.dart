@@ -29,26 +29,22 @@ class ServiceCubit extends Cubit<ServiceState> {
                     ServiceList.fromJson(serviceJson as Map<String, dynamic>))
                 .toList();
 
-            // Check if service list is empty
-            if (service.isEmpty) {
+             if (service.isEmpty) {
               emit(ServiceNoData());
             } else {
               emit(ServiceSuccess(service));
             }
           } catch (e) {
-            print('Error parsing services: $e');
-            emit(ServiceFailure());
+             emit(ServiceFailure());
           }
         } else {
-          print('Unexpected response format: ${response.obj}');
-          emit(ServiceFailure());
+           emit(ServiceFailure());
         }
       } else {
         emit(ServiceFailure());
       }
     } catch (e) {
-      print('Exception occurred: $e');
-      emit(ServiceFailure());
+       emit(ServiceFailure());
     }
   }
 }

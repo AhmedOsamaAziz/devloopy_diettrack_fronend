@@ -62,6 +62,8 @@ class OurBlogCustomCard extends StatelessWidget {
                     ),
                     CustomText(
                       text: blogList.description,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                       fontSize: getResponsiveFontSize(context, fontSize: 14),
                       color: ColorsApp.MAINCOLOR,
                       fontWeight: FontWeight.bold,

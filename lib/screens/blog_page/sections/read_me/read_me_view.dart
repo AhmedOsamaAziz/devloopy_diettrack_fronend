@@ -15,7 +15,9 @@ class ReadMeView extends StatelessWidget {
   final BlogList blogList;
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    // String formattedDate =
+    //     DateFormat('dd MMM yyyy').format(blogList.publishDate);
+
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -27,11 +29,11 @@ class ReadMeView extends StatelessWidget {
             const BlogTitle(),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: ScreenSize.isLarge ? 50.0 : 10.0),
+                  horizontal:
+                      ScreenSize.isLarge & ScreenSize.isMedium ? 50.0 : 10.0),
               child: const BlogDescription(),
             ),
             Container(
-              height: ScreenSize.isLarge ? height : height * 0.53,
               width: ScreenSize.isLarge ? width * 0.5 : width * 0.8,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
