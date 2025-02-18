@@ -47,10 +47,9 @@ class MyApp extends StatelessWidget {
 
         builder: (context, child) {
           return const MaterialApp(
-            // locale: DevicePreview.locale(context),
-            // builder: DevicePreview.appBuilder,
-            home: AboutPage(),
-          );
+              // locale: DevicePreview.locale(context),
+              // builder: DevicePreview.appBuilder,
+              home: HomePage());
         },
       ),
     );
