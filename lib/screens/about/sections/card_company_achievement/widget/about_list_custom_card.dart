@@ -16,7 +16,7 @@ class AboutListCustomCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: ScreenSize.isLarge || ScreenSize.isMedium
                 ? GridView.builder(
-                    shrinkWrap: true, // Prevents unbounded height issue
+                    shrinkWrap: true,  
                     itemCount: cardCompany.length,
                     physics:
                         const NeverScrollableScrollPhysics(), // Disable inner scrolling

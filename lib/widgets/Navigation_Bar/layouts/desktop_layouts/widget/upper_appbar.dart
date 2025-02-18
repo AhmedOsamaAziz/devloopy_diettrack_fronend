@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/widgets/custom_text.dart';
 
@@ -25,7 +25,7 @@ class UpparAppBar extends StatelessWidget {
                     height: 30,
                     width: 150,
                     child: Image.asset(
-                      'assets/images/Abstracdesign.png',
+                      Assets.imagesAbstracdesign,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -78,3 +78,4 @@ class UpparAppBar extends StatelessWidget {
     );
   }
 }
+ 

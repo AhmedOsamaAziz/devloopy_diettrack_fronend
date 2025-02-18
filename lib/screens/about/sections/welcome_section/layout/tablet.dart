@@ -9,7 +9,7 @@ class TabletWelcomeSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.5,
+        height: MediaQuery.sizeOf(context).height * 0.6,
         width: 1280,
         child: Column(
           children: [

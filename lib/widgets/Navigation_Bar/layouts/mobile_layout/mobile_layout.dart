@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/helper/screen_size.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/mobile_layout/widget/under_appbar_mobile.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/mobile_layout/widget/uppar_appbar_mobile.dart';
   
@@ -8,6 +9,8 @@ class MobileNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
+
     return Container(
       height: 168,
       width: 420,

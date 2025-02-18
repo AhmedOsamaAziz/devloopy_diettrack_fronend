@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
+import 'package:ui/helper/ghaps.dart';
 
 import 'package:ui/model/general/our_story.dart';
 import 'package:ui/widgets/custom_text.dart';
@@ -38,10 +39,7 @@ class CardRight extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                      width: 80.w,
-                      child: const Divider(
-                          color: Colors.lightGreen, thickness: 3)),
+                   const Divider(thickness: 3, color: ColorsApp.SecondaryColor),
                   SizedBox(height: 30.h),
                   Expanded(
                     child: CustomText(
@@ -51,7 +49,8 @@ class CardRight extends StatelessWidget {
                       color: ColorsApp.TextColorFeatures,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                                 gapH20,
+
                   CustomText(
                     text: ourStory.date,
                     fontWeight: FontWeight.w300,

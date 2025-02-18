@@ -19,3 +19,4 @@ class ColorsApp {
 class FontsApp {
   static const fontFamilyUrbanist = 'Urbanist';
 }
+ // 0xff333333

@@ -15,8 +15,8 @@ import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/widgets/custom_text.dart';
 
-class UnderUppBarTablet extends StatefulWidget {
-  const UnderUppBarTablet(
+class UnderAppBarTablet extends StatefulWidget {
+  const UnderAppBarTablet(
       {super.key,
       required this.drawerModel,
       required this.onTabChanged,
@@ -26,10 +26,10 @@ class UnderUppBarTablet extends StatefulWidget {
 
   final ValueChanged<int> onTabChanged;
   @override
-  _UnderUppBarTabletState createState() => _UnderUppBarTabletState();
+  _UnderAppBarTabletState createState() => _UnderAppBarTabletState();
 }
 
-class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
+class _UnderAppBarTabletState extends State<UnderAppBarTablet> {
   int _activeIndex = 0;
 
   @override
@@ -39,7 +39,7 @@ class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
         final isLoggedIn = state is LoginSuccess;
         return Container(
           padding: const EdgeInsets.all(2),
-          width: 1010,
+          // width: 1010,
           child: FittedBox(
             child: Row(
               children: [
@@ -118,13 +118,6 @@ class _UnderUppBarTabletState extends State<UnderUppBarTablet> {
             value: 'login',
             child: Text(
               'Login',
-              style: TextStyle(color: ColorsApp.NumberColor),
-            ),
-          ),
-          const DropdownMenuItem(
-            value: 'logout',
-            child: Text(
-              'Logout',
               style: TextStyle(color: ColorsApp.NumberColor),
             ),
           ),

@@ -10,7 +10,9 @@ class CategoryStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
     return ScreenSize.isLarge
+
         ? const DesktopCardStory()
         : ScreenSize.isMedium
             ? const TabletCardStory()

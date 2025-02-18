@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/tablet_layout/widgets/under_appbar_tablet.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/tablet_layout/widgets/uppar_appbar_tablet.dart';
@@ -18,6 +19,8 @@ class _TabletNavigationBarState extends State<TabletNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
+
     return Container(
       height: 100,
       width: double.infinity,
@@ -29,7 +32,7 @@ class _TabletNavigationBarState extends State<TabletNavigationBar> {
           children: [
             const Expanded(child: UpparAppBarTablet()),
             const SizedBox(height: 10),
-            UnderUppBarTablet(
+            UnderAppBarTablet(
               drawerModel: _listDrawer[_activeIndex], // Pass data
               activeIndex: _activeIndex, // Pass activeIndex
               onTabChanged: (index) {
@@ -44,4 +47,3 @@ class _TabletNavigationBarState extends State<TabletNavigationBar> {
     );
   }
 }
-

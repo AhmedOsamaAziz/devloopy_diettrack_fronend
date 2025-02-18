@@ -8,7 +8,7 @@ class UpparAppBarTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 1000,
+      // width: 1000,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: ColorsApp.AppBarColor,

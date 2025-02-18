@@ -4,7 +4,6 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
-import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
@@ -20,12 +19,10 @@ import 'package:ui/helper/font_size_responsive.dart';
 class UnderUppBar extends StatefulWidget {
   const UnderUppBar({
     super.key,
-    required this.drawerModel,
     required this.activeIndex,
     required this.onTabChanged,
   });
 
-  final DrawerModel drawerModel;
   final int activeIndex;
   final ValueChanged<int> onTabChanged;
 
@@ -34,7 +31,13 @@ class UnderUppBar extends StatefulWidget {
 }
 
 class _UnderUppBarState extends State<UnderUppBar> {
-  int _selectedIndex = 0; // Track the selected button index
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.activeIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +115,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: _selectedIndex == index
-              ? ColorsApp.MAINCOLOR // Active button color
-              : ColorsApp.MAINCOLOR, // Inactive button background
           borderRadius: BorderRadius.circular(5),
         ),
         child: CustomText(
@@ -122,8 +122,8 @@ class _UnderUppBarState extends State<UnderUppBar> {
           fontSize: getResponsiveFontSize(context, fontSize: 11),
           fontWeight: FontWeight.w500,
           color: _selectedIndex == index
-              ? Colors.white // Text color for active button
-              : ColorsApp.SecondaryColor, // Text color for inactive buttons
+              ? ColorsApp.NumberColor
+              : ColorsApp.SecondaryColor,
         ),
       ),
     );
@@ -154,7 +154,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
             ),
           ),
         ],
-        // if (isLoggedIn) ...[
         const DropdownMenuItem(
           value: 'dashboard',
           child: Text(
@@ -163,7 +162,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
           ),
         ),
       ],
-      // ],
       onChanged: (value) {
         switch (value) {
           case 'login':
@@ -186,7 +184,19 @@ class _UnderUppBarState extends State<UnderUppBar> {
 
   void _navigateToPage(BuildContext context, Widget page, int index) {
     widget.onTabChanged(index);
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => page,
+        settings: RouteSettings(arguments: index),
+      ),
+    )
+        .then((_) {
+      setState(() {
+        _selectedIndex =
+            index; // Update selected index when returning to this page
+      });
+    });
   }
 
   void _showSnackbar(BuildContext context, String message) {

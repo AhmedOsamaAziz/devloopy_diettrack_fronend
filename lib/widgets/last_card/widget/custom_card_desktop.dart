@@ -15,7 +15,8 @@ class CustomCardDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 1559,
+      height: 200,
+      width: 1500,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,8 +35,8 @@ class CustomCardDesktop extends StatelessWidget {
                 const SizedBox(height: 10),
                 CustomText(
                   text: lastCardModel.subTitle,
-                  fontSize: getResponsiveFontSize(context, fontSize: 12),
-                  color: ColorsApp.TextColor,
+                  fontSize: getResponsiveFontSize(context, fontSize: 14),
+                  color: ColorsApp.TextColorFeatures,
                 ),
               ],
             ),

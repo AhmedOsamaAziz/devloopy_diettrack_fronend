@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/desktop_layouts/widget/under_appbar.dart';
 import 'package:ui/widgets/Navigation_Bar/layouts/desktop_layouts/widget/upper_appbar.dart';
@@ -18,6 +19,8 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+        ScreenSize.getScreenSize(context);
+
     return Center(
         child: Container(
             alignment: Alignment.center,
@@ -54,9 +57,7 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
                                         log("Active index: $activeIndex");
                                       },
                                       child: UnderUppBar(
-                                        drawerModel:
-                                            _listDrawer[index], // Pass data
-                                        activeIndex:
+                                         activeIndex:
                                             activeIndex, // Pass activeIndex
                                         onTabChanged: (index) {
                                           setState(() {
@@ -76,3 +77,6 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
             )));
   }
 }
+
+
+ 

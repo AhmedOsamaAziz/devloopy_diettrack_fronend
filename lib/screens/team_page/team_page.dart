@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/about/sections/last_card/main_last_card.dart';
+import 'package:ui/widgets/last_card/last_card_section.dart';
 import 'package:ui/screens/team_page/sections/button_manqgment/mangement_button.dart';
 import 'package:ui/screens/team_page/sections/card_managmnet/team_page_card_mangament.dart';
 import 'package:ui/widgets/Footer/main_footer.dart';

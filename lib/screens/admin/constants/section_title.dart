@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/screens/admin/constants/app_colors.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
-import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 
 class SectionTitle extends StatelessWidget {

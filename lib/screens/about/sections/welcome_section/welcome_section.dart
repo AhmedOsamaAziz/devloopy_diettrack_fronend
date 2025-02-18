@@ -9,6 +9,7 @@ class WelcomeSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
     return ScreenSize.isLarge
         ? const DesktopWelcomeSection()
         : ScreenSize.isMedium

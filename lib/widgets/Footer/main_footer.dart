@@ -10,6 +10,7 @@ class MainFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return ScreenSize.isLarge
         ? const DesktopFooter()
         : ScreenSize.isMedium

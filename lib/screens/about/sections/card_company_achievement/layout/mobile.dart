@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/about/sections/card_company_achievement/widget/about_description.dart';
 import 'package:ui/screens/about/sections/card_company_achievement/widget/about_title.dart';
 import 'package:ui/screens/about/sections/card_company_achievement/widget/about_list_custom_card.dart';
@@ -20,7 +21,7 @@ class MoblieCardSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: AboutDescription(),
             ),
-            const SizedBox(height: 10),
+          gapH20,
             AboutListCustomCard()
           ],
         ),

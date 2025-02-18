@@ -18,7 +18,6 @@ class ScreenSize {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-  
     if (width >= _largeScreen) {
       isLarge = true;
       isMedium = false;
