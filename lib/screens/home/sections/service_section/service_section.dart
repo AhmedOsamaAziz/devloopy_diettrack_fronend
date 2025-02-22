@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/home/sections/service_section/widget/description_service.dart';
 import 'package:ui/screens/home/sections/service_section/widget/discount_button.dart';
@@ -16,16 +17,17 @@ class ServiceSection extends StatelessWidget {
         horizontal: ScreenSize.isLarge ? 150 : 0,
       ),
       child: const Column(
+        spacing: 20,
         children: [
-          SizedBox(height: 30),
+          gapH20,
           Column(children: [
             TitleService(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12),
               child: DescriptionService(),
             ),
+            gapH20,
             DiscountButton(),
-            SizedBox(height: 15)
           ]),
           ListPriceCard(),
         ],

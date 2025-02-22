@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/model/general/mangement_button.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 class CustomButtonMangament extends StatelessWidget {
   const CustomButtonMangament(
       {super.key, this.onPressed, required this.mangementButtons});
@@ -30,7 +30,7 @@ class CustomButtonMangament extends StatelessWidget {
               color: ColorsApp.MAINCOLOR,
               child: CustomText(
                 text: mangementButtons.textbutton,
-                color: const Color(0xFFE6E6E6),
+                color:   Colors.white,
                 fontSize: 12,
                 fontWeight: FontWeight.normal,
               ),

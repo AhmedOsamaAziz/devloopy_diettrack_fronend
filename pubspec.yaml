@@ -57,8 +57,10 @@ dependencies:
   # This too display the video in youtube player & youtube_player_iframe
   video_player: ^2.2.19
   youtube_player_iframe: ^2.2.0
-  redacted: ^1.0.13
+  webview_flutter:
   youtube_player_flutter: ^8.1.2
+
+  redacted: ^1.0.13
   cached_network_image: ^3.4.1
   logger: ^2.5.0
 
@@ -90,7 +92,7 @@ flutter:
 
   #   - images/a_dot_ham.jpeg
 flutter_assets:
-  assets_path: assets/images/
+  assets_path: assets/
   output_path: lib/core/
   filename: assets.dart
   field_prefix:

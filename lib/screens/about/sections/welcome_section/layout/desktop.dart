@@ -7,22 +7,23 @@ class DesktopWelcomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 1.07,
-        width: 1596.5,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SizedBox(
-                child: Image.asset(Assets.imagesAboutMain,
-                    width: 1596.5, height: 300, fit: BoxFit.cover),
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: SizedBox(
+          width: 1596.5,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: SizedBox(
+                  child: Image.asset(Assets.imagesAboutMain,
+                      width: 1596.5, height: 300, fit: BoxFit.cover),
+                ),
               ),
-            ),
-            const WelcomeCustomHeader()
-          ],
+              const WelcomeCustomHeader()
+            ],
+          ),
         ),
       ),
     );

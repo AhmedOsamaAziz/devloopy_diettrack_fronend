@@ -315,7 +315,7 @@ import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/blog/blog_create.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/model/blog/blog_update.dart';
-import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/services/blog_service/blog_service.dart';
 
 class BlogDashboard extends StatefulWidget {

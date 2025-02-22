@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/test.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/screens/pricing_page/pricing_page.dart';
+import 'package:ui/shared/custom_text.dart';
 
+ 
 class IntroductionGetstartButton extends StatelessWidget {
   const IntroductionGetstartButton({super.key});
 
@@ -23,16 +25,12 @@ class IntroductionGetstartButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               color: ColorsApp.SecondaryColor,
-              onPressed: () async {
-                launchURL();
-              },
-              child: Text(
-                'Get Starter Today',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: ScreenSize.isLarge ? 14 : 12,
-                ),
+              onPressed: () {},
+              child: CustomText(
+                text: 'Get Starter Today',
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: getResponsiveFontSize(context, fontSize: 12),
               )),
         ),
         const SizedBox(width: 20),
@@ -47,10 +45,15 @@ class IntroductionGetstartButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),
               color: ColorsApp.OUTLINECOLOR,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PricingPage()),
+                );
+              },
               child: CustomText(
                 text: 'Book a Demo',
-                fontSize: ScreenSize.isLarge ? 14 : 12,
+                fontSize: getResponsiveFontSize(context, fontSize: 12),
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               )),

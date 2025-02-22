@@ -20,21 +20,23 @@ class _FeatureListCustomCardState extends State<FeatureListCustomCard> {
     return ScreenSize.isLarge || ScreenSize.isMedium
         ? SizedBox(
             height: height,
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: listCard.length,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 50,
-                mainAxisExtent: 200,
+            child: RepaintBoundary(
+              child: GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                itemCount: listCard.length,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 50,
+                  mainAxisExtent: 200,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return FeatureCustomCard(
+                    card: listCard[index],
+                  );
+                },
               ),
-              itemBuilder: (BuildContext context, int index) {
-                return FeatureCustomCard(
-                  card: listCard[index],
-                );
-              },
             ),
           )
         : SizedBox(

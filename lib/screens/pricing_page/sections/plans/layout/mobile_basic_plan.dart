@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
+import 'package:ui/model/service/service_list.dart';
 import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
 
 class MobileListPricing extends StatelessWidget {
@@ -9,41 +10,51 @@ class MobileListPricing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ServiceCubit>().loadServices();
+
     return BlocBuilder<ServiceCubit, ServiceState>(
       builder: (context, state) {
-        if (state is ServiceLoading) {
+        if (state is ServiceLoading || state is ServiceInitial) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is ServiceSuccess) {
           if (state.service.isEmpty) {
-            return const Center(
-                child: Text('No services available at the moment.'));
+            return const Center(child: Text('No services available.'));
           }
-          final services = state.service;
-
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 1.7,
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              physics: const NeverScrollableScrollPhysics(), // Allow scrolling
-              itemCount: services.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1, // Adjust for single-row horizontal scrolling
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.8,
-              ),
-              scrollDirection: Axis.vertical, // Horizontal scrolling
-              itemBuilder: (BuildContext context, int index) {
-                return PricingCustomCard(
-                  isSelected: index == 1,
-                  service: services[index],
-                );
-              },
-            ),
-          );
+          return _buildServiceList(state.service, context);
+        } else if (state is ServiceNoData) {
+          return const Center(child: Text('No services found.'));
+        } else if (state is ServiceFailure) {
+          return const Center(child: Text('Error loading services.'));
         }
-        return const Center(child: Text('Error loading services.'));
+        return const SizedBox.shrink();
       },
+    );
+  }
+
+  Widget _buildServiceList(List<ServiceList> services, BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 1.7,
+      child: CustomScrollView(
+        shrinkWrap: true,
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: PricingCustomCard(
+                    isSelected: index == 1,
+                    service: services[index],
+                  ),
+                ),
+                childCount: services.length,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

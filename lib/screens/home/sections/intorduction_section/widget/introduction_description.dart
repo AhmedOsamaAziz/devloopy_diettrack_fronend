@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 class IntroductionDescription extends StatelessWidget {
   const IntroductionDescription({super.key});
 

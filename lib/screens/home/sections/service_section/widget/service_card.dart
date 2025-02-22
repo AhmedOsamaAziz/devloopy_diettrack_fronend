@@ -4,7 +4,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/service/service_list.dart';
 import 'package:ui/screens/home/sections/service_section/widget/choose_button.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class ServiceCard extends StatelessWidget {
   final ServiceList service;

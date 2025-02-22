@@ -20,7 +20,7 @@ class CustomListView extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return ListView.builder(
-            shrinkWrap: true, // ليحسب الارتفاع تلقائيًا حسب المحتوى
+            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.blogs.length,
             scrollDirection: Axis.vertical,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/screens/about/sections/last_card/main_last_card.dart';
-import 'package:ui/widgets/Footer/main_footer.dart';
-import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
+import 'package:ui/shared/last_card/last_card_section.dart';
+ 
 import 'sections/card_numbers/main_card_number.dart';
 import 'sections/header_section/header_section.dart';
 import 'sections/how-it-work-section/header_how_it_work_section.dart';
-
-class ProcessPage extends StatelessWidget {
+import 'package:ui/shared/Footer/main_footer.dart';
+import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
+ class ProcessPage extends StatelessWidget {
   const ProcessPage({super.key});
 
   @override

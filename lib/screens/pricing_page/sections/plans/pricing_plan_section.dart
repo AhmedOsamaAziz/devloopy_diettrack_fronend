@@ -10,6 +10,8 @@ class PricingPalnSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ScreenSize.getScreenSize(context);
     return ScreenSize.isLarge
         ? const DesktopListPricing()
         : ScreenSize.isMedium

@@ -3,7 +3,7 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/screens/auth/login_page/widget/custom_form_login.dart';
 import 'package:ui/screens/auth/signup_page/widget/icon_social_media.dart';
  
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
  
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

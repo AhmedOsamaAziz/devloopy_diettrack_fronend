@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 import '../../../../../Constants/constants.dart';
 
 class DeskTopLastCardProcess extends StatelessWidget {

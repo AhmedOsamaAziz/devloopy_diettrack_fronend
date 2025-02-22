@@ -4,7 +4,7 @@ import 'package:ui/screens/admin/constants/app_colors.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 
 import '../constants/defaults.dart';
-import '../constants/ghaps.dart';
+import '../../../helper/ghaps.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key, required this.drawerKey});

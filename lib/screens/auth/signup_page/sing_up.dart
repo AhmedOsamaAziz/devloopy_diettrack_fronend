@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/screens/auth/signup_page/widget/sing_up_form_.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 import 'widget/icon_social_media.dart';
 
 class SingUpPage extends StatelessWidget {

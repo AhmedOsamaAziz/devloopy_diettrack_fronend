@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/shared/custom_text.dart';
 
-import '../../../../../Constants/constants.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+  
 class MobileLastCardProcess extends StatelessWidget {
   const MobileLastCardProcess({super.key});
 

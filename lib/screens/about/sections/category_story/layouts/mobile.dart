@@ -13,7 +13,6 @@ class MobileCardStory extends StatelessWidget {
           padding:
               const EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 10),
           width: 359,
-          height: 2270,
           decoration: BoxDecoration(
               color: ColorsApp.OUTLINECOLOR,
               borderRadius: BorderRadius.circular(8)),

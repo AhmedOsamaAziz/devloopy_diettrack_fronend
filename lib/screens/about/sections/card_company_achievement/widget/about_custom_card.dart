@@ -3,7 +3,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/general/card_about.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class AboutCustomCard extends StatelessWidget {
   final CardCompanyAbout cardCompanyAbout;

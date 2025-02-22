@@ -9,6 +9,7 @@ class OurStorySections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.getScreenSize(context);
     return ScreenSize.isLarge
         ? const DesktopOurStorySection()
         : ScreenSize.isMedium

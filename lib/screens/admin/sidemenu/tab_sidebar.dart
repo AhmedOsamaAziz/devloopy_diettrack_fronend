@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/admin/constants/config.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
-import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';

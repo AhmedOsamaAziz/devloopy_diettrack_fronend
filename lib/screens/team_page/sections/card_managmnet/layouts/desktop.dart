@@ -14,17 +14,19 @@ class DeskTopCardManagment extends StatelessWidget {
       child: SizedBox(
         height: 450,
         child: Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: cardManagmentTeam.length,
-            itemBuilder: (context, index) {
-              return Center(
-                child: CustomCardManagment(
-                  cardManagmentTeam: cardManagmentTeam[index],
-                ),
-              );
-            },
+          child: RepaintBoundary(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: cardManagmentTeam.length,
+              itemBuilder: (context, index) {
+                return Center(
+                  child: CustomCardManagment(
+                    cardManagmentTeam: cardManagmentTeam[index],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

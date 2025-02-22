@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
+import 'package:ui/helper/ghaps.dart';
 
 import 'package:ui/model/general/our_story.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class CardRight extends StatelessWidget {
   const CardRight({super.key, required this.ourStory});
@@ -28,20 +29,25 @@ class CardRight extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   IntrinsicWidth(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10.w),
-                      child: CustomText(
-                        text: ourStory.title,
-                        fontWeight: FontWeight.bold,
-                        fontSize: getResponsiveFontSize(context, fontSize: 16),
-                        color: ColorsApp.MAINCOLOR,
-                      ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.w),
+                          child: IntrinsicWidth(
+                            child: CustomText(
+                              text: ourStory.title,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  getResponsiveFontSize(context, fontSize: 16),
+                              color: ColorsApp.MAINCOLOR,
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                            thickness: 3, color: ColorsApp.SecondaryColor),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                      width: 80.w,
-                      child: const Divider(
-                          color: Colors.lightGreen, thickness: 3)),
                   SizedBox(height: 30.h),
                   Expanded(
                     child: CustomText(
@@ -51,7 +57,7 @@ class CardRight extends StatelessWidget {
                       color: ColorsApp.TextColorFeatures,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  gapH20,
                   CustomText(
                     text: ourStory.date,
                     fontWeight: FontWeight.w300,

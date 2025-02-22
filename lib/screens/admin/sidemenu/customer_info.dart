@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/screens/admin/constants/app_colors.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
-import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/helper/ghaps.dart';
 
 class CustomerInfo extends StatelessWidget {
   const CustomerInfo({

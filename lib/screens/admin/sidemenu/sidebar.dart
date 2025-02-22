@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
-import 'package:ui/screens/admin/constants/ghaps.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';

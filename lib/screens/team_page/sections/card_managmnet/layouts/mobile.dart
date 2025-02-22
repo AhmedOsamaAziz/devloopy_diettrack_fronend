@@ -12,18 +12,22 @@ class MobileCardManagment extends StatelessWidget {
     final List cardManagmentTeam = CardManagmentTeam.cardManagmentTeam;
 
     return Center(
-        child: SizedBox(
-      height: 1250,
-      child: ListView.builder(
+      child: CustomScrollView(
+        shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        itemCount: cardManagmentTeam.length,
-        itemBuilder: (context, index) {
-          return CustomCardManagment(
-            cardManagmentTeam: cardManagmentTeam[index],
-          );
-        },
+        slivers: [
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return CustomCardManagment(
+                  cardManagmentTeam: cardManagmentTeam[index],
+                );
+              },
+              childCount: cardManagmentTeam.length,
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }

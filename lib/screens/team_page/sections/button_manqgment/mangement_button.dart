@@ -21,16 +21,18 @@ class ButtomTeamPage extends StatelessWidget {
         ),
       ),
       height: 80,
-      child: ListView.builder(
-        shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: ScreenSize.isLarge ? 20 : 10),
-        scrollDirection: Axis.horizontal,
-        itemCount: mangementButtons.length,
-        itemBuilder: (context, index) {
-          return CustomButtonMangament(
-            mangementButtons: mangementButtons[index],
-          );
-        },
+      child: RepaintBoundary(
+        child: ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: ScreenSize.isLarge ? 20 : 10),
+          scrollDirection: Axis.horizontal,
+          itemCount: mangementButtons.length,
+          itemBuilder: (context, index) {
+            return CustomButtonMangament(
+              mangementButtons: mangementButtons[index],
+            );
+          },
+        ),
       ),
     );
   }
