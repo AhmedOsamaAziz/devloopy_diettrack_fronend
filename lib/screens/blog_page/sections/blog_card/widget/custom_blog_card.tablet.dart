@@ -5,8 +5,8 @@ import 'package:ui/constants/assets.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/blog/blog_list.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 class CustomBlogCardTablet extends StatelessWidget {
   const CustomBlogCardTablet({
     super.key,

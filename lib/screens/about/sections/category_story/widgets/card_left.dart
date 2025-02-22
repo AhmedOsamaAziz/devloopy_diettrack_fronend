@@ -4,7 +4,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/ghaps.dart';
 import 'package:ui/model/general/our_story.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class CardLeft extends StatelessWidget {
   const CardLeft({super.key, required this.ourStory});
@@ -35,39 +35,44 @@ class CardLeft extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: ColorsApp.MainColorbackgraund,
               ),
-              child: IntrinsicWidth(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 10.w),
-                      child: CustomText(
-                        text: ourStory.title,
-                        fontWeight: FontWeight.bold,
-                        fontSize: getResponsiveFontSize(context, fontSize: 16),
-                        color: ColorsApp.MAINCOLOR,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IntrinsicWidth(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.w),
+                          child: CustomText(
+                            text: ourStory.title,
+                            fontWeight: FontWeight.bold,
+                            fontSize:
+                                getResponsiveFontSize(context, fontSize: 16),
+                            color: ColorsApp.MAINCOLOR,
+                          ),
+                        ),
+                        const Divider(
+                            thickness: 3, color: ColorsApp.SecondaryColor),
+                      ],
                     ),
-                    const Divider(
-                        thickness: 3, color: ColorsApp.SecondaryColor),
-                    SizedBox(height: 30.h),
-                    Expanded(
-                      child: CustomText(
-                        text: ourStory.subTitle,
-                        fontWeight: FontWeight.w300,
-                        fontSize: getResponsiveFontSize(context, fontSize: 15),
-                        color: ColorsApp.TextColorFeatures,
-                      ),
-                    ),
-                    gapH20,
-                    CustomText(
-                      text: ourStory.date,
+                  ),
+                  SizedBox(height: 30.h),
+                  Expanded(
+                    child: CustomText(
+                      text: ourStory.subTitle,
                       fontWeight: FontWeight.w300,
                       fontSize: getResponsiveFontSize(context, fontSize: 15),
                       color: ColorsApp.TextColorFeatures,
                     ),
-                  ],
-                ),
+                  ),
+                  gapH20,
+                  CustomText(
+                    text: ourStory.date,
+                    fontWeight: FontWeight.w300,
+                    fontSize: getResponsiveFontSize(context, fontSize: 15),
+                    color: ColorsApp.TextColorFeatures,
+                  ),
+                ],
               ),
             ),
           ),

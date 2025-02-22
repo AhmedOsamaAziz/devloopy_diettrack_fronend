@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/widgets/last_card/last_card_section.dart';
-import 'package:ui/screens/contact_us/sections/contact_us_form/contact_us_form.dart';
-import 'package:ui/widgets/Footer/main_footer.dart';
-import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
+ import 'package:ui/screens/contact_us/sections/contact_us_form/contact_us_form.dart';
+import 'package:ui/shared/last_card/last_card_section.dart';
+ 
 import 'sections/contact_us_buttons/contact_us_button.dart';
 import 'sections/contact_us_header/contact_us_header.dart';
-
+import 'package:ui/shared/Footer/main_footer.dart';
+import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
+ 
 class ContactUsPage extends StatelessWidget {
   const ContactUsPage({super.key});
 

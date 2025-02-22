@@ -4,7 +4,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/url_launcher.dart';
 import 'package:ui/helper/screen_size.dart';
 
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 import '../widget/custom_button_contact_us.dart';
 import '../widget/custom_form_feild.dart';
 import '../widget/custom_icon.dart';

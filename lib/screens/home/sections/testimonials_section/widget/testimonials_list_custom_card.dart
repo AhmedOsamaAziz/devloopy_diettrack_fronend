@@ -5,8 +5,8 @@ import 'package:ui/cubits/testimonils/testimonils_cubit/testimonils_cubit.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/testimonials/testimonial_base.dart';
 import 'package:ui/screens/home/sections/testimonials_section/widget/testimonials_custom_card.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 class TestimonialsListCustomCard extends StatefulWidget {
   const TestimonialsListCustomCard({super.key});
 
@@ -59,26 +59,29 @@ class _TestimonialsListCustomCardState
                       SizedBox(
                         width: 1500,
                         height: 450,
-                        child: ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: ScreenSize.isLarge ? 100 : 20,
+                        child: RepaintBoundary(
+                          
+                          child: ListView.builder(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: ScreenSize.isLarge ? 100 : 20,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: currentItems.length,
+                            itemBuilder: (context, index) {
+                              if (index >= currentItems.length) {
+                                return const SizedBox.shrink();
+                              }
+                          
+                              try {
+                                return TestimonialsCustomCard(
+                                  testimonial: currentItems[index],
+                                );
+                              } catch (e) {
+                                return const Center(
+                                    child: Text("Error loading testimonial"));
+                              }
+                            },
                           ),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: currentItems.length,
-                          itemBuilder: (context, index) {
-                            if (index >= currentItems.length) {
-                              return const SizedBox.shrink();
-                            }
-
-                            try {
-                              return TestimonialsCustomCard(
-                                testimonial: currentItems[index],
-                              );
-                            } catch (e) {
-                              return const Center(
-                                  child: Text("Error loading testimonial"));
-                            }
-                          },
                         ),
                       )
                     else

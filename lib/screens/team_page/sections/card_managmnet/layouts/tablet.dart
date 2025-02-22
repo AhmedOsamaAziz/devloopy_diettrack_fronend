@@ -14,15 +14,17 @@ class TabletCardManagment extends StatelessWidget {
     return SizedBox(
       height: 400,
       child: Center(
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: cardManagmentTeam.length,
-          itemBuilder: (context, index) {
-            return CustomCardManagment(
-              cardManagmentTeam: cardManagmentTeam[index],
-            );
-          },
+        child: RepaintBoundary(
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: cardManagmentTeam.length,
+            itemBuilder: (context, index) {
+              return CustomCardManagment(
+                cardManagmentTeam: cardManagmentTeam[index],
+              );
+            },
+          ),
         ),
       ),
     );

@@ -3,9 +3,9 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
+import 'package:ui/shared/custom_text.dart';
 
-import 'package:ui/widgets/custom_text.dart';
-
+ 
 class IntroductionGetstartButton extends StatelessWidget {
   const IntroductionGetstartButton({super.key});
 

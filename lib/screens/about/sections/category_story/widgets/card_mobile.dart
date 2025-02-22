@@ -4,7 +4,7 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/ghaps.dart';
 import 'package:ui/model/general/our_story.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class CardMobile extends StatelessWidget {
   const CardMobile({super.key, required this.ourStory});

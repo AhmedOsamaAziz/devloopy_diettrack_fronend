@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/cubits/service_cubit/button_cubit/button_color_cubit.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class DiscountButton extends StatelessWidget {
   const DiscountButton({super.key});

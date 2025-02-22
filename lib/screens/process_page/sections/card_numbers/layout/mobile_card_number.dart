@@ -10,14 +10,16 @@ class MobileCardNumberProcess extends StatelessWidget {
     final List cardProcess = CardProcess.cardProcess;
     return SizedBox(
       height: 2000,
-      child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: cardProcess.length,
-          itemBuilder: (context, index) {
-            return MobileCustomCardProcess(
-              cardProcess: cardProcess[index],
-            );
-          }),
+      child: RepaintBoundary(
+        child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: cardProcess.length,
+            itemBuilder: (context, index) {
+              return MobileCustomCardProcess(
+                cardProcess: cardProcess[index],
+              );
+            }),
+      ),
     );
   }
 }

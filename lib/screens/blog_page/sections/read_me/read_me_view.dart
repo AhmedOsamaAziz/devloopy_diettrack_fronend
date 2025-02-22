@@ -6,10 +6,10 @@ import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/screens/blog_page/sections/blog_header/widget/blog_description.dart';
 import 'package:ui/screens/blog_page/sections/blog_header/widget/blog_title.dart';
-import 'package:ui/widgets/Footer/main_footer.dart';
-import 'package:ui/widgets/Navigation_Bar/main_navigation_bar.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/Footer/main_footer.dart';
+import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
+import 'package:ui/shared/custom_text.dart';
+ 
 class ReadMeView extends StatelessWidget {
   const ReadMeView({super.key, required this.blogList});
   final BlogList blogList;

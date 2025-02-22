@@ -13,26 +13,31 @@ class CardManagmentList extends StatelessWidget {
     return ScreenSize.isLarge
         ? SizedBox(
             height: ScreenSize.isLarge ? 450 : 400,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cardManagmentTeam.length,
-              itemBuilder: (context, index) {
-                return CustomCardManagment(
-                  cardManagmentTeam: cardManagmentTeam[index],
-                );
-              },
+            child: RepaintBoundary(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: cardManagmentTeam.length,
+                itemBuilder: (context, index) {
+                  return CustomCardManagment(
+                    cardManagmentTeam: cardManagmentTeam[index],
+                  );
+                },
+              ),
             ),
           )
         : SizedBox(
-            child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            itemCount: cardManagmentTeam.length,
-            itemBuilder: (context, index) {
-              return CustomCardManagment(
-                cardManagmentTeam: cardManagmentTeam[index],
-              );
-            },
-          ));
+            width: 450,
+            child: RepaintBoundary(
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: cardManagmentTeam.length,
+                itemBuilder: (context, index) {
+                  return CustomCardManagment(
+                    cardManagmentTeam: cardManagmentTeam[index],
+                  );
+                },
+              ),
+            ));
   }
 }

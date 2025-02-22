@@ -4,7 +4,7 @@ import 'package:ui/helper/url_launcher.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_form/widget/custom_button_contact_us.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_form/widget/custom_form_feild.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_form/widget/social_media_buttons_desktop.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class DesktopFormContactUs extends StatelessWidget {
   const DesktopFormContactUs({super.key});

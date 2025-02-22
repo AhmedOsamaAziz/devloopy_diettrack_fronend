@@ -14,9 +14,10 @@ class ColorsApp {
   static const Color TitleColorFeatures = Color(0xff3cbea7b);
   static const Color ColorCardFeature = Color(0xffF6FBE9);
   static const Color OUTLINECOLOR = Color(0xffF6FBE9);
+  static const Color white = Colors.white;
+  static const Color black = Colors.black;
 }
 
 class FontsApp {
   static const fontFamilyUrbanist = 'Urbanist';
 }
- // 0xff333333

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
-import 'package:ui/widgets/custom_text.dart';
-
+import 'package:ui/shared/custom_text.dart';
+ 
 class CustomLastCard extends StatelessWidget {
   const CustomLastCard({
     super.key,

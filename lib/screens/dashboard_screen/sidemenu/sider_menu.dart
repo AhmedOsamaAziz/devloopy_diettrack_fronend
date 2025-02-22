@@ -15,7 +15,7 @@ import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashb
 
 import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
 import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
-import 'package:ui/widgets/custom_text.dart';
+import 'package:ui/shared/custom_text.dart';
 
 class SiderMenu extends StatelessWidget {
   final Function(Widget) onPageSelected;
