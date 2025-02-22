@@ -374,7 +374,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // تم حذف حقل Author من هنا
+
                 TextField(
                   controller: titleController,
                   decoration: const InputDecoration(labelText: 'Title'),
@@ -425,10 +425,8 @@ class _BlogDashboardState extends State<BlogDashboard> {
                   authorId: defaultAuthorId,
                 );
 
-                print("Payload: ${newBlog.toJson()}");
 
-                // استدعاء الخدمة لإنشاء المدونة على الخادم.
-                final response = await blogService.createNewBlogs(newBlog);
+                 final response = await blogService.createNewBlogs(newBlog);
                 if (response.status == ResponseStatus.success) {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -436,7 +434,7 @@ class _BlogDashboardState extends State<BlogDashboard> {
                         backgroundColor: Colors.green[700],
                         content: const Text('Blog added successfully!')),
                   );
-                  await _fetchBlogs(); // تحديث القائمة من الخادم.
+                  await _fetchBlogs();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

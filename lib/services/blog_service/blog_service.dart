@@ -112,6 +112,10 @@ class BlogService {
       final response = await apiService.makeRequest(
         ApiMethod.get,
         EndPoints.blogRecent,
+       queryParameters: {
+         // StartIndex : 0,
+         // PageSize : 3
+       }
       );
 
       List<BlogList> blogs = (response.obj['items'] as List)

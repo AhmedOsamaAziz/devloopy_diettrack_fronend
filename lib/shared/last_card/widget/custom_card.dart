@@ -14,7 +14,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final double padding = ScreenSize.isLarge ? 80 : 20;
     final double imageSize =
-        (ScreenSize.isLarge || ScreenSize.isMedium) ? 100 : 50;
+        (ScreenSize.isLarge || ScreenSize.isMedium) ? 80 : 50;
 
     return Padding(
       padding: EdgeInsets.all(padding),

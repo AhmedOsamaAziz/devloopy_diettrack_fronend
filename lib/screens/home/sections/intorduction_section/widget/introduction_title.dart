@@ -20,9 +20,9 @@ class IntroductionTitle extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomText(
-                      text: "Transform your ", fontWeight: FontWeight.bold),
+                      text: "Transform your", fontWeight: FontWeight.bold),
                   const Icon(Icons.favorite, color: Colors.red),
-                  CustomText(text: " health with", fontWeight: FontWeight.bold),
+                  Expanded(child: CustomText(text: " health with", fontWeight: FontWeight.bold)),
                 ],
               ),
               const Divider(color: ColorsApp.SecondaryColor, thickness: 3),
@@ -33,7 +33,7 @@ class IntroductionTitle extends StatelessWidget {
           text: 'Personalized Nutrition Coaching',
           color: ColorsApp.MAINCOLOR,
           fontWeight: FontWeight.w800,
-          fontFamily: 'Urbanist',
+
           fontSize: getResponsiveFontSize(context, fontSize: 36),
         ),
       ],
