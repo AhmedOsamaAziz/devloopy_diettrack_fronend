@@ -5,14 +5,26 @@ import 'package:ui/constants/assets.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
+import 'package:ui/screens/blog_page/blog_page.dart';
+import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/dashboard_screen/main_dashboard.dart';
 import 'package:ui/screens/home/home_page.dart';
+import 'package:ui/screens/pricing_page/pricing_page.dart';
+import 'package:ui/screens/process_page/process_page.dart';
+
+import '../../../../../screens/about/about_page.dart';
+import '../../../../../screens/team_page/team_page.dart';
 
 class NewUnderAppbar extends StatefulWidget {
-  const NewUnderAppbar(
-      {super.key, required this.activeIndex, required this.onTabChanged});
+  const NewUnderAppbar({
+    super.key,
+    required this.activeIndex,
+    required this.onTabChanged,
+    // required this.onPress,
+  });
   final int activeIndex;
   final ValueChanged<int> onTabChanged;
+  // final void Function() onPress;
 
   @override
   State<NewUnderAppbar> createState() => _NewUnderAppbarState();
@@ -22,6 +34,7 @@ class _NewUnderAppbarState extends State<NewUnderAppbar> {
   Widget _buildNavButton(
     int index,
     String label,
+    void Function() onPress,
   ) {
     bool isActive = widget.activeIndex == index;
     return TextButton(
@@ -31,9 +44,7 @@ class _NewUnderAppbarState extends State<NewUnderAppbar> {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      onPressed: () {
-        widget.onTabChanged(index);
-      },
+      onPressed: onPress,
       child: Text(
         label,
         style: TextStyle(
@@ -48,6 +59,7 @@ class _NewUnderAppbarState extends State<NewUnderAppbar> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
+
         final isLoggedIn = state is LoginSuccess;
 
         return SingleChildScrollView(
@@ -72,14 +84,55 @@ class _NewUnderAppbarState extends State<NewUnderAppbar> {
                   ),
                 ),
               ),
-                SizedBox(width: MediaQuery.of(context).size.width * 1/7.5),
-              _buildNavButton(0, 'Home'),
-              _buildNavButton(1, 'About'),
-              _buildNavButton(2, 'Team'),
-              _buildNavButton(3, 'Blog'),
-              _buildNavButton(5, 'process'),
-              _buildNavButton(6, 'Pricing'),
-              _buildNavButton(7, 'Contact Us'),
+              SizedBox(width: MediaQuery.of(context).size.width * 1 / 7.5),
+              _buildNavButton(
+                0,
+                'Home',
+                () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage())),
+              ),
+              _buildNavButton(
+                1,
+                'About',
+                () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const AboutPage())),
+              ),
+              _buildNavButton(
+                2,
+                'Team',
+                () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const TeamPage())),
+              ),
+              _buildNavButton(
+                3,
+                'Blog',
+                () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BlogPage())),
+              ),
+              _buildNavButton(
+                5,
+                'process',
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProcessPage())),
+              ),
+              _buildNavButton(
+                6,
+                'Pricing',
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PricingPage())),
+              ),
+              _buildNavButton(
+                7,
+                'Contact Us',
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ContactUsPage())),
+              ),
               _buildAuthDropdown(context, isLoggedIn),
             ],
           ),
@@ -91,7 +144,6 @@ class _NewUnderAppbarState extends State<NewUnderAppbar> {
 
 Widget _buildAuthDropdown(BuildContext context, bool isLoggedIn) {
   return DropdownButton<String>(
-
     borderRadius: BorderRadius.circular(10),
     enableFeedback: true,
     dropdownColor: ColorsApp.OUTLINECOLOR,

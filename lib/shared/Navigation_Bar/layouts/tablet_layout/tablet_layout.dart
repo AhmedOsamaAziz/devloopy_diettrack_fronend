@@ -41,15 +41,7 @@ class _TabletNavigationBarState extends State<TabletNavigationBar> {
                 },
                 activeIndex: _activeIndex,
               )),
-          // UnderAppBarTablet(
-          //   drawerModel: _listDrawer[_activeIndex], // Pass data
-          //   activeIndex: _activeIndex, // Pass activeIndex
-          //   onTabChanged: (index) {
-          //     setState(() {
-          //       _activeIndex = index; // Update activeIndex
-          //     });
-          //   },
-          // ),
+
         ],
       ),
     );

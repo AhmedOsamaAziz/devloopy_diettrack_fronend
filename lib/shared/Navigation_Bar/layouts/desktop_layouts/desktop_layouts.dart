@@ -38,6 +38,7 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
                       const UpparAppBar(),
                       const SizedBox(height: 10),
                       NewUnderAppbar(
+
                         onTabChanged: (index) {
                           setState(() {
                             activeIndex = index;
