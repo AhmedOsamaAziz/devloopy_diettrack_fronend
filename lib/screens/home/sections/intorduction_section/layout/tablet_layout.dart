@@ -14,6 +14,7 @@ class TabletLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.topCenter,
       color: ColorsApp.OUTLINECOLOR,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(

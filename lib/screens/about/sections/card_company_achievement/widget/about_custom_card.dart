@@ -16,7 +16,7 @@ class AboutCustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = ScreenSize.isLarge
-        ? 800
+        ? 1220
         : ScreenSize.isMedium
             ? 340
             : 358;

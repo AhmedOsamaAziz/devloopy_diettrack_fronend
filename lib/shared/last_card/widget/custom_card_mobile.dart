@@ -13,7 +13,7 @@ class CustomCardMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      width: 400,
+      width: 800,
       height: 400,
       child: Column(
         spacing: 16,

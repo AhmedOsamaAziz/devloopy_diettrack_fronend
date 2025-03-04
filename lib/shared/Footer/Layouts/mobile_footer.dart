@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/constants/assets.dart';
+import 'package:ui/helper/font_size_responsive.dart' show getResponsiveFontSize;
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
@@ -8,7 +10,7 @@ import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/shared/Footer/widget/build_navButton_footer.dart';
- 
+
 class MobileFooter extends StatelessWidget {
   const MobileFooter({super.key});
 
@@ -36,15 +38,17 @@ class MobileFooter extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(children: [
-          const Expanded(
+          Expanded(
             child: Row(
+              spacing: 10.0,
               children: [
-                Icon(
-                  Icons.settings,
-                  size: 35.0,
-                  color: ColorsApp.TitleColorFeatures,
+                Image.asset(
+                  Assets.imagesIconFlower,
+                  color: ColorsApp.SecondaryColor,
+                  height: 30.0,
+                  width: 30.0,
                 ),
-                Text(
+                const Text(
                   "DietTrack",
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
@@ -76,8 +80,8 @@ class MobileFooter extends StatelessWidget {
           ),
           const FittedBox(
             child: Row(
-              children: [ 
-                  // if (isLoggedIn)
+              children: [
+                // if (isLoggedIn)
                 BuildNavbuttonFooter(text: 'Home', index: 0, page: HomePage()),
                 BuildNavbuttonFooter(
                     text: 'About', index: 1, page: AboutPage()),
@@ -115,7 +119,6 @@ class MobileFooter extends StatelessWidget {
                   ),
                   CustomContactFooter(
                     icon: Icons.copyright,
-                    size: 14,
                     color: Color(0xFFFFFFFF),
                     text: "2024 DevLoopy.com.All rights reserved",
                   )
@@ -135,13 +138,13 @@ class CustomContactFooter extends StatelessWidget {
     super.key,
     this.icon,
     this.color,
-    this.size = 24,
+    this.size ,
     required this.text,
   });
   final IconData? icon;
   final String text;
   final Color? color;
-  final double size;
+  final double? size;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -154,18 +157,14 @@ class CustomContactFooter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            color: color,
-            size: size,
-          ),
+          Icon(icon, color: color, size: size),
           const SizedBox(width: 5),
           Text(
             text,
-            style: const TextStyle(
-              fontSize: 14.0,
+            style: TextStyle(
+              fontSize: getResponsiveFontSize(context, fontSize: 12),
               fontWeight: FontWeight.w400,
-              color: Color(0xFFFFFFFF),
+              color: const Color(0xFFFFFFFF),
             ),
           ),
         ],

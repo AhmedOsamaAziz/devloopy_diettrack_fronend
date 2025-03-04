@@ -44,7 +44,11 @@ class SiderMenu extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: SvgPicture.asset('assets/icons/close_filled.svg'),
+                        icon:   Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
                     ),
                   Padding(
@@ -55,9 +59,10 @@ class SiderMenu extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SvgPicture.asset(
-                          'assets/images/Logo.svg',
+                        Image.asset(
+                          'assets/images/logo.png',
                           height: 40,
+                          width: 40,
                         ),
                         gapW16,
                         CustomText(
@@ -84,7 +89,11 @@ class SiderMenu extends StatelessWidget {
                     children: [
                       ExpansionTile(
                         leading:
-                            SvgPicture.asset("assets/icons/diamond_light.svg"),
+                        Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "Home page",
                           style: TextStyle(
@@ -117,8 +126,11 @@ class SiderMenu extends StatelessWidget {
 
                       // About
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        leading:  Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "About",
                           style: TextStyle(
@@ -139,8 +151,11 @@ class SiderMenu extends StatelessWidget {
                       // Team
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        leading:   Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "Team",
                           style: TextStyle(
@@ -160,8 +175,11 @@ class SiderMenu extends StatelessWidget {
                       //Prcess
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        leading:  Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "Proocess",
                           style: TextStyle(
@@ -181,8 +199,11 @@ class SiderMenu extends StatelessWidget {
                       // pricing
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        leading:  Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "Services ",
                           style: TextStyle(
@@ -203,8 +224,11 @@ class SiderMenu extends StatelessWidget {
                       // Blogs
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        leading:   Image.asset(
+                          'assets/images/logo.png',
+                          height: 40,
+                          width: 40,
+                        ),
                         title: const Text(
                           "Blogs",
                           style: TextStyle(
@@ -248,7 +272,7 @@ class SiderMenu extends StatelessWidget {
                     if (Responsive.isMobile(context)) gapH8,
                     const Divider(),
                     gapH20,
-                    const ThemeTabs(),
+                    // const ThemeTabs(),
                     gapH8,
                   ],
                 ),

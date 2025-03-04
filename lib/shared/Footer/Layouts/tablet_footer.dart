@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/constants/assets.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
@@ -38,18 +40,19 @@ class TabletFooter extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            const Expanded(
+            Expanded(
               child: Row(
                 children: [
                   Expanded(
-                    child: Row(
+                    child: Row(spacing: 10.0,
                       children: [
-                        Icon(
-                          Icons.settings,
-                          size: 35.0,
-                          color: ColorsApp.TitleColorFeatures,
+                        Image.asset(
+                          Assets.imagesIconFlower,
+                          color: ColorsApp.SecondaryColor,
+                          height: 30.0,
+                          width: 30.0,
                         ),
-                        Text(
+                        const Text(
                           "DietTrack",
                           style: TextStyle(
                             color: Color(0xFFFFFFFF),
@@ -58,7 +61,7 @@ class TabletFooter extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Row(
+                  const Row(
                     spacing: 10,
                     children: [
                          // if (isLoggedIn)
@@ -78,8 +81,8 @@ class TabletFooter extends StatelessWidget {
                           text: 'Contact', index: 6, page: ContactUsPage()),
                     ],
                   ),
-                  SizedBox(width: 30.0),
-                  Row(
+                  const SizedBox(width: 30.0),
+                  const Row(
                     children: [
                       // const Text(
                       //   "Go To Top",
@@ -149,8 +152,8 @@ class CustomContactDevTablet extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 border: Border.all(color: const Color(0xFF346454), width: 1.0)),
-            child: const ListTile(
-              leading: Icon(
+            child: ListTile(
+              leading: const Icon(
                 Icons.mail,
                 color: ColorsApp.TitleColorFeatures,
                 size: 20.0,
@@ -158,22 +161,22 @@ class CustomContactDevTablet extends StatelessWidget {
               title: Text(
                 "Ahmed.Madkour@gmail.com",
                 style: TextStyle(
-                  fontSize: 9.0,
+                  fontSize: getResponsiveFontSize(context, fontSize: 10),
                   fontWeight: FontWeight.w500,
                   fontFamily: FontsApp.fontFamilyUrbanist,
-                  color: Color(0xFFFFFFFF),
+                  color: const Color(0xFFFFFFFF),
                 ),
               ),
             ),
           )),
           Expanded(
               child: Container(
-            margin: const EdgeInsets.only(right: 10.0),
+            margin: const  EdgeInsets.only(right: 10.0),
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 border: Border.all(color: const Color(0xFF346454), width: 1.0)),
-            child: const ListTile(
-              leading: Icon(
+            child:   ListTile(
+              leading: const Icon(
                 Icons.phone,
                 color: ColorsApp.TitleColorFeatures,
                 size: 20.0,
@@ -181,10 +184,9 @@ class CustomContactDevTablet extends StatelessWidget {
               title: Text(
                 "+002000020200",
                 style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500,
+                  fontSize: getResponsiveFontSize(context, fontSize: 10),                  fontWeight: FontWeight.w500,
                   fontFamily: FontsApp.fontFamilyUrbanist,
-                  color: Color(0xFFFFFFFF),
+                  color: const Color(0xFFFFFFFF),
                 ),
               ),
             ),
@@ -195,8 +197,8 @@ class CustomContactDevTablet extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 border: Border.all(color: const Color(0xFF346454), width: 1.0)),
-            child: const ListTile(
-              leading: Icon(
+            child:   ListTile(
+              leading: const Icon(
                 Icons.location_on,
                 color: ColorsApp.TitleColorFeatures,
                 size: 20.0,
@@ -204,19 +206,18 @@ class CustomContactDevTablet extends StatelessWidget {
               title: Text(
                 "SomeWhere in the World",
                 style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500,
+                  fontSize: getResponsiveFontSize(context, fontSize: 10),                  fontWeight: FontWeight.w500,
                   fontFamily: FontsApp.fontFamilyUrbanist,
-                  color: Color(0xFFFFFFFF),
+                  color: const Color(0xFFFFFFFF),
                 ),
               ),
             ),
           )),
-          const FittedBox(
+            FittedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
+                const Icon(
                   Icons.copyright,
                   color: Color(0xFFFFFFFF),
                   size: 16.0,
@@ -224,9 +225,8 @@ class CustomContactDevTablet extends StatelessWidget {
                 Text(
                   "2024 DevLoopy.com.All rights reserved",
                   style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFFFFFFFF),
+                    fontSize: getResponsiveFontSize(context, fontSize: 10),                    fontWeight: FontWeight.w400,
                     fontFamily: FontsApp.fontFamilyUrbanist,
                   ),
                 )

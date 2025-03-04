@@ -5,7 +5,6 @@ import 'package:ui/screens/home/sections/service_section/service_section.dart';
 import 'package:ui/shared/Footer/main_footer.dart';
 import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
 
-
 import 'sections/feature_section/features_section.dart';
 import 'sections/intorduction_section/introduction_section.dart';
 import 'sections/our_blog_section/blog_section.dart';
@@ -30,9 +29,9 @@ class HomePage extends StatelessWidget {
             MainNavigationBar(),
             IntroductionSection(),
             FeatureSection(),
-            OurBlogsSection(),
+             OurBlogsSection(),
              TestmonilasSection(),
-            ServiceSection(),
+             ServiceSection(),
             SizedBox(height: 10),
             MainFooter(),
           ],

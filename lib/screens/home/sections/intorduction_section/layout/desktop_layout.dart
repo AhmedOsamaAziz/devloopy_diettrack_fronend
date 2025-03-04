@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/home/sections/intorduction_section/widget/introduction_getstart_button.dart';
 import 'package:ui/screens/home/sections/intorduction_section/widget/introduction_avatars.dart';
 import 'package:ui/screens/home/sections/intorduction_section/widget/introduction_description.dart';
@@ -25,20 +25,21 @@ class DeskTopLayout extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.only(bottom: 20, left: 20, right: 60),
-              child: Column(
+              child: const Column(
+                spacing: 18,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const IntroductionTitle(),
-                  const SizedBox(height: 18),
-                  const IntroductionDescription(),
-                  const SizedBox(height: 30),
-                  const IntroductionGetstartButton(),
-                  const SizedBox(height: 20),
+                  IntroductionTitle(),
+                  SizedBox(height: 18),
+                  IntroductionDescription(),
+                  SizedBox(height: 30),
+                  IntroductionGetstartButton(),
+                  SizedBox(height: 20),
                   Row(
                     children: [
-                      const IntroductionAvatars(),
-                      SizedBox(width: 20.w),
-                      const IntroductionHappyCustomers()
+                      IntroductionAvatars(),
+                      gapW30,
+                      IntroductionHappyCustomers()
                     ],
                   ),
                 ],

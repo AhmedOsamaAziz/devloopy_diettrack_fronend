@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
@@ -94,7 +95,7 @@ class _UnderAppBarTabletState extends State<UnderAppBarTablet> {
         padding: const EdgeInsets.symmetric(horizontal: 10), // Add spacing
         child: CustomText(
           text: text,
-          fontSize: 18,
+          fontSize: getResponsiveFontSize(context, fontSize: 10),
           fontWeight: FontWeight.w500,
           color: _activeIndex == index
               ? Colors.white // Text color for active button

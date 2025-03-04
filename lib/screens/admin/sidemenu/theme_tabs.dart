@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/screens/admin/constants/app_colors.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/tabs/tab_with_icon.dart';
@@ -61,12 +62,12 @@ class _ThemeTabsState extends State<ThemeTabs>
           TabWithIcon(
             isSelected: _selectedIndex == 0,
             title: 'Light',
-            iconSrc: 'assets/icons/sun_filled.svg',
+            iconSrc:  '',
           ),
           TabWithIcon(
             isSelected: _selectedIndex == 1,
             title: 'Dark',
-            iconSrc: 'assets/icons/moon_light.svg',
+            iconSrc: ' ',
           ),
         ],
       ),
