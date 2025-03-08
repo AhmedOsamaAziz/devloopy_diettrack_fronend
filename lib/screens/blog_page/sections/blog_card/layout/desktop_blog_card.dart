@@ -11,7 +11,7 @@ class DesktopBlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<BlogCubit>().fetchRecentBlogs();
+    context.read<BlogCubit>().allBlogs();
 
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {

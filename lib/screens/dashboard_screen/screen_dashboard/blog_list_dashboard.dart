@@ -54,12 +54,11 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
-            groupId: 1,   
-            authorId:
-                "0d26019d-54c8-4b3d-a67d-84623b466f3c",   
+            groupId: 1,
+            authorId: "0d26019d-54c8-4b3d-a67d-84623b466f3c",
           ));
         } else {
-           _rows[index] = BlogCreate(
+          _rows[index] = BlogCreate(
             title: result['title']!,
             titleAr: result['titleAr']!,
             description: result['description']!,
@@ -70,7 +69,7 @@ class _BlogListDashBoardState extends State<BlogListDashBoard> {
             ),
             imageUrl: result['imageUrl']!,
             videoUrl: result['videoUrl']!,
-            groupId: 1,    
+            groupId: 1,
             authorId: "0d26019d-54c8-4b3d-a67d-84623b466f3c",
           );
         }

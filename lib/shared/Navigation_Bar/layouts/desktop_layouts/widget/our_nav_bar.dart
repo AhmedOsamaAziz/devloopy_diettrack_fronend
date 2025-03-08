@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
+import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/helper/font_size_responsive.dart';
@@ -15,8 +15,8 @@ import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 
-class UnderUppBar extends StatefulWidget {
-  const UnderUppBar({
+class OurNavBar extends StatefulWidget {
+  const OurNavBar({
     super.key,
     required this.activeIndex,
     required this.onTabChanged,
@@ -26,10 +26,10 @@ class UnderUppBar extends StatefulWidget {
   final ValueChanged<int> onTabChanged;
 
   @override
-  _UnderUppBarState createState() => _UnderUppBarState();
+  _OurNavBarState createState() => _OurNavBarState();
 }
 
-class _UnderUppBarState extends State<UnderUppBar> {
+class _OurNavBarState extends State<OurNavBar> {
   int activeIndex = 0; // Tracks the active navigation index
   final List<Widget> _screens = [
     const HomePage(),
@@ -39,10 +39,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
     const ProcessPage(),
     const PricingPage(),
     const ContactUsPage(),
-
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,38 +56,36 @@ class _UnderUppBarState extends State<UnderUppBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
                   Expanded(
                     child: SizedBox(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child:  Row(children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            height: 40,
-                            width: 140,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(Assets.imagesLogo),
+                        height: 40,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Row(children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 40,
+                              width: 140,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(Assets.imagesLogo),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                     const Spacer(),
-                        _buildDesktopNavigation(activeIndex, (index) {
-                          setState(() {
-                            activeIndex = index;
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => _screens[index]));
-                          });
-
-                        }),     const Spacer(),
-                        _buildAuthDropdown(context, isLoggedIn),
-                      ])
-                    ),
+                          const Spacer(),
+                          _buildDesktopNavigation(activeIndex, (index) {
+                            setState(() {
+                              activeIndex = index;
+                              //   Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //           builder: (context) => _screens[index]));
+                            });
+                          }),
+                          const Spacer(),
+                          _buildAuthDropdown(context, isLoggedIn),
+                        ])),
                   ),
                 ],
               ),
@@ -100,6 +95,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
       },
     );
   }
+
   Widget _buildAuthDropdown(BuildContext context, bool isLoggedIn) {
     return DropdownButton<String>(
       alignment: Alignment.center,
@@ -152,8 +148,9 @@ class _UnderUppBarState extends State<UnderUppBar> {
       },
     );
   }
+
   Widget _buildDesktopNavigation(
-      int currentIndex, Function(int index) onTabSelected ) {
+      int currentIndex, Function(int index) onTabSelected) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -207,7 +204,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
     );
   }
 
-
   void _showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -217,6 +213,7 @@ class _UnderUppBarState extends State<UnderUppBar> {
     );
   }
 }
+
 class _NavButton extends StatelessWidget {
   final String label;
   final int index;

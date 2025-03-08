@@ -4,9 +4,8 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/under_appbar.dart';
-import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/upper_appbar.dart';
-
+import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/advertise_bar.dart';
+import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/our_nav_bar.dart';
 
 class DesktopNavigationBar extends StatefulWidget {
   const DesktopNavigationBar({super.key});
@@ -17,7 +16,6 @@ class DesktopNavigationBar extends StatefulWidget {
 
 class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
   int activeIndex = 0; // Tracks the active navigation index
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +37,15 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      const UpparAppBar(),
+                      const AdvertiseBar(),
                       const SizedBox(height: 10),
-                      UnderUppBar (
-                        activeIndex: activeIndex,
-                        onTabChanged: (index) {
-                          setState(() {
-                            activeIndex = index;
-                          });
-                        }
-                      ),
+                      OurNavBar(
+                          activeIndex: activeIndex,
+                          onTabChanged: (index) {
+                            setState(() {
+                              activeIndex = index;
+                            });
+                          }),
                     ],
                   ),
                 ),

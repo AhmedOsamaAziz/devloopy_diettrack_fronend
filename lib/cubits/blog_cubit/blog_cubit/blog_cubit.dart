@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/blog/blog_create.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/model/blog/blog_update.dart';
 import 'package:ui/services/blog_service/blog_service.dart';
+
 part 'blog_state.dart';
 
 class BlogCubit extends Cubit<BlogState> {
@@ -45,7 +43,6 @@ class BlogCubit extends Cubit<BlogState> {
       var blogService = BlogService();
       var response = await blogService.getRecentBlogs();
       if (response.status == ResponseStatus.success) {
-        log(response.obj.toString());
         final List<BlogList> blogs = response.obj;
 
         if (blogs.isEmpty) {

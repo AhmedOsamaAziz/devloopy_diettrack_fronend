@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
@@ -56,15 +57,24 @@ class _ServiceItemDashboardState extends State<ServiceItemDashboard> {
       setState(() => _isLoading = true);
       try {
         // Call the API to create the new service item.
-        final response =
-            await servicePlanItemImplmentation.createService(newItem, 1);
+        final response = await servicePlanItemImplmentation.createService(
+            newItem, newItem.serviceID);
 
         if (response.status == ResponseStatus.success && response.obj != null) {
-          // If you want, you can refresh the list from the API:
+          // Add the new service item to the list.
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                backgroundColor: Colors.green[700],
+                content: const Text('service item added successfully!')),
+          );
+          setState(() {
+            _rows.add(response.obj);
+          });
+
           await _fetchServiceItems();
         } else {
           log("Failed to add service item: ${response.message}");
-          // Optionally, show an error message (e.g., using a SnackBar).
         }
       } catch (e) {
         log("Error adding service item: $e");
@@ -209,7 +219,7 @@ class AddServiceItemForm extends StatelessWidget {
             // Create a ServiceItemCreate instance from the form inputs.
             final newItem = ServiceItemCreate(
               id: 0,
-               serviceID: int.tryParse(serviceIDController.text) ?? 0,
+              serviceID: int.tryParse(serviceIDController.text) ?? 0,
               description: descriptionController.text,
               descriptionAr: descriptionArController.text,
             );

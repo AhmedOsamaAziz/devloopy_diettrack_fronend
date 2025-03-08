@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dio/dio.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -62,7 +63,7 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         });
       }
 
-       final response = await _testimonialService.getAllTestimonial(
+      final response = await _testimonialService.getAllTestimonial(
           limit: const int.fromEnvironment('limit'), page: 1);
       if (response.status == ResponseStatus.success) {
         setState(() {
@@ -155,12 +156,12 @@ class _DashBoardBadyState extends State<DashBoardBady> {
 
         print('Sending payload: ${testimonialCreate.toJson()}');
 
-         final response =
+        final response =
             await _testimonialService.createTestimonial(testimonialCreate);
 
         if (response.status == ResponseStatus.success) {
           setState(() {
-             _rows.add(response.obj);
+            _rows.add(response.obj);
           });
           _saveTestimonialsToSharedPref();
         } else {
@@ -246,7 +247,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
         final response =
             await _testimonialService.updateTestimonial(testimonialUpdate);
         if (response.status == ResponseStatus.success) {
-
           setState(() {
             _rows[index] = response.obj as TestimonialList;
           });
@@ -332,6 +332,9 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                 : SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: DataTable(
+                      headingTextStyle: const TextStyle(color: Colors.white),
+                      headingRowColor:
+                          WidgetStateProperty.all(ColorsApp.TextColor),
                       columns: const [
                         DataColumn(label: Text("Id")),
                         DataColumn(label: Text("Title")),
