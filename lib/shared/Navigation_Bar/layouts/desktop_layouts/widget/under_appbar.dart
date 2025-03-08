@@ -4,6 +4,7 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
@@ -13,8 +14,6 @@ import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-import 'package:ui/shared/custom_text.dart';
-import 'package:ui/helper/font_size_responsive.dart';
 
 class UnderUppBar extends StatefulWidget {
   const UnderUppBar({
@@ -31,13 +30,19 @@ class UnderUppBar extends StatefulWidget {
 }
 
 class _UnderUppBarState extends State<UnderUppBar> {
-  int _selectedIndex = 0;
+  int activeIndex = 0; // Tracks the active navigation index
+  final List<Widget> _screens = [
+    const HomePage(),
+    const AboutPage(),
+    const TeamPage(),
+    const BlogPage(),
+    const ProcessPage(),
+    const PricingPage(),
+    const ContactUsPage(),
 
-  @override
-  void initState() {
-    super.initState();
-    _selectedIndex = widget.activeIndex;
-  }
+  ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,51 +52,44 @@ class _UnderUppBarState extends State<UnderUppBar> {
 
         return Container(
           padding: const EdgeInsets.all(2),
-          width: MediaQuery.of(context).size.width * 0.5,
+          width: MediaQuery.of(context).size.width * 0.9,
           child: Wrap(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      _navigateToPage(context, const HomePage(), 0);
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 140,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Assets.imagesLogo),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
+
                   Expanded(
                     child: SizedBox(
-                      height: 27,
+                      height: 40,
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _buildNavButton(context, 'Home', 0, const HomePage()),
-                          _buildNavButton(
-                              context, 'About', 1, const AboutPage()),
-                          _buildNavButton(context, 'Team', 2, const TeamPage()),
-                          _buildNavButton(
-                              context, 'Process', 3, const ProcessPage()),
-                          _buildNavButton(
-                              context, 'Pricing', 4, const PricingPage()),
-                          _buildNavButton(context, 'Blog', 5, const BlogPage()),
-                          _buildNavButton(
-                              context, 'Contact', 6, const ContactUsPage()),
-                          const SizedBox(
-                              width: 10), // Add space between buttons
-                          _buildAuthDropdown(context, isLoggedIn),
-                        ],
-                      ),
+                      child:  Row(children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 40,
+                            width: 140,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(Assets.imagesLogo),
+                              ),
+                            ),
+                          ),
+                        ),
+                     const Spacer(),
+                        _buildDesktopNavigation(activeIndex, (index) {
+                          setState(() {
+                            activeIndex = index;
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => _screens[index]));
+                          });
+
+                        }),     const Spacer(),
+                        _buildAuthDropdown(context, isLoggedIn),
+                      ])
                     ),
                   ),
                 ],
@@ -102,33 +100,6 @@ class _UnderUppBarState extends State<UnderUppBar> {
       },
     );
   }
-
-  Widget _buildNavButton(
-      BuildContext context, String text, int index, Widget page) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index; // Update selected index
-        });
-        _navigateToPage(context, page, index);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: CustomText(
-          text: text,
-          fontSize: getResponsiveFontSize(context, fontSize: 11),
-          fontWeight: FontWeight.w500,
-          color: _selectedIndex == index
-              ? ColorsApp.NumberColor
-              : ColorsApp.SecondaryColor,
-        ),
-      ),
-    );
-  }
-
   Widget _buildAuthDropdown(BuildContext context, bool isLoggedIn) {
     return DropdownButton<String>(
       alignment: Alignment.center,
@@ -181,29 +152,120 @@ class _UnderUppBarState extends State<UnderUppBar> {
       },
     );
   }
-
-  void _navigateToPage(BuildContext context, Widget page, int index) {
-    widget.onTabChanged(index);
-    Navigator.of(context)
-        .push(
-      MaterialPageRoute(
-        builder: (context) => page,
-        settings: RouteSettings(arguments: index),
+  Widget _buildDesktopNavigation(
+      int currentIndex, Function(int index) onTabSelected ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _NavButton(
+            label: 'Home',
+            index: 0,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(0),
+          ),
+          _NavButton(
+            label: 'About',
+            index: 1,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(1),
+          ),
+          _NavButton(
+            label: 'Team',
+            index: 2,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(2),
+          ),
+          _NavButton(
+            label: 'Blog',
+            index: 3,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(3),
+          ),
+          _NavButton(
+            label: 'Process',
+            index: 4,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(4),
+          ),
+          _NavButton(
+            label: 'Pricing',
+            index: 5,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(5),
+          ),
+          _NavButton(
+            label: 'Contact Us',
+            index: 6,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(6),
+          ),
+        ],
       ),
-    )
-        .then((_) {
-      setState(() {
-        _selectedIndex =
-            index; // Update selected index when returning to this page
-      });
-    });
+    );
   }
+
 
   void _showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
         backgroundColor: Colors.red,
+      ),
+    );
+  }
+}
+class _NavButton extends StatelessWidget {
+  final String label;
+  final int index;
+  final int currentIndex;
+  final VoidCallback onPressed;
+
+  const _NavButton({
+    required this.label,
+    required this.index,
+    required this.currentIndex,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isActive = index == currentIndex;
+
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        textStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+        ),
+        backgroundColor: isActive ? ColorsApp.MAINCOLOR : Colors.transparent,
+        foregroundColor: isActive ? ColorsApp.SecondaryColor : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: isActive ? Colors.white : Colors.transparent,
+              width: 2,
+            ),
+          ),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: getResponsiveFontSize(context, fontSize: 10),
+            fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }

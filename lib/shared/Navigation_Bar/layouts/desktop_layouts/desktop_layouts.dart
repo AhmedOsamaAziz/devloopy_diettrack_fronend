@@ -1,12 +1,12 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/Constants/constants.dart';
+import 'package:ui/cubits/login_cubit/login_cubit.dart';
+import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/model/general/drawer_model.dart';
 import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/under_appbar.dart';
 import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/upper_appbar.dart';
 
-import 'widget/new_under_appbar.dart';
 
 class DesktopNavigationBar extends StatefulWidget {
   const DesktopNavigationBar({super.key});
@@ -18,14 +18,18 @@ class DesktopNavigationBar extends StatefulWidget {
 class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
   int activeIndex = 0; // Tracks the active navigation index
 
+
   @override
   Widget build(BuildContext context) {
     ScreenSize.getScreenSize(context);
 
-    return Center(
-        child: Container(
+    return BlocBuilder<LoginCubit, LoginState>(
+      builder: (context, state) {
+        final isLoggedIn = state is LoginSuccess;
+        return Center(
+          child: Container(
             alignment: Alignment.center,
-            height: 120,
+            height: 115,
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 15),
             decoration: const BoxDecoration(color: ColorsApp.MAINCOLOR),
@@ -37,19 +41,24 @@ class _DesktopNavigationBarState extends State<DesktopNavigationBar> {
                     children: [
                       const UpparAppBar(),
                       const SizedBox(height: 10),
-                      NewUnderAppbar(
-
+                      UnderUppBar (
+                        activeIndex: activeIndex,
                         onTabChanged: (index) {
                           setState(() {
                             activeIndex = index;
                           });
-                        },
-                        activeIndex: activeIndex,
+                        }
                       ),
                     ],
                   ),
-                )
+                ),
               ],
-            )));
+            ),
+          ),
+        );
+      },
+    );
   }
 }
+
+//

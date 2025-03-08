@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +45,7 @@ class BlogCubit extends Cubit<BlogState> {
       var blogService = BlogService();
       var response = await blogService.getRecentBlogs();
       if (response.status == ResponseStatus.success) {
+        log(response.obj.toString());
         final List<BlogList> blogs = response.obj;
 
         if (blogs.isEmpty) {
@@ -66,7 +69,7 @@ class BlogCubit extends Cubit<BlogState> {
       var response = await blogService.createNewBlogs(newBlog);
 
       if (response.status == ResponseStatus.success) {
-         await allBlogs();
+        await allBlogs();
       } else {
         emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));
       }
@@ -94,7 +97,7 @@ class BlogCubit extends Cubit<BlogState> {
   //     emit(BlogFailure(errMessage: "An Error Occurred While loading data. $e"));
   //   }
   // }
-Future<void> updateBlogs(BlogUpdate updatedBlog) async {
+  Future<void> updateBlogs(BlogUpdate updatedBlog) async {
     emit(BlogLoading());
 
     try {
@@ -102,8 +105,8 @@ Future<void> updateBlogs(BlogUpdate updatedBlog) async {
       var response = await blogService.updateBlog(updatedBlog);
 
       if (response.status == ResponseStatus.success) {
-      await allBlogs();
-         // emit(BlogSuccess(updatedList));
+        await allBlogs();
+        // emit(BlogSuccess(updatedList));
       } else {
         emit(BlogFailure(errMessage: response.message ?? 'An error occurred'));
       }
@@ -112,7 +115,6 @@ Future<void> updateBlogs(BlogUpdate updatedBlog) async {
           BlogFailure(errMessage: "An Error Occurred While updating data. $e"));
     }
   }
-
 
   Future<void> deleteBlogs(List<BlogList> blogList, int blogId) async {
     emit(BlogLoading());
