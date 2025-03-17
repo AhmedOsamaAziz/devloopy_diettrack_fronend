@@ -5,15 +5,9 @@ import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/auth/login_page/login_page.dart';
-import 'package:ui/screens/blog_page/blog_page.dart';
-import 'package:ui/screens/contact_us/contact_us.dart';
-import 'package:ui/screens/dashboard_screen/main_dashboard.dart';
-import 'package:ui/screens/home/home_page.dart';
-import 'package:ui/screens/pricing_page/pricing_page.dart';
-import 'package:ui/screens/process_page/process_page.dart';
-import 'package:ui/screens/team_page/team_page.dart';
+
+import '../../../../../screens/auth/login_page/login_page.dart';
+import '../../../../../screens/dashboard_screen/main_dashboard.dart';
 
 class OurNavBar extends StatefulWidget {
   const OurNavBar({
@@ -30,24 +24,31 @@ class OurNavBar extends StatefulWidget {
 }
 
 class _OurNavBarState extends State<OurNavBar> {
-  int activeIndex = 0; // Tracks the active navigation index
-  final List<Widget> _screens = [
-    const HomePage(),
-    const AboutPage(),
-    const TeamPage(),
-    const BlogPage(),
-    const ProcessPage(),
-    const PricingPage(),
-    const ContactUsPage(),
-  ];
+  int localIndex = 0; // local state if needed
+
+  @override
+  void initState() {
+    super.initState();
+    localIndex = widget.activeIndex;
+  }
+
+  @override
+  void didUpdateWidget(covariant OurNavBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.activeIndex != widget.activeIndex) {
+      setState(() {
+        localIndex = widget.activeIndex;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         final isLoggedIn = state is LoginSuccess;
-
         return Container(
+          color: ColorsApp.MAINCOLOR,
           padding: const EdgeInsets.all(2),
           width: MediaQuery.of(context).size.width * 0.9,
           child: Wrap(
@@ -58,9 +59,10 @@ class _OurNavBarState extends State<OurNavBar> {
                 children: [
                   Expanded(
                     child: SizedBox(
-                        height: 40,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Row(children: [
+                      height: 40,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Row(
+                        children: [
                           GestureDetector(
                             onTap: () {},
                             child: Container(
@@ -74,18 +76,18 @@ class _OurNavBarState extends State<OurNavBar> {
                             ),
                           ),
                           const Spacer(),
-                          _buildDesktopNavigation(activeIndex, (index) {
+                          _buildDesktopNavigation(localIndex, (index) {
+                            // Update local state and call parent's callback
                             setState(() {
-                              activeIndex = index;
-                              //   Navigator.push(
-                              //       context,
-                              //       MaterialPageRoute(
-                              //           builder: (context) => _screens[index]));
+                              localIndex = index;
                             });
+                            widget.onTabChanged(index);
                           }),
                           const Spacer(),
                           _buildAuthDropdown(context, isLoggedIn),
-                        ])),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -200,15 +202,6 @@ class _OurNavBarState extends State<OurNavBar> {
             onPressed: () => onTabSelected(6),
           ),
         ],
-      ),
-    );
-  }
-
-  void _showSnackbar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
       ),
     );
   }
