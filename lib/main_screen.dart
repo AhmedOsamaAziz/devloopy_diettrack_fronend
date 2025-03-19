@@ -10,9 +10,9 @@ import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/advertise_bar.dart';
-import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/advertise_bar_mobile.dart';
-import 'package:ui/shared/Navigation_Bar/layouts/desktop_layouts/widget/our_nav_bar.dart';
+import 'package:ui/shared/Navigation_Bar/advertise_bar.dart';
+import 'package:ui/shared/Navigation_Bar/advertise_bar_mobile.dart';
+import 'package:ui/shared/Navigation_Bar/our_nav_bar.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

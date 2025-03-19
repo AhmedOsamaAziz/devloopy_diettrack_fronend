@@ -6,8 +6,8 @@ import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 
-import '../../../../../screens/auth/login_page/login_page.dart';
-import '../../../../../screens/dashboard_screen/main_dashboard.dart';
+import '../../screens/auth/login_page/login_page.dart';
+import '../../screens/dashboard_screen/main_dashboard.dart';
 
 class OurNavBar extends StatefulWidget {
   const OurNavBar({
