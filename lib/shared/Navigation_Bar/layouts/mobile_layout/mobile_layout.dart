@@ -3,7 +3,7 @@ import 'package:ui/Constants/constants.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/shared/Navigation_Bar/layouts/mobile_layout/widget/under_appbar_mobile.dart';
 import 'package:ui/shared/Navigation_Bar/layouts/mobile_layout/widget/uppar_appbar_mobile.dart';
- 
+
 class MobileNavigationBar extends StatelessWidget {
   const MobileNavigationBar({super.key});
 

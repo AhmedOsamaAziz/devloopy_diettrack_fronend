@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
+import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/blog_page/sections/read_me/read_me_view.dart';
 import 'package:ui/screens/home/sections/our_blog_section/widget/our_blog_custom_card.dart';
 
- 
- class CustomGridView extends StatelessWidget {
+class CustomGridView extends StatelessWidget {
   const CustomGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
-     context.read<BlogCubit>().allBlogs();
+    context.read<BlogCubit>().fetchRecentBlogs();
 
     return BlocBuilder<BlogCubit, BlogState>(
       builder: (context, state) {
@@ -18,14 +18,14 @@ import 'package:ui/screens/home/sections/our_blog_section/widget/our_blog_custom
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
           return GridView.builder(
-            shrinkWrap: true, 
-            physics:
-                const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.blogs.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10.0,
               crossAxisSpacing: 10.0,
+              mainAxisExtent: ScreenSize.isLarge ? 650 : 450,
             ),
             itemBuilder: (BuildContext context, int index) {
               final blog = state.blogs[index];
