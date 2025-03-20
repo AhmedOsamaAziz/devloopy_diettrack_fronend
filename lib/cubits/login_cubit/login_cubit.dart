@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
+
 import 'login_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginService loginService;
@@ -24,14 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       if (response.status == ResponseStatus.success) {
-   
-
- 
         emit(LoginSuccess());
-        
-
-        // _clearFields();
-        // emit(LoginSuccess());
       } else {
         emit(LoginError(response.message ?? "Login failed"));
       }

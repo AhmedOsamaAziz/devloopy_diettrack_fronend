@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/constants/assets.dart';
+import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
+import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-import 'package:ui/screens/about/about_page.dart';
-import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/shared/Footer/widget/build_navButton_footer.dart';
-  
+
 class DesktopFooter extends StatelessWidget {
   const DesktopFooter({super.key});
 
