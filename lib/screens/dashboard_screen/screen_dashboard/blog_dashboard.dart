@@ -590,51 +590,55 @@ class _BlogDashboardState extends State<BlogDashboard> {
               child: isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: DataTable(
-                        columns: const [
-                          DataColumn(label: Text('Title')),
-                          DataColumn(label: Text('TitleAr')),
-                          DataColumn(label: Text('Description')),
-                          DataColumn(label: Text('DescriptionAr')),
-                          DataColumn(label: Text('ImageUrl')),
-                          DataColumn(label: Text('VideoUrl')),
-                          DataColumn(label: Text('Actions')),
-                        ],
-                        rows: blogs.map((blog) {
-                          return DataRow(
-                            cells: [
-                              DataCell(Text(blog.title)),
-                              DataCell(Text(blog.titleAr)),
-                              DataCell(SizedBox(
-                                  width: 200, child: Text(blog.description))),
-                              DataCell(SizedBox(
-                                  width: 200, child: Text(blog.descriptionAr))),
-                              DataCell(SizedBox(
-                                  width: 150,
-                                  child: Text(blog.imageUrl ?? 'N/A'))),
-                              DataCell(Text(blog.videoUrl ?? 'N/A')),
-                              DataCell(
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    CustomButton(
-                                      text: 'Edit',
-                                      colortxt: ColorsApp.MainColorbackgraund,
-                                      onPressed: () => _openEditForm(blog),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    CustomButton(
-                                      text: 'Delete',
-                                      colortxt: ColorsApp.MainColorbackgraund,
-                                      onPressed: () => _deleteBlog(blog),
-                                    ),
-                                  ],
+                      scrollDirection: Axis.vertical,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          columns: const [
+                            DataColumn(label: Text('Title')),
+                            DataColumn(label: Text('TitleAr')),
+                            DataColumn(label: Text('Description')),
+                            DataColumn(label: Text('DescriptionAr')),
+                            DataColumn(label: Text('ImageUrl')),
+                            DataColumn(label: Text('VideoUrl')),
+                            DataColumn(label: Text('Actions')),
+                          ],
+                          rows: blogs.map((blog) {
+                            return DataRow(
+                              cells: [
+                                DataCell(Text(blog.title)),
+                                DataCell(Text(blog.titleAr)),
+                                DataCell(SizedBox(
+                                    width: 200, child: Text(blog.description))),
+                                DataCell(SizedBox(
+                                    width: 200,
+                                    child: Text(blog.descriptionAr))),
+                                DataCell(SizedBox(
+                                    width: 150,
+                                    child: Text(blog.imageUrl ?? 'N/A'))),
+                                DataCell(Text(blog.videoUrl ?? 'N/A')),
+                                DataCell(
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CustomButton(
+                                        text: 'Edit',
+                                        colortxt: ColorsApp.MainColorbackgraund,
+                                        onPressed: () => _openEditForm(blog),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      CustomButton(
+                                        text: 'Delete',
+                                        colortxt: ColorsApp.MainColorbackgraund,
+                                        onPressed: () => _deleteBlog(blog),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        }).toList(),
+                              ],
+                            );
+                          }).toList(),
+                        ),
                       ),
                     )),
         ],

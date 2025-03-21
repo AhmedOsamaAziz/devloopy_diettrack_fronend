@@ -84,7 +84,7 @@ class _OurNavBarState extends State<OurNavBar> {
                             widget.onTabChanged(index);
                           }),
                           const Spacer(),
-                          _buildAuthDropdown(context, isLoggedIn),
+                          _buildAuthPopupMenu(context, isLoggedIn),
                         ],
                       ),
                     ),
@@ -98,40 +98,12 @@ class _OurNavBarState extends State<OurNavBar> {
     );
   }
 
-  Widget _buildAuthDropdown(BuildContext context, bool isLoggedIn) {
-    return DropdownButton<String>(
-      alignment: Alignment.center,
-      borderRadius: BorderRadius.circular(10),
-      enableFeedback: true,
-      dropdownColor: ColorsApp.OUTLINECOLOR,
+  Widget _buildAuthPopupMenu(BuildContext context, bool isLoggedIn) {
+    return PopupMenuButton<String>(
       icon: const Icon(Icons.menu, color: ColorsApp.SecondaryColor),
-      underline: const SizedBox(),
-      items: [
-        if (!isLoggedIn) ...[
-          const DropdownMenuItem(
-            value: 'login',
-            child: Text(
-              'Login',
-              style: TextStyle(color: ColorsApp.NumberColor),
-            ),
-          ),
-          const DropdownMenuItem(
-            value: 'logout',
-            child: Text(
-              'Logout',
-              style: TextStyle(color: ColorsApp.NumberColor),
-            ),
-          ),
-        ],
-        const DropdownMenuItem(
-          value: 'dashboard',
-          child: Text(
-            'Dashboard',
-            style: TextStyle(color: ColorsApp.NumberColor),
-          ),
-        ),
-      ],
-      onChanged: (value) {
+      color: ColorsApp.OUTLINECOLOR,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      onSelected: (value) {
         switch (value) {
           case 'login':
             Navigator.of(context).pushReplacement(
@@ -148,6 +120,31 @@ class _OurNavBarState extends State<OurNavBar> {
             break;
         }
       },
+      itemBuilder: (context) => [
+        if (!isLoggedIn) ...[
+          const PopupMenuItem<String>(
+            value: 'login',
+            child: Text(
+              'Login',
+              style: TextStyle(color: ColorsApp.NumberColor),
+            ),
+          ),
+          const PopupMenuItem<String>(
+            value: 'logout',
+            child: Text(
+              'Logout',
+              style: TextStyle(color: ColorsApp.NumberColor),
+            ),
+          ),
+        ],
+        const PopupMenuItem<String>(
+          value: 'dashboard',
+          child: Text(
+            'Dashboard',
+            style: TextStyle(color: ColorsApp.NumberColor),
+          ),
+        ),
+      ],
     );
   }
 

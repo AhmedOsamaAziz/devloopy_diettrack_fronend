@@ -6,10 +6,11 @@ import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/config.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/services/service_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
 
+import '../../dashboard_screen/screen_dashboard/service_dashboard.dart'
+    show ServiceDashBoard;
 import 'icon_tile.dart';
 import 'theme_icon_tile.dart';
 

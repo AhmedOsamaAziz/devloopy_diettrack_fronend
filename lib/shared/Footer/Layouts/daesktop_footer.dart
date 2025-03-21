@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui/Constants/constants.dart';
 import 'package:ui/constants/assets.dart';
+import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/screens/about/about_page.dart';
 import 'package:ui/screens/blog_page/blog_page.dart';
 import 'package:ui/screens/contact_us/contact_us.dart';
@@ -219,12 +220,12 @@ class CustomContactDev extends StatelessWidget {
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
+                const Icon(
                   Icons.copyright,
                   color: Color(0xFFFFFFFF),
                   size: 16.0,
@@ -232,8 +233,8 @@ class CustomContactDev extends StatelessWidget {
                 Text(
                   "2024 DevLoopy.com.All rights reserved",
                   style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 18.0,
+                    color: const Color(0xFFFFFFFF),
+                    fontSize: getResponsiveFontSize(context, fontSize: 10),
                     fontWeight: FontWeight.w400,
                     fontFamily: FontsApp.fontFamilyUrbanist,
                   ),

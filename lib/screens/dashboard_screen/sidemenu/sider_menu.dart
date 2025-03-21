@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
@@ -7,13 +6,12 @@ import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/services/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screen_dashboard/service_item/service_item_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
 import 'package:ui/shared/custom_text.dart';
-
-import '../screen_dashboard/service_item/service_item_dashboard.dart';
 
 class SiderMenu extends StatelessWidget {
   final Function(Widget) onPageSelected;
@@ -203,8 +201,7 @@ class SiderMenu extends StatelessWidget {
                           MenuTile(
                             isSubmenu: true,
                             title: " Services ",
-                            onPressed: () =>
-                                onPageSelected(const ServiceDashBoard()),
+                            onPressed: () => onPageSelected(ServiceDashBoard()),
                           ),
                           MenuTile(
                             isSubmenu: true,
