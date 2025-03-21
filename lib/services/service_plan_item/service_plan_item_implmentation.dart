@@ -173,7 +173,6 @@ class ServicePlanImplementation implements ServicePlanItem {
     }
   }
 
-  @override
   Future<GenericResponse> updateService(
       ServiceItemDetails serviceItem, int id) async {
     final prefs = await SharedPreferences.getInstance();
