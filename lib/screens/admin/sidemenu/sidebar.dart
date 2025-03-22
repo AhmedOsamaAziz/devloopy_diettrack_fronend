@@ -4,10 +4,10 @@ import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
 import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/services/service_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/about_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/testimonials/testimonials_dashboard.dart';
 
 import '../../dashboard_screen/sidemenu/menu_tile.dart';
 

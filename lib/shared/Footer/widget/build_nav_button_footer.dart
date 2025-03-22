@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/shared/custom_text.dart';
 
- 
 class BuildNavbuttonFooter extends StatelessWidget {
   final String text;
   final int index;
   final Widget page;
+
   const BuildNavbuttonFooter({
     super.key,
     required this.text,

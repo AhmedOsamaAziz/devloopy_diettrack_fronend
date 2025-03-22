@@ -1,4 +1,3 @@
-// service_dashboard.dart
 import 'package:flutter/material.dart';
 
 import 'dashboard_body.dart';
@@ -13,6 +12,6 @@ class ServiceDashBoard extends StatefulWidget {
 class _ServiceDashBoardState extends State<ServiceDashBoard> {
   @override
   Widget build(BuildContext context) {
-    return const DashBoardBody();
+    return const DashBoardBady();
   }
 }

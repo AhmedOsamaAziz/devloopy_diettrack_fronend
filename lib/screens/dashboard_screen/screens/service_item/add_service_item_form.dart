@@ -1,6 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:ui/model/service_item/service_item_create.dart';
-//
+import 'package:flutter/material.dart';
+import 'package:ui/model/service_item/service_item_create.dart';
+
 // class AddServiceItemForm extends StatefulWidget {
 //   const AddServiceItemForm({super.key});
 //
@@ -83,3 +83,59 @@
 //     }
 //   }
 // }
+
+class AddServiceItemForm extends StatelessWidget {
+  final TextEditingController serviceIDController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController descriptionArController = TextEditingController();
+
+  AddServiceItemForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Add Service Item'),
+      content: _buildForm(),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            // Create a ServiceItemCreate instance from the form inputs.
+            final newItem = ServiceItemCreate(
+              id: 0, // The ID will be assigned by the API
+              serviceID: int.tryParse(serviceIDController.text) ?? 0,
+              description: descriptionController.text,
+              descriptionAr: descriptionArController.text,
+            );
+            Navigator.pop(context, newItem);
+          },
+          child: const Text('Save'),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildForm() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextField(
+          controller: serviceIDController,
+          decoration: const InputDecoration(labelText: 'Service ID'),
+          keyboardType: TextInputType.number,
+        ),
+        TextField(
+          controller: descriptionController,
+          decoration: const InputDecoration(labelText: 'Description'),
+        ),
+        TextField(
+          controller: descriptionArController,
+          decoration: const InputDecoration(labelText: 'Description (Arabic)'),
+        ),
+      ],
+    );
+  }
+}
