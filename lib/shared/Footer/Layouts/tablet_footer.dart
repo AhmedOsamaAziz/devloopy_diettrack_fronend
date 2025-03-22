@@ -238,3 +238,38 @@
 //     );
 //   }
 // }
+import 'package:flutter/material.dart';
+import 'package:ui/constants/assets.dart';
+import 'package:ui/constants/constants.dart';
+import 'package:ui/shared/Footer/main_footer.dart';
+import 'package:ui/shared/Footer/widget/build_nav_links.dart';
+
+class TabletFooter extends StatelessWidget {
+  const TabletFooter({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      color: ColorsApp.MAINCOLOR,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(Assets.imagesIconFlower,
+                  color: ColorsApp.SecondaryColor, height: 35, width: 35),
+              const SizedBox(width: 10),
+              const Text("DietTrack", style: TextStyle(color: Colors.white)),
+            ],
+          ),
+          const SizedBox(height: 15),
+          const BuildNavLinks(),
+          const SizedBox(height: 20),
+          const BuildContactInfo(),
+        ],
+      ),
+    );
+  }
+}
