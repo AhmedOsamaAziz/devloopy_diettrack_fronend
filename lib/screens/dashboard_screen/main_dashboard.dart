@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/blog_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/sidemenu/sider_menu.dart';
 
 class MainDashboard extends StatefulWidget {

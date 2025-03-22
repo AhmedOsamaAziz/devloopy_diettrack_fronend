@@ -5,11 +5,11 @@ import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/ghaps.dart';
 import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/service/service_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/service_item/service_item_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/blog_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service_item/service_item_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/testimonials/testimonials_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
 import 'package:ui/shared/custom_text.dart';
 
@@ -201,7 +201,8 @@ class SiderMenu extends StatelessWidget {
                           MenuTile(
                             isSubmenu: true,
                             title: " Services ",
-                            onPressed: () => onPageSelected(ServiceDashBoard()),
+                            onPressed: () =>
+                                onPageSelected(const ServiceDashBoard()),
                           ),
                           MenuTile(
                             isSubmenu: true,
