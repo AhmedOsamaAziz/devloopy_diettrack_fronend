@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_cubit.dart';
 import 'package:ui/cubits/service_cubit/service_cubit/service_state.dart';
+import 'package:ui/screens/pricing_page/sections/plans/widget/pricing_custom_card.dart';
 
 class TabletListPricing extends StatelessWidget {
   const TabletListPricing({
@@ -23,9 +22,10 @@ class TabletListPricing extends StatelessWidget {
         }
         final services = state.service;
         return SizedBox(
-          height: 650.h,
+          width: 1200,
+          height: 600,
           child: GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
             physics: const NeverScrollableScrollPhysics(),
             itemCount: services.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -33,7 +33,7 @@ class TabletListPricing extends StatelessWidget {
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               childAspectRatio: 0.8,
-              mainAxisExtent: 650,
+              mainAxisExtent: 620,
             ),
             itemBuilder: (BuildContext context, int index) {
               return PricingCustomCard(
