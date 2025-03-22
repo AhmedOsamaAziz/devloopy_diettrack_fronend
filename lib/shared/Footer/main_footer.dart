@@ -26,7 +26,7 @@ import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-import 'package:ui/shared/Footer/widget/build_navButton_footer.dart';
+import 'package:ui/shared/Footer/widget/build_nav_button_footer.dart';
 
 class MainFooter extends StatelessWidget {
   const MainFooter({super.key});

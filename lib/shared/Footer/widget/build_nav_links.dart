@@ -6,8 +6,7 @@ import 'package:ui/screens/home/home_page.dart';
 import 'package:ui/screens/pricing_page/pricing_page.dart';
 import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
-
-import 'build_navButton_footer.dart';
+import 'package:ui/shared/Footer/widget/build_nav_button_footer.dart';
 
 class BuildNavLinks extends StatelessWidget {
   final bool isMobile;
@@ -16,7 +15,7 @@ class BuildNavLinks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Wrap(
+    return Wrap(
       alignment: WrapAlignment.spaceBetween,
       spacing: 10,
       runSpacing: 5,
