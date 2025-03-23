@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
-import 'package:ui/shared/Footer/main_footer.dart';
 import 'package:ui/shared/last_card/last_card_section.dart';
 
+import '../../shared/Footer/main_footer.dart';
 import 'sections/card_numbers/main_card_number.dart';
 import 'sections/header_section/header_section.dart';
 import 'sections/how-it-work-section/header_how_it_work_section.dart';
@@ -24,7 +24,9 @@ class ProcessPage extends StatelessWidget {
             HeaderHowItWorkProcessSections(),
             CardNumberProcessSections(),
             LastCardSections(),
-            MainFooter(),
+            MainFooter(
+              activeIndex: 4,
+            ),
           ],
         ),
       ),

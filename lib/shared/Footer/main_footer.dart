@@ -16,6 +16,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/screen_size.dart';
@@ -28,28 +29,25 @@ import 'package:ui/screens/process_page/process_page.dart';
 import 'package:ui/screens/team_page/team_page.dart';
 import 'package:ui/shared/Footer/widget/build_nav_button_footer.dart';
 
-class MainFooter extends StatelessWidget {
-  const MainFooter({super.key});
+import '../../cubits/navigation_cubit.dart';
+import '../Navigation_Bar/our_nav_bar.dart';
 
+class MainFooter extends StatelessWidget {
+  final int activeIndex;
+  const MainFooter({super.key, required this.activeIndex});
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= 1024) {
-          return const DesktopFooter();
-        } else if (constraints.maxWidth >= 600) {
-          return const TabletFooter();
-        } else {
-          return const MobileFooter();
-        }
-      },
-    );
+    return ScreenSize.isLarge
+        ? DesktopFooter(activeIndex: activeIndex)
+        : ScreenSize.isMedium
+            ? TabletFooter(activeIndex: activeIndex)
+            : const MobileFooter();
   }
 }
 
 class DesktopFooter extends StatelessWidget {
-  const DesktopFooter({super.key});
-
+  const DesktopFooter({super.key, required this.activeIndex});
+  final int activeIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +64,8 @@ class DesktopFooter extends StatelessWidget {
               const SizedBox(width: 10),
               const Text("DietTrack", style: TextStyle(color: Colors.white)),
               const Spacer(),
-              _buildNavLinks(),
+              _buildDesktopNavigation(activeIndex,
+                  (index) => context.read<NavigationCubit>().changeTab(index)),
               const Spacer(),
             ],
           ),
@@ -76,11 +75,66 @@ class DesktopFooter extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildDesktopNavigation(
+      int currentIndex, Function(int index) onTabSelected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          NavButton(
+            label: 'Home',
+            index: 0,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(0),
+          ),
+          NavButton(
+            label: 'About',
+            index: 1,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(1),
+          ),
+          NavButton(
+            label: 'Team',
+            index: 2,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(2),
+          ),
+          NavButton(
+            label: 'Blog',
+            index: 3,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(3),
+          ),
+          NavButton(
+            label: 'Process',
+            index: 4,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(4),
+          ),
+          NavButton(
+            label: 'Pricing',
+            index: 5,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(5),
+          ),
+          NavButton(
+            label: 'Contact Us',
+            index: 6,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(6),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class TabletFooter extends StatelessWidget {
-  const TabletFooter({super.key});
-
+  const TabletFooter({super.key, required this.activeIndex});
+  final int activeIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,6 +142,7 @@ class TabletFooter extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       color: ColorsApp.MAINCOLOR,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -96,12 +151,69 @@ class TabletFooter extends StatelessWidget {
                   color: ColorsApp.SecondaryColor, height: 35, width: 35),
               const SizedBox(width: 10),
               const Text("DietTrack", style: TextStyle(color: Colors.white)),
+              const Spacer(),
+              _buildDesktopNavigation(activeIndex,
+                  (index) => context.read<NavigationCubit>().changeTab(index)),
+              const Spacer(),
             ],
           ),
-          const SizedBox(height: 15),
-          _buildNavLinks(),
           const SizedBox(height: 20),
           const BuildContactInfo(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDesktopNavigation(
+      int currentIndex, Function(int index) onTabSelected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          NavButton(
+            label: 'Home',
+            index: 0,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(0),
+          ),
+          NavButton(
+            label: 'About',
+            index: 1,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(1),
+          ),
+          NavButton(
+            label: 'Team',
+            index: 2,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(2),
+          ),
+          NavButton(
+            label: 'Blog',
+            index: 3,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(3),
+          ),
+          NavButton(
+            label: 'Process',
+            index: 4,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(4),
+          ),
+          NavButton(
+            label: 'Pricing',
+            index: 5,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(5),
+          ),
+          NavButton(
+            label: 'Contact Us',
+            index: 6,
+            currentIndex: currentIndex,
+            onPressed: () => onTabSelected(6),
+          ),
         ],
       ),
     );

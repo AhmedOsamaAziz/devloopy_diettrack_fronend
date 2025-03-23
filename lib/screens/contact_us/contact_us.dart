@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/contact_us/sections/contact_us_form/contact_us_form.dart';
-import 'package:ui/shared/Footer/main_footer.dart';
 import 'package:ui/shared/last_card/last_card_section.dart';
 
+import '../../shared/Footer/main_footer.dart';
 import 'sections/contact_us_buttons/contact_us_button.dart';
 import 'sections/contact_us_header/contact_us_header.dart';
 
@@ -26,7 +26,9 @@ class ContactUsPage extends StatelessWidget {
             FormContactUsSection(),
             SizedBox(height: 50),
             LastCardSections(),
-            MainFooter(),
+            MainFooter(
+              activeIndex: 6,
+            )
           ],
         ),
       ),

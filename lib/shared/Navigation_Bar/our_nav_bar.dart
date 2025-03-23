@@ -156,43 +156,43 @@ class _OurNavBarState extends State<OurNavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _NavButton(
+          NavButton(
             label: 'Home',
             index: 0,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(0),
           ),
-          _NavButton(
+          NavButton(
             label: 'About',
             index: 1,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(1),
           ),
-          _NavButton(
+          NavButton(
             label: 'Team',
             index: 2,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(2),
           ),
-          _NavButton(
+          NavButton(
             label: 'Blog',
             index: 3,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(3),
           ),
-          _NavButton(
+          NavButton(
             label: 'Process',
             index: 4,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(4),
           ),
-          _NavButton(
+          NavButton(
             label: 'Pricing',
             index: 5,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(5),
           ),
-          _NavButton(
+          NavButton(
             label: 'Contact Us',
             index: 6,
             currentIndex: currentIndex,
@@ -204,13 +204,13 @@ class _OurNavBarState extends State<OurNavBar> {
   }
 }
 
-class _NavButton extends StatelessWidget {
+class NavButton extends StatelessWidget {
   final String label;
   final int index;
   final int currentIndex;
   final VoidCallback onPressed;
 
-  const _NavButton({
+  const NavButton({
     required this.label,
     required this.index,
     required this.currentIndex,
