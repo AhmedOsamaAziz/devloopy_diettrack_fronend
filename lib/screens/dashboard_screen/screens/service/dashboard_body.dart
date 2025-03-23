@@ -81,7 +81,6 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       setState(() {
         try {
           if (index == null) {
-            // Create a new ServiceCreate object
             ServiceCreate newService = ServiceCreate(
               name: result['name']!,
               nameAr: result['nameAr']!,
@@ -109,13 +108,23 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                   description: newService.description,
                   descriptionAr: newService.descriptionAr,
                 ));
-                _saveServicesToSharedPref(); // Save to shared preferences
+                _saveServicesToSharedPref();
+                _loadServicesFromApi();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Service Added successfully!'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
               } else {
+                const SnackBar(
+                  content: Text('Failed to add service!'),
+                  backgroundColor: Colors.green,
+                );
                 log("Failed to create service: ${response.message}");
               }
             });
           } else {
-            // Editing existing service
             _rows[index]
               ..name = result['name']!
               ..nameAr = result['nameAr']!
@@ -125,7 +134,15 @@ class _DashBoardBadyState extends State<DashBoardBady> {
               ..discount = int.tryParse(result['discount']!) ?? 0
               ..description = result['description']!
               ..descriptionAr = result['descriptionAr']!;
-            _saveServicesToSharedPref(); // Save to shared preferences
+            _saveServicesToSharedPref();
+            _loadServicesFromApi();
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Service Edited successfully!'),
+                backgroundColor: Colors.red,
+              ),
+            );
           }
         } catch (e) {
           // Handle any parsing errors
