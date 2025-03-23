@@ -44,7 +44,7 @@ class ServiceTable extends StatelessWidget {
                 DataCell(SizedBox(width: 70, child: Text(row.name))),
                 DataCell(SizedBox(width: 70, child: Text(row.nameAr))),
                 DataCell(
-                    SizedBox(width: 50, child: Text(row.price.toString()))),
+                    SizedBox(width: 52, child: Text(row.price.toString()))),
                 DataCell(SizedBox(width: 70, child: Text(row.validFor))),
                 DataCell(SizedBox(
                     width: 50, child: Text(row.isBestValue.toString()))),
