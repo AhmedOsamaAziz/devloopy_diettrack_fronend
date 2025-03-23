@@ -33,20 +33,22 @@ class AboutListCustomCard extends StatelessWidget {
                       );
                     },
                   )
-                : ListView.builder(
-                    shrinkWrap: true, // Prevents unbounded height issue
-                    itemCount: cardCompany.length,
-                    physics:
-                        const NeverScrollableScrollPhysics(), // Disable inner scrolling
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: AboutCustomCard(
-                          cardCompanyAbout: cardCompany[index],
-                        ),
-                      );
-                    },
-                  ),
+                : RepaintBoundary(
+                  child: ListView.builder(
+                      shrinkWrap: true, // Prevents unbounded height issue
+                      itemCount: cardCompany.length,
+                      physics:
+                          const NeverScrollableScrollPhysics(), // Disable inner scrolling
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: AboutCustomCard(
+                            cardCompanyAbout: cardCompany[index],
+                          ),
+                        );
+                      },
+                    ),
+                ),
           ),
         );
       },

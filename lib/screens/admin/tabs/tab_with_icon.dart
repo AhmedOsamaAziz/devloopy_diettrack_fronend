@@ -14,7 +14,8 @@ class TabWithIcon extends StatelessWidget {
 
   final bool isSelected;
 
-  final String title, iconSrc;
+  final String title,
+      iconSrc;
 
   @override
   Widget build(BuildContext context) {

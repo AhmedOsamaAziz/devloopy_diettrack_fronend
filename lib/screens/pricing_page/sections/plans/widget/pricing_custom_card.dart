@@ -74,7 +74,6 @@ class PricingCustomCard extends StatelessWidget {
                       : ColorsApp.TextColorFeatures,
                 ),
               ),
-              const SizedBox(height: 10),
               Flexible(
                 fit: FlexFit.loose,
                 child: CustomText(
@@ -86,7 +85,6 @@ class PricingCustomCard extends StatelessWidget {
                       : ColorsApp.TextColorFeatures,
                 ),
               ),
-              const SizedBox(height: 10),
               Flexible(
                 fit: FlexFit.loose,
                 child: CustomText(
@@ -97,7 +95,6 @@ class PricingCustomCard extends StatelessWidget {
                       isSelected ? Colors.white : ColorsApp.TextColorFeatures,
                 ),
               ),
-              const SizedBox(height: 10),
               Flexible(
                 fit: FlexFit.loose,
                 child: CustomText(
@@ -109,7 +106,6 @@ class PricingCustomCard extends StatelessWidget {
                       : ColorsApp.TextColorFeatures,
                 ),
               ),
-              const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

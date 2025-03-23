@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui/cubits/blog_cubit/blog_cubit/blog_cubit.dart';
@@ -16,6 +18,7 @@ class DesktopBlogCard extends StatelessWidget {
         if (state is BlogLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is BlogSuccess) {
+
           return SizedBox(
             width: 1590,
             child: GridView.builder(

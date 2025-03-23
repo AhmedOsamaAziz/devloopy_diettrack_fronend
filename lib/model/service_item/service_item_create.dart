@@ -7,9 +7,9 @@ class ServiceItemCreate extends ServiceItemBase {
   ServiceItemCreate({
     required this.id,
     required this.serviceID,
-    super.description,
-    super.descriptionAr,
-  });
+    String? description,
+    String? descriptionAr,
+  }) : super(description: description, descriptionAr: descriptionAr);
 
   factory ServiceItemCreate.fromJson(Map<String, dynamic> json) {
     return ServiceItemCreate(
@@ -19,6 +19,7 @@ class ServiceItemCreate extends ServiceItemBase {
       descriptionAr: json['descriptionAr'],
     );
   }
+
   @override
   Map<String, dynamic> toJson() {
     return {

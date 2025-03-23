@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/screens/pricing_page/sections/Card-Ask-Question/main_card_ask_qusstion.dart';
-import 'package:ui/screens/pricing_page/sections/plans/pricing_plan_section.dart';
 import 'package:ui/screens/pricing_page/sections/FAQ-section/FAQ_section.dart';
 import 'package:ui/screens/pricing_page/sections/features_plan/features_plan.dart';
+import 'package:ui/screens/pricing_page/sections/plans/pricing_plan_section.dart';
 import 'package:ui/screens/pricing_page/sections/pricing_button/pricing_button.dart';
-import 'package:ui/shared/Footer/main_footer.dart';
-import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
+
+import '../../shared/Footer/main_footer.dart';
 import 'sections/pricing_header/pricing_header.dart';
 
 class PricingPage extends StatelessWidget {
@@ -21,7 +21,6 @@ class PricingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            MainNavigationBar(),
             SizedBox(height: 10),
             PricingSection(),
             SizedBox(height: 30),
@@ -33,7 +32,9 @@ class PricingPage extends StatelessWidget {
             SizedBox(height: 20),
             FAQSection(),
             CardAskQuestionSections(),
-            MainFooter(),
+            MainFooter(
+              activeIndex: 5,
+            ),
           ],
         ),
       ),

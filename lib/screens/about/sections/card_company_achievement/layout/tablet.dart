@@ -11,7 +11,7 @@ class TabletCardSection extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 60),
-        width: 850,
+        width: 1190,
         child: Column(
           spacing: 20,
           children: [

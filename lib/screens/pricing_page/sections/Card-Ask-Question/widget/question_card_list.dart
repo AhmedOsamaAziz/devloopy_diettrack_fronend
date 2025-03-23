@@ -19,8 +19,7 @@ class QuestionCardList extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 06,
         child: RepaintBoundary(
           child: ListView.builder(
-            
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const PageScrollPhysics(),
             itemCount: ask.length,
             itemBuilder: (context, index) {
               return Padding(

@@ -48,7 +48,7 @@ class BlogService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $accessToken',
         },
-        data: newBlog.toJson(),  
+        data: newBlog.toJson(),
       );
 
       BlogCreate createdBlog = BlogCreate.fromJson(response.obj);
@@ -109,10 +109,11 @@ class BlogService {
   Future<GenericResponse> getRecentBlogs() async {
     try {
       var apiService = ApiService();
-      final response = await apiService.makeRequest(
-        ApiMethod.get,
-        EndPoints.blogRecent,
-      );
+      final response = await apiService
+          .makeRequest(ApiMethod.get, EndPoints.blogRecent, queryParameters: {
+        'StartIndex': 1,
+        'PageSize': 4,
+      });
 
       List<BlogList> blogs = (response.obj['items'] as List)
           .map((blogJson) => BlogList.fromJson(blogJson))

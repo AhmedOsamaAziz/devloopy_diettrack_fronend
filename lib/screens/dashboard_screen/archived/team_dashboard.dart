@@ -1,9 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data'; // Add this import for Uint8List
+
 import 'package:flutter/foundation.dart'; // For kIsWeb
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:convert';
-import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/custom_button.dart';
@@ -231,20 +232,20 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     return Padding(
       padding: const EdgeInsets.all(50.0),
       child: Container(
-            color: ColorsApp.OUTLINECOLOR,
+        color: ColorsApp.OUTLINECOLOR,
         child: Column(
           children: [
             CustomButton(
-               onPressed: () => openForm(),
+              onPressed: () => openForm(),
               text: 'Add Team',
               colortxt: ColorsApp.MainColorbackgraund,
             ),
-
-          
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
+                  headingTextStyle: const TextStyle(color: Colors.white),
+                  headingRowColor: WidgetStateProperty.all(ColorsApp.TextColor),
                   columnSpacing: 20,
                   columns: const [
                     DataColumn(label: Text("ID"), numeric: true),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/shared/custom_text.dart';
- 
-class UpparAppBar extends StatelessWidget {
-  const UpparAppBar({
+
+class AdvertiseBar extends StatelessWidget {
+  const AdvertiseBar({
     super.key,
   });
 
@@ -78,4 +78,3 @@ class UpparAppBar extends StatelessWidget {
     );
   }
 }
- 

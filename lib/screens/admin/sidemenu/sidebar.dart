@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/helper/ghaps.dart';
+import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_list_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
-
 import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
+import 'package:ui/screens/dashboard_screen/archived/about_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/testimonials/testimonials_dashboard.dart';
 
 import '../../dashboard_screen/sidemenu/menu_tile.dart';
 
@@ -97,9 +95,9 @@ class Sidebar extends StatelessWidget {
                           title: "Our Blogs",
                           count: 16,
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const BlogListDashBoard()));
+                            //   Navigator.of(context).push(MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           const BlogListDashBoard()));
                           },
                         ),
                         MenuTile(

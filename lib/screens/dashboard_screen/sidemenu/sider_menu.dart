@@ -1,24 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
-import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/helper/ghaps.dart';
+import 'package:ui/screens/admin/constants/defaults.dart';
 import 'package:ui/screens/admin/constants/responsive.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/about_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/blog_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/service_item_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/service_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/team_dashboard.dart';
-import 'package:ui/screens/dashboard_screen/screen_dashboard/testmimonials_dashboard.dart';
-
+import 'package:ui/screens/dashboard_screen/archived/blog_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/archived/team_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service/service_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/service_item/service_item_dashboard.dart';
+import 'package:ui/screens/dashboard_screen/screens/testimonials/testimonials_dashboard.dart';
 import 'package:ui/screens/dashboard_screen/sidemenu/menu_tile.dart';
-import 'package:ui/screens/admin/sidemenu/theme_tabs.dart';
 import 'package:ui/shared/custom_text.dart';
 
 class SiderMenu extends StatelessWidget {
   final Function(Widget) onPageSelected;
+
   const SiderMenu({super.key, required this.onPageSelected});
 
   @override
@@ -35,18 +32,7 @@ class SiderMenu extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (Responsive.isMobile(context))
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: SvgPicture.asset('assets/icons/close_filled.svg'),
-                      ),
-                    ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppDefaults.padding,
@@ -55,9 +41,11 @@ class SiderMenu extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SvgPicture.asset(
-                          'assets/images/Logo.svg',
+                        Image.asset(
+                          Assets.imagesIconFlower,
+                          color: ColorsApp.SecondaryColor,
                           height: 40,
+                          width: 40,
                         ),
                         gapW16,
                         CustomText(
@@ -83,8 +71,13 @@ class SiderMenu extends StatelessWidget {
                   child: ListView(
                     children: [
                       ExpansionTile(
-                        leading:
-                            SvgPicture.asset("assets/icons/diamond_light.svg"),
+                        iconColor: ColorsApp.white,
+                        collapsedIconColor: ColorsApp.white,
+                        leading: const Icon(
+                          Icons.home,
+                          size: 20,
+                          color: ColorsApp.OUTLINECOLOR,
+                        ),
                         title: const Text(
                           "Home page",
                           style: TextStyle(
@@ -94,53 +87,56 @@ class SiderMenu extends StatelessWidget {
                         ),
                         children: [
                           //! Home
-                          MenuTile(
-                              isSubmenu: true,
-                              title: "Our Blogs",
-                              onPressed: () {}
-                              // onPageSelected(const BlogListDashBoard()),
-                              ),
+                          // MenuTile(
+                          //     isSubmenu: true,
+                          //     title: "Recent Blogs",
+                          //     onPressed: () {
+                          //       onPageSelected(const BlogDashboard());
+                          //     }),
                           MenuTile(
                             isSubmenu: true,
                             title: "Our Testimonials",
                             onPressed: () =>
                                 onPageSelected(const TestimonialsDashBoard()),
                           ),
-                          MenuTile(
-                            isSubmenu: true,
-                            title: " Our Pricing",
-                            onPressed: () =>
-                                onPageSelected(const ServiceDashBoard()),
-                          ),
                         ],
                       ),
 
                       // About
-                      ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
-                        title: const Text(
-                          "About",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: ColorsApp.OUTLINECOLOR,
-                          ),
-                        ),
-                        children: [
-                          MenuTile(
-                            isSubmenu: true,
-                            title: "Our Story",
-                            onPressed: () =>
-                                onPageSelected(const AboutDashBoard()),
-                          ),
-                        ],
-                      ),
+
+                      // ExpansionTile(
+                      //   leading: const Icon(
+                      //     Icons.info_outline_rounded,
+                      //     size: 20,
+                      //     color: ColorsApp.OUTLINECOLOR,
+                      //   ),
+                      //   title: const Text(
+                      //     "About",
+                      //     style: TextStyle(
+                      //       fontWeight: FontWeight.w600,
+                      //       color: ColorsApp.OUTLINECOLOR,
+                      //     ),
+                      //   ),
+                      //   children: [
+                      //     MenuTile(
+                      //       isSubmenu: true,
+                      //       title: "Our Story",
+                      //       onPressed: () =>
+                      //           onPageSelected(const AboutDashBoard()),
+                      //     ),
+                      //   ],
+                      // ),
 
                       // Team
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        iconColor: ColorsApp.white,
+                        collapsedIconColor: ColorsApp.white,
+                        leading: const Icon(
+                          Icons.group,
+                          size: 20,
+                          color: ColorsApp.OUTLINECOLOR,
+                        ),
                         title: const Text(
                           "Team",
                           style: TextStyle(
@@ -157,13 +153,19 @@ class SiderMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      //Prcess
+
+                      //Process
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        iconColor: ColorsApp.white,
+                        collapsedIconColor: ColorsApp.white,
+                        leading: const Icon(
+                          Icons.next_plan_rounded,
+                          size: 20,
+                          color: ColorsApp.OUTLINECOLOR,
+                        ),
                         title: const Text(
-                          "Proocess",
+                          "Process",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: ColorsApp.OUTLINECOLOR,
@@ -181,8 +183,13 @@ class SiderMenu extends StatelessWidget {
                       // pricing
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        iconColor: ColorsApp.white,
+                        collapsedIconColor: ColorsApp.white,
+                        leading: const Icon(
+                          Icons.price_change_rounded,
+                          size: 20,
+                          color: ColorsApp.OUTLINECOLOR,
+                        ),
                         title: const Text(
                           "Services ",
                           style: TextStyle(
@@ -191,6 +198,12 @@ class SiderMenu extends StatelessWidget {
                           ),
                         ),
                         children: [
+                          MenuTile(
+                            isSubmenu: true,
+                            title: " Services ",
+                            onPressed: () =>
+                                onPageSelected(const ServiceDashBoard()),
+                          ),
                           MenuTile(
                             isSubmenu: true,
                             title: "Service Item",
@@ -203,8 +216,13 @@ class SiderMenu extends StatelessWidget {
                       // Blogs
 
                       ExpansionTile(
-                        leading: SvgPicture.asset(
-                            "assets/icons/profile_circled_light.svg"),
+                        iconColor: ColorsApp.white,
+                        collapsedIconColor: ColorsApp.white,
+                        leading: const Icon(
+                          Icons.book_online,
+                          size: 20,
+                          color: ColorsApp.OUTLINECOLOR,
+                        ),
                         title: const Text(
                           "Blogs",
                           style: TextStyle(
@@ -248,7 +266,7 @@ class SiderMenu extends StatelessWidget {
                     if (Responsive.isMobile(context)) gapH8,
                     const Divider(),
                     gapH20,
-                    const ThemeTabs(),
+                    // const ThemeTabs(),
                     gapH8,
                   ],
                 ),

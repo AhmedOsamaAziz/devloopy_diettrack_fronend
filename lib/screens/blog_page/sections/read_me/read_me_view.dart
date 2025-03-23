@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ui/constants/constants.dart';
 import 'package:ui/constants/assets.dart';
+import 'package:ui/constants/constants.dart';
 import 'package:ui/helper/font_size_responsive.dart';
 import 'package:ui/helper/screen_size.dart';
 import 'package:ui/model/blog/blog_list.dart';
 import 'package:ui/screens/blog_page/sections/blog_header/widget/blog_description.dart';
 import 'package:ui/screens/blog_page/sections/blog_header/widget/blog_title.dart';
-import 'package:ui/shared/Footer/main_footer.dart';
-import 'package:ui/shared/Navigation_Bar/main_navigation_bar.dart';
 import 'package:ui/shared/custom_text.dart';
- 
+
+import '../../../../shared/Footer/main_footer.dart' show MainFooter;
+
 class ReadMeView extends StatelessWidget {
   const ReadMeView({super.key, required this.blogList});
   final BlogList blogList;
@@ -25,7 +25,6 @@ class ReadMeView extends StatelessWidget {
         child: Column(
           spacing: 20,
           children: [
-            const MainNavigationBar(),
             const BlogTitle(),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -108,7 +107,9 @@ class ReadMeView extends StatelessWidget {
                 ],
               ),
             ),
-            const MainFooter(),
+            const MainFooter(
+              activeIndex: 3,
+            ),
           ],
         ),
       ),
