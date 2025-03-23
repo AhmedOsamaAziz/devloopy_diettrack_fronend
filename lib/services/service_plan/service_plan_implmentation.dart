@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/core/api/api_service.dart';
 import 'package:ui/core/api/end_points.dart';
 import 'package:ui/core/api/generic_response.dart';
@@ -11,12 +12,15 @@ import 'package:ui/services/service_plan/service_plan.dart';
 class ServicePlanImplmentation implements ServicePlan {
   @override
   Future<GenericResponse> createServiceItem(ServiceCreate serviceCreate) async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString("access_token");
     try {
       var apiService = ApiService();
 
       final requestBody = jsonEncode(serviceCreate.toJson());
 
       final response = await apiService.makeRequest(
+        headers: {'Authorization': 'Bearer $accessToken'},
         ApiMethod.post,
         EndPoints.service,
         data: requestBody,

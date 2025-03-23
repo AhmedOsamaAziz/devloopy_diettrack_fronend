@@ -4,10 +4,10 @@ import 'package:ui/constants/assets.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/cubits/login_cubit/login_cubit.dart';
 import 'package:ui/cubits/login_cubit/login_state.dart';
-import 'package:ui/helper/font_size_responsive.dart';
 
 import '../../screens/auth/login_page/login_page.dart';
 import '../../screens/dashboard_screen/main_dashboard.dart';
+import '../Footer/widget/build_nav_button_footer.dart' show NavButton;
 
 class OurNavBar extends StatefulWidget {
   const OurNavBar({
@@ -156,103 +156,49 @@ class _OurNavBarState extends State<OurNavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _NavButton(
+          NavButton(
             label: 'Home',
             index: 0,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(0),
           ),
-          _NavButton(
+          NavButton(
             label: 'About',
             index: 1,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(1),
           ),
-          _NavButton(
+          NavButton(
             label: 'Team',
             index: 2,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(2),
           ),
-          _NavButton(
+          NavButton(
             label: 'Blog',
             index: 3,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(3),
           ),
-          _NavButton(
+          NavButton(
             label: 'Process',
             index: 4,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(4),
           ),
-          _NavButton(
+          NavButton(
             label: 'Pricing',
             index: 5,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(5),
           ),
-          _NavButton(
+          NavButton(
             label: 'Contact Us',
             index: 6,
             currentIndex: currentIndex,
             onPressed: () => onTabSelected(6),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _NavButton extends StatelessWidget {
-  final String label;
-  final int index;
-  final int currentIndex;
-  final VoidCallback onPressed;
-
-  const _NavButton({
-    required this.label,
-    required this.index,
-    required this.currentIndex,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isActive = index == currentIndex;
-
-    return TextButton(
-      onPressed: onPressed,
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-        textStyle: TextStyle(
-          fontSize: 12,
-          fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-        ),
-        backgroundColor: isActive ? ColorsApp.MAINCOLOR : Colors.transparent,
-        foregroundColor: isActive ? ColorsApp.SecondaryColor : Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isActive ? Colors.white : Colors.transparent,
-              width: 2,
-            ),
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: getResponsiveFontSize(context, fontSize: 10),
-            fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
       ),
     );
   }
