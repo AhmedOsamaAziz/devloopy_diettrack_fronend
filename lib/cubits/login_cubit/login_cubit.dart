@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/constants/constants.dart';
+import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/screens/auth/login_page/login_page.dart';
 import 'package:ui/services/login_service/login_service_implmentation.dart';
@@ -14,7 +14,9 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  LoginCubit(this.loginService) : super(LoginInitial());
+  LoginCubit(this.loginService) : super(LoginInitial()) {
+    _checkLoginStatus();
+  }
 
   void login() async {
     emit(LoginLoading());
@@ -24,15 +26,23 @@ class LoginCubit extends Cubit<LoginState> {
         passwordController.text,
       );
 
+      // print("Full JSON Response: ${jsonEncode(response.obj)}");
+
       if (response.status == ResponseStatus.success) {
-        emit(LoginSuccess());
-      } else {
-        emit(LoginError(response.message ?? "Login failed"));
+        if (response.obj != null && response.obj.containsKey('accessToken')) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool('isLoggedIn', true);
+          await prefs.setString('accessToken', response.obj['accessToken']);
+          // print("Access Token Saved: ${response.obj['accessToken']}");
+          emit(LoginSuccess());
+        } else {
+          // print("⚠️ Access token not found in API response!");
+          emit(LoginError("Access token not found"));
+        }
       }
-    } on DioException catch (e) {
-      emit(LoginError(e.message ?? "An error occurred"));
     } catch (e) {
-      emit(LoginError("An unexpected error occurred"));
+      // print("Error logging in: $e");
+      emit(LoginError("Error logging in"));
     }
   }
 
@@ -41,7 +51,6 @@ class LoginCubit extends Cubit<LoginState> {
     passwordController.clear();
   }
 
-  /// Method to log out and reset login status.
   Future<void> logout(BuildContext context) async {
     final shouldLogout = await _showLogoutConfirmationDialog(context);
     if (!shouldLogout) return;
@@ -52,8 +61,10 @@ class LoginCubit extends Cubit<LoginState> {
     await prefs.remove("access_token");
     await prefs.remove("refresh_token");
 
-    clearFields();
+    _clearFields();
     emit(LoginInitial());
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   Future<bool> _showLogoutConfirmationDialog(BuildContext context) async {
@@ -62,28 +73,19 @@ class LoginCubit extends Cubit<LoginState> {
           builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: ColorsApp.OUTLINECOLOR,
-              title: const Text('Confirm Logout'),
+              title: const Text('Confirm Logout ? 😒'),
               content: const Text('Are you sure you want to log out?'),
               actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(false); // User cancels logout
-                  },
-                  child: const Text('Cancel'),
+                CustomButton(
+                  colorbtn: ColorsApp.SecondaryColor,
+                  onPressed: () => Navigator.of(context).pop(false),
+                  text: 'Cancel',
                 ),
-                TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(ColorsApp.SecondaryColor)),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                    );
-                  },
-                  child: const Text('Logout',
-                      style: TextStyle(color: ColorsApp.MAINCOLOR)),
+                CustomButton(
+                  colorbtn: ColorsApp.MAINCOLOR,
+                  colortxt: Colors.white,
+                  onPressed: () => Navigator.of(context).pop(true),
+                  text: 'Logout',
                 ),
               ],
             );
@@ -92,20 +94,11 @@ class LoginCubit extends Cubit<LoginState> {
         false;
   }
 
-  /// Check if the user is logged in.
-  Future<bool> isLoggedIn() async {
+  Future<void> _checkLoginStatus() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isLoggedIn') ?? false;
-  }
-
-  /// Check if it's the first login.
-  Future<bool> isFirstLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('firstLogin') ?? true;
-  }
-
-  void clearFields() {
-    emailController.clear();
-    passwordController.clear();
+    final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    if (isLoggedIn) {
+      emit(LoginSuccess());
+    }
   }
 }

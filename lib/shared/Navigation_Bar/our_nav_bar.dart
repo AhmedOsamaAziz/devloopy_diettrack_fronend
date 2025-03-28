@@ -121,11 +121,19 @@ class _OurNavBarState extends State<OurNavBar> {
         }
       },
       itemBuilder: (context) => [
-        if (!isLoggedIn) ...[
+        if (!isLoggedIn)
           const PopupMenuItem<String>(
             value: 'login',
             child: Text(
               'Login',
+              style: TextStyle(color: ColorsApp.NumberColor),
+            ),
+          )
+        else ...[
+          const PopupMenuItem<String>(
+            value: 'dashboard',
+            child: Text(
+              'Dashboard',
               style: TextStyle(color: ColorsApp.NumberColor),
             ),
           ),
@@ -137,13 +145,6 @@ class _OurNavBarState extends State<OurNavBar> {
             ),
           ),
         ],
-        const PopupMenuItem<String>(
-          value: 'dashboard',
-          child: Text(
-            'Dashboard',
-            style: TextStyle(color: ColorsApp.NumberColor),
-          ),
-        ),
       ],
     );
   }

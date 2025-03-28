@@ -5,11 +5,11 @@ enum ApiMethod { get, post, put, delete }
 
 class ApiService {
   final Dio _dio;
-
-  ApiService()
-      : _dio = Dio()
-          ..interceptors
-              .add(LogInterceptor(requestBody: true, responseBody: true));
+  ApiService() : _dio = Dio();
+  // ApiService()
+  //     : _dio = Dio()
+  //         ..interceptors
+  //             .add(LogInterceptor(requestBody: true, responseBody: true));
   Future<GenericResponse> makeRequest(
     ApiMethod method,
     String endpoint, {
