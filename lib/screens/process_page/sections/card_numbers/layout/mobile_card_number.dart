@@ -12,6 +12,7 @@ class MobileCardNumberProcess extends StatelessWidget {
       height: 2000,
       child: RepaintBoundary(
         child: ListView.builder(
+           
             physics: const NeverScrollableScrollPhysics(),
             itemCount: cardProcess.length,
             itemBuilder: (context, index) {

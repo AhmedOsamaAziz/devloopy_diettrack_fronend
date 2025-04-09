@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/constants/constants.dart';
 import 'package:ui/model/general/card_process.dart';
 import 'package:ui/shared/custom_text.dart';
- 
+
 class MobileCustomCardProcess extends StatelessWidget {
   const MobileCustomCardProcess({
     super.key,
@@ -14,7 +14,7 @@ class MobileCustomCardProcess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       width: 1596,
       height: 200,
       child: Column(
