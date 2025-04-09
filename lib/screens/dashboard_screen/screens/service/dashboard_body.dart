@@ -8,6 +8,8 @@ import 'package:ui/constants/custom_button.dart';
 import 'package:ui/core/api/generic_response.dart';
 import 'package:ui/model/service/service_create.dart';
 import 'package:ui/model/service/service_list.dart';
+import 'package:ui/model/service_item/service_item_create.dart';
+import 'package:ui/model/service_item/service_item_details.dart';
 import 'package:ui/services/service_plan/service_plan_implmentation.dart';
 
 import 'add_service.dart';
@@ -56,18 +58,19 @@ class _DashBoardBadyState extends State<DashBoardBady> {
     prefs.setString('services', jsonEncode(serviceList));
   }
 
+// In _DashBoardBadyState
   void openForm({int? index}) async {
-    final result = await showDialog<Map<String, String>>(
+    final result = await showDialog<Map<String, dynamic>>(
       context: context,
       builder: (BuildContext context) {
         if (index == null) {
-          return AddServiceDialog(
+          return AddService(
             onSave: (result) {
               Navigator.of(context).pop(result);
             },
           );
         } else {
-          return EditServiceDialog(
+          return EditService(
             service: _rows[index],
             onSave: (result) {
               Navigator.of(context).pop(result);
@@ -81,6 +84,15 @@ class _DashBoardBadyState extends State<DashBoardBady> {
       setState(() {
         try {
           if (index == null) {
+            final items = (result['items'] as List<dynamic>).map((itemData) {
+              return ServiceItemCreate(
+                id: 0, // Temporary ID, will be assigned by backend
+                serviceID: 0, // Will be updated after service creation
+                description: itemData['description'],
+                descriptionAr: itemData['descriptionAr'],
+              );
+            }).toList();
+
             ServiceCreate newService = ServiceCreate(
               name: result['name']!,
               nameAr: result['nameAr']!,
@@ -89,24 +101,31 @@ class _DashBoardBadyState extends State<DashBoardBady> {
               description: result['description']!,
               descriptionAr: result['descriptionAr']!,
               isBestValue: result['isBestValue']!.toLowerCase() == 'true',
-              items: [], // Add items if needed
+              items: items,
             );
 
-            // Call the createServiceItem method
             servicePlanItemImplmentation
                 .createServiceItem(newService)
                 .then((response) {
               if (response.status == ResponseStatus.success) {
-                // Add the new service to the list
                 _rows.add(ServiceList(
+                  id: response.obj?.id,
                   name: newService.name,
                   nameAr: newService.nameAr,
                   price: newService.price,
                   validFor: newService.validFor,
                   isBestValue: newService.isBestValue,
-                  discount: int.tryParse(result['discount']!) ?? 0,
+                  discount: newService.discount,
                   description: newService.description,
                   descriptionAr: newService.descriptionAr,
+                  items: items
+                      .map((item) => ServiceItemDetails(
+                            id: item.id,
+                            serviceID: item.serviceID,
+                            description: item.description,
+                            descriptionAr: item.descriptionAr,
+                          ))
+                      .toList(),
                 ));
                 _saveServicesToSharedPref();
                 _loadServicesFromApi();
@@ -116,36 +135,46 @@ class _DashBoardBadyState extends State<DashBoardBady> {
                     backgroundColor: Colors.green,
                   ),
                 );
-              } else {
-                const SnackBar(
-                  content: Text('Failed to add service!'),
-                  backgroundColor: Colors.green,
-                );
-                log("Failed to create service: ${response.message}");
               }
             });
           } else {
-            _rows[index]
+            final existingService = _rows[index];
+            existingService
               ..name = result['name']!
               ..nameAr = result['nameAr']!
               ..price = double.tryParse(result['price']!) ?? 0.0
               ..validFor = result['validFor']!
               ..isBestValue = result['isBestValue']!.toLowerCase() == 'true'
-              ..discount = int.tryParse(result['discount']!) ?? 0
               ..description = result['description']!
               ..descriptionAr = result['descriptionAr']!;
-            _saveServicesToSharedPref();
-            _loadServicesFromApi();
 
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Service Edited successfully!'),
-                backgroundColor: Colors.red,
-              ),
-            );
+            existingService.items =
+                (result['items'] as List<dynamic>).map((itemData) {
+              return ServiceItemDetails(
+                id: itemData['id'] ?? 0,
+                serviceID: existingService.id,
+                description: itemData['description'],
+                descriptionAr: itemData['descriptionAr'],
+              );
+            }).toList();
+
+            // Call update API here
+            servicePlanItemImplmentation
+                .updateServiceItem(existingService as ServiceCreate)
+                .then((response) {
+              if (response.status == ResponseStatus.success) {
+                _saveServicesToSharedPref();
+                _loadServicesFromApi();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Service Updated successfully!'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              }
+            });
           }
         } catch (e) {
-          // Handle any parsing errors
           log("Error: $e");
         }
       });

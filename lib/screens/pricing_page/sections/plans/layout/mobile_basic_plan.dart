@@ -33,9 +33,11 @@ class MobileListPricing extends StatelessWidget {
 
   Widget _buildServiceList(List<ServiceList> services, BuildContext context) {
     return SizedBox(
+      // width: 400,
+      // height: MediaQuery.of(context).size.height * 3.2,
       child: CustomScrollView(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         slivers: [
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),

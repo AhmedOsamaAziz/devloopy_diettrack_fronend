@@ -24,7 +24,7 @@ class CustomCardMobile extends StatelessWidget {
             child: CustomText(
               text: lastCardModel.text,
               fontWeight: FontWeight.bold,
-              fontSize: getResponsiveFontSize(context, fontSize: 20),
+              fontSize: getResponsiveFontSize(context, fontSize: 16),
               color: ColorsApp.MAINCOLOR,
             ),
           ),

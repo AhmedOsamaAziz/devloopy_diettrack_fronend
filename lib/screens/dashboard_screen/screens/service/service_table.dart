@@ -24,7 +24,7 @@ class ServiceTable extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: DataTable(
-            headingTextStyle: const TextStyle(color: Colors.white),
+             headingTextStyle: const TextStyle(color: Colors.white),
             headingRowColor: WidgetStateProperty.all(ColorsApp.TextColor),
             columns: const [
               DataColumn(label: Text("Name")),
@@ -40,7 +40,11 @@ class ServiceTable extends StatelessWidget {
               final index = entry.key;
               final row = entry.value;
 
-              return DataRow(cells: [
+              return DataRow(
+                
+                
+                cells: [
+                  
                 DataCell(SizedBox(width: 70, child: Text(row.name))),
                 DataCell(SizedBox(width: 70, child: Text(row.nameAr))),
                 DataCell(
